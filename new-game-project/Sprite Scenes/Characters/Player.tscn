@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c0sfv2q8qaxsj" path="res://Art Assets/Characters/Player/Animations/Walk-Anim_Player.png" id="3_6cc16"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
+radius = 37.0
+height = 110.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lusjq"]
 atlas = ExtResource("1_c2xe1")

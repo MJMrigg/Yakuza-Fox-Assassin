@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Walk-Anim_Husky.png" id="2_t8407"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
+radius = 40.0
+height = 124.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ypsy"]
 atlas = ExtResource("1_udhs2")
