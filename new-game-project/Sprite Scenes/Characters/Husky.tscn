@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://cckd5u6wwg8gx"]
 
-[ext_resource type="Texture2D" uid="uid://clkcw7i6acred" path="res://Art Assets/Characters/Enemies/Husky/Hurt-Anim_Husky.png" id="1_udhs2"]
-[ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Walk-Anim_Husky.png" id="2_t8407"]
+[ext_resource type="Texture2D" uid="uid://clkcw7i6acred" path="res://Art Assets/Characters/Enemies/Husky/Animations/Hurt-Anim_Husky.png" id="1_udhs2"]
+[ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Animations/Walk-Anim_Husky.png" id="2_t8407"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
 radius = 40.0

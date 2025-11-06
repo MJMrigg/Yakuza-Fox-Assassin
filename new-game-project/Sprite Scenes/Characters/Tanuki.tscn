@@ -1,8 +1,145 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=20 format=3 uid="uid://dxcjch6ow0kbd"]
+
+[ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_sbqdp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
+radius = 34.0
+height = 118.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb22i"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb0m0"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8u10"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olhs0"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(288, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwg6y"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33y1y"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37ke6"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h75jn"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(288, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtb0q"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5gcl"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb5d5"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ticsj"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(288, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltbet"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx5d6"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5cp6"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnv64"]
+atlas = ExtResource("1_sbqdp")
+region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mh0sn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb22i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb0m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8u10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olhs0")
+}],
+"loop": true,
+"name": &"Walk_D",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwg6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33y1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37ke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h75jn")
+}],
+"loop": true,
+"name": &"Walk_L",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtb0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5gcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb5d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ticsj")
+}],
+"loop": true,
+"name": &"Walk_R",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltbet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx5d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5cp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnv64")
+}],
+"loop": true,
+"name": &"Walk_U",
+"speed": 5.0
+}]
 
 [node name="Tanuki" type="CharacterBody2D"]
 
@@ -11,3 +148,4 @@ shape = SubResource("CapsuleShape2D_d5f1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
+animation = &"Walk_D"

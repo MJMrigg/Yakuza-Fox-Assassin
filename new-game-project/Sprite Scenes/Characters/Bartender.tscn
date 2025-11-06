@@ -1,8 +1,145 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqjgyl2i4nf07"]
+[gd_scene load_steps=20 format=3 uid="uid://dqjgyl2i4nf07"]
+
+[ext_resource type="Texture2D" uid="uid://c7pcor1cfg7ho" path="res://Art Assets/Characters/NPCS/Bartender/Animations/Walk-Anim_Bartender.png" id="1_npnro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu4u"]
+radius = 42.0
+height = 142.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk56q"]
+atlas = ExtResource("1_npnro")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff51h"]
+atlas = ExtResource("1_npnro")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkjh"]
+atlas = ExtResource("1_npnro")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_018dv"]
+atlas = ExtResource("1_npnro")
+region = Rect2(288, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6wa2"]
+atlas = ExtResource("1_npnro")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c5bx"]
+atlas = ExtResource("1_npnro")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrxsy"]
+atlas = ExtResource("1_npnro")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykhg7"]
+atlas = ExtResource("1_npnro")
+region = Rect2(288, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxoc0"]
+atlas = ExtResource("1_npnro")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86us5"]
+atlas = ExtResource("1_npnro")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtaeb"]
+atlas = ExtResource("1_npnro")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w36b"]
+atlas = ExtResource("1_npnro")
+region = Rect2(288, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxkt0"]
+atlas = ExtResource("1_npnro")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6sq4"]
+atlas = ExtResource("1_npnro")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5pho"]
+atlas = ExtResource("1_npnro")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_led1i"]
+atlas = ExtResource("1_npnro")
+region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ollwv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk56q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff51h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_018dv")
+}],
+"loop": true,
+"name": &"Walk_D",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6wa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c5bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrxsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykhg7")
+}],
+"loop": true,
+"name": &"Walk_L",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxoc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86us5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtaeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w36b")
+}],
+"loop": true,
+"name": &"Walk_R",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxkt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6sq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5pho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_led1i")
+}],
+"loop": true,
+"name": &"Walk_U",
+"speed": 5.0
+}]
 
 [node name="Bartender" type="CharacterBody2D"]
 
@@ -11,3 +148,4 @@ shape = SubResource("CapsuleShape2D_2uu4u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ollwv")
+animation = &"Walk_D"

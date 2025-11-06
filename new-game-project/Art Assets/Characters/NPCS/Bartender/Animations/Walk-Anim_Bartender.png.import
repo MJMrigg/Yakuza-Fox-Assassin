@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clkcw7i6acred"
-path="res://.godot/imported/Hurt-Anim_Husky.png-1a2517ea01be4b03e986af5c6c7927a4.ctex"
+uid="uid://c7pcor1cfg7ho"
+path="res://.godot/imported/Walk-Anim_Bartender.png-c6502e4f234f62afa269a8b748480b7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art Assets/Characters/Enemies/Husky/Hurt-Anim_Husky.png"
-dest_files=["res://.godot/imported/Hurt-Anim_Husky.png-1a2517ea01be4b03e986af5c6c7927a4.ctex"]
+source_file="res://Art Assets/Characters/NPCS/Bartender/Animations/Walk-Anim_Bartender.png"
+dest_files=["res://.godot/imported/Walk-Anim_Bartender.png-c6502e4f234f62afa269a8b748480b7b.ctex"]
 
 [params]
 

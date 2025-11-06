@@ -1,8 +1,145 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=20 format=3 uid="uid://bpa0yurigcfsn"]
+
+[ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
+radius = 32.0
+height = 116.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17at2"]
+atlas = ExtResource("1_sht32")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd24r"]
+atlas = ExtResource("1_sht32")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtkua"]
+atlas = ExtResource("1_sht32")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbaha"]
+atlas = ExtResource("1_sht32")
+region = Rect2(288, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1xn2"]
+atlas = ExtResource("1_sht32")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2uk3"]
+atlas = ExtResource("1_sht32")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va0oa"]
+atlas = ExtResource("1_sht32")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbvp2"]
+atlas = ExtResource("1_sht32")
+region = Rect2(288, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_614v6"]
+atlas = ExtResource("1_sht32")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7838"]
+atlas = ExtResource("1_sht32")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdvp8"]
+atlas = ExtResource("1_sht32")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx5u6"]
+atlas = ExtResource("1_sht32")
+region = Rect2(288, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dklhh"]
+atlas = ExtResource("1_sht32")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6j1q"]
+atlas = ExtResource("1_sht32")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6fmn"]
+atlas = ExtResource("1_sht32")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8435d"]
+atlas = ExtResource("1_sht32")
+region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qkkyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17at2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd24r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtkua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbaha")
+}],
+"loop": true,
+"name": &"Walk_D",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1xn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2uk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va0oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbvp2")
+}],
+"loop": true,
+"name": &"Walk_L",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_614v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7838")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdvp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx5u6")
+}],
+"loop": true,
+"name": &"Walk_R",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dklhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6j1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6fmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8435d")
+}],
+"loop": true,
+"name": &"Walk_U",
+"speed": 5.0
+}]
 
 [node name="Security" type="CharacterBody2D"]
 
@@ -11,3 +148,4 @@ shape = SubResource("CapsuleShape2D_7and2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
+animation = &"Walk_D"

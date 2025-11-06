@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cosyf7cuql86n"
-path="res://.godot/imported/Walk-Anim_Husky.png-56d357135920d84f7e37fc5fc107f477.ctex"
+uid="uid://btts7r3ltvjnv"
+path="res://.godot/imported/Walk-Anim_Paul.png-04779721932a4ef1659d981f170e5091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art Assets/Characters/Enemies/Husky/Walk-Anim_Husky.png"
-dest_files=["res://.godot/imported/Walk-Anim_Husky.png-56d357135920d84f7e37fc5fc107f477.ctex"]
+source_file="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png"
+dest_files=["res://.godot/imported/Walk-Anim_Paul.png-04779721932a4ef1659d981f170e5091.ctex"]
 
 [params]
 
