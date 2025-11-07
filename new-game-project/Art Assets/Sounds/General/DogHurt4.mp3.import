@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb8p1y6nbfblf"
+path="res://.godot/imported/DogHurt4.mp3-1527a76c5c0008c10c452bd1ff4b31f5.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/General/DogHurt4.mp3"
+dest_files=["res://.godot/imported/DogHurt4.mp3-1527a76c5c0008c10c452bd1ff4b31f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

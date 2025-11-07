@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3lsjqb75x1og"
+path="res://.godot/imported/PaulHasArrived.mp3-fe41dac98fab7c75cbce7b9c05514013.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Paul/PaulHasArrived.mp3"
+dest_files=["res://.godot/imported/PaulHasArrived.mp3-fe41dac98fab7c75cbce7b9c05514013.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0i2fodxsdlai"
+path="res://.godot/imported/ChihuahuaBark3.mp3-5ba499c613582e668d63e0c3747d27c7.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark3.mp3"
+dest_files=["res://.godot/imported/ChihuahuaBark3.mp3-5ba499c613582e668d63e0c3747d27c7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

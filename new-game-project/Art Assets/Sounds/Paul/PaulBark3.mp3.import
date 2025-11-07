@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mg6gy2e8vsp2"
+path="res://.godot/imported/PaulBark3.mp3-4f25fb20084fa71d75b2ceefe89fd591.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Paul/PaulBark3.mp3"
+dest_files=["res://.godot/imported/PaulBark3.mp3-4f25fb20084fa71d75b2ceefe89fd591.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

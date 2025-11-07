@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dftl7yfp2m1om"
+path="res://.godot/imported/PlayerDeathRetro.mp3-94959fb42b96ece44f2ca7baaa262dc9.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Player/PlayerDeathRetro.mp3"
+dest_files=["res://.godot/imported/PlayerDeathRetro.mp3-94959fb42b96ece44f2ca7baaa262dc9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://rfpjf0jbbkvb"
+path="res://.godot/imported/BiteAttack.mp3-f5416d131d43f8ac5b79db0cbb2a0795.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Player/BiteAttack.mp3"
+dest_files=["res://.godot/imported/BiteAttack.mp3-f5416d131d43f8ac5b79db0cbb2a0795.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

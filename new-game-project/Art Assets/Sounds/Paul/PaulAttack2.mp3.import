@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8bjwd1nw2bdm"
+path="res://.godot/imported/PaulAttack2.mp3-ffdc66e7678cb005098e8ed28ef5b22b.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Paul/PaulAttack2.mp3"
+dest_files=["res://.godot/imported/PaulAttack2.mp3-ffdc66e7678cb005098e8ed28ef5b22b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

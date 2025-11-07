@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmrokk63sa3gm"
+path="res://.godot/imported/TanukiBark4.mp3-8eb4a2f7c1b23484647e79cab4e0ca4e.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Tanuki/TanukiBark4.mp3"
+dest_files=["res://.godot/imported/TanukiBark4.mp3-8eb4a2f7c1b23484647e79cab4e0ca4e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

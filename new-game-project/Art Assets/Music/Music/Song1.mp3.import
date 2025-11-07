@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwtnej12rivfh"
+path="res://.godot/imported/Song1.mp3-bd7f1912e7582051842b6cbe28dbe906.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Music/Music/Song1.mp3"
+dest_files=["res://.godot/imported/Song1.mp3-bd7f1912e7582051842b6cbe28dbe906.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

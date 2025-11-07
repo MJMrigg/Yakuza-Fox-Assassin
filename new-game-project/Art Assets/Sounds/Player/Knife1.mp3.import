@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyb5ndlcd4435"
+path="res://.godot/imported/Knife1.mp3-d7afa4dfe1ccd8263e58e24a1ad27e10.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Player/Knife1.mp3"
+dest_files=["res://.godot/imported/Knife1.mp3-d7afa4dfe1ccd8263e58e24a1ad27e10.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

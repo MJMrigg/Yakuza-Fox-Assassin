@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb7ahh3iths4b"
+path="res://.godot/imported/PaulNotice.mp3-9aefadd306354e6d489e7a4aa8553976.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Paul/PaulNotice.mp3"
+dest_files=["res://.godot/imported/PaulNotice.mp3-9aefadd306354e6d489e7a4aa8553976.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

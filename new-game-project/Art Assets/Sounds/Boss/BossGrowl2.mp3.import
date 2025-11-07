@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fjmwxgtxrenq"
+path="res://.godot/imported/BossGrowl2.mp3-809e20d92e7a7950356d159b3af54903.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Boss/BossGrowl2.mp3"
+dest_files=["res://.godot/imported/BossGrowl2.mp3-809e20d92e7a7950356d159b3af54903.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
