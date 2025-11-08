@@ -1,6 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=34 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
+[ext_resource type="AudioStream" uid="uid://4l5aslkhqptf" path="res://Art Assets/Sounds/Paul/PaulAttack1.mp3" id="2_rdvp8"]
+[ext_resource type="AudioStream" uid="uid://8bjwd1nw2bdm" path="res://Art Assets/Sounds/Paul/PaulAttack2.mp3" id="3_sx5u6"]
+[ext_resource type="AudioStream" uid="uid://dwdabw2nrnpwj" path="res://Art Assets/Sounds/Paul/PaulBark1.mp3" id="4_dklhh"]
+[ext_resource type="AudioStream" uid="uid://bi6a7kcqqykbv" path="res://Art Assets/Sounds/Paul/PaulBark2.mp3" id="5_i6j1q"]
+[ext_resource type="AudioStream" uid="uid://mg6gy2e8vsp2" path="res://Art Assets/Sounds/Paul/PaulBark3.mp3" id="6_e6fmn"]
+[ext_resource type="AudioStream" uid="uid://es3avluu7w4v" path="res://Art Assets/Sounds/Paul/PaulBark4.mp3" id="7_8435d"]
+[ext_resource type="AudioStream" uid="uid://eo54vi6wnb5o" path="res://Art Assets/Sounds/Paul/PaulBark5.mp3" id="8_q7rhs"]
+[ext_resource type="AudioStream" uid="uid://dybeolhwsdj8j" path="res://Art Assets/Sounds/Paul/PaulBark6.mp3" id="9_8vqx4"]
+[ext_resource type="AudioStream" uid="uid://btto6ggeqg8gk" path="res://Art Assets/Sounds/Paul/PaulBark7.mp3" id="10_y4wq0"]
+[ext_resource type="AudioStream" uid="uid://d2ufrnccmh33b" path="res://Art Assets/Sounds/Paul/PaulBark8.mp3" id="11_suhcy"]
+[ext_resource type="AudioStream" uid="uid://doqch5jtl1yct" path="res://Art Assets/Sounds/Paul/PaulBark9.mp3" id="12_7qwtg"]
+[ext_resource type="AudioStream" uid="uid://dl5is478655sl" path="res://Art Assets/Sounds/Paul/PaulKnockOut.mp3" id="13_i6j1q"]
+[ext_resource type="AudioStream" uid="uid://cb7ahh3iths4b" path="res://Art Assets/Sounds/Paul/PaulNotice.mp3" id="14_e6fmn"]
+[ext_resource type="AudioStream" uid="uid://6yvqsut464mb" path="res://Art Assets/Sounds/Paul/PaulUnconcious.mp3" id="15_8435d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 32.0
@@ -149,3 +163,48 @@ shape = SubResource("CapsuleShape2D_7and2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
 animation = &"Walk_D"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="PaulAttack1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_rdvp8")
+
+[node name="PaulAttack2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_sx5u6")
+
+[node name="PaulBark1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_dklhh")
+
+[node name="PaulBark2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_i6j1q")
+
+[node name="PaulBark3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_e6fmn")
+
+[node name="PaulBark4" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_8435d")
+
+[node name="PaulBark5" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_q7rhs")
+
+[node name="PaulBark6" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_8vqx4")
+
+[node name="PaulBark7" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_y4wq0")
+
+[node name="PaulBark8" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_suhcy")
+
+[node name="PaulBark9" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("12_7qwtg")
+
+[node name="PaulKnockOut" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("13_i6j1q")
+
+[node name="PaulNotice" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_e6fmn")
+
+[node name="PaulUnconcious" type="AudioStreamPlayer2D" parent="Sounds"]
+position = Vector2(0, -1)
+stream = ExtResource("15_8435d")

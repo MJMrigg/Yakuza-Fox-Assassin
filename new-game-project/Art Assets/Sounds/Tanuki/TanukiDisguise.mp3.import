@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wr0pf5gpf7d1"
+path="res://.godot/imported/TanukiDisguise.mp3-bd2bc591703aa5d64a35564b0ba6c818.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3"
+dest_files=["res://.godot/imported/TanukiDisguise.mp3-bd2bc591703aa5d64a35564b0ba6c818.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

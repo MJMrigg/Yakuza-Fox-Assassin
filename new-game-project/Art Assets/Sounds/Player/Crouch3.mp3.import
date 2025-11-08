@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgxrfxt0bub11"
+path="res://.godot/imported/Crouch3.mp3-f3396bce2316e532c39e24764d6736da.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Player/Crouch3.mp3"
+dest_files=["res://.godot/imported/Crouch3.mp3-f3396bce2316e532c39e24764d6736da.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

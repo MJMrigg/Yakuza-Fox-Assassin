@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://uarjbcqll6xp"
+path="res://.godot/imported/RetroHurt.mp3-0eb00e63f9e4574aab077776827a1cd0.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/General/RetroHurt.mp3"
+dest_files=["res://.godot/imported/RetroHurt.mp3-0eb00e63f9e4574aab077776827a1cd0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

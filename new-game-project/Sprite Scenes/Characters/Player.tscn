@@ -1,8 +1,25 @@
-[gd_scene load_steps=50 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=67 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Texture2D" uid="uid://bkerf5eqedm3g" path="res://Art Assets/Characters/Player/Animations/Hurt-Anim_Player.png" id="2_fj2py"]
 [ext_resource type="Texture2D" uid="uid://c0sfv2q8qaxsj" path="res://Art Assets/Characters/Player/Animations/Walk-Anim_Player.png" id="3_6cc16"]
+[ext_resource type="AudioStream" uid="uid://rfpjf0jbbkvb" path="res://Art Assets/Sounds/Player/BiteAttack.mp3" id="4_jdabq"]
+[ext_resource type="AudioStream" uid="uid://ika17xsyd7fg" path="res://Art Assets/Sounds/Player/Crouch1.mp3" id="5_xik24"]
+[ext_resource type="AudioStream" uid="uid://ciddwiif8fnkq" path="res://Art Assets/Sounds/Player/Crouch2.mp3" id="6_0cc5g"]
+[ext_resource type="AudioStream" uid="uid://cgxrfxt0bub11" path="res://Art Assets/Sounds/Player/Crouch3.mp3" id="7_tv0o1"]
+[ext_resource type="AudioStream" uid="uid://b7wlb2g8u8r1n" path="res://Art Assets/Sounds/Player/Crouch4.mp3" id="8_23qag"]
+[ext_resource type="AudioStream" uid="uid://bknirsixmsd7a" path="res://Art Assets/Sounds/Player/Crouch5.mp3" id="9_37w3c"]
+[ext_resource type="AudioStream" uid="uid://c3vc8ix50ott2" path="res://Art Assets/Sounds/Player/Crouch6.mp3" id="10_e0m4a"]
+[ext_resource type="AudioStream" uid="uid://dhiasptadv1nl" path="res://Art Assets/Sounds/Player/Crouch7.mp3" id="11_brip1"]
+[ext_resource type="AudioStream" uid="uid://hak4psusijpm" path="res://Art Assets/Sounds/Player/Dash.mp3" id="12_sv5gc"]
+[ext_resource type="AudioStream" uid="uid://dtl41ojyo6nbk" path="res://Art Assets/Sounds/Player/GlobalSuspicionToHigh.mp3" id="13_l4eev"]
+[ext_resource type="AudioStream" uid="uid://cyb5ndlcd4435" path="res://Art Assets/Sounds/Player/Knife1.mp3" id="14_eddr7"]
+[ext_resource type="AudioStream" uid="uid://0mhgvbo2kkum" path="res://Art Assets/Sounds/Player/Knife2.mp3" id="15_u01pg"]
+[ext_resource type="AudioStream" uid="uid://bbxons1orcyav" path="res://Art Assets/Sounds/Player/Knife3.mp3" id="16_h8srs"]
+[ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="17_0cc5g"]
+[ext_resource type="AudioStream" uid="uid://cqywuvyg6ti7k" path="res://Art Assets/Sounds/Player/ShotgunAndReload.mp3" id="18_tv0o1"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="19_23qag"]
+[ext_resource type="AudioStream" uid="uid://c3lvtovl1maqk" path="res://Art Assets/Sounds/Player/PlayerGameOverSad.mp3" id="20_37w3c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
 radius = 37.0
@@ -387,3 +404,57 @@ shape = SubResource("CapsuleShape2D_0rwas")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")
 animation = &"Walk_D"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="BiteAttack" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_jdabq")
+
+[node name="Crouch1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_xik24")
+
+[node name="Crouch2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_0cc5g")
+
+[node name="Crouch3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_tv0o1")
+
+[node name="Crouch4" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_23qag")
+
+[node name="Crouch5" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_37w3c")
+
+[node name="Crouch6" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_e0m4a")
+
+[node name="Crouch7" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_brip1")
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("12_sv5gc")
+
+[node name="GlobalSuspicionTooHigh" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("13_l4eev")
+
+[node name="Knife1" type="AudioStreamPlayer2D" parent="Sounds"]
+position = Vector2(0, 1)
+stream = ExtResource("14_eddr7")
+
+[node name="Knife2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_u01pg")
+
+[node name="Knife3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_h8srs")
+
+[node name="PistolLoud" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("17_0cc5g")
+
+[node name="ShotgunAndReload" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("18_tv0o1")
+
+[node name="MenuButtonClick" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("19_23qag")
+
+[node name="PlayerGameOverSad" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("20_37w3c")

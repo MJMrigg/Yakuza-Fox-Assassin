@@ -1,4 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://xa2kt5clmxbo"]
+[gd_scene load_steps=13 format=3 uid="uid://xa2kt5clmxbo"]
+
+[ext_resource type="AudioStream" uid="uid://daqitwnwy0p8j" path="res://Art Assets/Sounds/Boss/BossDeath.mp3" id="1_5a4u7"]
+[ext_resource type="AudioStream" uid="uid://cwx3thdv365jx" path="res://Art Assets/Sounds/Boss/BossGrowl1.mp3" id="2_lru0g"]
+[ext_resource type="AudioStream" uid="uid://fjmwxgtxrenq" path="res://Art Assets/Sounds/Boss/BossGrowl2.mp3" id="3_f3oyd"]
+[ext_resource type="AudioStream" uid="uid://cpliao1cnwt05" path="res://Art Assets/Sounds/Boss/BossGrowl3.mp3" id="4_6t3qb"]
+[ext_resource type="AudioStream" uid="uid://cfod2524nd5fd" path="res://Art Assets/Sounds/Boss/BossHowl.mp3" id="5_fcl4x"]
+[ext_resource type="AudioStream" uid="uid://drs1afqifvbg" path="res://Art Assets/Sounds/Boss/FireBall1.mp3" id="6_haxta"]
+[ext_resource type="AudioStream" uid="uid://cs481c3bl653c" path="res://Art Assets/Sounds/Boss/FireBall2.mp3" id="7_1rn3k"]
+[ext_resource type="AudioStream" uid="uid://db0rhsicv1ms8" path="res://Art Assets/Sounds/Boss/FireBall3.mp3" id="8_x5ik3"]
+[ext_resource type="AudioStream" uid="uid://dtvtry3puk02d" path="res://Art Assets/Sounds/Boss/FireBall4.mp3" id="9_6vpbu"]
+[ext_resource type="AudioStream" uid="uid://bsqtyvmouk3jr" path="res://Art Assets/Sounds/Boss/FireExplosion.mp3" id="10_udbvw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrydw"]
 
@@ -11,3 +22,35 @@ shape = SubResource("CapsuleShape2D_nrydw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bh72c")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="BossDeath" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("1_5a4u7")
+
+[node name="BossGrowl1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_lru0g")
+
+[node name="BossGrowl2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_f3oyd")
+
+[node name="BossGrowl3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_6t3qb")
+
+[node name="BossHowl" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_fcl4x")
+
+[node name="FireBall1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_haxta")
+
+[node name="FireBall2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_1rn3k")
+
+[node name="FireBall3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_x5ik3")
+
+[node name="FireBall4" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_6vpbu")
+
+[node name="FireExplosion" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_udbvw")

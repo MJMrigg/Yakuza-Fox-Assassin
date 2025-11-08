@@ -1,6 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=27 format=3 uid="uid://dxcjch6ow0kbd"]
 
 [ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_sbqdp"]
+[ext_resource type="AudioStream" uid="uid://c3i6ucvpn8lvy" path="res://Art Assets/Sounds/Tanuki/TanukiBark1.mp3" id="2_33y1y"]
+[ext_resource type="AudioStream" uid="uid://c1p4sw5k85owp" path="res://Art Assets/Sounds/Tanuki/TanukiBark2.mp3" id="3_37ke6"]
+[ext_resource type="AudioStream" uid="uid://do2ouebpv74wu" path="res://Art Assets/Sounds/Tanuki/TanukiBark3.mp3" id="4_h75jn"]
+[ext_resource type="AudioStream" uid="uid://dmrokk63sa3gm" path="res://Art Assets/Sounds/Tanuki/TanukiBark4.mp3" id="5_gtb0q"]
+[ext_resource type="AudioStream" uid="uid://d1nd8iomdep3f" path="res://Art Assets/Sounds/Tanuki/TanukiDeath1.mp3" id="6_e5gcl"]
+[ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_qb5d5"]
+[ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_37ke6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 34.0
@@ -149,3 +156,26 @@ shape = SubResource("CapsuleShape2D_d5f1y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
 animation = &"Walk_D"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="TanukiBark1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_33y1y")
+
+[node name="TanukiBark2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_37ke6")
+
+[node name="TanukiBark3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_h75jn")
+
+[node name="TanukiBark4" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_gtb0q")
+
+[node name="TanukiDeath1" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_e5gcl")
+
+[node name="TanukiDeath2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_qb5d5")
+
+[node name="TanukiDisguise" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_37ke6")

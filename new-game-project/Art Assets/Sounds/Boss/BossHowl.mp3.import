@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfod2524nd5fd"
+path="res://.godot/imported/BossHowl.mp3-c0759ddcdd7d3adc2777a5b7184e05e3.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/Boss/BossHowl.mp3"
+dest_files=["res://.godot/imported/BossHowl.mp3-c0759ddcdd7d3adc2777a5b7184e05e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

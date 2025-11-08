@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b711s47nxrvhr"
+path="res://.godot/imported/WoodFootstep1.mp3-2711600f1e3b091a9f196eb957a39d71.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/General/WoodFootstep1.mp3"
+dest_files=["res://.godot/imported/WoodFootstep1.mp3-2711600f1e3b091a9f196eb957a39d71.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

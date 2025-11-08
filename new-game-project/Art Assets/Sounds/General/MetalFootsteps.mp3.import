@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgwutu4idaxvt"
+path="res://.godot/imported/MetalFootsteps.mp3-2c6153b4092dc90d92459af063e22636.mp3str"
+
+[deps]
+
+source_file="res://Art Assets/Sounds/General/MetalFootsteps.mp3"
+dest_files=["res://.godot/imported/MetalFootsteps.mp3-2c6153b4092dc90d92459af063e22636.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
