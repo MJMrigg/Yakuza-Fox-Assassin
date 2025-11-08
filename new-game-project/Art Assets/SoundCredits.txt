@@ -28,6 +28,7 @@ FireExplosion: Fire Ball by freesound_CrunchpixStudio
 BattleCry: Epic Dragon Roar by DRAGON-STUDIO
 BossGrowl: troll roars by Darycho (Freesound)
 BossDeath: Ultra Kill by SoundReality
+BossHowl: howling by PhonosUPF (Freesound)
 BiteAttack: Dog eating a bone and growling by freesound_community
 Knife1: Knife Swish 2 by potentjello
 Knife2: Knife slice by NeoSpica (Freesound)
@@ -39,8 +40,14 @@ PlayerDeathWhine: Animal Dying Sound by ZpPizza
 PlayerDeathRetro: Retro Video Game Death by SRJA_Gaming (Freesound)
 PlayerGameOver: 080205_Life Lost Game Over by Freesound Community
 PlayerGameOverSad: Game Over by Alphix
+Crouch: Sneaky Walking by jimmybombimmy (Freesound)
+Dash: Quick Whoosh by DRAGON-STUDIO
 Drinking: Dog Drinking Water 3 by SOUND_GARAGE
 MenuButtonClick: menu click by Lesaek_Szary (Freesound)
 MenuPlayAndQuit: menu button by Lesaek_Szary (Freesound)
 GlobalSuspicionToHigh: ALERT by freesound_community
 DogHurt: Injured Street Dog Crying with Barking Dogs Reacting by arunangshubanerjee
+RetroHurt: hit sound(video game type) by RibhavAgrawal
+MetalFootsteps: Metal Footsteps by mypantsfelldown (Freesound)
+WoodFootstep: Footsteps on Wood by DRAGON-STUDIO
+DoorOpen: Spaceship Door Open by MarcusGraham325 (Freesound)
