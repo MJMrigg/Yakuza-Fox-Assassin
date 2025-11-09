@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://8bq274s7uyyh"]
+
+[ext_resource type="PackedScene" uid="uid://bd1urlla04r60" path="res://Packed Scenes/User Interface/QuitMenu.tscn" id="1_e1quc"]
+[ext_resource type="PackedScene" uid="uid://co5tsjnc018nv" path="res://Packed Scenes/User Interface/DifficultyMenu.tscn" id="2_tddvn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuitMenu" parent="." instance=ExtResource("1_e1quc")]
+visible = false
+layout_mode = 1
+
+[node name="DifficultyMenu" parent="." instance=ExtResource("2_tddvn")]
+visible = false
+layout_mode = 1
+
+[node name="Menu" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30600002
+anchor_top = 0.127
+anchor_right = 0.69100004
+anchor_bottom = 0.929
+offset_left = 0.48797607
+offset_top = -0.29600525
+offset_right = -0.032043457
+offset_bottom = 0.0079956055
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.26666668)
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.087000005
+anchor_right = 0.99500006
+anchor_bottom = 0.24200001
+offset_left = 0.11399996
+offset_top = -0.24000168
+offset_right = 0.21496582
+offset_bottom = 0.19197845
+grow_horizontal = 2
+text = "Return of the Lost Child"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13100001
+anchor_top = 0.335
+anchor_right = 0.88000005
+anchor_bottom = 0.48700002
+offset_left = -0.03300476
+offset_top = -0.19999695
+offset_right = 0.15997314
+offset_bottom = -0.2400055
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13100001
+anchor_top = 0.527
+anchor_right = 0.88000005
+anchor_bottom = 0.679
+offset_left = -0.03300476
+offset_top = -0.040008545
+offset_right = 0.15997314
+offset_bottom = -0.08001709
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13100001
+anchor_top = 0.71900004
+anchor_right = 0.88000005
+anchor_bottom = 0.87100005
+offset_left = -0.03300476
+offset_top = 0.1199646
+offset_right = 0.15997314
+offset_bottom = 0.07998657
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"

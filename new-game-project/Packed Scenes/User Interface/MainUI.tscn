@@ -1,0 +1,231 @@
+[gd_scene load_steps=7 format=3 uid="uid://bidfdywgj441a"]
+
+[ext_resource type="Texture2D" uid="uid://b3al5dm6i1cxl" path="res://Art Assets/Characters/Player/Portraits/Neutral-Por_Player.png" id="1_tkf6q"]
+[ext_resource type="Texture2D" uid="uid://df7gemstevwlj" path="res://Art Assets/Items/knife.png" id="2_ka4gu"]
+[ext_resource type="Texture2D" uid="uid://dx2bdjm0oho6k" path="res://Art Assets/Items/gun_Pistol.png" id="3_psf26"]
+[ext_resource type="PackedScene" uid="uid://c6vgmj0lj2p5e" path="res://Packed Scenes/User Interface/Weapon.tscn" id="4_psf26"]
+[ext_resource type="PackedScene" uid="uid://df4jfao7w6nab" path="res://Packed Scenes/User Interface/Item.tscn" id="5_qb4gu"]
+[ext_resource type="PackedScene" uid="uid://dglnssijjwpgx" path="res://Packed Scenes/User Interface/DialogOption.tscn" id="6_tppbg"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+offset_right = 360.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="LocalSuspicion" type="HBoxContainer" parent="Main"]
+custom_minimum_size = Vector2(360, 30)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Main/LocalSuspicion"]
+custom_minimum_size = Vector2(135, 30)
+layout_mode = 2
+text = "Local Suspicion:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LocalSuspicionMeter" type="ProgressBar" parent="Main/LocalSuspicion"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player" type="HBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerPortrait" type="TextureRect" parent="Main/Player"]
+layout_mode = 2
+texture = ExtResource("1_tkf6q")
+
+[node name="WeaponsAndHealth" type="VBoxContainer" parent="Main/Player"]
+custom_minimum_size = Vector2(90, 180)
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Weapons" type="HBoxContainer" parent="Main/Player/WeaponsAndHealth"]
+custom_minimum_size = Vector2(180, 90)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MeleeWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("2_ka4gu")
+
+[node name="RangedWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("3_psf26")
+
+[node name="Health" type="HBoxContainer" parent="Main/Player/WeaponsAndHealth"]
+custom_minimum_size = Vector2(180, 90)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/Player/WeaponsAndHealth/Health"]
+layout_mode = 2
+text = " HP:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Main/Player/WeaponsAndHealth/Health"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 1.0
+value = 100.0
+rounded = true
+
+[node name="Inventory" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -480.0
+offset_right = 700.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Items" type="GridContainer" parent="Inventory"]
+custom_minimum_size = Vector2(0, 270)
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Weapon" parent="Inventory/Items" instance=ExtResource("4_psf26")]
+layout_mode = 2
+
+[node name="Item" parent="Inventory/Items" instance=ExtResource("5_qb4gu")]
+layout_mode = 2
+
+[node name="PauseMenu" type="HBoxContainer" parent="Inventory"]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Menu" type="VBoxContainer" parent="Inventory/PauseMenu"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close"
+
+[node name="SettingsButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
+
+[node name="Dialog" type="HBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -792.0
+offset_top = -180.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="DialogText" type="VBoxContainer" parent="Dialog"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Text" type="Label" parent="Dialog/DialogText"]
+custom_minimum_size = Vector2(612, 60)
+layout_mode = 2
+text = "Sample Dialog Text"
+autowrap_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Dialog/DialogText"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="DialogOption" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 1"
+
+[node name="DialogOption2" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 2"
+
+[node name="DialogOption3" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 3"
+
+[node name="DialogOption4" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 4"
+
+[node name="DialogOption5" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 5"
+
+[node name="DialogOption6" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+layout_mode = 2
+text = "Dialog Option 6"
+
+[node name="Portrait" type="TextureRect" parent="Dialog"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_tkf6q")
+
+[node name="GlobalSuspicion" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(360, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.68700004
+anchor_right = 1.0
+anchor_bottom = 0.046000004
+offset_left = 0.57592773
+offset_bottom = 0.19199753
+grow_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="GlobalSuspicion"]
+custom_minimum_size = Vector2(137, 30)
+layout_mode = 2
+text = "Global Suspicion:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LocalSuspicionMeter" type="ProgressBar" parent="GlobalSuspicion"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3

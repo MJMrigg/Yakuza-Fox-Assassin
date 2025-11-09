@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dl5is478655sl" path="res://Art Assets/Sounds/Paul/PaulKnockOut.mp3" id="13_i6j1q"]
 [ext_resource type="AudioStream" uid="uid://cb7ahh3iths4b" path="res://Art Assets/Sounds/Paul/PaulNotice.mp3" id="14_e6fmn"]
 [ext_resource type="AudioStream" uid="uid://6yvqsut464mb" path="res://Art Assets/Sounds/Paul/PaulUnconcious.mp3" id="15_8435d"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 32.0

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6vgmj0lj2p5e"]
+
+[ext_resource type="Texture2D" uid="uid://dx2bdjm0oho6k" path="res://Art Assets/Items/gun_Pistol.png" id="1_ufbt1"]
+
+[node name="Weapon" type="VBoxContainer"]
+custom_minimum_size = Vector2(130, 130)
+anchors_preset = -1
+anchor_right = 0.113000005
+anchor_bottom = 0.208
+offset_right = -0.17601013
+offset_bottom = 0.21600342
+metadata/_edit_use_anchors_ = true
+
+[node name="Portrait" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_ufbt1")
+
+[node name="EquipButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Equip"

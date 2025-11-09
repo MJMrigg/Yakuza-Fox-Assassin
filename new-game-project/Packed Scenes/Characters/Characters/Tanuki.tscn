@@ -1,81 +1,81 @@
 [gd_scene load_steps=28 format=3 uid="uid://dxcjch6ow0kbd"]
 
-[ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_sbqdp"]
-[ext_resource type="AudioStream" uid="uid://c3i6ucvpn8lvy" path="res://Art Assets/Sounds/Tanuki/TanukiBark1.mp3" id="2_33y1y"]
-[ext_resource type="AudioStream" uid="uid://c1p4sw5k85owp" path="res://Art Assets/Sounds/Tanuki/TanukiBark2.mp3" id="3_37ke6"]
-[ext_resource type="AudioStream" uid="uid://do2ouebpv74wu" path="res://Art Assets/Sounds/Tanuki/TanukiBark3.mp3" id="4_h75jn"]
-[ext_resource type="AudioStream" uid="uid://dmrokk63sa3gm" path="res://Art Assets/Sounds/Tanuki/TanukiBark4.mp3" id="5_gtb0q"]
-[ext_resource type="AudioStream" uid="uid://d1nd8iomdep3f" path="res://Art Assets/Sounds/Tanuki/TanukiDeath1.mp3" id="6_e5gcl"]
-[ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_qb5d5"]
-[ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_37ke6"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="9_h75jn"]
+[ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_5j40h"]
+[ext_resource type="AudioStream" uid="uid://c3i6ucvpn8lvy" path="res://Art Assets/Sounds/Tanuki/TanukiBark1.mp3" id="2_ybuk3"]
+[ext_resource type="AudioStream" uid="uid://c1p4sw5k85owp" path="res://Art Assets/Sounds/Tanuki/TanukiBark2.mp3" id="3_b1c7m"]
+[ext_resource type="AudioStream" uid="uid://do2ouebpv74wu" path="res://Art Assets/Sounds/Tanuki/TanukiBark3.mp3" id="4_3i7lu"]
+[ext_resource type="AudioStream" uid="uid://dmrokk63sa3gm" path="res://Art Assets/Sounds/Tanuki/TanukiBark4.mp3" id="5_skepw"]
+[ext_resource type="AudioStream" uid="uid://d1nd8iomdep3f" path="res://Art Assets/Sounds/Tanuki/TanukiDeath1.mp3" id="6_x6w1p"]
+[ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_x51gj"]
+[ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_1w38c"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_r1kc7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 34.0
 height = 118.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb22i"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(0, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fb0m0"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(96, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8u10"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(192, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olhs0"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(288, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwg6y"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(0, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33y1y"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(96, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37ke6"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(192, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h75jn"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(288, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtb0q"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(0, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5gcl"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(96, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qb5d5"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(192, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ticsj"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(288, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltbet"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(0, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jx5d6"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(96, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5cp6"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hnv64"]
-atlas = ExtResource("1_sbqdp")
+atlas = ExtResource("1_5j40h")
 region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mh0sn"]
@@ -161,24 +161,24 @@ animation = &"Walk_D"
 [node name="Sounds" type="Node" parent="."]
 
 [node name="TanukiBark1" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("2_33y1y")
+stream = ExtResource("2_ybuk3")
 
 [node name="TanukiBark2" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("3_37ke6")
+stream = ExtResource("3_b1c7m")
 
 [node name="TanukiBark3" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("4_h75jn")
+stream = ExtResource("4_3i7lu")
 
 [node name="TanukiBark4" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("5_gtb0q")
+stream = ExtResource("5_skepw")
 
 [node name="TanukiDeath1" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("6_e5gcl")
+stream = ExtResource("6_x6w1p")
 
 [node name="TanukiDeath2" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("7_qb5d5")
+stream = ExtResource("7_x51gj")
 
 [node name="TanukiDisguise" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("8_37ke6")
+stream = ExtResource("8_1w38c")
 
-[node name="GeneralSounds" parent="Sounds" instance=ExtResource("9_h75jn")]
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("9_r1kc7")]

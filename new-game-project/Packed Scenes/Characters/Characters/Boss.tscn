@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://db0rhsicv1ms8" path="res://Art Assets/Sounds/Boss/FireBall3.mp3" id="8_x5ik3"]
 [ext_resource type="AudioStream" uid="uid://dtvtry3puk02d" path="res://Art Assets/Sounds/Boss/FireBall4.mp3" id="9_6vpbu"]
 [ext_resource type="AudioStream" uid="uid://bsqtyvmouk3jr" path="res://Art Assets/Sounds/Boss/FireExplosion.mp3" id="10_udbvw"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="11_lru0g"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="11_lru0g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrydw"]
 

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bojq5vpsx41i8"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SettingsContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="HBoxContainer" parent="SettingsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Keybindings" type="VBoxContainer" parent="SettingsContainer/Settings"]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Keybindings" type="Label" parent="SettingsContainer/Settings/Keybindings"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Key Bindings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AudioSettings" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Audio Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+value = 100.0
+
+[node name="MusicVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+value = 100.0
+
+[node name="SoundVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="SoundSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+value = 100.0

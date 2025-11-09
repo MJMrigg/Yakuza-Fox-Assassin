@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c7pcor1cfg7ho" path="res://Art Assets/Characters/NPCS/Bartender/Animations/Walk-Anim_Bartender.png" id="1_npnro"]
 [ext_resource type="AudioStream" uid="uid://i8rw0ug76wis" path="res://Art Assets/Sounds/Bark-Keep/Drinking.mp3" id="2_lk56q"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="3_ff51h"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="3_ff51h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu4u"]
 radius = 42.0

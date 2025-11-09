@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dglnssijjwpgx"]
+
+[node name="DialogOption" type="Button"]
+custom_minimum_size = Vector2(200, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Dialog Option"

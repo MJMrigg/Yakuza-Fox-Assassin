@@ -20,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://cqywuvyg6ti7k" path="res://Art Assets/Sounds/Player/ShotgunAndReload.mp3" id="18_tv0o1"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="19_23qag"]
 [ext_resource type="AudioStream" uid="uid://c3lvtovl1maqk" path="res://Art Assets/Sounds/Player/PlayerGameOverSad.mp3" id="20_37w3c"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="21_37w3c"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="21_37w3c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
 radius = 37.0

@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://nkt3y4ntgx51" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark6.mp3" id="6_t7gmw"]
 [ext_resource type="AudioStream" uid="uid://bilobesyuipcx" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark7.mp3" id="7_8a3ik"]
 [ext_resource type="AudioStream" uid="uid://e0q6fq47f154" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaDeath.mp3" id="8_shg67"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="9_uspop"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_uspop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aql81"]
 
