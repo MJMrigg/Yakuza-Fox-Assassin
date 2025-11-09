@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=35 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
 [ext_resource type="AudioStream" uid="uid://4l5aslkhqptf" path="res://Art Assets/Sounds/Paul/PaulAttack1.mp3" id="2_rdvp8"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dl5is478655sl" path="res://Art Assets/Sounds/Paul/PaulKnockOut.mp3" id="13_i6j1q"]
 [ext_resource type="AudioStream" uid="uid://cb7ahh3iths4b" path="res://Art Assets/Sounds/Paul/PaulNotice.mp3" id="14_e6fmn"]
 [ext_resource type="AudioStream" uid="uid://6yvqsut464mb" path="res://Art Assets/Sounds/Paul/PaulUnconcious.mp3" id="15_8435d"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 32.0
@@ -208,3 +209,5 @@ stream = ExtResource("14_e6fmn")
 [node name="PaulUnconcious" type="AudioStreamPlayer2D" parent="Sounds"]
 position = Vector2(0, -1)
 stream = ExtResource("15_8435d")
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("16_e6fmn")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=68 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Texture2D" uid="uid://bkerf5eqedm3g" path="res://Art Assets/Characters/Player/Animations/Hurt-Anim_Player.png" id="2_fj2py"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://cqywuvyg6ti7k" path="res://Art Assets/Sounds/Player/ShotgunAndReload.mp3" id="18_tv0o1"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="19_23qag"]
 [ext_resource type="AudioStream" uid="uid://c3lvtovl1maqk" path="res://Art Assets/Sounds/Player/PlayerGameOverSad.mp3" id="20_37w3c"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="21_37w3c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
 radius = 37.0
@@ -458,3 +459,5 @@ stream = ExtResource("19_23qag")
 
 [node name="PlayerGameOverSad" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("20_37w3c")
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("21_37w3c")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=39 format=3 uid="uid://cckd5u6wwg8gx"]
 
 [ext_resource type="Texture2D" uid="uid://clkcw7i6acred" path="res://Art Assets/Characters/Enemies/Husky/Animations/Hurt-Anim_Husky.png" id="1_udhs2"]
 [ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Animations/Walk-Anim_Husky.png" id="2_t8407"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dmm7r2jp1wka2" path="res://Art Assets/Sounds/Husky/HuskyBark3.mp3" id="5_n07xk"]
 [ext_resource type="AudioStream" uid="uid://dbtm4y7cg4qi0" path="res://Art Assets/Sounds/Husky/HuskyBark4.mp3" id="6_t0yt5"]
 [ext_resource type="AudioStream" uid="uid://dkhx4c5px57k6" path="res://Art Assets/Sounds/Husky/HuskyDeath.mp3" id="7_uetyp"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="8_1uy3h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
 radius = 40.0
@@ -276,3 +277,5 @@ stream = ExtResource("6_t0yt5")
 
 [node name="HuskyDeath" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("7_uetyp")
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("8_1uy3h")]

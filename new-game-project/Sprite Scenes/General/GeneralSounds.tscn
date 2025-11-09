@@ -1,0 +1,92 @@
+[gd_scene load_steps=23 format=3 uid="uid://b4mwwu87huwft"]
+
+[ext_resource type="AudioStream" uid="uid://cni00iaby25eb" path="res://Art Assets/Sounds/General/DogHurt1.mp3" id="1_6wvn2"]
+[ext_resource type="AudioStream" uid="uid://ddgxeoutmvvp4" path="res://Art Assets/Sounds/General/DogHurt2.mp3" id="2_x47dp"]
+[ext_resource type="AudioStream" uid="uid://b6mswom4vjfmc" path="res://Art Assets/Sounds/General/DogHurt3.mp3" id="3_kklbm"]
+[ext_resource type="AudioStream" uid="uid://bb8p1y6nbfblf" path="res://Art Assets/Sounds/General/DogHurt4.mp3" id="4_6fxl8"]
+[ext_resource type="AudioStream" uid="uid://cbhx340ut7jcg" path="res://Art Assets/Sounds/General/DogHurt5.mp3" id="5_ytcg8"]
+[ext_resource type="AudioStream" uid="uid://dsqjqahrmbakj" path="res://Art Assets/Sounds/General/DogHurt6.mp3" id="6_xdh3i"]
+[ext_resource type="AudioStream" uid="uid://bjuli0cdoxrys" path="res://Art Assets/Sounds/General/DogHurt7.mp3" id="7_ep13a"]
+[ext_resource type="AudioStream" uid="uid://dyv1jmb8ely17" path="res://Art Assets/Sounds/General/DogHurt8.mp3" id="8_cpdle"]
+[ext_resource type="AudioStream" uid="uid://i2pqa1aba5bt" path="res://Art Assets/Sounds/General/DogHurt9.mp3" id="9_a2kop"]
+[ext_resource type="AudioStream" uid="uid://b7semt3f2pqvf" path="res://Art Assets/Sounds/General/DogHurt10.mp3" id="10_fad3f"]
+[ext_resource type="AudioStream" uid="uid://bni3cwe4f8yta" path="res://Art Assets/Sounds/General/DogHurt11.mp3" id="11_5ni5q"]
+[ext_resource type="AudioStream" uid="uid://jjcuebqd8aq" path="res://Art Assets/Sounds/General/DogHurt12.mp3" id="12_arb47"]
+[ext_resource type="AudioStream" uid="uid://uarjbcqll6xp" path="res://Art Assets/Sounds/General/RetroHurt.mp3" id="13_1a5nu"]
+[ext_resource type="AudioStream" uid="uid://b31anhor2ukkm" path="res://Art Assets/Sounds/General/DoorOpen.mp3" id="14_p5is2"]
+[ext_resource type="AudioStream" uid="uid://bgwutu4idaxvt" path="res://Art Assets/Sounds/General/MetalFootsteps.mp3" id="15_g88hv"]
+[ext_resource type="AudioStream" uid="uid://b711s47nxrvhr" path="res://Art Assets/Sounds/General/WoodFootstep1.mp3" id="16_4h6ik"]
+[ext_resource type="AudioStream" uid="uid://cagkrp0gvsg6k" path="res://Art Assets/Sounds/General/WoodFootstep2.mp3" id="17_xavq2"]
+[ext_resource type="AudioStream" uid="uid://l5v6bhca6us1" path="res://Art Assets/Sounds/General/WoodFootstep3.mp3" id="18_rcfr7"]
+[ext_resource type="AudioStream" uid="uid://cyh1gpoxkhx7h" path="res://Art Assets/Sounds/General/WoodFootstep4.mp3" id="19_mimii"]
+[ext_resource type="AudioStream" uid="uid://cfkjca2qqtdbo" path="res://Art Assets/Sounds/General/WoodfootStep5.mp3" id="20_kvvhy"]
+[ext_resource type="AudioStream" uid="uid://d1rowpglbj3hr" path="res://Art Assets/Sounds/General/WoodFootstep6.mp3" id="21_jss5m"]
+[ext_resource type="AudioStream" uid="uid://yngv8eg1ry4n" path="res://Art Assets/Sounds/General/WoodFootstep7.mp3" id="22_kb7f5"]
+
+[node name="GeneralSounds" type="Node"]
+
+[node name="DogHurt1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_6wvn2")
+
+[node name="DogHurt2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_x47dp")
+
+[node name="DogHurt3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kklbm")
+
+[node name="DogHurt4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6fxl8")
+
+[node name="DogHurt5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ytcg8")
+
+[node name="DogHurt6" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_xdh3i")
+
+[node name="DogHurt7" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ep13a")
+
+[node name="DogHurt8" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_cpdle")
+
+[node name="DogHurt9" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_a2kop")
+
+[node name="DogHurt10" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_fad3f")
+
+[node name="DogHurt11" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_5ni5q")
+
+[node name="DogHurt12" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_arb47")
+
+[node name="RetroHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1a5nu")
+
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_p5is2")
+
+[node name="MetalFootstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_g88hv")
+
+[node name="WoodFootstep1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_4h6ik")
+
+[node name="WoodFootstep2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_xavq2")
+
+[node name="WoodFootstep3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_rcfr7")
+
+[node name="WoodFootstep4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_mimii")
+
+[node name="WoodFootstep5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_kvvhy")
+
+[node name="WoodFootstep6" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_jss5m")
+
+[node name="WoodFootstep7" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_kb7f5")

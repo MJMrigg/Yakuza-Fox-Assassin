@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tt8pocwt0mag"]
+[gd_scene load_steps=12 format=3 uid="uid://tt8pocwt0mag"]
 
 [ext_resource type="AudioStream" uid="uid://mhmksetncvvc" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark1.mp3" id="1_et5m4"]
 [ext_resource type="AudioStream" uid="uid://d38wwgp7u6gv6" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark2.mp3" id="2_uspop"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://nkt3y4ntgx51" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark6.mp3" id="6_t7gmw"]
 [ext_resource type="AudioStream" uid="uid://bilobesyuipcx" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark7.mp3" id="7_8a3ik"]
 [ext_resource type="AudioStream" uid="uid://e0q6fq47f154" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaDeath.mp3" id="8_shg67"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="9_uspop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aql81"]
 
@@ -46,3 +47,5 @@ stream = ExtResource("7_8a3ik")
 
 [node name="ChihuahuaDeath" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_shg67")
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("9_uspop")]

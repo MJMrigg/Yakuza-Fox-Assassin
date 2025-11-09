@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=28 format=3 uid="uid://dxcjch6ow0kbd"]
 
 [ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_sbqdp"]
 [ext_resource type="AudioStream" uid="uid://c3i6ucvpn8lvy" path="res://Art Assets/Sounds/Tanuki/TanukiBark1.mp3" id="2_33y1y"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://d1nd8iomdep3f" path="res://Art Assets/Sounds/Tanuki/TanukiDeath1.mp3" id="6_e5gcl"]
 [ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_qb5d5"]
 [ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_37ke6"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Sprite Scenes/General/GeneralSounds.tscn" id="9_h75jn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 34.0
@@ -179,3 +180,5 @@ stream = ExtResource("7_qb5d5")
 
 [node name="TanukiDisguise" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_37ke6")
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("9_h75jn")]
