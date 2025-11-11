@@ -1,6 +1,7 @@
-[gd_scene load_steps=68 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=69 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
+[ext_resource type="Script" uid="uid://qcbs108ili5q" path="res://Scripts/Characters/Player.cs" id="1_gs7tr"]
 [ext_resource type="Texture2D" uid="uid://bkerf5eqedm3g" path="res://Art Assets/Characters/Player/Animations/Hurt-Anim_Player.png" id="2_fj2py"]
 [ext_resource type="Texture2D" uid="uid://c0sfv2q8qaxsj" path="res://Art Assets/Characters/Player/Animations/Walk-Anim_Player.png" id="3_6cc16"]
 [ext_resource type="AudioStream" uid="uid://rfpjf0jbbkvb" path="res://Art Assets/Sounds/Player/BiteAttack.mp3" id="4_jdabq"]
@@ -397,7 +398,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("mySpriteAnimation")]
+script = ExtResource("1_gs7tr")
+mySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0rwas")
