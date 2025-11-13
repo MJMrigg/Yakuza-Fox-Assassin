@@ -137,7 +137,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r0hvx")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt_D",
 "speed": 5.0
 }, {
@@ -151,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fvoj2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt_L",
 "speed": 5.0
 }, {
@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r7rda")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt_R",
 "speed": 5.0
 }, {
@@ -179,7 +179,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x8g0f")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hurt_U",
 "speed": 5.0
 }, {
@@ -259,7 +259,7 @@ shape = SubResource("CapsuleShape2D_tvtjo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3nkod")
-animation = &"Walk_D"
+animation = &"Hurt_U"
 
 [node name="Sounds" type="Node" parent="."]
 
