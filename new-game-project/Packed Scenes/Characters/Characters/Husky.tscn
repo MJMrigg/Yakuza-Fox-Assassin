@@ -127,6 +127,26 @@ region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3nkod"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"Die_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_U",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ypsy")
@@ -181,6 +201,46 @@ animations = [{
 }],
 "loop": false,
 "name": &"Hurt_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Idle_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Idle_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Idle_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Shoot_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Shoot_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Shoot_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Shoot_U",
 "speed": 5.0
 }, {
 "frames": [{
@@ -259,7 +319,7 @@ shape = SubResource("CapsuleShape2D_tvtjo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3nkod")
-animation = &"Hurt_U"
+animation = &"Idle_L"
 
 [node name="Sounds" type="Node" parent="."]
 

@@ -74,6 +74,46 @@ region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ollwv"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"SitDown_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"SitDown_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"SitDown_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"SitDown_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Sit_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Sit_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Sit_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Sit_U",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lk56q")
@@ -150,7 +190,7 @@ shape = SubResource("CapsuleShape2D_2uu4u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ollwv")
-animation = &"Walk_D"
+animation = &"Sit_R"
 
 [node name="Sounds" type="Node" parent="."]
 

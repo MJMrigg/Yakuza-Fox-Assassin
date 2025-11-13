@@ -80,6 +80,126 @@ region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mh0sn"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"Die_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Throw_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Throw_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Throw_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Throw_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformIn_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformIn_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformIn_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformIn_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformOut_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformOut_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformOut_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"TransformOut_U",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cb22i")
@@ -156,7 +276,7 @@ shape = SubResource("CapsuleShape2D_d5f1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
-animation = &"Walk_D"
+animation = &"Idle_R"
 
 [node name="Sounds" type="Node" parent="."]
 

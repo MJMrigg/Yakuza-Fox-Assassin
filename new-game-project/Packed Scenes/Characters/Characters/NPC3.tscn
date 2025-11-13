@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://f4lev6mhev37"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyrq5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ormxa"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Die_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Die_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Hurt_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hurt_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle_U",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk_U",
+"speed": 5.0
+}]
+
+[node name="Npc3" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wyrq5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ormxa")
+animation = &"Die_R"
