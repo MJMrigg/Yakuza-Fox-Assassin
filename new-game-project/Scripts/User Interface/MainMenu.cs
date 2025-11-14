@@ -17,13 +17,13 @@ public partial class MainMenu : Node
 	}
 	
 	//Open the settings menu
-	GoSettingsMenu()
+	public void GoSettingsMenu()
 	{
 		
 	}
 	
 	//Start the game by getting the difficulty menu
-	GoDifficultyMenu()
+	public void GoDifficultyMenu()
 	{
 		
 	}

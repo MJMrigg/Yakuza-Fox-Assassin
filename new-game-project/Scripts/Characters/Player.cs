@@ -15,6 +15,11 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public FollowCamera PlayerCamera; //Camera that follows the player
 	
+	[Export]
+	public CollisionShape2D PhysicsCollider; //Physics collider of the player
+	
+	public bool RangedCooldown = true; //Whether the ranged attack cool down is finished
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -28,6 +33,12 @@ public partial class Player : CharacterBody2D
 	{
 		base._Process(delta);
 		
+		//If the player wishes to create a projectile and their cooldown is over
+		if(Input.IsActionPressed("p_ranged") && RangedCooldown)
+		{
+			CreateProjectile();
+		}
+		
 		//If the animation is currently not walking
 		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
 		{
@@ -35,7 +46,7 @@ public partial class Player : CharacterBody2D
 			if (!MySpriteAnimation.IsPlaying())
 			{
 				MySpriteAnimation.Animation = "Walk_" + CurrentDir;
-				MySpriteAnimation.Play();
+				MySpriteAnimation.Frame = 0;
 			}
 			else
 			{
@@ -53,8 +64,9 @@ public partial class Player : CharacterBody2D
 			MySpriteAnimation.Frame = 0;
 		}
 		else if (Mathf.Abs(hInput) > Mathf.Abs(vInput))
-		{ 
+		{
 			//If the player is moving left or right
+			PhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			if (hInput > 0)
 			{ //If the player is moving right
 				Velocity += new Vector2(100, 0);
@@ -71,6 +83,7 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{ //If the player is moving up or down
+			PhysicsCollider.Rotation = 0;
 			MySpriteAnimation.Play();
 			if (vInput > 0)
 			{
@@ -93,7 +106,7 @@ public partial class Player : CharacterBody2D
 		//Move the player camera along with the player
 		if(PlayerCamera != null)
 		{
-			PlayerCamera.ChangePosition(Velocity);
+			PlayerCamera.ChangePosition(Position);
 		}
 
 	}
@@ -107,7 +120,32 @@ public partial class Player : CharacterBody2D
 	//Shoot a bullet
 	public void CreateProjectile()
 	{
-		
+		//Unpack the scene
+		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Player Projectile.tscn");
+		Projectile NewBullet = (Projectile)PlayerProjectileScene.Instantiate();
+		//Set Position and Direction
+		if(CurrentDir == "D")
+		{
+			NewBullet.Direction = new Vector2(0,-1);
+			NewBullet.Position = new Vector2(Position.X, Position.Y-60);
+		}
+		else if(CurrentDir == "U")
+		{
+			NewBullet.Direction = new Vector2(1,0);
+			NewBullet.Position = new Vector2(Position.X, Position.Y+60);
+		}
+		else if(CurrentDir == "L")
+		{
+			NewBullet.Direction = new Vector2(-1,0);
+			NewBullet.Position = new Vector2(Position.X-60, Position.Y);
+		}
+		else if(CurrentDir == "R")
+		{
+			NewBullet.Direction = new Vector2(1,0);
+			NewBullet.Position = new Vector2(Position.X+60, Position.Y);
+		}
+		//Create the bullet
+		AddChild(NewBullet);
 	}
 	
 	//Remove a door when opening it from the unlocked side
@@ -138,6 +176,18 @@ public partial class Player : CharacterBody2D
 	public void DealDamage()
 	{
 		
+	}
+	
+	//Take damage when attacked or hit by a projectile
+	public void TakeDamage(int damage)
+	{
+		Health -= damage;
+		//If the player's health is below 0, die
+		if(Health <= 0)
+		{
+			//Death logic goes here
+			InformOfDeath();
+		}
 	}
 	
 }

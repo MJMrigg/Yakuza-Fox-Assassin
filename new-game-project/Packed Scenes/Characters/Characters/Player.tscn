@@ -24,8 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="21_37w3c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
-radius = 37.0
-height = 110.0
+radius = 31.0
+height = 98.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lusjq"]
 atlas = ExtResource("1_c2xe1")
@@ -558,15 +558,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("MySpriteAnimation", "PhysicsCollider")]
 script = ExtResource("1_gs7tr")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
+PhysicsCollider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0rwas")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"Dash_R"
+animation = &"Bite_D"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -601,7 +603,6 @@ stream = ExtResource("12_sv5gc")
 stream = ExtResource("13_l4eev")
 
 [node name="Knife1" type="AudioStreamPlayer2D" parent="Sounds"]
-position = Vector2(0, 1)
 stream = ExtResource("14_eddr7")
 
 [node name="Knife2" type="AudioStreamPlayer2D" parent="Sounds"]

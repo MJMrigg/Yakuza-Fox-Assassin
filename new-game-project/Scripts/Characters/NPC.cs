@@ -29,7 +29,7 @@ public partial class NPC : Interactable
 	}
 	
 	//Take damage from an attack
-	public void TakeDamage()
+	public void TakeDamage(int damage)
 	{
 		
 	}
