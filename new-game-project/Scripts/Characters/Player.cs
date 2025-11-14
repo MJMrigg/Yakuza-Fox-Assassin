@@ -192,8 +192,11 @@ public partial class Player : CharacterBody2D
 		}
 	}
 	
-	public async void RangedCooldown()
+	//Start the cool down for the ranged attack
+	public async void RangedCoolDown()
 	{
-		
+		RangedCooldown = false;
+		await ToSignal(GetTree().CreateTimer(20),"timeout");
+		RangedCooldown = true;
 	}
 }
