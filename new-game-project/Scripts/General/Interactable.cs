@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Interactable : CharacterBody2D
+public partial class Interactable : Entity
 {
 	[Export]
 	public string[] DialogueOptions; //Dialog options that the player can select

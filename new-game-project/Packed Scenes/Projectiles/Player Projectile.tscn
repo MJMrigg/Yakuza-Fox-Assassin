@@ -84,19 +84,19 @@ region = Rect2(72, 144, 72, 72)
 atlas = ExtResource("2_igqja")
 region = Rect2(0, 144, 72, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_onvs5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o5gu"]
 atlas = ExtResource("3_6h1my")
 region = Rect2(0, 0, 72, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mapwu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_igqja"]
 atlas = ExtResource("3_6h1my")
 region = Rect2(72, 0, 72, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_joggj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h1my"]
 atlas = ExtResource("3_6h1my")
 region = Rect2(144, 0, 72, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aqdv5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6lpr"]
 atlas = ExtResource("3_6h1my")
 region = Rect2(216, 0, 72, 72)
 
@@ -184,16 +184,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_onvs5")
+"texture": SubResource("AtlasTexture_6o5gu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mapwu")
+"texture": SubResource("AtlasTexture_igqja")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_joggj")
+"texture": SubResource("AtlasTexture_6h1my")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aqdv5")
+"texture": SubResource("AtlasTexture_n6lpr")
 }],
 "loop": true,
 "name": &"Move",
@@ -204,18 +204,19 @@ animations = [{
 radius = 11.0
 height = 50.0
 
-[node name="PlayerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("MySpriteAnimation", "PhysicsCollider")]
+[node name="PlayerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_6o5gu")
 Damage = 30
 Speed = 150.0
+MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
-PhysicsCollider = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xjrqa")
 animation = &"Move"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8wx7a")

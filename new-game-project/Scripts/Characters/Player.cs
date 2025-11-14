@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+public partial class Player : Entity
 {
-	[Export]
-	public AnimatedSprite2D MySpriteAnimation; //Sprite of the player
-
 	public string CurrentDir = "D"; //Start looking down
 	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
@@ -14,9 +11,6 @@ public partial class Player : CharacterBody2D
 	
 	[Export]
 	public FollowCamera PlayerCamera; //Camera that follows the player
-	
-	[Export]
-	public CollisionShape2D PhysicsCollider; //Physics collider of the player
 	
 	public bool RangedCooldown = true; //Whether the ranged attack cool down is finished
 	
@@ -65,7 +59,7 @@ public partial class Player : CharacterBody2D
 		else if (Mathf.Abs(hInput) > Mathf.Abs(vInput))
 		{
 			//If the player is moving left or right
-			PhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
+			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			if (hInput > 0)
 			{ //If the player is moving right
 				Velocity += new Vector2(100, 0);
@@ -82,7 +76,7 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{ //If the player is moving up or down
-			PhysicsCollider.Rotation = 0;
+			MyPhysicsCollider.Rotation = 0;
 			MySpriteAnimation.Play();
 			if (vInput > 0)
 			{
@@ -150,7 +144,9 @@ public partial class Player : CharacterBody2D
 		}
 		//Create the bullet
 		GetTree().GetRoot().AddChild(NewBullet);
+		//Start the cooldown
 		RangedCooldown = false;
+		RangedCoolDown();
 	}
 	
 	//Remove a door when opening it from the unlocked side
@@ -199,7 +195,7 @@ public partial class Player : CharacterBody2D
 	public async void RangedCoolDown()
 	{
 		RangedCooldown = false;
-		await ToSignal(GetTree().CreateTimer(20),"timeout");
+		await ToSignal(GetTree().CreateTimer(2),"timeout");
 		RangedCooldown = true;
 	}
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Projectile : CharacterBody2D
+public partial class Projectile : Entity
 {
 	[Export]
 	public int Damage; //Damage the projectile does upon hitting
@@ -10,12 +10,6 @@ public partial class Projectile : CharacterBody2D
 	public float Speed; //Movement speed
 	
 	public Vector2 Direction; //Direction the projectile moves(determined by who shot it)
-	
-	[Export]
-	public AnimatedSprite2D MySpriteAnimation; //Sprite of the player
-	
-	[Export]
-	public CollisionShape2D PhysicsCollider; //Sprite of the player
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,11 +25,15 @@ public partial class Projectile : CharacterBody2D
 		}else if(Direction.Y == 0 && Direction.X == 1)
 		{ //Right
 			MySpriteAnimation.Frame = 1;
+			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90;
 		}
 		else if(Direction.Y == 0 && Direction.X == -1)
 		{ //Left
 			MySpriteAnimation.Frame = 3;
+			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90;
 		}
+		//Adjust Animation sprite since the right and left bullets are off by -4
+		MySpriteAnimation.Position = new Vector2(0,Math.Abs(Direction.X)*-4);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
