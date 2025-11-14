@@ -1,0 +1,28 @@
+using Godot;
+using System;
+
+public partial class Explosion : Node
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	
+	
+	//Be a warning for a set amount of time
+	public async void Warning()
+	{
+		
+	}
+	
+	//Explode
+	public void explode()
+	{
+		
+	}
+}

@@ -164,32 +164,32 @@ layout_mode = 2
 text = "Sample Dialog Text"
 autowrap_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Dialog/DialogText"]
+[node name="DialogOptions" type="GridContainer" parent="Dialog/DialogText"]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 3
 
-[node name="DialogOption" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 1"
 
-[node name="DialogOption2" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption2" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 2"
 
-[node name="DialogOption3" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption3" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 3"
 
-[node name="DialogOption4" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption4" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 4"
 
-[node name="DialogOption5" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption5" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 5"
 
-[node name="DialogOption6" parent="Dialog/DialogText/GridContainer" instance=ExtResource("6_tppbg")]
+[node name="DialogOption6" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 6"
 
