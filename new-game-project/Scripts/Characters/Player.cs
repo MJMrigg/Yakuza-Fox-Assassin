@@ -147,7 +147,7 @@ public partial class Player : CharacterBody2D
 		}
 		NewBullet.Position = new Vector2(NewBullet.Direction.X*65,NewBullet.Direction.Y*65);
 		//Create the bullet
-		AddChild(NewBullet);
+		GetTree().GetRoot().AddChild(NewBullet);
 	}
 	
 	//Remove a door when opening it from the unlocked side
