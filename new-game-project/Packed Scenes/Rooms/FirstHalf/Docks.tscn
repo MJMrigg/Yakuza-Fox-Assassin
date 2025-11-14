@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://usxq7o82i0fb"]
+[gd_scene load_steps=4 format=4 uid="uid://g5yi2oufnd7b"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_wegsx"]
 [ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="2_40qyh"]
-[ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="3_cy0io"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_uogoa"]
 
 [node name="Docks" type="Node2D"]
@@ -28,15 +27,11 @@ tile_set = ExtResource("1_wegsx")
 tile_map_data = PackedByteArray("AAAIAAIAAQACAAkAAAAFAAUAAQACAAkAAAAJAAUAAQACAAkAAAAIAAUAAQACAAYAAAA=")
 tile_set = ExtResource("1_wegsx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_40qyh")]
+[node name="Player" parent="." instance=ExtResource("2_40qyh")]
 position = Vector2(378, 278)
-PlayerCamera = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(62, -80)
+zoom = Vector2(1.2, 0.9)
 
 [node name="MainUI" parent="." instance=ExtResource("3_uogoa")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(440, 198)
-zoom = Vector2(1.2, 0.9)
-script = ExtResource("3_cy0io")
-
-[editable path="MainUI"]

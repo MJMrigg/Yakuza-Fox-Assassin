@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://obh4emo4mbpj"]
+
+[ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_govp4"]
+
+[node name="Range" type="Node2D"]
+
+[node name="floor" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_govp4")
+
+[node name="walls" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_govp4")
