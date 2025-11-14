@@ -13,6 +13,9 @@ public partial class Projectile : CharacterBody2D
 	
 	[Export]
 	public AnimatedSprite2D MySpriteAnimation; //Sprite of the player
+	
+	[Export]
+	public CollisionShape2D PhysicsCollider; //Sprite of the player
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -21,10 +24,10 @@ public partial class Projectile : CharacterBody2D
 		MySpriteAnimation.Animation = "Move";
 		if(Direction.Y == 1 && Direction.X == 0)
 		{ //Up
-			MySpriteAnimation.Frame = 2;
+			MySpriteAnimation.Frame = 0;
 		}else if(Direction.Y == -1 && Direction.X == 0)
 		{ //Down
-			MySpriteAnimation.Frame = 0;
+			MySpriteAnimation.Frame = 2;
 		}else if(Direction.Y == 0 && Direction.X == 1)
 		{ //Right
 			MySpriteAnimation.Frame = 1;

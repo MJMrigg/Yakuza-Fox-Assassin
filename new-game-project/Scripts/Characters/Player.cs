@@ -45,7 +45,6 @@ public partial class Player : CharacterBody2D
 			//If the animation is not playing, have the player face its current direction
 			if (!MySpriteAnimation.IsPlaying())
 			{
-				MySpriteAnimation.Animation = "Walk_" + CurrentDir;
 				MySpriteAnimation.Frame = 0;
 			}
 			else
@@ -132,22 +131,26 @@ public partial class Player : CharacterBody2D
 		if(CurrentDir == "D")
 		{
 			NewBullet.Direction = new Vector2(0,1);
+			NewBullet.Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+65);
 		}
 		else if(CurrentDir == "U")
 		{
 			NewBullet.Direction = new Vector2(0,-1);
+			NewBullet.Position = new Vector2(GlobalPosition.X,GlobalPosition.Y-65);
 		}
 		else if(CurrentDir == "L")
 		{
 			NewBullet.Direction = new Vector2(-1,0);
+			NewBullet.Position = new Vector2(GlobalPosition.X-65,GlobalPosition.Y);
 		}
 		else if(CurrentDir == "R")
 		{
 			NewBullet.Direction = new Vector2(1,0);
+			NewBullet.Position = new Vector2(GlobalPosition.X+65,GlobalPosition.Y);
 		}
-		NewBullet.Position = new Vector2(NewBullet.Direction.X*65,NewBullet.Direction.Y*65);
 		//Create the bullet
 		GetTree().GetRoot().AddChild(NewBullet);
+		RangedCooldown = false;
 	}
 	
 	//Remove a door when opening it from the unlocked side

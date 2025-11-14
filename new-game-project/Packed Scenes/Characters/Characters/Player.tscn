@@ -559,6 +559,8 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("MySpriteAnimation", "PhysicsCollider")]
+collision_layer = 16
+collision_mask = 11
 script = ExtResource("1_gs7tr")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 PhysicsCollider = NodePath("CollisionShape2D")
