@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=4 uid="uid://bj6i0sm27sq0y"]
+[gd_scene load_steps=5 format=4 uid="uid://bj6i0sm27sq0y"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
+[ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="2_muswh"]
+[ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_kq3qv"]
+[ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
 
 [node name="Market" type="Node2D"]
 
@@ -24,3 +27,16 @@ tile_set = ExtResource("1_dwaw2")
 [node name="TileMapLayer" type="TileMapLayer" parent="decor/TileMapLayer"]
 tile_map_data = PackedByteArray("AAAAAAEAAQACAAkAAAAAAAAAAQADAAYAAAAKAAYAAQABAAYAAAAFAAYAAQADAAYAAAAEAAYAAQADAAYAAAA=")
 tile_set = ExtResource("1_dwaw2")
+
+[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_muswh")]
+position = Vector2(378, 278)
+PlayerCamera = NodePath("")
+
+[node name="MainUI" parent="." instance=ExtResource("3_kq3qv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(440, 198)
+zoom = Vector2(1.2, 0.9)
+script = ExtResource("4_0ir1l")
+
+[editable path="MainUI"]

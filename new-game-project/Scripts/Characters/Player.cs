@@ -34,7 +34,7 @@ public partial class Player : CharacterBody2D
 		base._Process(delta);
 		
 		//If the player wishes to create a projectile and their cooldown is over
-		if(Input.IsActionPressed("p_ranged") && RangedCooldown)
+		if(Input.IsActionJustPressed("p_ranged") && RangedCooldown)
 		{
 			CreateProjectile();
 		}
@@ -120,30 +120,32 @@ public partial class Player : CharacterBody2D
 	//Shoot a bullet
 	public void CreateProjectile()
 	{
+		//If the ranged weapon is still cooling down, don't shoot the bullet
+		if(!RangedCooldown)
+		{
+			return;
+		}
 		//Unpack the scene
 		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Player Projectile.tscn");
 		Projectile NewBullet = (Projectile)PlayerProjectileScene.Instantiate();
 		//Set Position and Direction
 		if(CurrentDir == "D")
 		{
-			NewBullet.Direction = new Vector2(0,-1);
-			NewBullet.Position = new Vector2(Position.X, Position.Y-60);
+			NewBullet.Direction = new Vector2(0,1);
 		}
 		else if(CurrentDir == "U")
 		{
-			NewBullet.Direction = new Vector2(1,0);
-			NewBullet.Position = new Vector2(Position.X, Position.Y+60);
+			NewBullet.Direction = new Vector2(0,-1);
 		}
 		else if(CurrentDir == "L")
 		{
 			NewBullet.Direction = new Vector2(-1,0);
-			NewBullet.Position = new Vector2(Position.X-60, Position.Y);
 		}
 		else if(CurrentDir == "R")
 		{
 			NewBullet.Direction = new Vector2(1,0);
-			NewBullet.Position = new Vector2(Position.X+60, Position.Y);
 		}
+		NewBullet.Position = new Vector2(NewBullet.Direction.X*65,NewBullet.Direction.Y*65);
 		//Create the bullet
 		AddChild(NewBullet);
 	}
@@ -190,4 +192,8 @@ public partial class Player : CharacterBody2D
 		}
 	}
 	
+	public async void RangedCooldown()
+	{
+		
+	}
 }
