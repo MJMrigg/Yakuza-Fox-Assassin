@@ -1,7 +1,15 @@
-[gd_scene format=3 uid="uid://dglnssijjwpgx"]
+[gd_scene load_steps=2 format=3 uid="uid://dglnssijjwpgx"]
+
+[ext_resource type="Script" uid="uid://cnuu7fvbkuhvg" path="res://Scripts/User Interface/DialogueOption.cs" id="1_373dk"]
 
 [node name="DialogOption" type="Button"]
 custom_minimum_size = Vector2(200, 50)
-offset_right = 8.0
-offset_bottom = 8.0
+anchors_preset = -1
+anchor_right = 0.17400001
+anchor_bottom = 0.07700001
+offset_right = -192.44801
+offset_bottom = -41.896004
 text = "Dialog Option"
+script = ExtResource("1_373dk")
+
+[connection signal="pressed" from="." to="." method="ReturnOption"]

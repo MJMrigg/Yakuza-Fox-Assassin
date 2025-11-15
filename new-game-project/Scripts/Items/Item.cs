@@ -11,9 +11,13 @@ public partial class Item : Interactable
 	
 	public bool Equipable; //If the item can be equiped
 	
+	[Signal]
+	public delegate void SendToPlayerEventHandler(int ID); //Signal to send the object to the player's invtory
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,5 +25,23 @@ public partial class Item : Interactable
 	{
 	}
 	
+	//Begin dialogue
+	public override void BeginDialogue()
+	{
+		base.BeginDialogue();
+		//Set second to last dialogue option to pick up the item
+		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
+		int DialogueCount = DialogueContainer.GetChildCount();
+		DialogueOption PickUpOption = (DialogueOption)DialogueContainer.GetChild(DialogueCount-2);
+		PickUpOption.Pressed += PickUp;
+	}
 	
+	//Pick up the item and add to the player's inventory
+	public void PickUp()
+	{
+		//Send the object to the player's inventory, end the dialogue and remove it from the scene
+		EmitSignal(SignalName.SendToPlayer, ID);
+		EndDialogue();
+		Remove();
+	}
 }

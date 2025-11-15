@@ -14,18 +14,50 @@ public partial class Player : Entity
 	
 	public bool RangedCooldown = true; //Whether the ranged attack cool down is finished
 	
+	[Export]
+	public Area2D InteractionZone; //Zone where interactables will register for the player
+	
+	public Interactable CurrentInteraction; //Current interaction with the player
+	
+	public Inventory Inv; //Player's inventory
+	
 	public override void _Ready()
 	{
 		base._Ready();
-
+		
 		Velocity = new Vector2(0, 0); //Don't move at the start
 		
 		Health = MaxHealth; //Start at maximum health
+		
+		CurrentInteraction = null; //The player is not interacting with anything
+		
+		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
+		
+		Inv = (Inventory)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory"); //Get Player's inventory
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+		
+		//If the player wishes to open/close their inventory
+		if(Input.IsActionJustPressed("p_inv"))
+		{
+			Inv.Visible = !Inv.Visible;
+		}
+		
+		//If paused, do nothing
+		if(Stop)
+		{
+			MySpriteAnimation.Pause();
+			return;
+		}
+		
+		//If the player wishes to interact with an interactable object and there is an object for them to interact with
+		if(Input.IsActionJustPressed("p_interact") && CurrentInteraction != null)
+		{
+			CurrentInteraction.BeginDialogue();
+		}
 		
 		//If the player wishes to create a projectile and their cooldown is over
 		if(Input.IsActionJustPressed("p_ranged") && RangedCooldown)
@@ -77,7 +109,6 @@ public partial class Player : Entity
 		else
 		{ //If the player is moving up or down
 			MyPhysicsCollider.Rotation = 0;
-			MySpriteAnimation.Play();
 			if (vInput > 0)
 			{
 				//up
@@ -93,7 +124,8 @@ public partial class Player : Entity
 				CurrentDir = "D";
 			}
 		}
-
+		
+		MySpriteAnimation.Play();
 		MoveAndSlide();
 		
 		//Move the player camera along with the player
@@ -197,5 +229,64 @@ public partial class Player : Entity
 		RangedCooldown = false;
 		await ToSignal(GetTree().CreateTimer(2),"timeout");
 		RangedCooldown = true;
+	}
+	
+	//Mark the object as something that the player will interact with
+	public void MarkInteractable(Node2D Body)
+	{
+		if(Body is Interactable)
+		{
+			CurrentInteraction = (Interactable)Body;
+		}
+	}
+	
+	//Mark the object that the player is interacting with as no longer interactable
+	public void MarkNoLongerInteractable(Node2D Body)
+	{
+		CurrentInteraction = null;
+	}
+	
+	//Pick up an item
+	public void Pickup(int ItemId)
+	{
+		Item NewItem;
+		NewItem.ID = ItemId;
+		//Handle if the new item is a weapon, a key, or just an item
+		if(ItemId == 2 || ItemId == 3)
+		{
+			Weapon NewWeapon = (Weapon)NewItem;
+			if(ItemId == 2)
+			{ //Knife
+				NewWeapon.Damage = 10;
+				NewWeapon.CoolDown = 5;
+				NewWeapon.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/knife.png");
+			}
+			else if(ItemId == 3)
+			{ //Shotgun
+				NewWeapon.Damage = 20;
+				NewWeapon.CoolDown = 10;
+				NewWeapon.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/gun_Shotgun.png");
+			}
+			Inv.ItemsStored.Append(NewWeapon);
+		}
+		else if(ItemId == 4 || ItemId == 5)
+		{
+			Key NewKey = (Key)NewItem;
+			if(ItemId == 4)
+			{ //Green key
+				NewKey.KeyColor = true;
+				NewKey.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/keycard_green.png");
+			}
+			else if(ItemId == 5)
+			{ //Red key
+				NewKey.KeyColor = false;
+				NewKey.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/keycard_red.png");
+			}
+			Inv.ItemsStored.Append(NewKey);
+		}
+		else
+		{
+			Inv.ItemsStored.Append(NewItem);
+		}
 	}
 }

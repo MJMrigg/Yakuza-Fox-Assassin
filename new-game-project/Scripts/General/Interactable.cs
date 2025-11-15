@@ -4,45 +4,100 @@ using System;
 public partial class Interactable : Entity
 {
 	[Export]
+	public string InitialDialog; //First Dialog option ever said
+	
+	[Export]
 	public string[] DialogueOptions; //Dialog options that the player can select
 	
 	[Export]
 	public string[] DialogResponses; //Responses to each option
 	
 	[Export]
-	public int[] DialogSuspicion; //How much each option increases suspicion
+	public float[] DialogSuspicion; //How much each option increases suspicion
+	
+	public HBoxContainer DialogueBox; //Dialogue box on the screen
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
+		//Get the dialog box on the screen
+		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Dialog"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
 	}
 	
 	//Send dialogue options to the dialogue box
-	public void BeginDialogue()
+	public virtual void BeginDialogue()
 	{
-		
+		//Pause all entities
+		GetTree().CallGroup("Pausable","Pause");
+		//Make sure there is dialog
+		if(DialogueOptions.Length == 0){
+			//Not an error. The player may have just gone through all of the dialog options
+			return;
+		}
+		if(InitialDialog == "" || InitialDialog == null)
+		{
+			GD.Print("Error, no initial dialog");
+			return;
+		}
+		//Reveal the dialogue box
+		DialogueBox.Visible = true;
+		//Place the initial dialogue on the screen
+		((Label)DialogueBox.GetNode("DialogText/Text")).Text = InitialDialog;
+		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
+		//Get rid of all dialogue options that may still be in the dialog box
+		for(int i = DialogueContainer.GetChildCount()-1; i >= 0; i--)
+		{
+			DialogueContainer.GetChild(i).QueueFree();
+		}
+		//Place all Dialog options in the dialog box
+		for(int i = 0; i < DialogueOptions.Length; i++)
+		{
+			PackedScene DialogueOptionScene = GD.Load<PackedScene>("res://Packed Scenes/User Interface/DialogOption.tscn");
+			DialogueOption NewOption = ((DialogueOption)DialogueOptionScene.Instantiate());
+			NewOption.Dialogue = DialogueOptions[i];
+			DialogueContainer.AddChild(NewOption);
+			//Add dialog functionality
+			if(i == DialogueOptions.Length-1)
+			{
+				//If it's a normal option, connect it to its response
+				NewOption.Pressed += EndDialogue;
+			}
+			else
+			{
+				//If it's the final option, connect it to ending the dialogue
+				NewOption.ChooseOption += SendDialogResponse;
+			}
+		}
 	}
 	
 	//End the dialogue
 	public void EndDialogue()
 	{
-		
+		//Unpause all entities
+		GetTree().CallGroup("Pausable","Pause");
+		DialogueBox.Visible = false;
 	}
 	
 	//Send the dialogue response to the dialogue box
-	public void SendDialogResponse()
+	public void SendDialogResponse(int ChosenOption)
 	{
-		
+		//Update the dialogue box
+		((Label)DialogueBox.GetNode("DialogText/Text")).Text = DialogResponses[ChosenOption];
+		//Make the dialogue increase local suspision
+		Game.Instance.IncreaseLocalSuspicion(RoomId, DialogSuspicion[ChosenOption]);
+		((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter")).Value += DialogSuspicion[ChosenOption];
 	}
 	
 	//Remove the interactable from the scene(varies)
 	public virtual void Remove()
 	{
-		
+		QueueFree();
 	}
 }

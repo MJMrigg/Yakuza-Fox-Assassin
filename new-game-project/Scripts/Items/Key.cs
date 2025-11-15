@@ -4,7 +4,7 @@ using System;
 public partial class Key : Item
 {
 	[Export]
-	public bool color; //What color the key is
+	public bool KeyColor; //What color the key is
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

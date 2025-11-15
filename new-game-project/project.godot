@@ -15,6 +15,10 @@ run/main_scene="uid://bj6i0sm27sq0y"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://Scripts/General/Game.cs"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -23,6 +27,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="New Game Project"
+
+[global_group]
+
+Pausable=""
 
 [input]
 
@@ -80,7 +88,7 @@ p_slow={
 [layer_names]
 
 2d_physics/layer_1="World"
-2d_physics/layer_2="Enemy"
+2d_physics/layer_2="Interactable"
 2d_physics/layer_3="Player Projectile"
 2d_physics/layer_4="Enemy Projectile"
 2d_physics/layer_5="Player"

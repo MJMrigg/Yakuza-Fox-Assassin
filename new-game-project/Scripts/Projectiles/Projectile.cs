@@ -10,10 +10,11 @@ public partial class Projectile : Entity
 	public float Speed; //Movement speed
 	
 	public Vector2 Direction; //Direction the projectile moves(determined by who shot it)
-		
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		//Set the sprite frame of the bullet based on the direction
 		MySpriteAnimation.Animation = "Move";
 		if(Direction.Y == 1 && Direction.X == 0)
@@ -40,6 +41,13 @@ public partial class Projectile : Entity
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+		
+		//If paused, do nothing
+		if(Stop)
+		{
+			MySpriteAnimation.Pause();
+			return;
+		}
 		
 		//Check if the projectile collided with anyting
 		if(GetSlideCollisionCount() > 0)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bidfdywgj441a"]
+[gd_scene load_steps=8 format=3 uid="uid://bidfdywgj441a"]
 
 [ext_resource type="Texture2D" uid="uid://b3al5dm6i1cxl" path="res://Art Assets/Characters/Player/Portraits/Neutral-Por_Player.png" id="1_tkf6q"]
-[ext_resource type="Texture2D" uid="uid://df7gemstevwlj" path="res://Art Assets/Items/knife.png" id="2_ka4gu"]
+[ext_resource type="Script" uid="uid://b548d0386yolb" path="res://Scripts/User Interface/WeaponSlot.cs" id="2_f31s5"]
 [ext_resource type="Texture2D" uid="uid://dx2bdjm0oho6k" path="res://Art Assets/Items/gun_Pistol.png" id="3_psf26"]
+[ext_resource type="Script" uid="uid://c32h6ccmoveru" path="res://Scripts/User Interface/Inventory.cs" id="4_f31s5"]
 [ext_resource type="PackedScene" uid="uid://c6vgmj0lj2p5e" path="res://Packed Scenes/User Interface/Weapon.tscn" id="4_psf26"]
 [ext_resource type="PackedScene" uid="uid://df4jfao7w6nab" path="res://Packed Scenes/User Interface/Item.tscn" id="5_qb4gu"]
 [ext_resource type="PackedScene" uid="uid://dglnssijjwpgx" path="res://Packed Scenes/User Interface/DialogOption.tscn" id="6_tppbg"]
@@ -55,15 +56,28 @@ custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MeleeWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons"]
-custom_minimum_size = Vector2(90, 90)
+[node name="MeleeWeapon" type="Button" parent="Main/Player/WeaponsAndHealth/Weapons"]
 layout_mode = 2
-texture = ExtResource("2_ka4gu")
+size_flags_horizontal = 3
 
-[node name="RangedWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons"]
-custom_minimum_size = Vector2(90, 90)
+[node name="MeleeWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2_f31s5")
+
+[node name="RangedWeapon" type="Button" parent="Main/Player/WeaponsAndHealth/Weapons"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RangedWeapon" type="TextureRect" parent="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource("3_psf26")
+script = ExtResource("2_f31s5")
 
 [node name="Health" type="HBoxContainer" parent="Main/Player/WeaponsAndHealth"]
 custom_minimum_size = Vector2(180, 90)
@@ -83,61 +97,6 @@ size_flags_vertical = 4
 step = 1.0
 value = 100.0
 rounded = true
-
-[node name="Inventory" type="VBoxContainer" parent="."]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -480.0
-offset_right = 700.0
-grow_vertical = 0
-theme_override_constants/separation = 0
-
-[node name="Items" type="GridContainer" parent="Inventory"]
-custom_minimum_size = Vector2(0, 270)
-layout_mode = 2
-theme_override_constants/v_separation = 0
-columns = 5
-
-[node name="Weapon" parent="Inventory/Items" instance=ExtResource("4_psf26")]
-layout_mode = 2
-
-[node name="Item" parent="Inventory/Items" instance=ExtResource("5_qb4gu")]
-layout_mode = 2
-
-[node name="PauseMenu" type="HBoxContainer" parent="Inventory"]
-custom_minimum_size = Vector2(0, 210)
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 2
-
-[node name="Menu" type="VBoxContainer" parent="Inventory/PauseMenu"]
-custom_minimum_size = Vector2(340, 0)
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="CloseButton" type="Button" parent="Inventory/PauseMenu/Menu"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Close"
-
-[node name="SettingsButton" type="Button" parent="Inventory/PauseMenu/Menu"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="Inventory/PauseMenu/Menu"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Quit"
 
 [node name="Dialog" type="HBoxContainer" parent="."]
 visible = false
@@ -198,6 +157,62 @@ layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("1_tkf6q")
 
+[node name="Inventory" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -480.0
+offset_right = 700.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("4_f31s5")
+
+[node name="Items" type="GridContainer" parent="Inventory"]
+custom_minimum_size = Vector2(0, 270)
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Weapon" parent="Inventory/Items" instance=ExtResource("4_psf26")]
+layout_mode = 2
+
+[node name="Item" parent="Inventory/Items" instance=ExtResource("5_qb4gu")]
+layout_mode = 2
+
+[node name="PauseMenu" type="HBoxContainer" parent="Inventory"]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Menu" type="VBoxContainer" parent="Inventory/PauseMenu"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close"
+
+[node name="SettingsButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Inventory/PauseMenu/Menu"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
+
 [node name="GlobalSuspicion" type="HBoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -215,7 +230,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="LocalSuspicionMeter" type="ProgressBar" parent="GlobalSuspicion"]
+[node name="GlobalSuspicionMeter" type="ProgressBar" parent="GlobalSuspicion"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="ChangeMeleeWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon/MeleeWeapon" method="Change"]
+[connection signal="ChangeRangedWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon/RangedWeapon" method="Change"]
+[connection signal="pressed" from="Inventory/PauseMenu/Menu/CloseButton" to="Inventory" method="ReturnToGame"]

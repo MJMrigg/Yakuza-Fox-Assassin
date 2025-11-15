@@ -5,6 +5,9 @@ public partial class DialogueOption : Button
 {
 	public string Dialogue; //Text that the dialogue is
 	
+	[Signal]
+	public delegate void ChooseOptionEventHandler(int Chosen);
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -17,9 +20,12 @@ public partial class DialogueOption : Button
 	}
 	
 	
-	//???
+	//Tell the interactable what option was chosen
 	public void ReturnOption()
 	{
-		
+		//Emit the index of the dialogue option in the dialog tree
+		EmitSignal(SignalName.ChooseOption, GetIndex());
+		//Remove the dialogue option from the dialogue options
+		//QueueFree();
 	}
 }
