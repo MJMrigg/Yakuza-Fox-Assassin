@@ -38,14 +38,6 @@ PlayerCamera = NodePath("../Camera2D")
 
 [node name="MainUI" parent="." instance=ExtResource("3_kq3qv")]
 
-[node name="MeleeWeapon" parent="MainUI/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" index="0"]
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RangedWeapon" parent="MainUI/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" index="0"]
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Portrait" parent="MainUI/Dialog" index="1"]
 visible = false
 

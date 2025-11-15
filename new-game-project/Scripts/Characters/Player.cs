@@ -21,6 +21,8 @@ public partial class Player : Entity
 	
 	public Inventory Inv; //Player's inventory
 	
+	public int ItemCount = 0; //Player's item count
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -34,6 +36,24 @@ public partial class Player : Entity
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
 		Inv = (Inventory)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory"); //Get Player's inventory
+		
+		//Equip the player with their starting weapons
+		for(int i = 0; i < 2; i++)
+		{
+			int WeaponId = Game.Instance.PlayerWeapons[i].ID;
+			//If the player didn't have a weapon equipped in the slot, move on
+			if(WeaponId == 0 || WeaponId == null || WeaponId == -1)
+			{
+				continue;
+			}
+			this.Pickup(Game.Instance.PlayerWeapons[i].ID);
+			GD.Print(Game.Instance.PlayerWeapons[i].ID);
+			ItemCount = Inv.GetNode("Items").GetChildCount();
+			if(ItemCount > 0)
+			{
+				Inv.EquipItem(Game.Instance.PlayerWeapons[i].ID, ItemCount-1);
+			}
+		}
 	}
 
 	public override void _Process(double delta)
@@ -249,44 +269,77 @@ public partial class Player : Entity
 	//Pick up an item
 	public void Pickup(int ItemId)
 	{
-		Item NewItem;
-		NewItem.ID = ItemId;
+		string path = "";
 		//Handle if the new item is a weapon, a key, or just an item
-		if(ItemId == 2 || ItemId == 3)
+		if(ItemId < 4)
 		{
-			Weapon NewWeapon = (Weapon)NewItem;
-			if(ItemId == 2)
+			Weapon NewWeapon = new Weapon();
+			NewWeapon.ID = ItemId;
+			if(ItemId == 1)
+			{ //Pistol
+				NewWeapon.Damage = 10;
+				NewWeapon.CoolDown = 5;
+				path = "res://Art Assets/Items/gun_Pistol.png";
+			}
+			else if(ItemId == 2)
 			{ //Knife
 				NewWeapon.Damage = 10;
 				NewWeapon.CoolDown = 5;
-				NewWeapon.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/knife.png");
+				path = "res://Art Assets/Items/knife.png";
 			}
 			else if(ItemId == 3)
 			{ //Shotgun
 				NewWeapon.Damage = 20;
 				NewWeapon.CoolDown = 10;
-				NewWeapon.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/gun_Shotgun.png");
+				path = "res://Art Assets/Items/gun_Shotgun.png";
 			}
-			Inv.ItemsStored.Append(NewWeapon);
+			//Place weapon in the inventory
+			NewWeapon.Portrait = (CompressedTexture2D)GD.Load(path);
+			Inv.ItemsStored[ItemCount] = NewWeapon;
 		}
 		else if(ItemId == 4 || ItemId == 5)
 		{
-			Key NewKey = (Key)NewItem;
+			Key NewKey = new Key();
+			NewKey.ID = ItemId;
 			if(ItemId == 4)
 			{ //Green key
 				NewKey.KeyColor = true;
-				NewKey.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/keycard_green.png");
+				path = "res://Art Assets/Items/keycard_green.png";
 			}
 			else if(ItemId == 5)
 			{ //Red key
 				NewKey.KeyColor = false;
-				NewKey.Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/keycard_red.png");
+				path = "res://Art Assets/Items/keycard_red.png";
 			}
-			Inv.ItemsStored.Append(NewKey);
+			//Place key in the inventory
+			NewKey.Portrait = (CompressedTexture2D)GD.Load(path);
+			Inv.ItemsStored[ItemCount] = NewKey;
 		}
 		else
 		{
-			Inv.ItemsStored.Append(NewItem);
+			//Place key in the inventory
+			Item NewItem = new Item();
+			NewItem.ID = ItemId;
+			Inv.ItemsStored[ItemCount] = NewItem;
 		}
+		//Increase number of items in the inventory
+		ItemCount += 1;
+		//Add weapon to the inventory on the screen
+		GridContainer Items = (GridContainer)Inv.GetNode("Items");
+		PackedScene SlotScene = GD.Load<PackedScene>("res://Packed Scenes/User Interface/InventorySlot.tscn");
+		InventorySlot NewSlot = (InventorySlot)SlotScene.Instantiate();
+		NewSlot.ID = ItemId;
+		((TextureRect)NewSlot.GetNode("Portrait")).Texture = (CompressedTexture2D)GD.Load(path);
+		//If it's not a weapon, get rid of the equip button. If it is, add functionality to the button
+		if(ItemId > 4)
+		{
+			((Button)NewSlot.GetNode("EquipButton")).Visible = false;
+		}
+		else
+		{
+			NewSlot.Equip += Inv.EquipItem;
+		}
+		//Add the weapon to the screen
+		Items.AddChild(NewSlot);
 	}
 }

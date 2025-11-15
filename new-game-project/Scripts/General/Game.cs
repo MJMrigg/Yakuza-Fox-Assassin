@@ -3,9 +3,9 @@ using System;
 
 public partial class Game : Node
 {
-	public float GlobalSuspicion;
+	public float GlobalSuspicion = 0;
 	
-	public float MaxGlobalSuspicion;
+	public float MaxGlobalSuspicion = 0;
 	
 	public float[] LocalSuspicions = new float[20]; //Local Suspcisions of every room
 	
@@ -83,8 +83,12 @@ public partial class Game : Node
 			PlayerInventory[i] = null;
 		}
 		//Equip the bite and pistol
-		PlayerWeapons[1].ID = 0;
-		PlayerWeapons[1].ID = 1;
+		for(int i = 0; i < 2; i++)
+		{
+			PlayerWeapons[i] = new Weapon();
+			PlayerWeapons[i].ID = i;
+		}
+		PlayerWeapons[0].Portrait = (CompressedTexture2D)GD.Load("");
 		PlayerWeapons[1].Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/gun_Pistol.png");
 	}
 
@@ -119,6 +123,5 @@ public partial class Game : Node
 	//Handle the player winning
 	public void PlayerWon()
 	{
-		
 	}
 }
