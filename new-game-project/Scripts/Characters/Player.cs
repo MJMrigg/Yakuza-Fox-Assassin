@@ -3,6 +3,8 @@ using System;
 
 public partial class Player : Entity
 {
+	public int Speed = 100; //Movement speed
+	
 	public string CurrentDir = "D"; //Start looking down
 	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
@@ -26,6 +28,11 @@ public partial class Player : Entity
 	public int ItemCount = 0; //Player's item count
 	
 	public bool InDialogue = false; //Whether the player is in dialogue or not
+	
+	public bool Dying = false; //Whether the player is dying
+	
+	[Export]
+	public CanvasLayer WinLoseBox;
 	
 	public override void _Ready()
 	{
@@ -77,6 +84,21 @@ public partial class Player : Entity
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+		
+		//If the player has no more health, kill the player
+		if(Health <= 0)
+		{
+			if(!Dying)
+			{
+				InformOfDeath();
+			}
+			//Stop playing the animation
+			if(MySpriteAnimation.Animation != "Die_"+CurrentDir)
+			{
+				MySpriteAnimation.Stop();
+			}
+			return;
+		}
 		
 		//I'm sick of waiting
 		if(Input.IsActionPressed("cheat"))
@@ -141,23 +163,41 @@ public partial class Player : Entity
 		{ //If the velocity is 0, just play the first frame of walking
 			MySpriteAnimation.Frame = 0;
 		}
-		else if (Mathf.Abs(hInput) > Mathf.Abs(vInput))
+		else if (Mathf.Abs(hInput) >= Mathf.Abs(vInput))
 		{
 			//If the player is moving left or right
 			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			if (hInput > 0)
 			{ //If the player is moving right
-				Velocity += new Vector2(100, 0);
+				Velocity += new Vector2(Speed, 0);
 				MySpriteAnimation.Animation = "Walk_R";
 				CurrentDir = "R";
 			}
 			else
 			{ 
 				//If the player is moving left
-				Velocity += new Vector2(-100, 0);
+				Velocity += new Vector2(-Speed, 0);
 				MySpriteAnimation.Animation = "Walk_L";
 				CurrentDir = "L";
 			}
+			//If the player is walking diagonally
+			if(Mathf.Abs(hInput) == Mathf.Abs(vInput))
+			{
+				if(vInput > 0)
+				{ 
+					//Diagonally Up
+					Velocity += new Vector2(0,-Speed);
+				}
+				else
+				{
+					//Diagonally Down
+					Velocity += new Vector2(0,Speed);
+				}
+				//Adjust using the unit circle so that diagonal movement isn't faster
+				float Adjustment = Mathf.Sqrt(2)/2;
+				Velocity *= new Vector2(Adjustment,Adjustment);
+			}
+			//Play the walking sound
 			PlayWalkingSound();
 		}
 		else
@@ -166,14 +206,14 @@ public partial class Player : Entity
 			if (vInput > 0)
 			{
 				//up
-				Velocity += new Vector2(0, -100);
+				Velocity += new Vector2(0, -Speed);
 				MySpriteAnimation.Animation = "Walk_U";
 				CurrentDir = "U";
 			}
 			else
 			{
 				//down
-				Velocity += new Vector2(0, 100);
+				Velocity += new Vector2(0, Speed);
 				MySpriteAnimation.Animation = "Walk_D";
 				CurrentDir = "D";
 			}
@@ -341,15 +381,16 @@ public partial class Player : Entity
 	}
 	
 	//Increase local suspicion because of an event
-	public void IncreaseLocalSus()
+	public void IncreaseLocalSus(int amount)
 	{
-		
+		Game.Instance.IncreaseLocalSuspicion(RoomId, amount);
 	}
 	
 	//Tell the game that the player died
 	public void InformOfDeath()
 	{
-		
+		((Label)WinLoseBox.GetNode("Background/Text")).Text = "You Died";
+		WinLoseBox.Visible = true;
 	}
 	
 	//Deal damage when attacking something
@@ -399,7 +440,13 @@ public partial class Player : Entity
 		//If the player's health is below 0, die
 		if(Health <= 0)
 		{
-			//Death logic goes here
+			Dying = true;
+			//Play death animation and sound
+			MySpriteAnimation.Animation = "Die_"+CurrentDir;
+			AudioStreamPlayer2D DeathSound = (AudioStreamPlayer2D)GetNode("Sounds/PlayerGameOverSad");
+			DeathSound.Play();
+			//Wait for the animation and the sound to stop playing
+			while(DeathSound.Playing && MySpriteAnimation.IsPlaying()){}
 			InformOfDeath();
 		}
 	}

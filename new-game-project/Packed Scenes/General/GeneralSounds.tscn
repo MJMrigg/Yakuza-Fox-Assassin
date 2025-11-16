@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4mwwu87huwft"]
+[gd_scene load_steps=24 format=3 uid="uid://b4mwwu87huwft"]
 
 [ext_resource type="AudioStream" uid="uid://cni00iaby25eb" path="res://Art Assets/Sounds/General/DogHurt1.mp3" id="1_6wvn2"]
 [ext_resource type="AudioStream" uid="uid://ddgxeoutmvvp4" path="res://Art Assets/Sounds/General/DogHurt2.mp3" id="2_x47dp"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://cfkjca2qqtdbo" path="res://Art Assets/Sounds/General/WoodfootStep5.mp3" id="20_kvvhy"]
 [ext_resource type="AudioStream" uid="uid://d1rowpglbj3hr" path="res://Art Assets/Sounds/General/WoodFootstep6.mp3" id="21_jss5m"]
 [ext_resource type="AudioStream" uid="uid://yngv8eg1ry4n" path="res://Art Assets/Sounds/General/WoodFootstep7.mp3" id="22_kb7f5"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="23_jyhik"]
 
 [node name="GeneralSounds" type="Node"]
 
@@ -91,3 +92,6 @@ stream = ExtResource("21_jss5m")
 
 [node name="WoodFootstep7" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_kb7f5")
+
+[node name="MenuButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_jyhik")

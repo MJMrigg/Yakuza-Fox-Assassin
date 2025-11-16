@@ -44,7 +44,7 @@ Crouch: Sneaky Walking by jimmybombimmy (Freesound)
 Dash: Quick Whoosh by DRAGON-STUDIO
 Drinking: Dog Drinking Water 3 by SOUND_GARAGE
 MenuButtonClick: menu click by Lesaek_Szary (Freesound)
-MenuPlayAndQuit: menu button by Lesaek_Szary (Freesound)
+MenuPlayAndQuit: Button Press by DRAGON-STUDIO
 GlobalSuspicionToHigh: ALERT by freesound_community
 DogHurt: Injured Street Dog Crying with Barking Dogs Reacting by arunangshubanerjee
 RetroHurt: hit sound(video game type) by RibhavAgrawal

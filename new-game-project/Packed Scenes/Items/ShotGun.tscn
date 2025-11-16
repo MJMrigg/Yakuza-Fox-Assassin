@@ -15,7 +15,7 @@ Portrait = ExtResource("2_7q8xx")
 InitialDialog = "You found a shotgun"
 DialogueOptions = PackedStringArray("Examine", "Call", "Pick Up", "Leave")
 DialogResponses = PackedStringArray("It\'s a shot gun. It looks like it shoots more bullets then your typical pistol.", "This isn\'t a car.", "You pick up the shot gun")
-DialogSuspicion = PackedFloat32Array(0, 0, 1)
+DialogSuspicion = PackedFloat32Array(0, 0, 4)
 MyPhysicsCollider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

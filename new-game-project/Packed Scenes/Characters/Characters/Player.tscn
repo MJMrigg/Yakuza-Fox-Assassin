@@ -19,9 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://bbxons1orcyav" path="res://Art Assets/Sounds/Player/Knife3.mp3" id="16_h8srs"]
 [ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="17_0cc5g"]
 [ext_resource type="AudioStream" uid="uid://cqywuvyg6ti7k" path="res://Art Assets/Sounds/Player/ShotgunAndReload.mp3" id="18_tv0o1"]
-[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="19_23qag"]
 [ext_resource type="AudioStream" uid="uid://c3lvtovl1maqk" path="res://Art Assets/Sounds/Player/PlayerGameOverSad.mp3" id="20_37w3c"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="21_37w3c"]
+[ext_resource type="PackedScene" uid="uid://b83ndkjxusnkr" path="res://Packed Scenes/User Interface/WinLoseMenu.tscn" id="22_gs7tr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
 radius = 31.0
@@ -561,11 +561,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs7tr"]
 radius = 61.008198
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "WinLoseBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("1_gs7tr")
 InteractionZone = NodePath("InteractionZone")
+WinLoseBox = NodePath("WinLoseMenu")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -625,9 +626,6 @@ volume_db = -20.0
 [node name="ShotgunAndReload" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("18_tv0o1")
 
-[node name="MenuButtonClick" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("19_23qag")
-
 [node name="PlayerGameOverSad" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("20_37w3c")
 
@@ -639,6 +637,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
 shape = SubResource("CircleShape2D_gs7tr")
+
+[node name="WinLoseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" parent="WinLoseMenu" instance=ExtResource("22_gs7tr")]
 
 [connection signal="body_entered" from="InteractionZone" to="." method="MarkInteractable"]
 [connection signal="body_exited" from="InteractionZone" to="." method="MarkNoLongerInteractable"]
