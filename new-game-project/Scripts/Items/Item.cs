@@ -44,4 +44,9 @@ public partial class Item : Interactable
 		EndDialogue();
 		Remove();
 	}
+	
+	public override async void Remove()
+	{
+		QueueFree();
+	}
 }

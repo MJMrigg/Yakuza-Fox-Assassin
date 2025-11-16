@@ -5,8 +5,6 @@ public partial class Player : Entity
 {
 	public int Speed = 100; //Movement speed
 	
-	public string CurrentDir = "D"; //Start looking down
-	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
 	
 	public int Health; //Store player's health
@@ -33,6 +31,9 @@ public partial class Player : Entity
 	
 	[Export]
 	public CanvasLayer WinLoseBox;
+	
+	[Export]
+	public ProgressBar HealthBar;
 	
 	public override void _Ready()
 	{
@@ -121,10 +122,21 @@ public partial class Player : Entity
 		}
 		
 		//If the player wishes to interact with an interactable object and there is an object for them to interact with
-		if(Input.IsActionJustPressed("p_interact") && CurrentInteraction != null)
+		if(Input.IsActionJustPressed("p_interact"))
 		{
 			InDialogue = true;
-			CurrentInteraction.BeginDialogue();
+			//Get the first object in the interaction zone
+			Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
+			foreach(Node2D Interaction in Interactables)
+			{
+				//Begin dialogue with the first interactable object
+				if(Interaction is Interactable)
+				{
+					Interactable body = (Interactable)Interaction;
+					body.BeginDialogue();
+					break;
+				}
+			}
 		}
 		
 		//If the player wishes to create a projectile and their cooldown is over
@@ -436,19 +448,23 @@ public partial class Player : Entity
 	//Take damage when attacked or hit by a projectile
 	public void TakeDamage(int damage)
 	{
+		//Take the damage
 		Health -= damage;
+		HealthBar.Value = Health;
 		//If the player's health is below 0, die
 		if(Health <= 0)
 		{
 			Dying = true;
 			//Play death animation and sound
-			MySpriteAnimation.Animation = "Die_"+CurrentDir;
+			MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
 			AudioStreamPlayer2D DeathSound = (AudioStreamPlayer2D)GetNode("Sounds/PlayerGameOverSad");
 			DeathSound.Play();
 			//Wait for the animation and the sound to stop playing
-			while(DeathSound.Playing && MySpriteAnimation.IsPlaying()){}
-			InformOfDeath();
+			Remove();
+			return;
 		}
+		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
+		MySpriteAnimation.Play();
 	}
 	
 	//Start the cool down for the melee attack
@@ -552,5 +568,11 @@ public partial class Player : Entity
 		}
 		//Add the weapon to the screen
 		Items.AddChild(NewSlot);
+	}
+	
+	public async override void Remove()
+	{
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		InformOfDeath();
 	}
 }

@@ -16,15 +16,19 @@ public partial class Entity : CharacterBody2D
 	
 	public bool Stop = false; //Whether the entity should stop moving because the player has paused something
 	
+	public string CurrentDir = "D"; //Start looking down
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		this.AddToGroup("Pausable");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
 	}
 	
 	//Pause/Unpause the Entity
@@ -49,5 +53,12 @@ public partial class Entity : CharacterBody2D
 			Walker = (AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/MetalFootstep");
 		}
 		Walker.Play();
+	}
+	
+	//Remove the entity from the scene(varies)
+	public async virtual void Remove()
+	{
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		QueueFree();
 	}
 }

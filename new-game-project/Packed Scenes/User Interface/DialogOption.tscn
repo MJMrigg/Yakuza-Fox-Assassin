@@ -10,6 +10,7 @@ anchor_bottom = 0.07700001
 offset_right = -192.44801
 offset_bottom = -41.896004
 text = "Dialog Option"
+autowrap_mode = 2
 script = ExtResource("1_373dk")
 
 [connection signal="pressed" from="." to="." method="ReturnOption"]

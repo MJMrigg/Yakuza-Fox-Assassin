@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bj6i0sm27sq0y"]
+[gd_scene load_steps=9 format=4 uid="uid://bj6i0sm27sq0y"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_blnwy"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
 [ext_resource type="PackedScene" uid="uid://bgm3dx1u53tnj" path="res://Packed Scenes/Items/Knife.tscn" id="6_blnwy"]
 [ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="7_4c7xv"]
+[ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="8_bv1ab"]
 
 [node name="Market" type="Node2D"]
 script = ExtResource("1_blnwy")
@@ -33,14 +34,12 @@ tile_set = ExtResource("1_dwaw2")
 tile_map_data = PackedByteArray("AAAAAAEAAQACAAkAAAAAAAAAAQADAAYAAAAKAAYAAQABAAYAAAAFAAYAAQADAAYAAAAEAAYAAQADAAYAAAA=")
 tile_set = ExtResource("1_dwaw2")
 
-[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_muswh")]
+[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera", "HealthBar") instance=ExtResource("2_muswh")]
 position = Vector2(378, 278)
 PlayerCamera = NodePath("../Camera2D")
+HealthBar = NodePath("../MainUI/Main/Player/WeaponsAndHealth/Health/ProgressBar")
 
 [node name="MainUI" parent="." instance=ExtResource("3_kq3qv")]
-
-[node name="Portrait" parent="MainUI/Dialog" index="1"]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(440, 198)
@@ -54,6 +53,9 @@ scale = Vector2(0.5, 0.5)
 [node name="ShotGun" parent="." instance=ExtResource("7_4c7xv")]
 position = Vector2(543, 209)
 scale = Vector2(0.5, 0.5)
+
+[node name="Npc2" parent="." instance=ExtResource("8_bv1ab")]
+position = Vector2(666, 279)
 
 [connection signal="pressed" from="MainUI/Inventory/PauseMenu/Menu/CloseButton" to="Player" method="OpenInv"]
 [connection signal="SendToPlayer" from="Knife" to="Player" method="Pickup"]

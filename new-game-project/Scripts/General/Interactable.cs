@@ -48,6 +48,8 @@ public partial class Interactable : Entity
 		}
 		//Reveal the dialogue box
 		DialogueBox.Visible = true;
+		//But hide the portrait(NPC children will handle the portrait)
+		((TextureRect)DialogueBox.GetNode("Portrait")).Visible = false;
 		//Place the initial dialogue on the screen
 		((Label)DialogueBox.GetNode("DialogText/Text")).Text = InitialDialog;
 		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
@@ -104,11 +106,5 @@ public partial class Interactable : Entity
 		//Make the dialogue increase local suspision
 		Game.Instance.IncreaseLocalSuspicion(RoomId, DialogSuspicion[ChosenOption]);
 		((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter")).Value += DialogSuspicion[ChosenOption];
-	}
-	
-	//Remove the interactable from the scene(varies)
-	public virtual void Remove()
-	{
-		QueueFree();
 	}
 }

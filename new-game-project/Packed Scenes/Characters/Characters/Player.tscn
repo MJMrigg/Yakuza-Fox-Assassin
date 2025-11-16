@@ -642,6 +642,3 @@ shape = SubResource("CircleShape2D_gs7tr")
 visible = false
 
 [node name="Background" parent="WinLoseMenu" instance=ExtResource("22_gs7tr")]
-
-[connection signal="body_entered" from="InteractionZone" to="." method="MarkInteractable"]
-[connection signal="body_exited" from="InteractionZone" to="." method="MarkNoLongerInteractable"]

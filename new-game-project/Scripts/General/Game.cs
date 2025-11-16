@@ -39,10 +39,10 @@ public partial class Game : Node
 	public Weapon Bite = new Weapon(); //Bite data
 	public int[] ItemData = {
 		//ID, damage, cooldown
-		0,10,2, //Bite
-		1,10,4, //Pistol
-		2,15,4, //Knife
-		3,7,4, //Shotgun
+		0,7,1, //Bite
+		1,7,1, //Pistol
+		2,10,2, //Knife
+		3,10,2, //Shotgun
 		//ID,color
 		4,1, //Green Key
 		5,0, //Red Key
