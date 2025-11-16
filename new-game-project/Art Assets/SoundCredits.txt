@@ -48,6 +48,6 @@ MenuPlayAndQuit: menu button by Lesaek_Szary (Freesound)
 GlobalSuspicionToHigh: ALERT by freesound_community
 DogHurt: Injured Street Dog Crying with Barking Dogs Reacting by arunangshubanerjee
 RetroHurt: hit sound(video game type) by RibhavAgrawal
-MetalFootsteps: Metal Footsteps by mypantsfelldown (Freesound)
+MetalFootsteps: Metal Footsteps by Phil25 (Freesound)
 WoodFootstep: Footsteps on Wood by DRAGON-STUDIO
 DoorOpen: Spaceship Door Open by MarcusGraham325 (Freesound)

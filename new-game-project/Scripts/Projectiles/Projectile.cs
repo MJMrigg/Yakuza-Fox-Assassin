@@ -11,14 +11,16 @@ public partial class Projectile : Entity
 	
 	public Vector2 Direction; //Direction the projectile moves(determined by who shot it)
 	
+	public bool IsDiagonal = false; //Whether this bullet is a diagonal bullet(determined by who shot it)
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
 		//Set the sprite frame of the bullet based on the direction
 		MySpriteAnimation.Animation = "Move";
-		if(Direction.Y == 1 && Direction.X == 0)
-		{ //Up
+		if((Direction.Y == 1 && Direction.X == 0)  || IsDiagonal)
+		{ //Up or Diagonal
 			MySpriteAnimation.Frame = 0;
 		}else if(Direction.Y == -1 && Direction.X == 0)
 		{ //Down

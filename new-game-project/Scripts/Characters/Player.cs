@@ -14,6 +14,8 @@ public partial class Player : Entity
 	
 	public bool RangedCooldown = true; //Whether the ranged attack cool down is finished
 	
+	public bool MeleeCooldown = true; //Whether the melee attack cool down is finished
+	
 	[Export]
 	public Area2D InteractionZone; //Zone where interactables will register for the player
 	
@@ -22,6 +24,8 @@ public partial class Player : Entity
 	public Inventory Inv; //Player's inventory
 	
 	public int ItemCount = 0; //Player's item count
+	
+	public bool InDialogue = false; //Whether the player is in dialogue or not
 	
 	public override void _Ready()
 	{
@@ -37,6 +41,18 @@ public partial class Player : Entity
 		
 		Inv = (Inventory)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory"); //Get Player's inventory
 		
+		//Set up the player's inventory
+		for(int i = 0; i < 6; i++)
+		{
+			//If there are no more items, break
+			if(Game.Instance.PlayerInventory[i] == null)
+			{
+				break;
+			}
+			Inv.ItemsStored[i] = Game.Instance.PlayerInventory[i];
+			this.Pickup(Inv.ItemsStored[i].ID);
+		}
+		
 		//Equip the player with their starting weapons
 		for(int i = 0; i < 2; i++)
 		{
@@ -44,11 +60,13 @@ public partial class Player : Entity
 			//If the player didn't have a weapon equipped in the slot, move on
 			if(WeaponId == 0 || WeaponId == null || WeaponId == -1)
 			{
+				//It it was because the player had the bite equiped, equip the bite
+				if(WeaponId == 0)
+				{
+					Inv.EquipedWeapons[0] = Game.Instance.Bite;
+				}
 				continue;
 			}
-			this.Pickup(Game.Instance.PlayerWeapons[i].ID);
-			GD.Print(Game.Instance.PlayerWeapons[i].ID);
-			ItemCount = Inv.GetNode("Items").GetChildCount();
 			if(ItemCount > 0)
 			{
 				Inv.EquipItem(Game.Instance.PlayerWeapons[i].ID, ItemCount-1);
@@ -60,10 +78,17 @@ public partial class Player : Entity
 	{
 		base._Process(delta);
 		
+		//I'm sick of waiting
+		if(Input.IsActionPressed("cheat"))
+		{
+			MeleeCooldown = true;
+			RangedCooldown = true;
+		}
+		
 		//If the player wishes to open/close their inventory
 		if(Input.IsActionJustPressed("p_inv"))
 		{
-			Inv.Visible = !Inv.Visible;
+			OpenInv();
 		}
 		
 		//If paused, do nothing
@@ -76,6 +101,7 @@ public partial class Player : Entity
 		//If the player wishes to interact with an interactable object and there is an object for them to interact with
 		if(Input.IsActionJustPressed("p_interact") && CurrentInteraction != null)
 		{
+			InDialogue = true;
 			CurrentInteraction.BeginDialogue();
 		}
 		
@@ -85,12 +111,19 @@ public partial class Player : Entity
 			CreateProjectile();
 		}
 		
+		//If the player wishes to make a melee attack and their cooldown is over
+		if(Input.IsActionJustPressed("p_melee") && MeleeCooldown)
+		{
+			DealDamage();
+		}
+		
 		//If the animation is currently not walking
 		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
 		{
 			//If the animation is not playing, have the player face its current direction
 			if (!MySpriteAnimation.IsPlaying())
 			{
+				MySpriteAnimation.Animation = "Walk_"+CurrentDir;
 				MySpriteAnimation.Frame = 0;
 			}
 			else
@@ -103,7 +136,7 @@ public partial class Player : Entity
 		//Get player input and set up velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
 		float vInput = Input.GetAxis("p_s", "p_w");
-		Velocity = new Vector2(0,0);	
+		Velocity = new Vector2(0,0);
 		if (Mathf.Abs(hInput) < 0.1f && Mathf.Abs(vInput) < 0.1f)
 		{ //If the velocity is 0, just play the first frame of walking
 			MySpriteAnimation.Frame = 0;
@@ -125,6 +158,7 @@ public partial class Player : Entity
 				MySpriteAnimation.Animation = "Walk_L";
 				CurrentDir = "L";
 			}
+			PlayWalkingSound();
 		}
 		else
 		{ //If the player is moving up or down
@@ -143,6 +177,7 @@ public partial class Player : Entity
 				MySpriteAnimation.Animation = "Walk_D";
 				CurrentDir = "D";
 			}
+			PlayWalkingSound();
 		}
 		
 		MySpriteAnimation.Play();
@@ -159,7 +194,12 @@ public partial class Player : Entity
 	//Open inventory
 	public void OpenInv()
 	{
-		
+		//If not in dialogue, pause the whole screen
+		if(!InDialogue)
+		{
+			GetTree().CallGroup("Pausable","Pause");
+		}
+		Inv.Visible = !Inv.Visible;
 	}
 	
 	//Shoot a bullet
@@ -170,32 +210,114 @@ public partial class Player : Entity
 		{
 			return;
 		}
-		//Unpack the scene
+		//Get which weapon is equiped
+		int Weapon = Inv.EquipedWeapons[1].ID;
+		//Create an array of bullets based on the weapon
+		Projectile[] Bullets = new Projectile[Weapon];
+		//Since the pistol ID is 1 and the shotgun ID is 3, it works
+		//I did not plan that
+		//Create the bullets
 		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Player Projectile.tscn");
-		Projectile NewBullet = (Projectile)PlayerProjectileScene.Instantiate();
+		for(int i = 0; i < Weapon; i++)
+		{
+			Bullets[i] = (Projectile)PlayerProjectileScene.Instantiate();
+			Bullets[i].Damage = Inv.EquipedWeapons[1].Damage;
+		}
 		//Set Position and Direction
+		int BulletDistance = 65; //Distance bullet spawns from player
+		float Angle = 1.0f; //Angle the bullet moves from the player
 		if(CurrentDir == "D")
 		{
-			NewBullet.Direction = new Vector2(0,1);
-			NewBullet.Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+65);
+			Bullets[0].Direction = new Vector2(0,1);
+			Bullets[0].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+BulletDistance);
+			if(Weapon == 3)
+			{ //Other two bullets for the shotgun
+				Bullets[1].Direction = new Vector2(-1*Angle,1);
+				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y+BulletDistance);
+				Bullets[2].Direction = new Vector2(Angle,1);
+				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y+BulletDistance);
+			}
 		}
 		else if(CurrentDir == "U")
 		{
-			NewBullet.Direction = new Vector2(0,-1);
-			NewBullet.Position = new Vector2(GlobalPosition.X,GlobalPosition.Y-65);
+			Bullets[0].Direction = new Vector2(0,-1);
+			Bullets[0].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y-BulletDistance);
+			if(Weapon == 3)
+			{ //Other two bullets for the shotgun
+				Bullets[1].Direction = new Vector2(-1*Angle,-1);
+				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y-BulletDistance);
+				Bullets[2].Direction = new Vector2(Angle,-1);
+				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y-BulletDistance);
+			}
 		}
 		else if(CurrentDir == "L")
 		{
-			NewBullet.Direction = new Vector2(-1,0);
-			NewBullet.Position = new Vector2(GlobalPosition.X-65,GlobalPosition.Y);
+			Bullets[0].Direction = new Vector2(-1,0);
+			Bullets[0].Position = new Vector2(GlobalPosition.X-65,GlobalPosition.Y);
+			if(Weapon == 3)
+			{ //Other two bullets for the shotgun
+				Bullets[1].Direction = new Vector2(-1,Angle);
+				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y+BulletDistance);
+				Bullets[2].Direction = new Vector2(-1,-1*Angle);
+				Bullets[2].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y-BulletDistance);
+			}
 		}
 		else if(CurrentDir == "R")
 		{
-			NewBullet.Direction = new Vector2(1,0);
-			NewBullet.Position = new Vector2(GlobalPosition.X+65,GlobalPosition.Y);
+			Bullets[0].Direction = new Vector2(1,0);
+			Bullets[0].Position = new Vector2(GlobalPosition.X+65,GlobalPosition.Y);
+			if(Weapon == 3)
+			{ //Other two bullets for the shotgun
+				Bullets[1].Direction = new Vector2(1,Angle);
+				Bullets[1].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y+BulletDistance);
+				Bullets[2].Direction = new Vector2(1,-1*Angle);
+				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y-BulletDistance);
+			}
 		}
-		//Create the bullet
-		GetTree().GetRoot().AddChild(NewBullet);
+		//Rotate the bullets
+		if(Weapon == 3)
+		{
+			if(CurrentDir == "L" || CurrentDir == "D")
+			{
+				Bullets[1].Rotation = ((float)Math.PI/180)*45;
+				Bullets[2].Rotation = ((float)Math.PI/180)*315;
+				if(CurrentDir == "L")
+				{
+					Bullets[2].Rotation = ((float)Math.PI/180)*135;
+				}
+			}
+			else if(CurrentDir == "R" || CurrentDir == "U")
+			{
+				Bullets[1].Rotation = ((float)Math.PI/180)*135;
+				Bullets[2].Rotation = ((float)Math.PI/180)*-135;
+				if(CurrentDir == "R")
+				{
+					Bullets[1].Rotation = ((float)Math.PI/180)*-45;
+				}
+			}
+		}
+		//Create the bullets
+		for(int i = 0; i < Weapon; i++)
+		{
+			GetTree().GetRoot().AddChild(Bullets[i]);
+			if(i > 0)
+			{ //If these are the other two bullets spawned by the shotgun
+				Bullets[i].IsDiagonal = true;
+			}
+		}
+		//Play sound and animation
+		if(Weapon == 1)
+		{
+			MySpriteAnimation.Animation = "Pistol_"+CurrentDir;
+			MySpriteAnimation.Play();
+			((AudioStreamPlayer2D)GetNode("Sounds/PistolLoud")).Play();
+		}
+		else if(Weapon == 3)
+		{
+			MySpriteAnimation.Animation = "Shotgun"+CurrentDir;
+			MySpriteAnimation.Play();
+			((AudioStreamPlayer2D)GetNode("Sounds/ShotgunAndReload")).Play();
+		}
 		//Start the cooldown
 		RangedCooldown = false;
 		RangedCoolDown();
@@ -228,7 +350,41 @@ public partial class Player : Entity
 	//Deal damage when attacking something
 	public void DealDamage()
 	{
+		//If the melee attack is still on cool down, do not melee attack
+		if(!MeleeCooldown)
+		{
+			return;
+		}
 		
+		//Play animation and sound
+		if(Inv.EquipedWeapons[0].ID == 0)
+		{ //Bite
+			MySpriteAnimation.Animation = "Bite_"+CurrentDir;
+			((AudioStreamPlayer2D)GetNode("Sounds/BiteAttack")).Play();
+		}
+		else
+		{ //Knife
+			MySpriteAnimation.Animation = "Knife_"+CurrentDir;
+			int Chosen = (int)(GD.Randi() % 3) + 1;
+			((AudioStreamPlayer2D)GetNode("Sounds/Knife"+Chosen)).Play();
+		}
+		MySpriteAnimation.Play();
+		
+		//Go through every single interactable in the InteractionZone
+		Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
+		foreach(Node2D body in Interactables)
+		{
+			//If it's an NPC, deal the damage of the equiped weapon
+			if(body is NPC)
+			{
+				NPC Attacked = (NPC)body;
+				Attacked.TakeDamage(Inv.EquipedWeapons[0].Damage);
+			}
+		}
+		
+		//Begin the melee attack cool down
+		MeleeCooldown = false;
+		MeleeCoolDown();
 	}
 	
 	//Take damage when attacked or hit by a projectile
@@ -243,11 +399,19 @@ public partial class Player : Entity
 		}
 	}
 	
+	//Start the cool down for the melee attack
+	public async void MeleeCoolDown()
+	{
+		MeleeCooldown = false;
+		await ToSignal(GetTree().CreateTimer(Inv.EquipedWeapons[0].CoolDown),"timeout");
+		MeleeCooldown = true;
+	}
+	
 	//Start the cool down for the ranged attack
 	public async void RangedCoolDown()
 	{
 		RangedCooldown = false;
-		await ToSignal(GetTree().CreateTimer(2),"timeout");
+		await ToSignal(GetTree().CreateTimer(Inv.EquipedWeapons[1].CoolDown),"timeout");
 		RangedCooldown = true;
 	}
 	
@@ -277,20 +441,14 @@ public partial class Player : Entity
 			NewWeapon.ID = ItemId;
 			if(ItemId == 1)
 			{ //Pistol
-				NewWeapon.Damage = 10;
-				NewWeapon.CoolDown = 5;
 				path = "res://Art Assets/Items/gun_Pistol.png";
 			}
 			else if(ItemId == 2)
 			{ //Knife
-				NewWeapon.Damage = 10;
-				NewWeapon.CoolDown = 5;
 				path = "res://Art Assets/Items/knife.png";
 			}
 			else if(ItemId == 3)
 			{ //Shotgun
-				NewWeapon.Damage = 20;
-				NewWeapon.CoolDown = 10;
 				path = "res://Art Assets/Items/gun_Shotgun.png";
 			}
 			//Place weapon in the inventory
@@ -319,6 +477,7 @@ public partial class Player : Entity
 		{
 			//Place key in the inventory
 			Item NewItem = new Item();
+			path = ""; //Path to hamster
 			NewItem.ID = ItemId;
 			Inv.ItemsStored[ItemCount] = NewItem;
 		}

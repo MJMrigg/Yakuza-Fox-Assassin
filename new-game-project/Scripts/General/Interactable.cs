@@ -82,6 +82,17 @@ public partial class Interactable : Entity
 	{
 		//Unpause all entities
 		GetTree().CallGroup("Pausable","Pause");
+		//Tell the player that they are no longer in dialogue by going through all pausable nodes
+		var Nodes = GetTree().GetNodesInGroup("Pausable");
+		foreach(Node body in Nodes)
+		{
+			if(body is Player)
+			{
+				Player player = (Player)body;
+				player.InDialogue = false;
+				break;
+			}
+		} 
 		DialogueBox.Visible = false;
 	}
 	

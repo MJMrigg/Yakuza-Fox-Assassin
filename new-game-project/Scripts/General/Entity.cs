@@ -9,6 +9,8 @@ public partial class Entity : CharacterBody2D
 	[Export]
 	public AnimatedSprite2D MySpriteAnimation; //Animator
 	
+	AudioStreamPlayer2D Walker; //Play walking sound
+	
 	[Export]
 	public int RoomId; //Room the entity is in (helpful for save/load)
 	
@@ -29,5 +31,23 @@ public partial class Entity : CharacterBody2D
 	public void Pause()
 	{
 		Stop = !Stop;
+	}
+	
+	//Play walking sound
+	public void PlayWalkingSound()
+	{
+		//If the sound is already playing, return
+		if(Walker != null && Walker.Playing)
+		{
+			return;
+		}
+		if(RoomId == 5 || RoomId == 13)
+		{ //If this is the bar, play a random wood sound
+			int Chosen = (int)GD.Randi() % 7 + 1;
+			Walker = (AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/WoodFootstep"+Chosen);
+		}else{ //If this is any other room, play the metal sound
+			Walker = (AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/MetalFootstep");
+		}
+		Walker.Play();
 	}
 }

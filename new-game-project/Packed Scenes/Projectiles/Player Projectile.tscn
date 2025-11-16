@@ -208,15 +208,13 @@ height = 50.0
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_6o5gu")
-Damage = 30
-Speed = 150.0
+Speed = 300.0
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xjrqa")
 animation = &"Move"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8wx7a")

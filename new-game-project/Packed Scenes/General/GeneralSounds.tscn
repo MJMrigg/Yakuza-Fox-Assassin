@@ -69,6 +69,7 @@ stream = ExtResource("14_p5is2")
 
 [node name="MetalFootstep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_g88hv")
+volume_db = 5.0
 
 [node name="WoodFootstep1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_4h6ik")

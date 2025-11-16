@@ -7,7 +7,7 @@ public partial class Inventory : VBoxContainer
 	
 	public Weapon[] EquipedWeapons = new Weapon[2]; //Array of equiped weapons
 	
-	//Signal to tell the weapon slot to change to a different texture
+	//Signals to tell the weapon slots to change to a different texture
 	[Signal]
 	public delegate void ChangeMeleeWeaponEventHandler(string path, int ID);
 	[Signal]
@@ -35,6 +35,9 @@ public partial class Inventory : VBoxContainer
 			}
 			EmitSignal(SignalName.ChangeMeleeWeapon, path, NewEquip);
 			EquipedWeapons[0] = (Weapon)ItemsStored[WeaponIndex];
+			//Set up weapon statistics
+			EquipedWeapons[0].Damage = Game.Instance.ItemData[EquipedWeapons[0].ID*3+1];
+			EquipedWeapons[0].CoolDown = Game.Instance.ItemData[EquipedWeapons[0].ID*3+2];
 		}
 		else
 		{ //Equip a ranged weapon
@@ -48,6 +51,9 @@ public partial class Inventory : VBoxContainer
 			}
 			EmitSignal(SignalName.ChangeRangedWeapon, path, NewEquip);
 			EquipedWeapons[1] = (Weapon)ItemsStored[WeaponIndex];
+			//Set up weapon statistics
+			EquipedWeapons[1].Damage = Game.Instance.ItemData[EquipedWeapons[1].ID*3+1];
+			EquipedWeapons[1].CoolDown = Game.Instance.ItemData[EquipedWeapons[1].ID*3+2];
 		}
 	}
 	
@@ -56,19 +62,13 @@ public partial class Inventory : VBoxContainer
 	{
 		if(UnEquip % 2 == 0)
 		{ //Uequip the melee weapon
-			EquipedWeapons[0] = null;
+			EquipedWeapons[0] = Game.Instance.Bite;
 			EmitSignal(SignalName.ChangeMeleeWeapon,"",-1);
 		}
 		else
 		{ //Unequip the ranged weapon
-			EquipedWeapons[1] = null;
+			EquipedWeapons[1] = Game.Instance.Bite;
 			EmitSignal(SignalName.ChangeRangedWeapon,"",-1);
 		}
-	}
-	
-	//Close the Iventory menu
-	public void ReturnToGame()
-	{
-		Visible = false;
 	}
 }

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c828fmqjdtk8b"]
+
+[ext_resource type="Script" uid="uid://hy24va66myct" path="res://Scripts/Items/Weapon.cs" id="1_xcn8a"]
+[ext_resource type="Texture2D" uid="uid://dwoebs68vgwmq" path="res://Art Assets/Items/gun_Shotgun.png" id="2_7q8xx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikmsh"]
+size = Vector2(80, 80)
+
+[node name="ShotGun" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider") groups=["Pausable"]]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_xcn8a")
+ID = 3
+Portrait = ExtResource("2_7q8xx")
+InitialDialog = "You found a shotgun"
+DialogueOptions = PackedStringArray("Examine", "Call", "Pick Up", "Leave")
+DialogResponses = PackedStringArray("It\'s a shot gun. It looks like it shoots more bullets then your typical pistol.", "This isn\'t a car.", "You pick up the shot gun")
+DialogSuspicion = PackedFloat32Array(0, 0, 1)
+MyPhysicsCollider = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ikmsh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7q8xx")

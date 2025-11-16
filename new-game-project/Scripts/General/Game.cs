@@ -32,10 +32,23 @@ public partial class Game : Node
 	public int PatrolRoom = 18;
 	
 	//Save/load data
-	public Item[] PlayerInventory = new Item[5]; //Player's inventory
+	public Item[] PlayerInventory = new Item[6]; //Player's inventory
 	public Weapon[] PlayerWeapons = new Weapon[2]; //Player's equiped weapons
 	public NPC[] NPCs = new NPC[5]; //NPC data
 	public Projectile[] Projectiles = new Projectile[5]; //Projectile data
+	public Weapon Bite = new Weapon(); //Bite data
+	public int[] ItemData = {
+		//ID, damage, cooldown
+		0,10,2, //Bite
+		1,10,4, //Pistol
+		2,15,4, //Knife
+		3,7,4, //Shotgun
+		//ID,color
+		4,1, //Green Key
+		5,0, //Red Key
+		//ID
+		6 //Hamster
+	};
 	
 	//Global instance of the game
 	public static Game Instance { get; private set; }
@@ -77,19 +90,25 @@ public partial class Game : Node
 			MaxGlobalSuspicion += MaxLocalSuspicions[i];
 		}
 		
-		//Set up player inventory and weapons
+		//Set up player inventory
 		for(int i = 0; i < 5; i++)
 		{
 			PlayerInventory[i] = null;
 		}
-		//Equip the bite and pistol
-		for(int i = 0; i < 2; i++)
-		{
-			PlayerWeapons[i] = new Weapon();
-			PlayerWeapons[i].ID = i;
-		}
-		PlayerWeapons[0].Portrait = (CompressedTexture2D)GD.Load("");
-		PlayerWeapons[1].Portrait = (CompressedTexture2D)GD.Load("res://Art Assets/Items/gun_Pistol.png");
+		//Set up player bite
+		Bite.ID = 0;
+		Bite.Damage = 10;
+		Bite.CoolDown = 2;
+		Bite.Portrait = (CompressedTexture2D)GD.Load("");
+		PlayerWeapons[0] = Bite;
+		//Set up player pistol
+		PlayerWeapons[1] = new Weapon();
+		PlayerWeapons[1].ID = ItemData[3];
+		PlayerWeapons[1].Damage = ItemData[4];
+		PlayerWeapons[1].CoolDown = ItemData[5];
+		//Place it in their inventory
+		PlayerInventory[0] = new Item();
+		PlayerInventory[0].ID = ItemData[3];
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
