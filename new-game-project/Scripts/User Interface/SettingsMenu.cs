@@ -4,6 +4,8 @@ using System;
 public partial class SettingsMenu : Control
 {
 	public string[] KeyBindings; //Array of current keybindings
+	
+	public float maxVolume = 10.0f;
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -33,6 +35,9 @@ public partial class SettingsMenu : Control
 	//Change the current master volume
 	public void ChangeMasterVolume(float NewVolume)
 	{
+		if (NewVolume > maxVolume){
+			NewVolume = maxVolume;
+		}
 		//audiobus 0 is master bus
 		AudioServer.SetBusVolumeDb(0, NewVolume);
 	}
@@ -41,6 +46,9 @@ public partial class SettingsMenu : Control
 	//Change the current sound effect volume
 	public void ChangeSoundVolume(float NewVolume)
 	{
+		if (NewVolume > maxVolume){
+			NewVolume = maxVolume;
+		}
 		//audiobus 1 is the sound effect bus
 		AudioServer.SetBusVolumeDb(1, NewVolume);
 	}
@@ -48,6 +56,9 @@ public partial class SettingsMenu : Control
 	//Change the current music volume
 	public void ChangeMusicVolume(float NewVolume)
 	{
+		if (NewVolume > maxVolume){
+			NewVolume = maxVolume;
+		}
 		//audiobus 2 is the music bus
 		AudioServer.SetBusVolumeDb(2, NewVolume);
 	}
