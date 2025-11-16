@@ -217,7 +217,7 @@ public partial class Player : Entity
 		//Since the pistol ID is 1 and the shotgun ID is 3, it works
 		//I did not plan that
 		//Create the bullets
-		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Player Projectile.tscn");
+		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Bullet.tscn");
 		for(int i = 0; i < Weapon; i++)
 		{
 			Bullets[i] = (Projectile)PlayerProjectileScene.Instantiate();
@@ -274,9 +274,11 @@ public partial class Player : Entity
 				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y-BulletDistance);
 			}
 		}
-		//Rotate the bullets
+		//Rotate the bullets for the shot gun and set bullet speeds
+		int BulletSpeed = 300;
 		if(Weapon == 3)
 		{
+			BulletSpeed = 150;
 			if(CurrentDir == "L" || CurrentDir == "D")
 			{
 				Bullets[1].Rotation = ((float)Math.PI/180)*45;
@@ -299,6 +301,9 @@ public partial class Player : Entity
 		//Create the bullets
 		for(int i = 0; i < Weapon; i++)
 		{
+			Bullets[i].Speed = BulletSpeed;
+			Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
+			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
 			GetTree().GetRoot().AddChild(Bullets[i]);
 			if(i > 0)
 			{ //If these are the other two bullets spawned by the shotgun
@@ -314,7 +319,7 @@ public partial class Player : Entity
 		}
 		else if(Weapon == 3)
 		{
-			MySpriteAnimation.Animation = "Shotgun"+CurrentDir;
+			MySpriteAnimation.Animation = "Shotgun_"+CurrentDir;
 			MySpriteAnimation.Play();
 			((AudioStreamPlayer2D)GetNode("Sounds/ShotgunAndReload")).Play();
 		}
