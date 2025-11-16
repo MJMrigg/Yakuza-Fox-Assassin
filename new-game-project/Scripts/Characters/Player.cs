@@ -257,6 +257,12 @@ public partial class Player : Entity
 	//Shoot a bullet
 	public void CreateProjectile()
 	{
+		//If there is no gun equipped, do a bite attack
+		if(Inv.EquipedWeapons[1].ID == 0)
+		{
+			DealDamage();
+			return;
+		}
 		//If the ranged weapon is still cooling down, don't shoot the bullet
 		if(!RangedCooldown)
 		{

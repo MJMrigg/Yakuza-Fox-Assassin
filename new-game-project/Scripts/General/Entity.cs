@@ -59,6 +59,6 @@ public partial class Entity : CharacterBody2D
 	public async virtual void Remove()
 	{
 		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
-		QueueFree();
+		this.QueueFree();
 	}
 }

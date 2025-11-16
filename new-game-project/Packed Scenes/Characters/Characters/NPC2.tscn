@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6es7gsvts3ya"]
+[gd_scene load_steps=7 format=3 uid="uid://c6es7gsvts3ya"]
 
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_3uop3"]
 [ext_resource type="Texture2D" uid="uid://b5mq6morm8o4y" path="res://Art Assets/Characters/NPCS/NPC-2/Portraits/Neutral-Por-Right_NPC-2.png" id="2_q6nmt"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="3_jya10"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uop3"]
 animations = [{
@@ -89,13 +90,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ndqf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3uop3"]
-radius = 70.0
+radius = 200.0
 
-[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_3uop3")
 Portrait = ExtResource("2_q6nmt")
+NavAgent = NodePath("NavigationAgent2D")
 InitialDialog = "Woah, hey there!"
 DialogueOptions = PackedStringArray("Who are you?", "Ever notice these halls look the same?", "I am an intruder.", "Goodbye")
 DialogResponses = PackedStringArray("Just another cog in the machine.", "It\'s probably just cause we\'re tired.", "Oh no.")
@@ -114,3 +116,11 @@ shape = SubResource("CapsuleShape2D_1ndqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
 shape = SubResource("CircleShape2D_3uop3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 35.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("3_jya10")]

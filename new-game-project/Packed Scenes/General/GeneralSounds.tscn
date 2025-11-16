@@ -28,70 +28,93 @@
 
 [node name="DogHurt1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_6wvn2")
+bus = &"soundEffect"
 
 [node name="DogHurt2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_x47dp")
+bus = &"soundEffect"
 
 [node name="DogHurt3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_kklbm")
+bus = &"soundEffect"
 
 [node name="DogHurt4" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6fxl8")
+bus = &"soundEffect"
 
 [node name="DogHurt5" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ytcg8")
+bus = &"soundEffect"
 
 [node name="DogHurt6" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_xdh3i")
+bus = &"soundEffect"
 
 [node name="DogHurt7" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_ep13a")
+bus = &"soundEffect"
 
 [node name="DogHurt8" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_cpdle")
+bus = &"soundEffect"
 
 [node name="DogHurt9" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_a2kop")
+bus = &"soundEffect"
 
 [node name="DogHurt10" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_fad3f")
+bus = &"soundEffect"
 
 [node name="DogHurt11" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_5ni5q")
+bus = &"soundEffect"
 
 [node name="DogHurt12" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_arb47")
+bus = &"soundEffect"
 
 [node name="RetroHurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_1a5nu")
+bus = &"soundEffect"
 
 [node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_p5is2")
+bus = &"soundEffect"
 
 [node name="MetalFootstep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_g88hv")
 volume_db = 5.0
+bus = &"soundEffect"
 
 [node name="WoodFootstep1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_4h6ik")
+bus = &"soundEffect"
 
 [node name="WoodFootstep2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_xavq2")
+bus = &"soundEffect"
 
 [node name="WoodFootstep3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_rcfr7")
+bus = &"soundEffect"
 
 [node name="WoodFootstep4" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_mimii")
+bus = &"soundEffect"
 
 [node name="WoodFootstep5" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_kvvhy")
+bus = &"soundEffect"
 
 [node name="WoodFootstep6" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("21_jss5m")
+bus = &"soundEffect"
 
 [node name="WoodFootstep7" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_kb7f5")
+bus = &"soundEffect"
 
 [node name="MenuButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_jyhik")
+bus = &"soundEffect"

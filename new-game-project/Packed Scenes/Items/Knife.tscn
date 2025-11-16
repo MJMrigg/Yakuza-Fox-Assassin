@@ -23,3 +23,8 @@ shape = SubResource("RectangleShape2D_ikmsh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6s501")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(40, 40, 40, -40, -40, -40, -40, 40)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
