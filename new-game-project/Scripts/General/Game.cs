@@ -131,6 +131,8 @@ public partial class Game : Node
 			return;
 		}
 		LocalSuspicions[Room] += Amount;
+		//Make sure the local suspicion doesn't go over the max
+		LocalSuspicions[Room] = Mathf.Min(LocalSuspicions[Room],MaxLocalSuspicions[Room]);
 	}
 	
 	//Handle the player losing

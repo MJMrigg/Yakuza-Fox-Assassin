@@ -22,10 +22,14 @@ public partial class NPC : Interactable
 	
 	public bool Dying = false; //Whether the NPC is dying
 	
+	public ProgressBar LocalSusMeter; //Local suspicion meter of the room
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
+		this.AddToGroup("NPCs");
+		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
 		PickNewTarget();
 	}
 
@@ -101,8 +105,15 @@ public partial class NPC : Interactable
 		//Take away health
 		Health -= damage;
 		
-		//Mark the NPC has hostile
-		IsHostile = true;
+		//Make the room hostile
+		if(!IsHostile)
+		{
+			GetTree().CallGroup("NPCs","MakeHostile");
+			Game.Instance.RoomsHostile[RoomId] = true;
+			//Increase the local suspicion to max
+			Game.Instance.IncreaseLocalSuspicion(RoomId,Game.Instance.MaxLocalSuspicions[RoomId]);
+			LocalSusMeter.Value = Game.Instance.LocalSuspicions[RoomId];
+		}
 		
 		//Handle if the NPC died
 		if(Health <= 0)
@@ -215,5 +226,11 @@ public partial class NPC : Interactable
 			MySpriteAnimation.Play();
 		}
 		PlayWalkingSound();
+	}
+	
+	//Make the NPC hostile
+	public void MakeHostile()
+	{
+		IsHostile = true;
 	}
 }
