@@ -30,10 +30,12 @@ public partial class Player : Entity
 	public bool Dying = false; //Whether the player is dying
 	
 	[Export]
-	public CanvasLayer WinLoseBox;
+	public CanvasLayer PlayerUI; //Menus the player controls
 	
 	[Export]
-	public ProgressBar HealthBar;
+	public ProgressBar HealthBar; //The player's health bar
+	
+	public bool Choice = false; //Whether the player has chosen to start combat
 	
 	public override void _Ready()
 	{
@@ -407,12 +409,13 @@ public partial class Player : Entity
 	//Tell the game that the player died
 	public void InformOfDeath()
 	{
-		((Label)WinLoseBox.GetNode("Background/Text")).Text = "You Died";
-		WinLoseBox.Visible = true;
+		TextureRect WinLoseMenu = (TextureRect)PlayerUI.GetNode("WinLoseMenu");
+		PlayerUI.Visible = true;
+		((Label)PlayerUI.GetNode("Text")).Text = "You Died.";
 	}
 	
 	//Deal damage when attacking something
-	public void DealDamage()
+	public async void DealDamage()
 	{
 		//If the melee attack is still on cool down, do not melee attack
 		if(!MeleeCooldown)
@@ -438,6 +441,26 @@ public partial class Player : Entity
 		Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
 		foreach(Node2D body in Interactables)
 		{
+			//If the room is not yet hostile, ask the player if they want to start combat in this room
+			if(!Game.Instance.RoomsHostile[RoomId])
+			{
+				//Pause the room
+				GetTree().CallGroup("Pausable","Pause");
+				//Ask the user what they want to do
+				YesNoMenu ChoiceMenu = (YesNoMenu)PlayerUI.GetNode("YesNoMenu");
+				ChoiceMenu.Visible = true;
+				//Wait for their choice
+				await ToSignal(ChoiceMenu, YesNoMenu.SignalName.Choice);
+				//Unpause the room
+				GetTree().CallGroup("Pausable","Pause");
+				ChoiceMenu.Visible = false;
+				//If the user said no, don't do anything
+				if(!Choice)
+				{
+					break;
+				}
+				Choice = false;
+			}
 			//If it's an NPC, deal the damage of the equiped weapon
 			if(body is NPC)
 			{
@@ -576,9 +599,16 @@ public partial class Player : Entity
 		Items.AddChild(NewSlot);
 	}
 	
+	//Kill the player
 	public async override void Remove()
 	{
 		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		InformOfDeath();
+	}
+	
+	//When the player has made a choice to make the room hostile
+	public void ChoiceMade()
+	{
+		Choice = true;
 	}
 }
