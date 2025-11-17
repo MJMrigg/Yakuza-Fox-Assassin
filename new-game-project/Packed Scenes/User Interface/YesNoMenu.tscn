@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cytrxnmia0hlo"]
+
+[ext_resource type="Script" uid="uid://c1tmoi151fdlo" path="res://Scripts/User Interface/YesNoMenu.cs" id="1_ahx3f"]
+
+[node name="YesNoMenu" type="ColorRect"]
+anchors_preset = -1
+anchor_left = 0.287
+anchor_top = 0.23
+anchor_right = 0.71900004
+anchor_bottom = 0.74500006
+offset_left = 0.37600708
+offset_top = -0.040008545
+offset_right = -0.2880249
+offset_bottom = 0.23995972
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.26666668)
+script = ExtResource("1_ahx3f")
+
+[node name="AreYouSure" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19700001
+anchor_top = 0.105000004
+anchor_right = 0.80100006
+anchor_bottom = 0.374
+offset_left = 0.09099579
+offset_top = -0.069999695
+offset_right = -0.09701538
+offset_bottom = 0.083992004
+grow_horizontal = 2
+text = "Are you sure you want to start combat in this room?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Yes" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.60200006
+anchor_right = 0.47300002
+anchor_bottom = 0.78700006
+offset_left = -0.24499893
+offset_top = -0.06802368
+offset_right = -0.08100891
+offset_bottom = 0.14196777
+grow_horizontal = 2
+grow_vertical = 2
+text = "Yes"
+
+[node name="No" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.527
+anchor_top = 0.60200006
+anchor_right = 0.915
+anchor_bottom = 0.78700006
+offset_left = 0.08099365
+offset_top = -0.06802368
+offset_right = 0.24499512
+offset_bottom = 0.14196777
+grow_horizontal = 2
+grow_vertical = 2
+text = "No"
+
+[connection signal="pressed" from="Yes" to="." method="Yes"]
+[connection signal="pressed" from="No" to="." method="No"]

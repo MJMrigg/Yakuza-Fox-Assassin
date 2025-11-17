@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://0yfvqfpei5c0" path="res://Scripts/User Interface/WinLoseMenu.cs" id="1_ayh2u"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_uww5m"]
 
-[node name="Background" type="ColorRect"]
+[node name="WinLoseMenu" type="ColorRect"]
 anchors_preset = -1
 anchor_left = 0.287
 anchor_top = 0.23

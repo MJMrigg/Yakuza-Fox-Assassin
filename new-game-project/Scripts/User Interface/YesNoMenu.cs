@@ -3,6 +3,9 @@ using System;
 
 public partial class YesNoMenu : Control
 {
+	[Signal]
+	public delegate void ChoiceEventHandler(bool choice);
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -15,11 +18,11 @@ public partial class YesNoMenu : Control
 	
 	public void Yes()
 	{
-		
+		EmitSignal(SignalName.Choice,true);
 	}
 	
 	public void No()
 	{
-		
+		EmitSignal(SignalName.Choice,false);
 	}
 }
