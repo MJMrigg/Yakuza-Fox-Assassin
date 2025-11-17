@@ -23,12 +23,15 @@ public partial class SettingsMenu : Control
 	}
 	
 	//Change a keybinding
-	public void ChangeKeyBinding(InputEvent @event, string action) {
+	public void ChangeKeyBinding(InputEventKey @event, string action) {
+		//Debug test
+		var newKeyEvent = new InputEventKey();
+		newKeyEvent.PhysicalKeycode = @event.PhysicalKeycode;
 		// Check if duplicate key
 		bool duplicate = false;
 		foreach (Button i in GetTree().GetNodesInGroup("keyBinds"))
 		{
-			if (i != curButton && i.Text == @event.AsText())
+			if (i != curButton && i.Text == newKeyEvent.AsText())
 			{
 				//Duplicate Input. Can not allow.
 				duplicate = true;
@@ -39,7 +42,7 @@ public partial class SettingsMenu : Control
 		{
 			// We good boss
 			InputMap.ActionEraseEvents(action);
-			InputMap.ActionAddEvent(action, @event);
+			InputMap.ActionAddEvent(action, newKeyEvent);
 		}
 		SetProcessUnhandledKeyInput(false);
 		var events = InputMap.ActionGetEvents(action);
@@ -50,7 +53,7 @@ public partial class SettingsMenu : Control
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
 		{
-			ChangeKeyBinding(@event, curAction);
+			ChangeKeyBinding(keyEvent, curAction);
 		}
 		curButton.ButtonPressed = false;
 	}
