@@ -24,8 +24,23 @@ public partial class SettingsMenu : Control
 	
 	//Change a keybinding
 	public void ChangeKeyBinding(InputEvent @event, string action) {
-		InputMap.ActionEraseEvents(action);
-		InputMap.ActionAddEvent(action, @event);
+		// Check if duplicate key
+		bool duplicate = false;
+		foreach (Button i in GetTree().GetNodesInGroup("keyBinds"))
+		{
+			if (i != curButton && i.Text == @event.AsText())
+			{
+				//Duplicate Input. Can not allow.
+				duplicate = true;
+				break;
+			}
+		}
+		if(!duplicate)
+		{
+			// We good boss
+			InputMap.ActionEraseEvents(action);
+			InputMap.ActionAddEvent(action, @event);
+		}
 		SetProcessUnhandledKeyInput(false);
 		var events = InputMap.ActionGetEvents(action);
 		curButton.Text = events[0].AsText();
