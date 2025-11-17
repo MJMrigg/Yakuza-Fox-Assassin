@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bojq5vpsx41i8"]
+[gd_scene load_steps=3 format=3 uid="uid://bojq5vpsx41i8"]
 
 [ext_resource type="Script" uid="uid://sfkdkxgb78ic" path="res://Scripts/User Interface/SettingsMenu.cs" id="1_u8t1i"]
+[ext_resource type="Script" uid="uid://biuva7fxggax3" path="res://Scripts/User Interface/buttonSendId.cs" id="2_qh64w"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -50,6 +51,10 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer"]
 layout_mode = 2
 
+[node name="inputTestButton" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "INPUT MAP TEST BUTTON"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -64,11 +69,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
 toggle_mode = true
 text = "W"
+script = ExtResource("2_qh64w")
+actionType = "p_w"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -84,11 +91,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
 toggle_mode = true
 text = "S"
+script = ExtResource("2_qh64w")
+actionType = "p_s"
 
 [node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
 custom_minimum_size = Vector2(576, 0)
@@ -138,7 +147,11 @@ min_value = -10.0
 max_value = 10.0
 value = 10.0
 
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonToggle"]
+[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/inputTestButton" to="." method="printInput"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" method="buttonToggle"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterSlider" to="." method="ChangeMasterVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MusicSlider" to="." method="ChangeMusicVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/SoundSlider" to="." method="ChangeSoundVolume"]
