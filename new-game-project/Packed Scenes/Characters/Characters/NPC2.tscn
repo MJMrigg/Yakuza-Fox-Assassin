@@ -201,35 +201,49 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ndqf"]
+radius = 35.0
+height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3uop3"]
 radius = 200.0
 
-[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
+safe_margin = 0.1
 script = ExtResource("1_3uop3")
 Portrait = ExtResource("2_q6nmt")
+NavAgent = NodePath("NavigationAgent2D")
+HostileRadius = NodePath("HostileRadius")
+InitialDialog = "Woah, hey there!"
 DialogueOptions = PackedStringArray("Who are you?", "Ever notice these halls look the same?", "I am an intruder.", "Goodbye")
 DialogResponses = PackedStringArray("Just another cog in the machine.", "It\'s probably just cause we\'re tired.", "Oh no.")
+DialogSuspicion = PackedFloat32Array(0, 0, 5)
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3uop3")
-animation = &"Die_U"
+animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1ndqf")
 
 [node name="HostileRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
 shape = SubResource("CircleShape2D_3uop3")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 75.0
+target_desired_distance = 100.0
+path_max_distance = 200.0
+path_postprocessing = 2
 avoidance_enabled = true
-radius = 35.0
+radius = 75.0
+neighbor_distance = 200.0
 
 [node name="Sounds" type="Node" parent="."]
 

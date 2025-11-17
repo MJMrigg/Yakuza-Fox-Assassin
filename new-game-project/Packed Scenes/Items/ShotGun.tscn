@@ -25,6 +25,7 @@ shape = SubResource("RectangleShape2D_ikmsh")
 texture = ExtResource("2_7q8xx")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 60.0
 vertices = PackedVector2Array(40, 40, 40, -40, -40, -40, -40, 40)
 affect_navigation_mesh = true
 carve_navigation_mesh = true

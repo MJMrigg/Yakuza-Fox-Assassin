@@ -17,6 +17,9 @@ public partial class NPC : Interactable
 	[Export]
 	public NavigationAgent2D NavAgent; //Navigation Agent
 	
+	[Export]
+	public Area2D HostileRadius; //Radius the NPC will use to detect the player when hostile
+	
 	public bool Dying = false; //Whether the NPC is dying
 	
 	// Called when the node enters the scene tree for the first time.
@@ -43,22 +46,7 @@ public partial class NPC : Interactable
 			return;
 		}
 		
-		//Choose a new target if the target was reached or is unreachable
-		if(NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable())
-		{
-			PickNewTarget();
-			return;
-		}
-		
-		//Set up velocity
-		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition());
-		Velocity = NextPosition * Speed;
-		
-		//Set up direction it's facing
-		SetDirection();
-		
-		MoveAndSlide();
-		
+		Move();
 	}
 	
 	//Add protrait to dialogue box
@@ -73,7 +61,25 @@ public partial class NPC : Interactable
 	//Move around
 	public virtual void Move()
 	{
+		//Choose a new target if the target was reached or is unreachable
+		if(NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable())
+		{
+			PickNewTarget();
+			return;
+		}
 		
+		//Set up velocity
+		if(IsHostile)
+		{ //If the room is hostile, run away from the player
+			HandleHostile();
+		}
+		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition());
+		Velocity = NextPosition * Speed;
+		
+		//Set up direction it's facing
+		SetDirection();
+		
+		MoveAndSlide();
 	}
 	
 	//Take damage from an attack
@@ -108,10 +114,50 @@ public partial class NPC : Interactable
 		((AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/DogHurt"+Chosen)).Play();
 	}
 	
+	//See if player is in the hostile radius
+	public Vector2 GetPlayerPosition()
+	{
+		//Go through everything in the NPC's Hostile radius
+		Godot.Collections.Array<Node2D> Entities = HostileRadius.GetOverlappingBodies();
+		foreach(Node2D body in Entities)
+		{
+			//If the body is the player
+			if(body is Player)
+			{
+				return ((Player)body).Position;
+			}
+		}
+		//If the player wasn't in the hostile radius, return the NPC's position. The player can't be there
+		return new Vector2(Position.X,Position.Y);
+	}
+	
 	//Handle being hostile(either by running away or attacking)
 	public virtual void HandleHostile()
 	{
+		if(!IsHostile)
+		{
+			GD.Print("Error: NPC is not hostile.");
+			return;
+		}
 		
+		//Get the player's position
+		Vector2 RunAway = GetPlayerPosition();
+		//If the player wasn't in the hostile radiue, don't handle being hostile
+		if(RunAway.X == Position.X || RunAway.Y == Position.Y)
+		{
+			return;
+		}
+		
+		//Run away from the player
+		if((RunAway.X < NavAgent.TargetPosition.X && NavAgent.TargetPosition.X < Position.X) || (RunAway.X > NavAgent.TargetPosition.X && NavAgent.TargetPosition.X > Position.X))
+		{ //If the NPC is facing the player in the X direction, turn around
+			NavAgent.TargetPosition = new Vector2(NavAgent.TargetPosition.X*-1, NavAgent.TargetPosition.Y);
+			return; //If this isn't here, the NPC will change directions diagonally, which can really mess up on corners.
+		}
+		if((RunAway.Y < NavAgent.TargetPosition.Y && NavAgent.TargetPosition.Y < Position.Y) || (RunAway.Y > NavAgent.TargetPosition.Y && NavAgent.TargetPosition.Y > Position.Y))
+		{ //If the NPC is facing the player in the Y direction, turn around
+			NavAgent.TargetPosition = new Vector2(NavAgent.TargetPosition.X, NavAgent.TargetPosition.Y*-1);
+		}
 	}
 	
 	//Remove the NPC from the scene(by dying)
@@ -125,6 +171,7 @@ public partial class NPC : Interactable
 	//Pick a new target for the NPC to travel to
 	public void PickNewTarget()
 	{
+		//Generate random set of coordinates
 		float RandX = Position.X+(GD.Randf()*400 - 200);
 		float RandY = Position.Y+(GD.Randf()*400 - 200);
 		NavAgent.TargetPosition = new Vector2(RandX,RandY);
@@ -133,10 +180,12 @@ public partial class NPC : Interactable
 	//Set the NPC's direction
 	public virtual void SetDirection()
 	{
+		Vector2 Direction = Velocity.Normalized();
+		
 		//Determine direction the sprite and collider will face
-		if(Mathf.Abs(Velocity.X) <= 0.1 && Mathf.Abs(Velocity.Y) > 0.1)
+		if(Mathf.Abs(Direction.X) <= 0.1 && Mathf.Abs(Direction.Y) > 0.1)
 		{ //Vertical
-			if(Velocity.Y > 0)
+			if(Direction.Y > 0)
 			{ //Down
 				CurrentDir = "D";
 			}
@@ -147,9 +196,9 @@ public partial class NPC : Interactable
 			//Rotate the collider to be vertical
 			MyPhysicsCollider.Rotation = 0;
 		}
-		else if(Mathf.Abs(Velocity.X) > 0.1)
+		else if(Mathf.Abs(Direction.X) > 0.1)
 		{ //Horizontal or Diagonal
-			if(Velocity.X > 0)
+			if(Direction.X > 0)
 			{ //Right
 				CurrentDir = "R";
 			}
