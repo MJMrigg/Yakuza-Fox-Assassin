@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bd1urlla04r60"]
+[gd_scene load_steps=2 format=3 uid="uid://bd1urlla04r60"]
+
+[ext_resource type="Script" uid="uid://dtcnwl0hhjx2b" path="res://Scripts/User Interface/QuitMenu.cs" id="1_5rumk"]
 
 [node name="QuitMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5rumk")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -55,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Yes"
 
-[node name="Yes2" type="Button" parent="Background"]
+[node name="No" type="Button" parent="Background"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.527
@@ -69,3 +72,6 @@ offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
 text = "No"
+
+[connection signal="pressed" from="Background/Yes" to="." method="quitGame"]
+[connection signal="pressed" from="Background/No" to="." method="closeMenu"]

@@ -18,12 +18,35 @@ public partial class DifficultyMenu : Node
 	//Start the game
 	public void StartGame()
 	{
-		
+		//On call change to appropriate scene
+		//GetTree().ChangeSceneToFile();
 	}
 	
 	//Set the difficulty
 	public void ChangeDifficulty()
 	{
-		
+		foreach(Button i in GetTree().GetNodesInGroup("difButtons"))
+		{
+			if(i.IsPressed()){
+				switch(i.Text.ToLower().Trim())
+				{
+					case "easy":
+						Difficulty = 0.9f;
+						break;
+					case "medium":
+						Difficulty = 0.8f;
+						break;
+					case "hard":
+						Difficulty = 0.7f;
+						break;
+					default:
+						// Somehow broke the game. So **** you, you get the hardest difficulty.
+						Difficulty = 0.1f; 
+						break;
+				}
+			}
+		}
+		//DEBGUG. Remove later - DT
+		GD.Print("Current Dif: " + Difficulty);
 	}
 }
