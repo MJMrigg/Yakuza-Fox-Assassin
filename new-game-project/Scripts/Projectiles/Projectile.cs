@@ -21,25 +21,21 @@ public partial class Projectile : Entity
 		base._Ready();
 		//Set the sprite frame of the bullet based on the direction
 		MySpriteAnimation.Animation = "Move";
-		if((Direction.Y == 1 && Direction.X == 0)  || IsDiagonal)
-		{ //Down or Diagonal
+		if(CurrentDir == "D")
+		{ //Down
 			MySpriteAnimation.Frame = 0;
-			CurrentDir = "D";
-		}else if(Direction.Y == -1 && Direction.X == 0)
+		}else if(CurrentDir == "U")
 		{ //Up
 			MySpriteAnimation.Frame = 2;
-			CurrentDir = "U";
-		}else if(Direction.Y == 0 && Direction.X == 1)
+		}else if(CurrentDir == "R")
 		{ //Right
 			MySpriteAnimation.Frame = 1;
 			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90;
-			CurrentDir = "R";
 		}
-		else if(Direction.Y == 0 && Direction.X == -1)
+		else if(CurrentDir == "L")
 		{ //Left
 			MySpriteAnimation.Frame = 3;
 			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90;
-			CurrentDir = "L";
 		}
 		//Adjust Animation sprite since the right and left bullets are off by -4
 		MySpriteAnimation.Position = new Vector2(0,Math.Abs(Direction.X)*-4);
@@ -57,6 +53,10 @@ public partial class Projectile : Entity
 		{
 			MySpriteAnimation.Pause();
 			return;
+		}
+		else if(!Stop && !MySpriteAnimation.IsPlaying() && MySpriteAnimation.Animation != "Move")
+		{
+			MySpriteAnimation.Play();
 		}
 		
 		//If the bullet had hit something, do nothing

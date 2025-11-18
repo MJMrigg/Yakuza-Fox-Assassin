@@ -1,72 +1,71 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6es7gsvts3ya"]
+[gd_scene load_steps=23 format=3 uid="uid://cqokrcqrv7k08"]
 
-[ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_3uop3"]
-[ext_resource type="Texture2D" uid="uid://b5mq6morm8o4y" path="res://Art Assets/Characters/NPCS/NPC-2/Portraits/Neutral-Por-Right_NPC-2.png" id="2_q6nmt"]
-[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="3_jya10"]
-[ext_resource type="Texture2D" uid="uid://ogwnn820rtfd" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Die-Anim_NPC-2.png" id="3_wj1gb"]
+[ext_resource type="Script" uid="uid://bfqcrgxftxgls" path="res://Scripts/Characters/Enemy1.cs" id="1_m253u"]
+[ext_resource type="Texture2D" uid="uid://ogwnn820rtfd" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Die-Anim_NPC-2.png" id="3_eyyxh"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="4_asfg8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbqu2"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(0, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1vpa"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(96, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrxuq"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(192, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0j0ux"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(288, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6txc"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(0, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylg6o"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(96, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy1tb"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(192, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pkyei"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(288, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhnbe"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(0, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l145b"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(96, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvv20"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(192, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jho60"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(288, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32224"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(0, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m73k8"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(96, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6way2"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3as1c"]
-atlas = ExtResource("3_wj1gb")
+atlas = ExtResource("3_eyyxh")
 region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uop3"]
@@ -207,19 +206,13 @@ height = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3uop3"]
 radius = 200.0
 
-[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Enemy1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 safe_margin = 0.1
-script = ExtResource("1_3uop3")
-Speed = 200.0
-Portrait = ExtResource("2_q6nmt")
+script = ExtResource("1_m253u")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
-InitialDialog = "Woah, hey there!"
-DialogueOptions = PackedStringArray("Who are you?", "Ever notice these halls look the same?", "I am an intruder.", "Goodbye")
-DialogResponses = PackedStringArray("Just another cog in the machine.", "It\'s probably just cause we\'re tired.", "Oh no.")
-DialogSuspicion = PackedFloat32Array(0, 0, 5)
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -248,4 +241,4 @@ neighbor_distance = 200.0
 
 [node name="Sounds" type="Node" parent="."]
 
-[node name="GeneralSounds" parent="Sounds" instance=ExtResource("3_jya10")]
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("4_asfg8")]

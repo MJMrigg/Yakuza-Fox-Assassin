@@ -598,7 +598,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_D",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -615,7 +615,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_L",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -632,7 +632,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_R",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -649,7 +649,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_U",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [],
 "loop": false,
@@ -677,8 +677,9 @@ radius = 61.008198
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "PlayerUI", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 16
-collision_mask = 11
+collision_mask = 27
 script = ExtResource("1_gs7tr")
+Speed = 200
 InteractionZone = NodePath("InteractionZone")
 PlayerUI = NodePath("PlayerUI")
 MyPhysicsCollider = NodePath("CollisionShape2D")
@@ -759,3 +760,5 @@ visible = false
 
 [node name="YesNoMenu" parent="PlayerUI" instance=ExtResource("24_hrhlh")]
 visible = false
+
+[connection signal="Choice" from="PlayerUI/YesNoMenu" to="." method="ChoiceMade"]

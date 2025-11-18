@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://f4lev6mhev37"]
+[gd_scene load_steps=7 format=3 uid="uid://f4lev6mhev37"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyrq5"]
+[ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_aw31w"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_ormxa"]
+[ext_resource type="Texture2D" uid="uid://bu6xhjlbp3dic" path="res://Art Assets/Characters/NPCS/NPC-3/Portraits/Neutral-Por-Right_NPC-3.png" id="2_6a1ll"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ormxa"]
 animations = [{
@@ -85,11 +87,51 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Npc3" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3ej6"]
+radius = 35.0
+height = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wyrq5")
+[sub_resource type="CircleShape2D" id="CircleShape2D_aw31w"]
+radius = 200.0
+
+[node name="Npc3" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+collision_layer = 2
+collision_mask = 31
+script = ExtResource("1_aw31w")
+Speed = 200.0
+Portrait = ExtResource("2_6a1ll")
+NavAgent = NodePath("NavigationAgent2D")
+HostileRadius = NodePath("HostileRadius")
+InitialDialog = "Oh hello!"
+DialogueOptions = PackedStringArray("Don\'t you guys usually herd sheep?", "How much do you get paid?", "Is it okay if I steel weapons and keys from around the ship?", "Goodbye")
+DialogResponses = PackedStringArray("When the sheep economy isn\'t going kaput, usually.", "I get payed 12 bones an hour and plus a squeek toy insurance plan.", "What? No. What kind of question is that?")
+DialogSuspicion = PackedFloat32Array(0, 0, 5)
+MyPhysicsCollider = NodePath("CollisionShape2D")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ormxa")
 animation = &"Die_R"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m3ej6")
+
+[node name="HostileRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
+shape = SubResource("CircleShape2D_aw31w")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+path_desired_distance = 75.0
+target_desired_distance = 100.0
+path_max_distance = 200.0
+path_postprocessing = 2
+avoidance_enabled = true
+radius = 75.0
+neighbor_distance = 200.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_ormxa")]

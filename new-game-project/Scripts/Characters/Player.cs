@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : Entity
 {
+	[Export]
 	public int Speed = 100; //Movement speed
 	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
@@ -131,6 +132,11 @@ public partial class Player : Entity
 			Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
 			foreach(Node2D Interaction in Interactables)
 			{
+				//Do not interact with hositle NPCs
+				if(Interaction is NPC && Game.Instance.RoomsHostile[RoomId])
+				{
+					continue;
+				}
 				//Begin dialogue with the first interactable object
 				if(Interaction is Interactable)
 				{
@@ -288,6 +294,11 @@ public partial class Player : Entity
 		float Angle = 1.0f; //Angle the bullet moves from the player
 		if(CurrentDir == "D")
 		{
+			for(int i = 0; i < Weapon; i++)
+			{
+				Bullets[i].Direction = new Vector2(0,1);
+				Bullets[i].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+BulletDistance);
+			}
 			Bullets[0].Direction = new Vector2(0,1);
 			Bullets[0].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+BulletDistance);
 			if(Weapon == 3)
@@ -338,25 +349,7 @@ public partial class Player : Entity
 		int BulletSpeed = 300;
 		if(Weapon == 3)
 		{
-			BulletSpeed = 150;
-			if(CurrentDir == "L" || CurrentDir == "D")
-			{
-				Bullets[1].Rotation = ((float)Math.PI/180)*45;
-				Bullets[2].Rotation = ((float)Math.PI/180)*315;
-				if(CurrentDir == "L")
-				{
-					Bullets[2].Rotation = ((float)Math.PI/180)*135;
-				}
-			}
-			else if(CurrentDir == "R" || CurrentDir == "U")
-			{
-				Bullets[1].Rotation = ((float)Math.PI/180)*135;
-				Bullets[2].Rotation = ((float)Math.PI/180)*-135;
-				if(CurrentDir == "R")
-				{
-					Bullets[1].Rotation = ((float)Math.PI/180)*-45;
-				}
-			}
+			BulletSpeed = 200;
 		}
 		//Create the bullets
 		for(int i = 0; i < Weapon; i++)
@@ -364,11 +357,8 @@ public partial class Player : Entity
 			Bullets[i].Speed = BulletSpeed;
 			Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
 			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
+			Bullets[i].CurrentDir = CurrentDir;
 			GetTree().GetRoot().AddChild(Bullets[i]);
-			if(i > 0)
-			{ //If these are the other two bullets spawned by the shotgun
-				Bullets[i].IsDiagonal = true;
-			}
 		}
 		//Play sound and animation
 		if(Weapon == 1)
@@ -454,12 +444,11 @@ public partial class Player : Entity
 				//Unpause the room
 				GetTree().CallGroup("Pausable","Pause");
 				ChoiceMenu.Visible = false;
-				//If the user said no, don't do anything
+				//If the user said no, don't do anything;
 				if(!Choice)
 				{
 					break;
 				}
-				Choice = false;
 			}
 			//If it's an NPC, deal the damage of the equiped weapon
 			if(body is NPC)
@@ -468,6 +457,8 @@ public partial class Player : Entity
 				Attacked.TakeDamage(Inv.EquipedWeapons[0].Damage);
 			}
 		}
+		
+		Choice = false;
 		
 		//Begin the melee attack cool down
 		MeleeCooldown = false;
@@ -607,8 +598,8 @@ public partial class Player : Entity
 	}
 	
 	//When the player has made a choice to make the room hostile
-	public void ChoiceMade()
+	public void ChoiceMade(bool PlayerChoice)
 	{
-		Choice = true;
+		Choice = PlayerChoice;
 	}
 }

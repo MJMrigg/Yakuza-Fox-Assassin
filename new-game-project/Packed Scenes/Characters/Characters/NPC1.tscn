@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7w7gvjn4f0yy"]
+[gd_scene load_steps=7 format=3 uid="uid://7w7gvjn4f0yy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2s6id"]
+[ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_rqn5h"]
+[ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_t4kyu"]
+[ext_resource type="Texture2D" uid="uid://yj2ayk8utc7v" path="res://Art Assets/Characters/NPCS/NPC-1/Portraits/Neutral-Por-Right_NPC-1.png" id="2_jtwxd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rqn5h"]
 animations = [{
@@ -85,11 +87,51 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Npc1" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4kyu"]
+radius = 35.0
+height = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_2s6id")
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtwxd"]
+radius = 200.0
+
+[node name="Npc1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+collision_layer = 2
+collision_mask = 31
+script = ExtResource("1_t4kyu")
+Speed = 200.0
+Portrait = ExtResource("2_jtwxd")
+NavAgent = NodePath("NavigationAgent2D")
+HostileRadius = NodePath("HostileRadius")
+InitialDialog = "Woah, who are you?"
+DialogueOptions = PackedStringArray("I\'m your new coworker.", "I\'m your boss\' kid come to claim his throne.", "I don\'t know why, but you remind me of a dog named Max.", "Goodbye.")
+DialogResponses = PackedStringArray("Well, I hope you enjoy awkward office birthday parties then.", "Oh no!", "That\'s too meta.")
+DialogSuspicion = PackedFloat32Array(0, 5, 1)
+MyPhysicsCollider = NodePath("CollisionShape2D")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rqn5h")
 animation = &"Idle_R"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t4kyu")
+
+[node name="HostileRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
+shape = SubResource("CircleShape2D_jtwxd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+path_desired_distance = 75.0
+target_desired_distance = 100.0
+path_max_distance = 200.0
+path_postprocessing = 2
+avoidance_enabled = true
+radius = 75.0
+neighbor_distance = 200.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_rqn5h")]

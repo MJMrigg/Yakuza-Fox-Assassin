@@ -65,6 +65,22 @@ public partial class NPC : Interactable
 	//Move around
 	public virtual void Move()
 	{
+		//If the animation is currently not walking
+		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
+		{
+			//If the animation is not playing, have the NPC face its current direction
+			if (!MySpriteAnimation.IsPlaying())
+			{
+				MySpriteAnimation.Animation = "Walk_"+CurrentDir;
+				MySpriteAnimation.Frame = 0;
+			}
+			else
+			{
+				//If it is playing, do nothing, as the animation must finish playing
+				return;
+			}
+		}
+		
 		//Choose a new target if the target was reached or is unreachable
 		if(NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable())
 		{
@@ -77,7 +93,7 @@ public partial class NPC : Interactable
 		{ //If the room is hostile, run away from the player
 			HandleHostile();
 		}
-		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition());
+		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition()).Normalized();
 		Velocity = NextPosition * Speed;
 		
 		//Set up direction it's facing
@@ -122,6 +138,8 @@ public partial class NPC : Interactable
 			Remove();
 		}
 		int Chosen = (int)(GD.Randi() % 12) + 1;
+		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
+		MySpriteAnimation.Play();
 		((AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/DogHurt"+Chosen)).Play();
 	}
 	
@@ -199,25 +217,26 @@ public partial class NPC : Interactable
 			if(Direction.Y > 0)
 			{ //Down
 				CurrentDir = "D";
+				MyPhysicsCollider.Rotation = 0;
 			}
 			else
 			{ //Up
 				CurrentDir = "U";
+				MyPhysicsCollider.Rotation = (float)(MathF.PI/180)*180;
 			}
-			//Rotate the collider to be vertical
-			MyPhysicsCollider.Rotation = 0;
 		}
 		else if(Mathf.Abs(Direction.X) > 0.1)
 		{ //Horizontal or Diagonal
 			if(Direction.X > 0)
 			{ //Right
 				CurrentDir = "R";
+				MyPhysicsCollider.Rotation = (float)(MathF.PI/180)*270;
 			}
 			else
 			{ //Left
 				CurrentDir = "L";
+				MyPhysicsCollider.Rotation = (float)(MathF.PI/180)*90;
 			}
-			MyPhysicsCollider.Rotation = (float)(MathF.PI/180)*90;
 		}
 		//Play the walking animation and sound
 		MySpriteAnimation.Animation = "Walk_"+CurrentDir;

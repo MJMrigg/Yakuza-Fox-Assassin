@@ -1,5 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=60 format=3 uid="uid://cckd5u6wwg8gx"]
 
+[ext_resource type="Script" uid="uid://v87lc1o8kvw7" path="res://Scripts/Characters/Enemy2.cs" id="1_0nspq"]
 [ext_resource type="Texture2D" uid="uid://btg0pfwq8nsay" path="res://Art Assets/Characters/Enemies/Husky/Animations/Die-Anim_Husky.png" id="1_5o7ni"]
 [ext_resource type="Texture2D" uid="uid://clkcw7i6acred" path="res://Art Assets/Characters/Enemies/Husky/Animations/Hurt-Anim_Husky.png" id="1_udhs2"]
 [ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Animations/Walk-Anim_Husky.png" id="2_t8407"]
@@ -9,10 +10,14 @@
 [ext_resource type="AudioStream" uid="uid://dbtm4y7cg4qi0" path="res://Art Assets/Sounds/Husky/HuskyBark4.mp3" id="6_t0yt5"]
 [ext_resource type="AudioStream" uid="uid://dkhx4c5px57k6" path="res://Art Assets/Sounds/Husky/HuskyDeath.mp3" id="7_uetyp"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="8_1uy3h"]
+[ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="10_modip"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
 radius = 40.0
 height = 124.0
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0nspq"]
+points = PackedVector2Array(0, 0, 212, 212, 150, 259, 0, 300, -150, 259, -212, 212)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_modip"]
 atlas = ExtResource("1_5o7ni")
@@ -425,14 +430,39 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Husky" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nspq"]
+radius = 300.0
+
+[node name="Husky" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+collision_layer = 2
+collision_mask = 31
+script = ExtResource("1_0nspq")
+AttackRadius = NodePath("CollisionShape2D/AttackRadius")
+DeathSound = NodePath("Sounds/HuskyDeath")
+Speed = 150.0
+Health = 120
+NavAgent = NodePath("NavigationAgent2D")
+HostileRadius = NodePath("HostileRadius")
+InitialDialog = "Why hello there!"
+DialogueOptions = PackedStringArray("Aren;t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
+DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I had to come here.", "It\'s not bad. Except when you\'re the only one who bothers cleaning their weapon. I\'m looking at you Gary!", "Oh, not under my watch you will")
+DialogSuspicion = PackedFloat32Array(0, 0, 5)
+MyPhysicsCollider = NodePath("CollisionShape2D")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tvtjo")
 
+[node name="AttackRadius" type="Area2D" parent="CollisionShape2D"]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackRadius"]
+shape = SubResource("ConvexPolygonShape2D_0nspq")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3nkod")
-animation = &"Die_U"
+animation = &"Walk_D"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -452,3 +482,23 @@ stream = ExtResource("6_t0yt5")
 stream = ExtResource("7_uetyp")
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("8_1uy3h")]
+
+[node name="PistolLoud" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_modip")
+volume_db = -20.0
+
+[node name="HostileRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
+shape = SubResource("CircleShape2D_0nspq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+path_desired_distance = 75.0
+target_desired_distance = 100.0
+path_max_distance = 200.0
+path_postprocessing = 2
+avoidance_enabled = true
+radius = 75.0
+neighbor_distance = 200.0
