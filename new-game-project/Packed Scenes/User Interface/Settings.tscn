@@ -165,6 +165,94 @@ text = "Tab"
 script = ExtResource("2_qh64w")
 actionType = "p_inv"
 
+[node name="HBoxContainer6" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Melee"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
+
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6" groups=["keyBinds"]]
+custom_minimum_size = Vector2(164, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Left Click"
+script = ExtResource("2_qh64w")
+actionType = "p_melee"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Ranged"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
+
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7" groups=["keyBinds"]]
+custom_minimum_size = Vector2(164, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Right Click"
+script = ExtResource("2_qh64w")
+actionType = "p_ranged"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Dash"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
+
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8" groups=["keyBinds"]]
+custom_minimum_size = Vector2(164, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Shift"
+script = ExtResource("2_qh64w")
+actionType = "p_dash"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Slow"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 200
+
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9" groups=["keyBinds"]]
+custom_minimum_size = Vector2(164, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Crtl"
+script = ExtResource("2_qh64w")
+actionType = "p_slow"
+
 [node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
 custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
@@ -224,6 +312,14 @@ value = 10.0
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterSlider" to="." method="ChangeMasterVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MusicSlider" to="." method="ChangeMusicVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/SoundSlider" to="." method="ChangeSoundVolume"]
