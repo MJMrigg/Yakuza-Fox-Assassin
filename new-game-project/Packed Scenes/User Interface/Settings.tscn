@@ -55,6 +55,10 @@ layout_mode = 2
 layout_mode = 2
 text = "INPUT MAP TEST BUTTON"
 
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls Reset"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -302,6 +306,7 @@ max_value = 10.0
 value = 10.0
 
 [connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/inputTestButton" to="." method="printInput"]
+[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/Button" to="." method="restoreDefault"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="." method="buttonsTog"]

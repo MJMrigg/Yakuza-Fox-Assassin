@@ -19,9 +19,9 @@ public partial class buttonSendId : Button
 				var events = InputMap.ActionGetEvents(i);
 				defText = events[0].AsText();
 				Text = events[0].AsText();
+				break;
 			}
 		}
-		//defText = Text;
 	}
 	
 	public void buttonToggle(bool tog)
