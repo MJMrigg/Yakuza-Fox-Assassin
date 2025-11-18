@@ -23,15 +23,23 @@ public partial class SettingsMenu : Control
 	}
 	
 	//Change a keybinding
-	public void ChangeKeyBinding(InputEventKey @event, string action) {
-		//Debug test
-		var newKeyEvent = new InputEventKey();
-		newKeyEvent.PhysicalKeycode = @event.PhysicalKeycode;
+	public void ChangeKeyBinding(InputEvent @event, string action) {
+		// CHECK WHAT TYPE OF EVENT
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+		{
+			var newKeyEvent = new InputEventKey();
+			newKeyEvent.PhysicalKeycode = keyEvent.PhysicalKeycode;
+		} else if (@event is InputEventMouseButton mouseEvent){
+			var newKeyEvent = new InputEventMouseButton();
+			newKeyEvent = mouseEvent;
+		}
+		
 		// Check if duplicate key
+		//GD.Print("Change Ketbind Event: " + @event);
 		bool duplicate = false;
 		foreach (Button i in GetTree().GetNodesInGroup("keyBinds"))
 		{
-			if (i != curButton && i.Text == newKeyEvent.AsText())
+			if (i != curButton && i.Text == @event.AsText())
 			{
 				//Duplicate Input. Can not allow.
 				duplicate = true;
@@ -42,20 +50,42 @@ public partial class SettingsMenu : Control
 		{
 			// We good boss
 			InputMap.ActionEraseEvents(action);
-			InputMap.ActionAddEvent(action, newKeyEvent);
+			InputMap.ActionAddEvent(action, @event);
 		}
-		SetProcessUnhandledKeyInput(false);
+		//SetProcessUnhandledKeyInput(false);
+		SetProcessInput(false);
 		var events = InputMap.ActionGetEvents(action);
-		curButton.Text = events[0].AsText();
+		if(curButton != null)
+		{
+			curButton.Text = events[0].AsText();
+		}
 	}
 	
+	/*
 	public override void _UnhandledKeyInput(InputEvent @event)
+	{
+		
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+		{
+			ChangeKeyBinding(@event, curAction);
+		}
+		curButton.ButtonPressed = false;
+	}
+	*/
+	
+	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
 		{
-			ChangeKeyBinding(keyEvent, curAction);
+			ChangeKeyBinding(@event, curAction);
+		} else if (@event is InputEventMouseButton mouseEvent)
+		{
+			ChangeKeyBinding(@event, curAction);
 		}
-		curButton.ButtonPressed = false;
+		if(curButton != null)
+		{
+			curButton.ButtonPressed = false;
+		}
 	}
 	
 	public void buttonsTog(Button thisBut, bool tog, string defaultText, string action)
@@ -64,18 +94,21 @@ public partial class SettingsMenu : Control
 			thisBut.Text = "Press A Key";
 			curAction = action;
 			curButton = thisBut;
-			SetProcessUnhandledKeyInput(tog);
+			//SetProcessUnhandledKeyInput(tog);
+			SetProcessInput(tog);
 			foreach (Button i in GetTree().GetNodesInGroup("keyBinds")){
 				if (i != thisBut){
 					i.ToggleMode = false;
-					i.SetProcessUnhandledKeyInput(false);
+					//i.SetProcessUnhandledKeyInput(false);
+					i.SetProcessInput(false);
 				}
 			}
 		} else {
 			foreach (Button i in GetTree().GetNodesInGroup("keyBinds")){
 				if (i != thisBut){
 					i.ToggleMode = true;
-					i.SetProcessUnhandledKeyInput(false);
+					//i.SetProcessUnhandledKeyInput(false);
+					i.SetProcessInput(false);
 				}
 			}
 			//thisBut.Text = defaultText;
