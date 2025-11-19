@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6k14rf7yalb0"]
+
+[ext_resource type="Script" uid="uid://budkmlk3boi30" path="res://Scripts/Doors/Door.cs" id="1_kl1hu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aoig"]
+size = Vector2(150, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt4wf"]
+size = Vector2(150, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg033"]
+size = Vector2(150, 50)
+
+[node name="RedDoor" type="StaticBody2D"]
+collision_mask = 31
+script = ExtResource("1_kl1hu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5aoig")
+
+[node name="DoorBack" type="Area2D" parent="."]
+position = Vector2(0, -33)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBack"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rt4wf")
+
+[node name="DoorFront" type="Area2D" parent="."]
+position = Vector2(0, 33)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorFront"]
+shape = SubResource("RectangleShape2D_qg033")
+
+[connection signal="body_entered" from="DoorBack" to="." method="LetPlayerThrough"]
+[connection signal="body_entered" from="DoorFront" to="." method="CheckPlayer"]
