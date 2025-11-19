@@ -78,6 +78,26 @@ region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ag17j"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"Charge_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Charge_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Charge_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Charge_U",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xbqu2")
@@ -272,7 +292,7 @@ bus = &"soundEffect"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ag17j")
-animation = &"Walk_D"
+animation = &"Charge_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7y6ms")
