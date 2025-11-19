@@ -127,19 +127,19 @@ public partial class Player : Entity
 		//If the player wishes to interact with an interactable object and there is an object for them to interact with
 		if(Input.IsActionJustPressed("p_interact"))
 		{
-			InDialogue = true;
-			//Get the first object in the interaction zone
+			//Go through the objects in the interaction zone
 			Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
 			foreach(Node2D Interaction in Interactables)
 			{
 				//Do not interact with hositle NPCs
-				if(Interaction is NPC && Game.Instance.RoomsHostile[RoomId])
+				if(Interaction is NPC && ((NPC)Interaction).IsHostile)
 				{
 					continue;
 				}
 				//Begin dialogue with the first interactable object
 				if(Interaction is Interactable)
 				{
+					InDialogue = true;
 					Interactable body = (Interactable)Interaction;
 					body.BeginDialogue();
 					break;
@@ -399,9 +399,9 @@ public partial class Player : Entity
 	//Tell the game that the player died
 	public void InformOfDeath()
 	{
-		TextureRect WinLoseMenu = (TextureRect)PlayerUI.GetNode("WinLoseMenu");
-		PlayerUI.Visible = true;
-		((Label)PlayerUI.GetNode("Text")).Text = "You Died.";
+		ColorRect WinLoseMenu = (ColorRect)PlayerUI.GetNode("WinLoseMenu");
+		WinLoseMenu.Visible = true;
+		((Label)WinLoseMenu.GetNode("Text")).Text = "You Died.";
 	}
 	
 	//Deal damage when attacking something
@@ -412,20 +412,6 @@ public partial class Player : Entity
 		{
 			return;
 		}
-		
-		//Play animation and sound
-		if(Inv.EquipedWeapons[0].ID == 0)
-		{ //Bite
-			MySpriteAnimation.Animation = "Bite_"+CurrentDir;
-			((AudioStreamPlayer2D)GetNode("Sounds/BiteAttack")).Play();
-		}
-		else
-		{ //Knife
-			MySpriteAnimation.Animation = "Knife_"+CurrentDir;
-			int Chosen = (int)(GD.Randi() % 3) + 1;
-			((AudioStreamPlayer2D)GetNode("Sounds/Knife"+Chosen)).Play();
-		}
-		MySpriteAnimation.Play();
 		
 		//Go through every single interactable in the InteractionZone
 		Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
@@ -458,6 +444,24 @@ public partial class Player : Entity
 			}
 		}
 		
+		//If the player chose to attack, play the attack animation and sound
+		if(Choice)
+		{
+			if(Inv.EquipedWeapons[0].ID == 0)
+			{ //Bite
+				MySpriteAnimation.Animation = "Bite_"+CurrentDir;
+				((AudioStreamPlayer2D)GetNode("Sounds/BiteAttack")).Play();
+			}
+			else
+			{ //Knife
+				MySpriteAnimation.Animation = "Knife_"+CurrentDir;
+				int Chosen = (int)(GD.Randi() % 3) + 1;
+				((AudioStreamPlayer2D)GetNode("Sounds/Knife"+Chosen)).Play();
+			}
+			MySpriteAnimation.Play();
+		}
+		
+		//Reset the choice
 		Choice = false;
 		
 		//Begin the melee attack cool down
@@ -468,6 +472,11 @@ public partial class Player : Entity
 	//Take damage when attacked or hit by a projectile
 	public void TakeDamage(int damage)
 	{
+		//If the player is already dying, do nothing
+		if(Dying)
+		{
+			return;
+		}
 		//Take the damage
 		Health -= damage;
 		HealthBar.Value = Health;
@@ -593,7 +602,13 @@ public partial class Player : Entity
 	//Kill the player
 	public async override void Remove()
 	{
+		//Play the death animation
+		MySpriteAnimation.Animation = "Die_"+CurrentDir;
+		MySpriteAnimation.Play();
 		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		//Pause the game
+		GetTree().CallGroup("Pausable","Pause");
+		//Tell the game the player died
 		InformOfDeath();
 	}
 	

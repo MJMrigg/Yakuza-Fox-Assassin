@@ -106,7 +106,7 @@ public partial class NPC : Interactable
 	public void TakeDamage(int damage)
 	{
 		//If the NPC is already dying, don't continue taking damage
-		if(Dying)
+		if(Dying || Health <= 0)
 		{
 			return;
 		}
@@ -136,6 +136,7 @@ public partial class NPC : Interactable
 		{
 			Dying = true;
 			Remove();
+			return;
 		}
 		int Chosen = (int)(GD.Randi() % 12) + 1;
 		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
@@ -153,7 +154,8 @@ public partial class NPC : Interactable
 			//If the body is the player
 			if(body is Player)
 			{
-				return ((Player)body).Position;
+				Vector2 PlayerPosition = ((Player)body).Position;
+				return PlayerPosition;
 			}
 		}
 		//If the player wasn't in the hostile radius, return the NPC's position. The player can't be there
@@ -192,9 +194,13 @@ public partial class NPC : Interactable
 	//Remove the NPC from the scene(by dying)
 	public async override void Remove()
 	{
+		Dying = true;
+		MySpriteAnimation.Stop();
 		MySpriteAnimation.Animation = "Die_"+CurrentDir;
 		MySpriteAnimation.Play();
-		base.Remove();
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		await ToSignal(GetTree().CreateTimer(2),"timeout");
+		this.QueueFree();
 	}
 	
 	//Pick a new target for the NPC to travel to

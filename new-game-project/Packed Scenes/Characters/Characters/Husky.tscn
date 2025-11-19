@@ -437,7 +437,9 @@ radius = 300.0
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_0nspq")
+Damage = 7
 AttackRadius = NodePath("CollisionShape2D/AttackRadius")
+AttackCooldown = 2
 DeathSound = NodePath("Sounds/HuskyDeath")
 Speed = 150.0
 Health = 120
@@ -462,7 +464,7 @@ shape = SubResource("ConvexPolygonShape2D_0nspq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3nkod")
-animation = &"Walk_D"
+animation = &"Die_D"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -495,7 +497,7 @@ collision_mask = 31
 shape = SubResource("CircleShape2D_0nspq")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
-path_desired_distance = 75.0
+path_desired_distance = 100.0
 target_desired_distance = 100.0
 path_max_distance = 200.0
 path_postprocessing = 2

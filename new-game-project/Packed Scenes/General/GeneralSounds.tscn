@@ -84,7 +84,7 @@ bus = &"soundEffect"
 
 [node name="MetalFootstep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_g88hv")
-volume_db = 5.0
+volume_db = 20.0
 bus = &"soundEffect"
 
 [node name="WoodFootstep1" type="AudioStreamPlayer2D" parent="."]

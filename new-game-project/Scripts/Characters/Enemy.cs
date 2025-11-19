@@ -3,11 +3,13 @@ using System;
 
 public partial class Enemy : NPC
 {
+	[Export]
 	public int Damage; //Attack damage
 	
 	[Export]
 	public Area2D AttackRadius; //Attack range
 	
+	[Export]
 	public int AttackCooldown; //Time attack takes to cool down
 	
 	public bool AttackCooledDown=true; //Whether the attack has finished cooling down
@@ -26,6 +28,11 @@ public partial class Enemy : NPC
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//If the NPC is dying, do nothing
+		if(Dying)
+		{
+			return;
+		}
 		base._Process(delta);
 	}
 	

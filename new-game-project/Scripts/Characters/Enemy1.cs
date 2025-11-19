@@ -61,10 +61,13 @@ public partial class Enemy1 : Enemy
 				{
 					return;
 				}
+				//Play attack sound and animation
 				int Chosen = (int)GD.Randi()%7 + 1;
 				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/ChihuahuaBark"+Chosen));
 				AttackSound.SetVolumeDb(-15.0f);
 				AttackSound.Play();
+				MySpriteAnimation.Animation = "Charge_"+CurrentDir;
+				MySpriteAnimation.Play();
 				player.TakeDamage(Damage);
 				//Begin the attack cool down
 				AttackCooledDown = false;

@@ -8,13 +8,18 @@ public partial class Enemy2 : Enemy
 	{
 		//Make sure to set the damage of the enemy
 		base._Ready();
-		Damage = 9;
-		AttackCooldown = 4;
+		Damage = 7;
+		AttackCooldown = 2;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//If the NPC is dying, do nothing
+		if(Health <= 0 || Dying)
+		{
+			return;
+		}
 		base._Process(delta);
 	}
 	
@@ -32,11 +37,13 @@ public partial class Enemy2 : Enemy
 		//If the player wasn't in the hostile radiue, don't handle being hostile
 		if(NewTarget.X == Position.X || NewTarget.Y == Position.Y)
 		{
+			Speed = 150;
 			return;
 		}
 		
-		//Chase after the player
-		NavAgent.TargetPosition = new Vector2(NewTarget.X, NewTarget.Y);
+		//Face the player
+		Speed = 50;
+		NavAgent.TargetPosition = NewTarget;
 		
 		//If the attack is still cooling down, do nothing
 		if(!AttackCooledDown)
@@ -77,9 +84,13 @@ public partial class Enemy2 : Enemy
 				NewBullet.Speed = 300;
 				NewBullet.SetCollisionLayerValue(4,true); //Bullet is enemy projectile
 				NewBullet.SetCollisionMaskValue(5,true); //Bullet is looking for the player
-				NewBullet.Direction = ToLocal(NewTarget).Normalized();
+				NewBullet.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
+				NewBullet.Damage = Damage;
 				//Create the bullet
 				GetTree().GetRoot().AddChild(NewBullet);
+				//Play the animation and sound
+				MySpriteAnimation.Animation = "Shoot_"+CurrentDir;
+				MySpriteAnimation.Play();
 				((AudioStreamPlayer2D)GetNode("Sounds/PistolLoud")).Play();
 				//Begin the attack cool down
 				AttackCooledDown = false;
