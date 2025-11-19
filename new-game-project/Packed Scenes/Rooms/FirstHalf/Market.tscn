@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bj6i0sm27sq0y"]
+[gd_scene load_steps=10 format=4 uid="uid://bj6i0sm27sq0y"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_blnwy"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_kq3qv"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_blnwy"]
+[ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_4c7xv"]
+[ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="8_bv1ab"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bv1ab"]
 vertices = PackedVector2Array(390, 402, 690, 128.84375, 762, 126.84375, 762, 246, 534, 474, 390, 474, 678, 28.898438, 690, 28.71875, 678, 102, 390, 33.140625, 474, 31.898438, 474, 102, 390, 102, 174, 36.328125, 258, 35.09375, 258, 102, 174, 102, 25.023438, 258, 24.921875, 246, 30, 246, 30, 258, 618, 474, 618, 724.8281, 534, 724.3125, 186, 474, 186, 722.14844, 102, 721.6328, 102, 402, 776, 246, 776, 258, 762, 258, 762, 402, 690, 402, 690, 474, 258, 402, 258, 474, 102, 174, 30, 402, 30, 174, 102, 102)
@@ -57,6 +59,13 @@ script = ExtResource("4_0ir1l")
 position = Vector2(-158, 245)
 rotation = 4.712389
 
+[node name="ShotGun" parent="." instance=ExtResource("8_bv1ab")]
+position = Vector2(237, 96)
+
+[node name="Green Key" parent="." instance=ExtResource("7_4c7xv")]
+position = Vector2(399, 297)
+
 [connection signal="pressed" from="MainUI/Inventory/PauseMenu/Menu/CloseButton" to="Player" method="OpenInv"]
+[connection signal="SendToPlayer" from="Green Key" to="Player" method="Pickup"]
 
 [editable path="MainUI"]

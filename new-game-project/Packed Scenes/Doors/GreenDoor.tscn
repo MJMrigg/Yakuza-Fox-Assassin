@@ -14,6 +14,7 @@ size = Vector2(150, 50)
 [node name="GreenDoor" type="StaticBody2D"]
 collision_mask = 31
 script = ExtResource("1_qg033")
+DoorColor = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
