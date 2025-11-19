@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Game : Node
 {
@@ -49,6 +50,11 @@ public partial class Game : Node
 		//ID
 		6 //Hamster
 	};
+	
+	//Test Info for room transition
+	//<key, value>
+	//<this room id, Dict<goes to this room id,Vector2 of Player Position >>
+	public Dictionary<int, Dictionary<int, Vector2>> roomMap;
 	
 	//Global instance of the game
 	public static Game Instance { get; private set; }

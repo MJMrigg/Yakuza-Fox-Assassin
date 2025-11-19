@@ -9,6 +9,13 @@ public partial class Room : Node2D
 		
 	public override void _Ready()
 	{
+		GD.Print("CALLING READY");
+		// NOTE TO SELF - DT
+		/*
+		When this scene is loaded the following needs to happen
+		1. Every NPC in this room needs to be placed properly
+		2. The Player needs to be moved to the position appropriate for how they entered.
+		*/
 		base._Ready();
 		
 		//Assign all of the objects in the room to this room
@@ -28,5 +35,26 @@ public partial class Room : Node2D
 		ProgressBar GlobalSuspicion = (ProgressBar)GetNode("MainUI/GlobalSuspicion/GlobalSuspicionMeter");
 		GlobalSuspicion.MaxValue = Game.Instance.MaxGlobalSuspicion;
 		GlobalSuspicion.Value = Game.Instance.GlobalSuspicion;
+		
+		// Determine Player Position
 	}
+	
+	public void moveSceneTest(Node2D thing)
+	{
+		//Note to self - DT
+		/*
+		This function will have an Area2D connected to it. If it detects the player then this function is called.
+		When called this function will need to determine the following.
+		1. What room am I sending the player to. 
+		*/
+		Node2D Player = (Node2D)GetNode("Player");
+		GD.Print("Detected Thing: " + thing);
+		GD.Print("Player: " + Player);
+		if (thing == Player)
+		{
+			GD.Print("Player Detected! Moving to new room");
+			GetTree().ChangeSceneToFile("res://Packed Scenes/Rooms/FirstHalf/Engine.tscn");
+		}
+	}
+	
 }
