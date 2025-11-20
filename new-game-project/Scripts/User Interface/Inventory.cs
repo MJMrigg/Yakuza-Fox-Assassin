@@ -38,6 +38,8 @@ public partial class Inventory : VBoxContainer
 			//Set up weapon statistics
 			EquipedWeapons[0].Damage = Game.Instance.ItemData[EquipedWeapons[0].ID*3+1];
 			EquipedWeapons[0].CoolDown = Game.Instance.ItemData[EquipedWeapons[0].ID*3+2];
+			//Save the equipped weapon
+			Game.Instance.PlayerWeapons[0] = EquipedWeapons[0];
 		}
 		else
 		{ //Equip a ranged weapon
@@ -54,6 +56,7 @@ public partial class Inventory : VBoxContainer
 			//Set up weapon statistics
 			EquipedWeapons[1].Damage = Game.Instance.ItemData[EquipedWeapons[1].ID*3+1];
 			EquipedWeapons[1].CoolDown = Game.Instance.ItemData[EquipedWeapons[1].ID*3+2];
+			Game.Instance.PlayerWeapons[1] = EquipedWeapons[1];
 		}
 	}
 	
@@ -64,11 +67,13 @@ public partial class Inventory : VBoxContainer
 		{ //Uequip the melee weapon
 			EquipedWeapons[0] = Game.Instance.Bite;
 			EmitSignal(SignalName.ChangeMeleeWeapon,"",-1);
+			Game.Instance.PlayerWeapons[0] = Game.Instance.Bite;
 		}
 		else
 		{ //Unequip the ranged weapon
 			EquipedWeapons[1] = Game.Instance.Bite;
 			EmitSignal(SignalName.ChangeRangedWeapon,"",-1);
+			Game.Instance.PlayerWeapons[1] = Game.Instance.Bite;
 		}
 	}
 }

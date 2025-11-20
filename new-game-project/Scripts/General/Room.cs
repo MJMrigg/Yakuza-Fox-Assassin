@@ -37,13 +37,17 @@ public partial class Room : Node2D
 		
 		// Determine Player Position
 		if(Game.Instance.roomMap.ContainsKey(RoomId)){
-			var x = Game.Instance.roomMap[RoomId];
-			if(x.ContainsKey(Game.Instance.PlayerRoom)){
-				var y = x[Game.Instance.PlayerRoom];
-				GD.Print("The Player's position in this room should be: " + y);
-			} else {
-				GD.Print("The players original room does not match. Error or Cheating");
-			}
+			var RoomPlayerStats = Game.Instance.roomMap[RoomId];
+			if(RoomPlayerStats.ContainsKey(Game.Instance.PlayerRoom)){
+				var PlayerPosition = RoomPlayerStats[Game.Instance.PlayerRoom];
+				//Set player position
+				Player player = (Player)GetNode("Player");
+				if(player == null)
+				{
+					PackedScene PlayerScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Player.tscn");
+					player = (Player)PlayerScene.Instantiate();
+				}
+				player.Position = PlayerPosition;
 		} else {
 			GD.Print("This rooms position is not recorded in roomMap");
 		}

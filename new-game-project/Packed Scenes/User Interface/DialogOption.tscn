@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dglnssijjwpgx"]
+[gd_scene load_steps=3 format=3 uid="uid://dglnssijjwpgx"]
 
 [ext_resource type="Script" uid="uid://cnuu7fvbkuhvg" path="res://Scripts/User Interface/DialogueOption.cs" id="1_373dk"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="2_ys2ix"]
 
 [node name="DialogOption" type="Button"]
 custom_minimum_size = Vector2(200, 50)
@@ -12,5 +13,8 @@ offset_bottom = -41.896004
 text = "Dialog Option"
 autowrap_mode = 2
 script = ExtResource("1_373dk")
+
+[node name="ButtonClicked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ys2ix")
 
 [connection signal="pressed" from="." to="." method="ReturnOption"]

@@ -24,6 +24,7 @@ public partial class DialogueOption : Button
 	public void ReturnOption()
 	{
 		//Emit the index of the dialogue option in the dialog tree
+		((AudioStreamPlayer)GetNode("ButtonClicked")).Play();
 		EmitSignal(SignalName.ChooseOption, GetIndex());
 		//Remove the dialogue option from the dialogue options
 		//QueueFree();

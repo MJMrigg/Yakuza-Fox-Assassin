@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://btmygoh2s5mhk"]
+[gd_scene load_steps=8 format=4 uid="uid://btmygoh2s5mhk"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_0hh5a"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_wwkr1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_y1l8v"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_lwimm"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_y1l8v"]
+[ext_resource type="PackedScene" uid="uid://bgm3dx1u53tnj" path="res://Packed Scenes/Items/Knife.tscn" id="7_lwimm"]
 
 [node name="SecurityEngine" type="Node2D"]
 script = ExtResource("1_wwkr1")
@@ -28,7 +29,7 @@ tile_map_data = PackedByteArray("AAALAAUAAQACAAkAAAAAAAUAAQACAAEAAAAMAAUAAQACAAE
 tile_set = ExtResource("1_0hh5a")
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera", "HealthBar") instance=ExtResource("3_em5hx")]
-position = Vector2(166, 237)
+position = Vector2(254, -90)
 PlayerCamera = NodePath("../Camera2D")
 HealthBar = NodePath("../MainUI/Main/Player/WeaponsAndHealth/Health/ProgressBar")
 
@@ -39,11 +40,17 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_lwimm")
 
-[node name="GreenDoor" parent="." instance=ExtResource("6_y1l8v")]
+[node name="ToEngineering" parent="." instance=ExtResource("6_y1l8v")]
 position = Vector2(721, 647)
 rotation = -3.1415927
+scale = Vector2(1.6000049, 1)
 DoorColor = false
 ConnectedRoom = 8
 regDoor = true
+
+[node name="Knife" parent="." instance=ExtResource("7_lwimm")]
+position = Vector2(106, 205)
+
+[connection signal="SendToPlayer" from="Knife" to="Player" method="Pickup"]
 
 [editable path="MainUI"]

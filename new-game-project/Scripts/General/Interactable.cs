@@ -46,7 +46,6 @@ public partial class Interactable : Entity
 			GD.Print("Error, no initial dialog");
 			return;
 		}
-		GD.Print(DialogueBox == null);
 		//Reveal the dialogue box
 		DialogueBox.Visible = true;
 		//But hide the portrait(NPC children will handle the portrait)

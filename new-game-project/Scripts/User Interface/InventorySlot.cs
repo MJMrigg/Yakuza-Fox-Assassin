@@ -21,6 +21,7 @@ public partial class InventorySlot : VBoxContainer
 	//When the button is pressed, equip the weapon
 	public void WhenPressed()
 	{
+		((AudioStreamPlayer)GetNode("ButtonClicked")).Play();
 		//Emit the id and index in the inventory the weapon is in
 		EmitSignal(SignalName.Equip, ID, GetIndex());
 	}

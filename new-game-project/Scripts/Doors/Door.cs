@@ -51,7 +51,6 @@ public partial class Door : StaticBody2D
 	//Change to the next room
 	public void ChangeRoom(bool AllowedThrough)
 	{
-		GD.Print("TEST");
 		//DT EDIT. REMOVE IF CAN'T PUSH
 		if (AllowedThrough && Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
 		{

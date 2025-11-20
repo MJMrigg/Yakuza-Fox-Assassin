@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6vgmj0lj2p5e"]
+[gd_scene load_steps=4 format=3 uid="uid://c6vgmj0lj2p5e"]
 
 [ext_resource type="Script" uid="uid://jfp8x3rih2nv" path="res://Scripts/User Interface/InventorySlot.cs" id="1_b22qo"]
 [ext_resource type="Texture2D" uid="uid://dx2bdjm0oho6k" path="res://Art Assets/Items/gun_Pistol.png" id="2_2u8qn"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="3_2u8qn"]
 
 [node name="InventorySlot" type="VBoxContainer"]
 custom_minimum_size = Vector2(130, 130)
@@ -25,5 +26,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Equip"
+
+[node name="ButtonClicked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2u8qn")
 
 [connection signal="pressed" from="EquipButton" to="." method="WhenPressed"]
