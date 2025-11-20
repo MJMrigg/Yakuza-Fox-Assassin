@@ -101,6 +101,7 @@ public partial class Game : Node
 			LocalSuspicions[i] = 0;
 			RoomsHostile[i] = false;
 		}
+		RoomsHostile[19] = true; //Boss room starts hostile
 		MaxLocalSuspicions = 
 		[
 			//First Half
