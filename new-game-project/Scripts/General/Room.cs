@@ -48,6 +48,9 @@ public partial class Room : Node2D
 			GD.Print("This rooms position is not recorded in roomMap");
 		}
 		
+		// Set Player's Room to this room now
+		Game.Instance.PlayerRoom = RoomId;
+		
 	}
 	
 	//Kept as refrence for now.

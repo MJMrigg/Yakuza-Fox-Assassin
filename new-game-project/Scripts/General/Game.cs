@@ -56,10 +56,20 @@ public partial class Game : Node
 	//<current room id, Dict<goes to this room id,Vector2 of Player Position in current room >>
 	public Dictionary<int, Dictionary<int, Vector2>> roomMap = new Dictionary<int, Dictionary<int, Vector2>>
 		{
+			//<Docks(1), [Market(1)]>
+			{0, new Dictionary<int, Vector2> { { 1, new Vector2(825, 244) } } },
+			// <Market(1), [Docks(0), Living1(2), Cafeteria(4), Storage(6), SecurityEngine(7), Production(9), TrainingYard(10)]>, Still needs to be mapped
+			{1, new Dictionary<int, Vector2> { { 0, new Vector2(0, 0) }, { 2, new Vector2(0, 0) }, { 4, new Vector2(0, 0) }, { 6, new Vector2(0, 0) }, { 7, new Vector2(0, 0) }, { 9, new Vector2(0, 0) }, { 10, new Vector2(0, 0) } } },
+			//<Living1(2), [Market(1), Bathroom1(3)]>, Still needs to be mapped
+			{2, new Dictionary<int, Vector2> { { 1, new Vector2(0, 0) }, { 3, new Vector2(0, 0) } } },
+			//<Bathroom1(3), [Living1(2)]>, Still needs to be mapped
+			{3, new Dictionary<int, Vector2> { { 1, new Vector2(0, 0) } } },
+			// <SecurityEngine(7), [Market(1), Engine(8)]>
 			{7, new Dictionary<int, Vector2> { { 1, new Vector2(0, 0) }, { 8, new Vector2(718, 489) } } }
 		};
 		
 		/*
+		{?, new Dictionary<int, Vector2> { { ?, new Vector2(0, 0) } } }
 		{0, }, {1, }, {2, }, {3, }, {4, }, {5, }, {6, },
 			{7, }, {8, }, {9, }, {10, }, {11, }, {12, }, {13, },
 			{14, }, {15, }, {16, }, {17, }, {18, }, {19, }, {20, }
