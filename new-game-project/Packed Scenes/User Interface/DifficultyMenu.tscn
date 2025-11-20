@@ -1,18 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://co5tsjnc018nv"]
+[gd_scene format=3 uid="uid://co5tsjnc018nv"]
 
-[ext_resource type="Script" uid="uid://2c1o6g17cb6v" path="res://Scripts/User Interface/DifficultyMenu.cs" id="1_1mf4c"]
-
-[node name="DifficultyMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_1mf4c")
-
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="Background" type="ColorRect"]
 anchors_preset = -1
 anchor_left = 0.34100002
 anchor_top = 0.16700001
@@ -26,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.26666668)
 
-[node name="Choose" type="Label" parent="Background"]
+[node name="Choose" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18200001
@@ -43,7 +31,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Easy" type="Button" parent="Background" groups=["difButtons"]]
+[node name="Easy" type="Button" parent="." groups=["difButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18800001
@@ -58,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Easy"
 
-[node name="Medium" type="Button" parent="Background" groups=["difButtons"]]
+[node name="Medium" type="Button" parent="." groups=["difButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18800001
@@ -73,7 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Medium"
 
-[node name="Hard" type="Button" parent="Background" groups=["difButtons"]]
+[node name="Hard" type="Button" parent="." groups=["difButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18800001
@@ -87,7 +75,3 @@ offset_bottom = -0.13601685
 grow_horizontal = 2
 grow_vertical = 2
 text = "Hard"
-
-[connection signal="pressed" from="Background/Easy" to="." method="ChangeDifficulty"]
-[connection signal="pressed" from="Background/Medium" to="." method="ChangeDifficulty"]
-[connection signal="pressed" from="Background/Hard" to="." method="ChangeDifficulty"]

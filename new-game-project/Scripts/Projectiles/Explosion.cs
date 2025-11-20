@@ -62,10 +62,9 @@ public partial class Explosion : Entity
 		//Play explosion animation and sound
 		MySpriteAnimation.Animation = "Explode";
 		MySpriteAnimation.Play();
-		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		AudioStreamPlayer ExplosionSound = ((AudioStreamPlayer)GetNode("FireExplosion"));
 		ExplosionSound.Play();
-		await ToSignal(ExplosionSound, AudioStreamPlayer.SignalName.Finished);
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		//Go through every object in the explosion radius
 		Godot.Collections.Array<Node2D> InExplosionRadius = ExplosionRadius.GetOverlappingBodies();
 		foreach(Node2D body in InExplosionRadius)

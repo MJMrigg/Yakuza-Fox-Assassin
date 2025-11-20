@@ -9,7 +9,7 @@ public partial class MainMenu : Node
 	public Control quitMenu;
 	
 	[Export]
-	public Control difMenu; //This bitch won't appear for some reason.
+	public ColorRect difMenu; //This bitch won't appear for some reason.
 	
 	[Export]
 	public Control setMenu;
@@ -49,7 +49,6 @@ public partial class MainMenu : Node
 	//Start the game by getting the difficulty menu
 	public void GoDifficultyMenu()
 	{
-		GD.Print("A");
 		if (difMenu != null)
 		{
 			difMenu.Visible = true; 
