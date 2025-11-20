@@ -14,7 +14,7 @@ KeyColor = true
 ID = 4
 InitialDialog = "You find a small card like item."
 DialogueOptions = PackedStringArray("Examine", "Is taking it stealing?", "Take", "Leave")
-DialogResponses = PackedStringArray("Upon closer inspection, it looks like some sort of key card.", "Is sneaking onto a ship tesspassing?", "You pick up the key")
+DialogResponses = PackedStringArray("Upon closer inspection, it looks like some sort of key card.", "Is sneaking onto a yakuza ship tesspassing?", "You pick up the key")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
 MyPhysicsCollider = NodePath("CollisionShape2D")
 

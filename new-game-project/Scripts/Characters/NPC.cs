@@ -24,6 +24,8 @@ public partial class NPC : Interactable
 	
 	public ProgressBar LocalSusMeter; //Local suspicion meter of the room
 	
+	public bool IsBoss = false; //Whether this NPC is the boss
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -141,7 +143,10 @@ public partial class NPC : Interactable
 		int Chosen = (int)(GD.Randi() % 12) + 1;
 		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
 		MySpriteAnimation.Play();
-		((AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/DogHurt"+Chosen)).Play();
+		if(!IsBoss)
+		{
+			((AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/DogHurt"+Chosen)).Play();
+		}
 	}
 	
 	//See if player is in the hostile radius

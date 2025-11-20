@@ -18,6 +18,7 @@ public partial class Boss : Enemy
 		ExplosionCoolDown = 10;
 		//Start out being hostile
 		IsHostile = true;
+		IsBoss = true;
 		//Prep an explosion attack
 		ExplosionCooledDown=false;
 		ExplosionAttackCoolDown();
