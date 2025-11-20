@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://sppdeh5jm3cy"]
+
+[ext_resource type="Script" uid="uid://6b71mc6dg8r7" path="res://Scripts/Projectiles/FireBall.cs" id="1_aiahl"]
+[ext_resource type="Texture2D" uid="uid://cbda84i8y6hpj" path="res://Art Assets/Projectiles/fireball.png" id="2_aiahl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfw40"]
+atlas = ExtResource("2_aiahl")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlc16"]
+atlas = ExtResource("2_aiahl")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8feyk"]
+atlas = ExtResource("2_aiahl")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogo4p"]
+atlas = ExtResource("2_aiahl")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjrqa"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Hit_D",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hit_L",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hit_R",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"Hit_U",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfw40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlc16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8feyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogo4p")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wx7a"]
+radius = 20.0
+height = 54.0
+
+[node name="FireBall" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
+collision_layer = 0
+collision_mask = 13
+script = ExtResource("1_aiahl")
+MyPhysicsCollider = NodePath("CollisionShape2D")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xjrqa")
+animation = &"Hit_L"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_8wx7a")

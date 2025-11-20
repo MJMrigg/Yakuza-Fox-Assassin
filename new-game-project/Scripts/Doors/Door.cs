@@ -89,7 +89,11 @@ public partial class Door : StaticBody2D
 			//Check if the key's color is the same as the door color
 			Key PotentialKey = (Key)CurrentItem;
 			ChangeLock(PotentialKey.KeyColor);
-			return;
+			//If the key unlocked the door, move on
+			if(CheckLock())
+			{
+				return;
+			}
 		}
 	}
 	

@@ -414,6 +414,7 @@ public partial class Player : Entity
 		}
 		
 		//Go through every single interactable in the InteractionZone
+		NPC Attacked = null; //Assume there are none
 		Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
 		foreach(Node2D body in Interactables)
 		{
@@ -436,16 +437,20 @@ public partial class Player : Entity
 					break;
 				}
 			}
+			else
+			{ //The choice is already made for them if the room is already hostile
+				Choice = true;
+			}
 			//If it's an NPC, deal the damage of the equiped weapon
 			if(body is NPC)
 			{
-				NPC Attacked = (NPC)body;
+				Attacked = (NPC)body;
 				Attacked.TakeDamage(Inv.EquipedWeapons[0].Damage);
 			}
 		}
 		
-		//If the player chose to attack, play the attack animation and sound
-		if(Choice)
+		//If the player chose to attack or there was nothing to attack, play the attack animation and sound
+		if(Choice || Attacked == null)
 		{
 			if(Inv.EquipedWeapons[0].ID == 0)
 			{ //Bite
@@ -461,7 +466,7 @@ public partial class Player : Entity
 			MySpriteAnimation.Play();
 		}
 		
-		//Reset the choice
+		//Reset the choice if the player didn't choose to make the room hostile
 		Choice = false;
 		
 		//Begin the melee attack cool down
