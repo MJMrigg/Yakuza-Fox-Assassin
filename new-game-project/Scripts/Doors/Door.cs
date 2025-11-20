@@ -11,10 +11,20 @@ public partial class Door : StaticBody2D
 	[Export]
 	public int ConnectedRoom; //The room that the door leads to
 	
+	//DT ADDITION. REMOVE IF NEEDED
+	[Export]
+	public bool regDoor;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Unlocked = false; //Start the door with being unlocked
+		//DT ADDITION. REMOVE IF NEEDED
+		if (regDoor){
+			Unlocked = true; 
+		} else {
+			Unlocked = false; //Start the door with being unlocked
+		}
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +52,14 @@ public partial class Door : StaticBody2D
 	public void ChangeRoom(bool AllowedThrough)
 	{
 		GD.Print("TEST");
+		//DT EDIT. REMOVE IF CAN'T PUSH
+		if (AllowedThrough && Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
+		{
+			var x = Game.Instance.roomIDS[ConnectedRoom];
+			GD.Print("Connected Room UID" + x);
+			GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
+		}
+		
 	}
 	
 	//Detect if the player has the key or not

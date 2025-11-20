@@ -9,7 +9,6 @@ public partial class Room : Node2D
 		
 	public override void _Ready()
 	{
-		GD.Print("CALLING READY");
 		// NOTE TO SELF - DT
 		/*
 		When this scene is loaded the following needs to happen
@@ -37,8 +36,23 @@ public partial class Room : Node2D
 		GlobalSuspicion.Value = Game.Instance.GlobalSuspicion;
 		
 		// Determine Player Position
+		if(Game.Instance.roomMap.ContainsKey(RoomId)){
+			var x = Game.Instance.roomMap[RoomId];
+			if(x.ContainsKey(Game.Instance.PlayerRoom)){
+				var y = x[Game.Instance.PlayerRoom];
+				GD.Print("The Player's position in this room should be: " + y);
+			} else {
+				GD.Print("The players original room does not match. Error or Cheating");
+			}
+		} else {
+			GD.Print("This rooms position is not recorded in roomMap");
+		}
+		
 	}
 	
+	//Kept as refrence for now.
+	// DO NOT USE FOR SCENE TRANSITIONS
+	// Please use doors instead
 	public void moveSceneTest(Node2D thing)
 	{
 		//Note to self - DT
@@ -53,7 +67,11 @@ public partial class Room : Node2D
 		if (thing == Player)
 		{
 			GD.Print("Player Detected! Moving to new room");
-			GetTree().ChangeSceneToFile("res://Packed Scenes/Rooms/FirstHalf/Engine.tscn");
+			//Get this area2D's ID to figure out what scene to load
+			
+			
+			GetTree().ChangeSceneToFile("uid://cpommox3imbij");
+			//GetTree().ChangeSceneToFile("res://Packed Scenes/Rooms/FirstHalf/Engine.tscn");
 		}
 	}
 	

@@ -29,7 +29,7 @@ public partial class Game : Node
 	public bool[] ControlPuzzle = new bool[5];
 	
 	//Rooms of player and patrolling NPC
-	public int PlayerRoom = 0;
+	public int PlayerRoom = 8;
 	public int PatrolRoom = 18;
 	
 	//Save/load data
@@ -53,8 +53,29 @@ public partial class Game : Node
 	
 	//Test Info for room transition
 	//<key, value>
-	//<this room id, Dict<goes to this room id,Vector2 of Player Position >>
-	public Dictionary<int, Dictionary<int, Vector2>> roomMap;
+	//<current room id, Dict<goes to this room id,Vector2 of Player Position in current room >>
+	public Dictionary<int, Dictionary<int, Vector2>> roomMap = new Dictionary<int, Dictionary<int, Vector2>>
+		{
+			{7, new Dictionary<int, Vector2> { { 1, new Vector2(0, 0) }, { 8, new Vector2(718, 489) } } }
+		};
+		
+		/*
+		{0, }, {1, }, {2, }, {3, }, {4, }, {5, }, {6, },
+			{7, }, {8, }, {9, }, {10, }, {11, }, {12, }, {13, },
+			{14, }, {15, }, {16, }, {17, }, {18, }, {19, }, {20, }
+		*/
+		
+	
+	// Room UID's
+	//<key, value>
+	//<roomID, UID>
+	//WARNING: Please be careful moving files around outside of Godot. This may fuck up its UID's
+	public Dictionary<int, string> roomIDS = new Dictionary<int, string>
+		{
+			{0, "uid://g5yi2oufnd7b"}, {1, "uid://bj6i0sm27sq0y"}, {2, "uid://b5nusknx2t2"}, {3, "uid://yp8mbu2mbiq4"}, {4, "uid://drppupoqbsboi"}, {5, "uid://di3dj135mkpr1"}, {6, "uid://d0rvt1e2grm7m"},
+			{7, "uid://btmygoh2s5mhk"}, {8, "uid://cpommox3imbij"}, {9, "uid://bfwsfpm7kj31g"}, {10, "uid://bo6rq3jnspnsh"}, {11, "uid://iekpssg83fnc"}, {12, "uid://bo2n32asslba0"}, {13, "uid://15ua3onjiawf"},
+			{14, "uid://obh4emo4mbpj"}, {15, "uid://bt0dqpbuyngjm"}, {16, "uid://blvgy3jyqklp4"}, {17, "uid://t7rl7tpgiehl"}, {18, "uid://w6j3y6jgntrl"}, {19, "uid://d0xe8p32vykp"}, {20, "uid://dvgnk8gvwgja8"}
+		};
 	
 	//Global instance of the game
 	public static Game Instance { get; private set; }
