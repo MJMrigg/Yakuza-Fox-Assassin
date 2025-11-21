@@ -62,13 +62,20 @@ public partial class Door : StaticBody2D
 		}
 		//Save all NPC data
 		int CurrentRoom = Game.Instance.PlayerRoom;
-		Game.Instance.NPCs[CurrentRoom] = new List<NPC>(); //Overide past NPC data
+		Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
 		var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
 		for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
 		{
 			if(NPCsInRoom[i] is NPC)
 			{
-				Game.Instance.NPCs[CurrentRoom].Add((NPC)NPCsInRoom[i]);
+				/*Game.Instance.NPCs[CurrentRoom].Add( ( ((NPC)NPCsInRoom[i])._type ).ToString() );
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Position.X).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Position.Y).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Health).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].CurrentDir).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Animation).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Frame).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Dying).ToString());*/
 			}
 		}
 		//Change scene based on the room the door takes the player

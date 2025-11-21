@@ -26,6 +26,9 @@ public partial class NPC : Interactable
 	
 	public bool IsBoss = false; //Whether this NPC is the boss
 	
+	[Export]
+	public int _type; //Type of NPC
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

@@ -102,6 +102,7 @@ Speed = 200.0
 Portrait = ExtResource("2_6a1ll")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 2
 InitialDialog = "Oh hello!"
 DialogueOptions = PackedStringArray("Don\'t you guys usually herd sheep?", "How much do you get paid?", "Is it okay if I steel weapons and keys from around the ship?", "Goodbye")
 DialogResponses = PackedStringArray("When the sheep economy isn\'t going kaput, usually.", "I get payed 12 bones an hour and plus a squeek toy insurance plan.", "What? No. What kind of question is that?")

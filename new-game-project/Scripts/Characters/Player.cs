@@ -50,7 +50,7 @@ public partial class Player : Entity
 		
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
-		Inv = (Inventory)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory"); //Get Player's inventory
+		Inv = (Inventory)(GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory")); //Get Player's inventory
 		
 		//Set up the player's inventory
 		for(int i = 0; i < 6; i++)

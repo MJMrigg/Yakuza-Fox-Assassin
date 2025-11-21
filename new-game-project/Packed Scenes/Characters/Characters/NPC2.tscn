@@ -414,6 +414,7 @@ Speed = 200.0
 Portrait = ExtResource("2_q6nmt")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 1
 InitialDialog = "Woah, hey there!"
 DialogueOptions = PackedStringArray("Who are you?", "Ever notice these halls look the same?", "I am an intruder.", "Goodbye")
 DialogResponses = PackedStringArray("Just another cog in the machine.", "It\'s probably just cause we\'re tired.", "Oh no.")

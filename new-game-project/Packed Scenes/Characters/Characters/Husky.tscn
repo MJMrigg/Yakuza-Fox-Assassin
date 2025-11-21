@@ -445,6 +445,7 @@ Speed = 150.0
 Health = 120
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 4
 InitialDialog = "Why hello there!"
 DialogueOptions = PackedStringArray("Aren;t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
 DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I had to come here.", "It\'s not bad. Except when you\'re the only one who bothers cleaning their weapon. I\'m looking at you Gary!", "Oh, not under my watch you will")

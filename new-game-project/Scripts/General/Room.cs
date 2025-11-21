@@ -69,9 +69,8 @@ public partial class Room : Node2D
 			//Add each NPC to the scene
 			for(int i = 0; i < amount; i++)
 			{
-				GD.Print(Game.Instance.NPCs[RoomId][i]);
-				/*//Get NPC properties
-				Vector2 NewPosition = Game.Instance.NPCs[RoomId][i].Position;
+				//Get NPC properties
+				/*Vector2 NewPosition = Game.Instance.NPCs[RoomId][i].Position;
 				int NewHealth = Game.Instance.NPCs[RoomId][i].Health;
 				string NewDir = Game.Instance.NPCs[RoomId][i].CurrentDir;
 				bool NewDying = Game.Instance.NPCs[RoomId][i].Dying;

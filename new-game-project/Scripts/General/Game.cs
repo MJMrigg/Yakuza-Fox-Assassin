@@ -35,7 +35,8 @@ public partial class Game : Node
 	//Save/load data
 	public Item[] PlayerInventory = new Item[10]; //Player's inventory
 	public Weapon[] PlayerWeapons = new Weapon[2]; //Player's equiped weapons
-	public Dictionary<int, List<NPC>> NPCs = new Dictionary<int, List<NPC>>(); //NPC data
+	public Dictionary<int, List<string>> NPCs = new Dictionary<int, List<string>>(); //NPC data
+	//NPC Data key = _type, x, y, health, direction, animation, frame, dying
 	public Dictionary<int, List<Projectile>> Projectiles = new Dictionary<int, List<Projectile>>(); //Projectile data
 	public Weapon Bite = new Weapon(); //Bite data
 	public int[] ItemData = {
@@ -136,7 +137,7 @@ public partial class Game : Node
 		{
 			LocalSuspicions[i] = 0;
 			RoomsHostile[i] = false;
-			NPCs[i] = new List<NPC>();
+			NPCs[i] = new List<string>();
 			Projectiles[i] = new List<Projectile>();
 		}
 		RoomsHostile[19] = true; //Boss room starts hostile
@@ -176,7 +177,7 @@ public partial class Game : Node
 		Bite.ID = 0;
 		Bite.Damage = 10;
 		Bite.CoolDown = 2;
-		Bite.Portrait = (CompressedTexture2D)GD.Load("");
+		Bite.Portrait = null;
 		PlayerWeapons[0] = Bite;
 		//Set up player pistol
 		PlayerWeapons[1] = new Weapon();

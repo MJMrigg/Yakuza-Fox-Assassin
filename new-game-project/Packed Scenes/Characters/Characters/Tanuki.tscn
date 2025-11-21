@@ -516,6 +516,7 @@ Speed = 210.0
 Health = 90
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 5
 InitialDialog = "Shhhh....I'm stealthy"
 DialogueOptions = PackedStringArray("I can see you though.", "What are you, Solid Snake?", "Oh yeah? I\'m an intruder. Nobody  has noticed!", "Goodbye")
 DialogResponses = PackedStringArray("No you can\'t.", "Ha! I make Solid Snake look more like Liquid Lake!", "I\'m going to assume that was a joke.")

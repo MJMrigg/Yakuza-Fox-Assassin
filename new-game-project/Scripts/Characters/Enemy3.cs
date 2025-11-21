@@ -22,6 +22,7 @@ public partial class Enemy3 : Enemy
 		if(Transformed)
 		{
 			Speed = 0;
+			_type = 6;
 			//Transform the tanuki
 			MySpriteAnimation.Animation = "TransformOut_"+CurrentDir;
 			MySpriteAnimation.Frame = 0;
