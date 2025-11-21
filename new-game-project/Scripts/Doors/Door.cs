@@ -68,14 +68,14 @@ public partial class Door : StaticBody2D
 		{
 			if(NPCsInRoom[i] is NPC)
 			{
-				/*Game.Instance.NPCs[CurrentRoom].Add( ( ((NPC)NPCsInRoom[i])._type ).ToString() );
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Position.X).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Position.Y).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].Health).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].CurrentDir).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Animation).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Frame).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((NPCsInRoom[i].MySpriteAnimation.Dying).ToString());*/
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i])._type).ToString() );
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.X).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.Y).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Health).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).CurrentDir).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Animation).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Frame).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
 			}
 		}
 		//Change scene based on the room the door takes the player

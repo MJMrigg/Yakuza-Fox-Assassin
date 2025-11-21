@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public partial class Room : Node2D
 {
@@ -67,52 +68,99 @@ public partial class Room : Node2D
 			}
 			int amount = Game.Instance.NPCs[RoomId].Count;
 			//Add each NPC to the scene
-			for(int i = 0; i < amount; i++)
+			for(int i = 0; i < amount; i+=8)
 			{
 				//Get NPC properties
-				/*Vector2 NewPosition = Game.Instance.NPCs[RoomId][i].Position;
-				int NewHealth = Game.Instance.NPCs[RoomId][i].Health;
-				string NewDir = Game.Instance.NPCs[RoomId][i].CurrentDir;
-				bool NewDying = Game.Instance.NPCs[RoomId][i].Dying;
-				PackedScene NPCScene = null; 
-				//Set NPC type
-				if(Game.Instance.NPCs[RoomId][i].IsClass("NPC1"))
+				int type = int.Parse(Game.Instance.NPCs[RoomId][i]);
+				float x = float.Parse(Game.Instance.NPCs[RoomId][i+1]);
+				float y = float.Parse(Game.Instance.NPCs[RoomId][i+2]);
+				int health = int.Parse(Game.Instance.NPCs[RoomId][i+3]);
+				string dir = Game.Instance.NPCs[RoomId][i+4];
+				string animation = Game.Instance.NPCs[RoomId][i+5];
+				int frame = int.Parse(Game.Instance.NPCs[RoomId][i+6]);
+				bool IsDying = bool.Parse(Game.Instance.NPCs[RoomId][i+7]);
+				//Add the NPC to the scene depending on the type
+				PackedScene NPCPackedScene = null;
+				if(type == 0)
 				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC1.tscn");
-					NPC NewNPC1 = (NPC)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewNPC1);
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC1.tscn");
+					NPC newNPC = (NPC)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					AddChild(newNPC);
 				}
-				else if(Game.Instance.NPCs[RoomId][i].IsClass("NPC2"))
+				else if(type == 1)
 				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC2.tscn");
-					NPC NewNPC2 = (NPC)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewNPC2);
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC2.tscn");
+					NPC newNPC = (NPC)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					AddChild(newNPC);
 				}
-				else if(Game.Instance.NPCs[RoomId][i].IsClass("NPC3"))
+				else if(type == 2)
 				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC3.tscn");
-					NPC NewNPC3 = (NPC)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewNPC3);
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/NPC3.tscn");
+					NPC newNPC = (NPC)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					AddChild(newNPC);
 				}
-				else if(Game.Instance.NPCs[RoomId][i].IsClass("Enemy1"))
+				else if(type == 3)
 				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Chihuahua.tscn");
-					Enemy1 NewChihuahua = (Enemy1)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewChihuahua);
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Chihuahua.tscn");
+					Enemy1 newNPC = (Enemy1)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					AddChild(newNPC);
 				}
-				else if(Game.Instance.NPCs[RoomId][i].IsClass("Enemy2"))
+				else if(type == 4)
 				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Husky.tscn");
-					Enemy2 NewHusky = (Enemy2)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewHusky);
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Husky.tscn");
+					Enemy2 newNPC = (Enemy2)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					AddChild(newNPC);
 				}
-				else if(Game.Instance.NPCs[RoomId][i].IsClass("Enemy3"))
-				{
-					NPCScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Tanuki.tscn");
-					Enemy3 NewTanuki = (Enemy3)NPCScene.Instantiate();
-					GetNode("NPCs").AddChild(NewTanuki);
-					//newNPC.Transformed = ((Enemy3)Game.Instance.NPCs[RoomId][i]).Transformed;
-				}*/
+				else if(type == 5 || type == 6)
+				{ //Two different tanukis, normal and transformed
+					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Tanuki.tscn");
+					Enemy3 newNPC = (Enemy3)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					if(type == 6) { newNPC.Transformed = true; }
+					AddChild(newNPC);
+				}
+				
 			}
 		}
 	}

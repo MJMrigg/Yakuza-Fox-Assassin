@@ -52,6 +52,8 @@ public partial class Player : Entity
 		
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
+		GD.Print(GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory").Name);
+		
 		Inv = (Inventory)(GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory")); //Get Player's inventory
 		
 		//Set up the player's inventory
