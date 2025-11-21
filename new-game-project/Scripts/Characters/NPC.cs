@@ -41,6 +41,13 @@ public partial class NPC : Interactable
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//If the NPC spawned already in the process of dying, kill it
+		if(MySpriteAnimation.Animation == ("Die_"+CurrentDir))
+		{
+			Remove();
+			return;
+		}
+		
 		//If the NPC is dying, do nothing
 		if(Dying)
 		{
@@ -203,8 +210,11 @@ public partial class NPC : Interactable
 	public async override void Remove()
 	{
 		Dying = true;
-		MySpriteAnimation.Stop();
-		MySpriteAnimation.Animation = "Die_"+CurrentDir;
+		if(!(MySpriteAnimation.Animation != ("Die_"+CurrentDir)))
+		{ //If the animation isn't already set
+			MySpriteAnimation.Stop();
+			MySpriteAnimation.Animation = "Die_"+CurrentDir;
+		}
 		MySpriteAnimation.Play();
 		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		await ToSignal(GetTree().CreateTimer(2),"timeout");

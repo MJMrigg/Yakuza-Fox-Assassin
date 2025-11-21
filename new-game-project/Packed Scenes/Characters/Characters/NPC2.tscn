@@ -424,7 +424,7 @@ MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3uop3")
-animation = &"Hurt_U"
+animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1ndqf")

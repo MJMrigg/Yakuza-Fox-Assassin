@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="2_muswh"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_kq3qv"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
-[ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="6_4c7xv"]
+[ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="6_4c7xv"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_blnwy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bv1ab"]
@@ -56,8 +56,8 @@ script = ExtResource("4_0ir1l")
 
 [node name="NPCs" type="Node" parent="."]
 
-[node name="Npc1" parent="NPCs" instance=ExtResource("6_4c7xv")]
-position = Vector2(402, 244)
+[node name="Husky" parent="NPCs" instance=ExtResource("6_4c7xv")]
+position = Vector2(466, 244)
 
 [node name="Doors" type="Node" parent="."]
 
