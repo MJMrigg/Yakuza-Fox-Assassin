@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public partial class SettingsMenu : Control
 {
 	public string[] KeyBindings; //Array of current keybindings
-	public Dictionary<string, Godot.Collections.Array<Godot.InputEvent>> keys = new Dictionary<string, Godot.Collections.Array<Godot.InputEvent>>();
-	//Godot.Collections.Array<Godot.InputEvent>
 	public float maxVolume = 10.0f;
 	
 	public string curAction;
@@ -16,21 +14,6 @@ public partial class SettingsMenu : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var actions = InputMap.GetActions();
-		foreach (var i in actions)
-		{
-			string actionName = i.ToString();
-			if (!actionName.StartsWith("ui_"))
-			{
-				var test = InputMap.ActionGetEvents(actionName);
-				keys.Add(i, test);
-			}
-		}
-		//DEBUG
-		//var test2 = keys.ContainsKey("p_w");
-		//foreach (var ele in keys){
-			//GD.Print($"Key: {ele.Key}, Value: {ele.Value}");
-		//}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -168,7 +151,7 @@ public partial class SettingsMenu : Control
 		foreach (var i in actions)
 		{
 			string actionName = i.ToString();
-			if (!actionName.StartsWith("ui_") && keys.ContainsKey(i))
+			if (!actionName.StartsWith("ui_") && Game.Instance.defControls.ContainsKey(i))
 			{
 				
 				foreach (Button j in GetTree().GetNodesInGroup("keyBinds"))
@@ -176,12 +159,12 @@ public partial class SettingsMenu : Control
 					if (InputMap.ActionGetEvents(actionName)[0].AsText() == j.Text)
 					{
 						//This button's text needs to change
-						j.Text = keys[i][0].AsText();
+						j.Text = Game.Instance.defControls[i][0].AsText();
 						break;
 					}
 				}
 				InputMap.ActionEraseEvents(i);
-				var x = keys[i];
+				var x = Game.Instance.defControls[i];
 				foreach (var events in x)
 				{
 					InputMap.ActionAddEvent(i, events);

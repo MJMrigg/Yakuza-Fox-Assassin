@@ -123,6 +123,9 @@ public partial class Game : Node
 			{7, "uid://btmygoh2s5mhk"}, {8, "uid://cpommox3imbij"}, {9, "uid://bfwsfpm7kj31g"}, {10, "uid://bo6rq3jnspnsh"}, {11, "uid://iekpssg83fnc"}, {12, "uid://bo2n32asslba0"}, {13, "uid://15ua3onjiawf"},
 			{14, "uid://obh4emo4mbpj"}, {15, "uid://bt0dqpbuyngjm"}, {16, "uid://blvgy3jyqklp4"}, {17, "uid://t7rl7tpgiehl"}, {18, "uid://w6j3y6jgntrl"}, {19, "uid://d0xe8p32vykp"}, {20, "uid://dvgnk8gvwgja8"}
 		};
+		
+	//Settings Default controlMap
+	public Dictionary<string, Godot.Collections.Array<Godot.InputEvent>> defControls = new Dictionary<string, Godot.Collections.Array<Godot.InputEvent>>();
 	
 	//Global instance of the game
 	public static Game Instance { get; private set; }
@@ -187,6 +190,20 @@ public partial class Game : Node
 		//Place it in their inventory
 		PlayerInventory[0] = new Item();
 		PlayerInventory[0].ID = ItemData[3];
+		
+		//Set Up Default controls
+		var actions = InputMap.GetActions();
+		foreach (var i in actions)
+		{
+			string actionName = i.ToString();
+			if (!actionName.StartsWith("ui_"))
+			{
+				var test = InputMap.ActionGetEvents(actionName);
+				defControls.Add(i, test);
+			}
+		}
+		
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
