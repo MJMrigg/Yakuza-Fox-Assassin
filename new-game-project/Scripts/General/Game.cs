@@ -29,7 +29,7 @@ public partial class Game : Node
 	public bool[] ControlPuzzle = new bool[5];
 	
 	//Rooms of player and patrolling NPC
-	public int PlayerRoom = 8;
+	public int PlayerRoom = 0;
 	public int PatrolRoom = 18;
 	
 	//Save/load data
