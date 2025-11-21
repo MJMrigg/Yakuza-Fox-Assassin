@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://co5tsjnc018nv"]
+[gd_scene load_steps=2 format=3 uid="uid://co5tsjnc018nv"]
+
+[ext_resource type="Script" uid="uid://2c1o6g17cb6v" path="res://Scripts/User Interface/DifficultyMenu.cs" id="1_1mf4c"]
 
 [node name="Background" type="ColorRect"]
 anchors_preset = -1
@@ -13,6 +15,7 @@ offset_bottom = -0.32000732
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.26666668)
+script = ExtResource("1_1mf4c")
 
 [node name="Choose" type="Label" parent="."]
 layout_mode = 1
@@ -75,3 +78,7 @@ offset_bottom = -0.13601685
 grow_horizontal = 2
 grow_vertical = 2
 text = "Hard"
+
+[connection signal="pressed" from="Easy" to="." method="ChangeDifficulty"]
+[connection signal="pressed" from="Medium" to="." method="ChangeDifficulty"]
+[connection signal="pressed" from="Hard" to="." method="ChangeDifficulty"]

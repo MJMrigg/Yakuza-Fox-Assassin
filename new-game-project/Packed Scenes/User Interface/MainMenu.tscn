@@ -34,6 +34,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="DifficultyMenu" parent="." instance=ExtResource("2_tddvn")]
+visible = false
+layout_mode = 1
+
 [node name="Menu" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -109,10 +113,6 @@ offset_bottom = 0.07998657
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
-
-[node name="DifficultyMenu" parent="." instance=ExtResource("2_tddvn")]
-visible = false
-layout_mode = 1
 
 [connection signal="pressed" from="Menu/PlayButton" to="." method="GoDifficultyMenu"]
 [connection signal="pressed" from="Menu/SettingsButton" to="." method="GoSettingsMenu"]

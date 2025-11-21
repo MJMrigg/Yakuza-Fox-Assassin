@@ -27,7 +27,7 @@ public partial class MainMenu : Node
 	public override void _Process(double delta)
 	{
 		// Check for visibility
-		if(quitMenu.Visible == false && setMenu.Visible == false)
+		if(quitMenu.Visible == false && setMenu.Visible == false && difMenu.Visible == false)
 		{
 			playMenu.Visible = true;
 		}

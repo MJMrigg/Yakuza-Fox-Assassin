@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DifficultyMenu : Node
+public partial class DifficultyMenu : ColorRect
 {
 	public float Difficulty; //Chosen difficulty
 	
@@ -19,7 +19,7 @@ public partial class DifficultyMenu : Node
 	public void StartGame()
 	{
 		//On call change to appropriate scene
-		//GetTree().ChangeSceneToFile();
+		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[0]);
 	}
 	
 	//Set the difficulty
@@ -32,16 +32,20 @@ public partial class DifficultyMenu : Node
 				{
 					case "easy":
 						Difficulty = 0.9f;
+						StartGame();
 						break;
 					case "medium":
 						Difficulty = 0.8f;
+						StartGame();
 						break;
 					case "hard":
 						Difficulty = 0.7f;
+						StartGame();
 						break;
 					default:
 						// Somehow broke the game. So **** you, you get the hardest difficulty.
 						Difficulty = 0.1f; 
+						StartGame();
 						break;
 				}
 			}
