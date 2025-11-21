@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bj6i0sm27sq0y"]
+[gd_scene load_steps=9 format=4 uid="uid://bj6i0sm27sq0y"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_blnwy"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_kq3qv"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_blnwy"]
-[ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_4c7xv"]
-[ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="8_bv1ab"]
-[ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="8_oyby1"]
-[ext_resource type="PackedScene" uid="uid://bsfdmyk170c53" path="res://Packed Scenes/Items/Red Key.tscn" id="10_8n31m"]
+[ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="7_4c7xv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bv1ab"]
 vertices = PackedVector2Array(390, 402, 690, 128.84375, 762, 126.84375, 762, 246, 534, 474, 390, 474, 678, 28.898438, 690, 28.71875, 678, 102, 390, 33.140625, 474, 31.898438, 474, 102, 390, 102, 174, 36.328125, 258, 35.09375, 258, 102, 174, 102, 25.023438, 258, 24.921875, 246, 30, 246, 30, 258, 618, 474, 618, 724.8281, 534, 724.3125, 186, 474, 186, 722.14844, 102, 721.6328, 102, 402, 776, 246, 776, 258, 762, 258, 762, 402, 690, 402, 690, 474, 258, 402, 258, 474, 102, 174, 30, 402, 30, 174, 102, 102)
@@ -46,7 +43,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAQACAAkAAAAAAAAAAQADAAYAAAAKAAYAAQABAAY
 tile_set = ExtResource("1_dwaw2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera", "HealthBar") instance=ExtResource("2_muswh")]
-position = Vector2(170, 271)
+position = Vector2(935, 250)
 PlayerCamera = NodePath("../Camera2D")
 HealthBar = NodePath("../MainUI/Main/Player/WeaponsAndHealth/Health/ProgressBar")
 
@@ -57,25 +54,54 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_0ir1l")
 
-[node name="ShotGun" parent="." instance=ExtResource("8_bv1ab")]
-position = Vector2(237, 96)
+[node name="NPCs" type="Node" parent="."]
 
-[node name="Green Key" parent="." instance=ExtResource("7_4c7xv")]
-position = Vector2(399, 297)
+[node name="Husky" parent="NPCs" instance=ExtResource("7_4c7xv")]
+position = Vector2(300, 226)
 
-[node name="RedDoor" parent="." instance=ExtResource("8_oyby1")]
-position = Vector2(-100, 249)
-rotation = -1.5666411
+[node name="Doors" type="Node" parent="."]
 
-[node name="GreenDoor" parent="." instance=ExtResource("6_blnwy")]
-position = Vector2(866, 249)
-rotation = 1.5684712
+[node name="ToDocks" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(-265, 237)
+rotation = -1.5707964
+DoorColor = false
+regDoor = true
 
-[node name="Green Key2" parent="." instance=ExtResource("10_8n31m")]
-position = Vector2(512, 211)
+[node name="GreenDoor(ToTraining)" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(1106, 253)
+rotation = 1.5707964
+scale = Vector2(0.49, 1)
+ConnectedRoom = 10
+
+[node name="ToProduction" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(572, 888)
+rotation = -3.1415925
+scale = Vector2(1.72, 1)
+ConnectedRoom = 9
+regDoor = true
+
+[node name="ToEngine" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(145, 888)
+rotation = -3.1415925
+scale = Vector2(1.72, 1)
+ConnectedRoom = 7
+regDoor = true
+
+[node name="ToLiving" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(179, -283)
+ConnectedRoom = 2
+regDoor = true
+
+[node name="ToCafeteria" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(458, -283)
+ConnectedRoom = 4
+regDoor = true
+
+[node name="ToStorage" parent="Doors" instance=ExtResource("6_blnwy")]
+position = Vector2(679, -283)
+ConnectedRoom = 6
+regDoor = true
 
 [connection signal="pressed" from="MainUI/Inventory/PauseMenu/Menu/CloseButton" to="Player" method="OpenInv"]
-[connection signal="SendToPlayer" from="Green Key" to="Player" method="Pickup"]
-[connection signal="SendToPlayer" from="Green Key2" to="Player" method="Pickup"]
 
 [editable path="MainUI"]

@@ -83,6 +83,10 @@ public partial class Player : Entity
 				Inv.EquipItem(Game.Instance.PlayerWeapons[i].ID, ItemCount-1);
 			}
 		}
+		
+		//Set player current health
+		Health = Game.Instance.PlayerHealth;
+		HealthBar.Value = Health;
 	}
 
 	public override void _Process(double delta)
@@ -583,6 +587,9 @@ public partial class Player : Entity
 			NewItem.ID = ItemId;
 			Inv.ItemsStored[ItemCount] = NewItem;
 		}
+		//Add item to the player inventory in the game master
+		Game.Instance.PlayerInventory[ItemCount] = new Item();
+		Game.Instance.PlayerInventory[ItemCount].ID = ItemId;
 		//Increase number of items in the inventory
 		ItemCount += 1;
 		//Add weapon to the inventory on the screen
@@ -600,7 +607,7 @@ public partial class Player : Entity
 		{
 			NewSlot.Equip += Inv.EquipItem;
 		}
-		//Add the weapon to the screen
+		//Add the item to the screen
 		Items.AddChild(NewSlot);
 	}
 	

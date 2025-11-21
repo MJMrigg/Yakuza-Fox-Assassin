@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6k14rf7yalb0"]
+[gd_scene load_steps=7 format=3 uid="uid://c6k14rf7yalb0"]
 
 [ext_resource type="Script" uid="uid://budkmlk3boi30" path="res://Scripts/Doors/Door.cs" id="1_kl1hu"]
+
+[sub_resource type="Gradient" id="Gradient_kl1hu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jynxr"]
+gradient = SubResource("Gradient_kl1hu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5aoig"]
 size = Vector2(150, 25)
@@ -15,7 +22,10 @@ size = Vector2(150, 50)
 collision_mask = 31
 script = ExtResource("1_kl1hu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(1.4305115e-06, -4.7683716e-07)
+scale = Vector2(0.58593744, 24)
+texture = SubResource("GradientTexture1D_jynxr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5aoig")

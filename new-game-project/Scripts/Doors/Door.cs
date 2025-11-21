@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Door : StaticBody2D
 {
@@ -20,7 +21,10 @@ public partial class Door : StaticBody2D
 	{
 		//DT ADDITION. REMOVE IF NEEDED
 		if (regDoor){
-			Unlocked = true; 
+			Unlocked = true;
+			//Door is unlocked. It should disappear.
+			SetCollisionLayerValue(1,false);
+			((Sprite2D)GetNode("DoorSprite")).Visible = false;
 		} else {
 			Unlocked = false; //Start the door with being unlocked
 		}
@@ -52,12 +56,23 @@ public partial class Door : StaticBody2D
 	public void ChangeRoom(bool AllowedThrough)
 	{
 		//DT EDIT. REMOVE IF CAN'T PUSH
-		if (AllowedThrough && Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
+		if (!AllowedThrough || !Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
 		{
-			var x = Game.Instance.roomIDS[ConnectedRoom];
-			GD.Print("Connected Room UID" + x);
-			GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
+			return;
 		}
+		//Save all NPC data
+		int CurrentRoom = Game.Instance.PlayerRoom;
+		Game.Instance.NPCs[CurrentRoom] = new List<NPC>(); //Overide past NPC data
+		var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
+		for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
+		{
+			if(NPCsInRoom[i] is NPC)
+			{
+				Game.Instance.NPCs[CurrentRoom].Add((NPC)NPCsInRoom[i]);
+			}
+		}
+		//Change scene based on the room the door takes the player
+		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
 		
 	}
 	
@@ -65,7 +80,7 @@ public partial class Door : StaticBody2D
 	public void CheckPlayer(Node2D body)
 	{
 		//If the door is already unlocked, let the player through
-		if(CheckLock())
+		if(CheckLock() || regDoor)
 		{
 			ChangeRoom(true);
 		}

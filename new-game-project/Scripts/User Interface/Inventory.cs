@@ -3,7 +3,7 @@ using System;
 
 public partial class Inventory : VBoxContainer
 {
-	public Item[] ItemsStored = new Item[6]; //Array of items stored
+	public Item[] ItemsStored = new Item[Game.Instance.PlayerInventory.Length]; //Array of items stored
 	
 	public Weapon[] EquipedWeapons = new Weapon[2]; //Array of equiped weapons
 	
