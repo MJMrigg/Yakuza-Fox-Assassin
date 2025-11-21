@@ -32,19 +32,23 @@ public partial class DifficultyMenu : ColorRect
 				{
 					case "easy":
 						Difficulty = 0.9f;
+						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					case "medium":
 						Difficulty = 0.8f;
+						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					case "hard":
 						Difficulty = 0.7f;
+						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					default:
 						// Somehow broke the game. So **** you, you get the hardest difficulty.
 						Difficulty = 0.1f; 
+						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 				}
