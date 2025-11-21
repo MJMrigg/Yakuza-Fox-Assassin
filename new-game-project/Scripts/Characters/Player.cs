@@ -17,6 +17,8 @@ public partial class Player : Entity
 	
 	public bool MeleeCooldown = true; //Whether the melee attack cool down is finished
 	
+	public bool DashCooldown = true; //Whether the dash cool down is finished
+	
 	[Export]
 	public Area2D InteractionZone; //Zone where interactables will register for the player
 	
@@ -178,7 +180,15 @@ public partial class Player : Entity
 				return;
 			}
 		}
-
+		
+		//
+		if(Input.IsActionJustPressed("p_dash") && DashCooldown)
+		{
+			Speed = 500;
+			DashDistanceCoolDown();
+			DashCoolDown();
+		} 
+		
 		//Get player input and set up velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
 		float vInput = Input.GetAxis("p_s", "p_w");
@@ -503,6 +513,19 @@ public partial class Player : Entity
 		}
 		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
 		MySpriteAnimation.Play();
+	}
+	
+	public async void DashDistanceCoolDown()
+	{
+		await ToSignal(GetTree().CreateTimer(0.4),"timeout");
+		Speed = 200;
+	}
+	
+	public async void DashCoolDown()
+	{
+		DashCooldown = false;
+		await ToSignal(GetTree().CreateTimer(1.4),"timeout");
+		DashCooldown = true;
 	}
 	
 	//Start the cool down for the melee attack
