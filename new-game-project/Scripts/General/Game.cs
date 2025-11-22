@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Game : Node
 {
@@ -31,6 +32,9 @@ public partial class Game : Node
 	//Rooms of player and patrolling NPC
 	public int PlayerRoom = 0;
 	public int PatrolRoom = 18;
+	
+	//Can Pual Move
+	public bool paulCanMove = true;
 	
 	//Save/load data
 	public Item[] PlayerInventory = new Item[10]; //Player's inventory
@@ -104,14 +108,6 @@ public partial class Game : Node
 			//<Boss(20), [Security2(18)]>
 			{20, new Dictionary<int, Vector2> { { 18, new Vector2(0,0) } } }
 		};
-		
-		/*
-		{?, new Dictionary<int, Vector2> { { ?, new Vector2(0, 0) } } }
-		{0, }, {1, }, {2, }, {3, }, {4, }, {5, }, {6, },
-			{7, }, {8, }, {9, }, {10, }, {11, }, {12, }, {13, },
-			{14, }, {15, }, {16, }, {17, }, {18, }, {19, }, {20, }
-		*/
-		
 	
 	// Room UID's
 	//<key, value>
@@ -129,6 +125,16 @@ public partial class Game : Node
 	
 	//Global instance of the game
 	public static Game Instance { get; private set; }
+	
+	//DEBUG BOOL
+	public bool debugBool = true;
+	public int prevPatrolRoom = 18; 
+	
+	//Paul move probd
+	public float baseProbability = 1f;
+	public float susWeightMult = 3f;
+	
+	public bool GameStart = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -203,12 +209,22 @@ public partial class Game : Node
 			}
 		}
 		
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(GameStart){
+			if(paulCanMove)
+			{
+				movePaul();
+				paulCanMove = false;
+			}
+			if(PlayerRoom == PatrolRoom){
+				GD.Print("Player and Paul are in the same room");
+			}
+		}
+		
 	}
 	
 	//Decay all local suspicions and global suspicion
@@ -240,4 +256,102 @@ public partial class Game : Node
 	public void PlayerWon()
 	{
 	}
+	
+	//Changes Paul's current room
+	public void movePaul()
+	{
+		Random random = new Random();
+		GD.Print("-----------------");
+		GD.Print("Paul was in Room: " + prevPatrolRoom);
+		//Get room options
+		var roomOptions = roomMap[PatrolRoom].Keys.ToList();
+		
+		//Remove bar rooms and docks
+		roomOptions.Remove(13);
+		roomOptions.Remove(5);
+		roomOptions.Remove(0);
+		
+		//Player Combat Move; Priority 1
+		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
+		{
+			PatrolRoom = PlayerRoom;
+			GD.Print("Combat Detected at: " + PatrolRoom);
+			return;
+		}
+		
+		
+		//Weightes Random Move; Priority 2
+		var weights = new List<float>();
+		float totalWeight = 0f;
+		foreach (var room in roomOptions)
+		{
+			// Base Probability
+			// As it is a ratio, all rooms are equal in Paul's eyes
+			float susRatio = MaxLocalSuspicions[room] > 0 ? LocalSuspicions[room] / MaxLocalSuspicions[room] : 0f;
+			float weight = baseProbability + (susRatio * susWeightMult);
+			
+			// Probability Modifiers
+			// If a room is above their threshold Paul is more likely to go there
+			if (LocalSuspicionThresholds[room] < LocalSuspicions[room])
+			{
+				weight *= 1.5f;
+				GD.Print("Above Thres Weight Applied");
+			}
+			
+			// If the Player is there, Paul is more likely to move to a room
+			if (room == PlayerRoom)
+			{
+				weight *= 1.25f;
+				GD.Print("Player Location Weight Applied");
+			}
+			
+			//If Paul had just left a room he is less likely to go there
+			if(room == prevPatrolRoom)
+			{
+				weight *= 0.75f;
+				GD.Print("Prev Room Weight Applied");
+			}
+			
+			// If the room would be a dead end, Paul is less likely to go there
+			if(!(roomMap[room].Count > 1))
+			{
+				weight *= 0.75f;
+				GD.Print("Dead End Weight Applied");
+			}
+				
+			
+			
+			weights.Add(weight);
+			GD.Print("Room " + room + " Weight: " + weight);
+			totalWeight += weight;
+		}
+		GD.Print("Total Weight: " + totalWeight);
+		prevPatrolRoom = PatrolRoom;
+		
+		// Weighted random selection
+		float roll = (float)random.NextDouble() * totalWeight;
+		float cumulative = 0f;
+		for (int i = 0; i < roomOptions.Count; i++)
+		{
+			cumulative += weights[i];
+			if (roll <= cumulative)
+			{
+				PatrolRoom = roomOptions.ElementAt(i);
+				GD.Print("Selected Room: " + PatrolRoom);
+				break;
+			}
+		}
+		GD.Print("Paul is now in Room: " + PatrolRoom);
+		GD.Print("-----------------");
+		paulWait();
+	}
+	
+	//How long Paul waits in a room
+	public async void paulWait()
+	{
+		paulCanMove = false;
+		await ToSignal(GetTree().CreateTimer(10),"timeout");
+		paulCanMove = true;
+	}
+	
 }

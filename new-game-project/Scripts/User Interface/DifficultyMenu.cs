@@ -18,7 +18,8 @@ public partial class DifficultyMenu : ColorRect
 	//Start the game
 	public void StartGame()
 	{
-		//On call change to appropriate scene
+		//On call change to appropriate scene and start game
+		Game.Instance.GameStart = true;
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[0]);
 	}
 	
