@@ -809,53 +809,69 @@ animation = &"Walk_D"
 
 [node name="BiteAttack" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_jdabq")
+bus = &"soundEffect"
 
 [node name="Crouch1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("5_xik24")
+bus = &"soundEffect"
 
 [node name="Crouch2" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("6_0cc5g")
+bus = &"soundEffect"
 
 [node name="Crouch3" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("7_tv0o1")
+bus = &"soundEffect"
 
 [node name="Crouch4" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_23qag")
+bus = &"soundEffect"
 
 [node name="Crouch5" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("9_37w3c")
+bus = &"soundEffect"
 
 [node name="Crouch6" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("10_e0m4a")
+bus = &"soundEffect"
 
 [node name="Crouch7" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("11_brip1")
+bus = &"soundEffect"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("12_sv5gc")
+bus = &"soundEffect"
 
 [node name="GlobalSuspicionTooHigh" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("13_l4eev")
+bus = &"soundEffect"
 
 [node name="Knife1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("14_eddr7")
 volume_db = 20.0
+bus = &"soundEffect"
 
 [node name="Knife2" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("15_u01pg")
+bus = &"soundEffect"
 
 [node name="Knife3" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("16_h8srs")
+bus = &"soundEffect"
 
 [node name="PistolLoud" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("17_0cc5g")
 volume_db = -20.0
+bus = &"soundEffect"
 
 [node name="ShotgunAndReload" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("18_tv0o1")
+bus = &"soundEffect"
 
 [node name="PlayerGameOverSad" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("20_37w3c")
+bus = &"soundEffect"
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("21_37w3c")]
 

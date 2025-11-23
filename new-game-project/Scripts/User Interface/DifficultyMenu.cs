@@ -5,6 +5,9 @@ public partial class DifficultyMenu : ColorRect
 {
 	public float Difficulty; //Chosen difficulty
 	
+	[Export]
+	public AudioStreamPlayer buttonSound;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,10 +19,11 @@ public partial class DifficultyMenu : ColorRect
 	}
 	
 	//Start the game
-	public void StartGame()
+	public async void StartGame()
 	{
 		//On call change to appropriate scene and start game
 		Game.Instance.GameStart = true;
+		await ToSignal(buttonSound,AudioStreamPlayer.SignalName.Finished);
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[0]);
 	}
 	
@@ -29,6 +33,7 @@ public partial class DifficultyMenu : ColorRect
 		foreach(Button i in GetTree().GetNodesInGroup("difButtons"))
 		{
 			if(i.IsPressed()){
+				buttonSound.Play();
 				switch(i.Text.ToLower().Trim())
 				{
 					case "easy":

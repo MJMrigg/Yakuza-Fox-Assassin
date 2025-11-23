@@ -10,7 +10,7 @@ public partial class LocalSusMeter : ProgressBar
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		RoomId = ((Room)GetTree().GetRoot().GetChild(1)).RoomId;
+		RoomId = ((Room)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex)).RoomId;
 		float MaxSuspicion = Game.Instance.MaxLocalSuspicions[RoomId];
 		if(MaxSuspicion == -1) //Make sure this is a room with suspicion
 		{

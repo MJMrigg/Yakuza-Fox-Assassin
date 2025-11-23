@@ -49,7 +49,7 @@ public partial class Player : Entity
 		
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
-		Inv = (Inventory)(GetTree().GetRoot().GetChild(1).GetNode("MainUI/Inventory")); //Get Player's inventory
+		Inv = (Inventory)(GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Inventory")); //Get Player's inventory
 		
 		//Set up the player's inventory
 		for(int i = 0; i < 6; i++)
@@ -271,6 +271,7 @@ public partial class Player : Entity
 			GetTree().CallGroup("Pausable","Pause");
 		}
 		Inv.Visible = !Inv.Visible;
+		((Control)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Settings")).Visible = false;
 	}
 	
 	//Shoot a bullet
@@ -369,7 +370,7 @@ public partial class Player : Entity
 			Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
 			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
 			Bullets[i].CurrentDir = CurrentDir;
-			GetTree().GetRoot().GetChild(1).AddChild(Bullets[i]);
+			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(Bullets[i]);
 		}
 		//Play sound and animation
 		if(Weapon == 1)

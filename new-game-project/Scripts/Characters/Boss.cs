@@ -94,7 +94,7 @@ public partial class Boss : Enemy
 				NewFireBall.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
 				NewFireBall.Damage = Damage;
 				//Create the bullet
-				GetTree().GetRoot().GetChild(1).AddChild(NewFireBall);
+				GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewFireBall);
 				//Play the animation and sound
 				MySpriteAnimation.Animation = "Shoot_"+CurrentDir;
 				MySpriteAnimation.Play();

@@ -91,7 +91,17 @@ public partial class Door : StaticBody2D
 				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
 			}
 		}
-		Game.Instance.FirstSaved[CurrentRoom] = true; //Mark the room as having saved data
+		//Mark the room as having saved data
+		Game.Instance.FirstSaved[CurrentRoom] = true;
+		//Change the music based on the room
+		if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
+		{ //If the player is going to the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
+		else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
+		{ //If the player is leaving the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
 		//Change scene based on the room the door takes the player during the next physics process
 		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}

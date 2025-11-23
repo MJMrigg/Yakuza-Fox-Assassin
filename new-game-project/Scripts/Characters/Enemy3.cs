@@ -129,7 +129,7 @@ public partial class Enemy3 : Enemy
 			NewBullet.SetCollisionMaskValue(5,true); //Bullet is looking for the player
 			NewBullet.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
 			//Create the bullet
-			GetTree().GetRoot().GetChild(1).AddChild(NewBullet);
+			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewBullet);
 			//Play the attack sound and animation
 			int Chosen = (int)GD.RandRange(1, 4);
 			((AudioStreamPlayer2D)GetNode("Sounds/TanukiBark"+Chosen)).Play();

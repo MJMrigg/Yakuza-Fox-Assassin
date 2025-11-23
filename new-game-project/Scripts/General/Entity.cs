@@ -47,7 +47,7 @@ public partial class Entity : CharacterBody2D
 		}
 		if(RoomId == 5 || RoomId == 13)
 		{ //If this is the bar, play a random wood sound
-			int Chosen = (int)GD.Randi() % 7 + 1;
+			int Chosen = (int)GD.RandRange(1, 7);
 			Walker = (AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/WoodFootstep"+Chosen);
 		}else{ //If this is any other room, play the metal sound
 			Walker = (AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/MetalFootstep");

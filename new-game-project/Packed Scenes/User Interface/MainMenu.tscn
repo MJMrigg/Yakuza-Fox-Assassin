@@ -36,9 +36,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="DifficultyMenu" parent="." instance=ExtResource("2_tddvn")]
+[node name="DifficultyMenu" parent="." node_paths=PackedStringArray("buttonSound") instance=ExtResource("2_tddvn")]
 visible = false
 layout_mode = 1
+buttonSound = NodePath("../ButtonSound")
 
 [node name="Menu" type="ColorRect" parent="."]
 layout_mode = 1

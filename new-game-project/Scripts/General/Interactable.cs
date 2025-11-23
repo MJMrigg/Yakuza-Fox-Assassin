@@ -22,7 +22,7 @@ public partial class Interactable : Entity
 	{
 		base._Ready();
 		//Get the dialog box on the screen
-		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Dialog"));
+		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialog"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -105,6 +105,5 @@ public partial class Interactable : Entity
 		((Label)DialogueBox.GetNode("DialogText/Text")).Text = DialogResponses[ChosenOption];
 		//Make the dialogue increase local suspision
 		Game.Instance.IncreaseLocalSuspicion(RoomId, DialogSuspicion[ChosenOption]);
-		//((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter")).Value += DialogSuspicion[ChosenOption];
 	}
 }

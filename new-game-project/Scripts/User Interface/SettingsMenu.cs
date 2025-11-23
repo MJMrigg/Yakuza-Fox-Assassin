@@ -195,4 +195,10 @@ public partial class SettingsMenu : Control
 		}
 	}
 	
+	//Open the settings menu
+	public void OpenSettings()
+	{
+		Visible = true;
+	}
+	
 }

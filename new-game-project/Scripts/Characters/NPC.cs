@@ -40,7 +40,7 @@ public partial class NPC : Interactable
 			return;
 		}
 		this.AddToGroup("NPCs");
-		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
+		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
 		PickNewTarget();
 	}
 

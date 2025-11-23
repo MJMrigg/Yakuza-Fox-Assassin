@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bidfdywgj441a"]
+[gd_scene load_steps=9 format=3 uid="uid://bidfdywgj441a"]
 
 [ext_resource type="Texture2D" uid="uid://b3al5dm6i1cxl" path="res://Art Assets/Characters/Player/Portraits/Neutral-Por_Player.png" id="1_tkf6q"]
 [ext_resource type="Script" uid="uid://b548d0386yolb" path="res://Scripts/User Interface/WeaponSlot.cs" id="2_f31s5"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b0oo8urfdnhmy" path="res://Scripts/User Interface/LocalSusMeter.cs" id="4_tppbg"]
 [ext_resource type="Script" uid="uid://b4fbppnpdxxnm" path="res://Scripts/User Interface/HealthBar.cs" id="5_qb4gu"]
 [ext_resource type="PackedScene" uid="uid://dglnssijjwpgx" path="res://Packed Scenes/User Interface/DialogOption.tscn" id="6_tppbg"]
+[ext_resource type="Script" uid="uid://b0sf3emxv1c3l" path="res://Scripts/User Interface/GlobalSusMeter.cs" id="7_f31s5"]
+[ext_resource type="PackedScene" uid="uid://bojq5vpsx41i8" path="res://Packed Scenes/User Interface/Settings.tscn" id="8_k1iea"]
 
 [node name="MainUI" type="CanvasLayer"]
 
@@ -214,8 +216,13 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("7_f31s5")
+
+[node name="Settings" parent="." instance=ExtResource("8_k1iea")]
+visible = false
 
 [connection signal="ChangeMeleeWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="EquipWeapon"]
 [connection signal="ChangeRangedWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="EquipWeapon"]
+[connection signal="pressed" from="Inventory/PauseMenu/Menu/SettingsButton" to="Settings" method="OpenSettings"]
 [connection signal="pressed" from="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" to="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="UnequipWeapon"]
 [connection signal="pressed" from="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" to="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="UnequipWeapon"]

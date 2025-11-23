@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 public partial class Game : Node
 {
@@ -68,6 +67,8 @@ public partial class Game : Node
 	public int PlayerHealth = 100;
 	public int MaxPlayerHealth = 100;
 	
+	public int SceneIndex = 2;
+	
 	//Test Info for room transition
 	//<key, value>
 	//<current room id, Dict<goes to this room id,Vector2 of Player Position in current room >>
@@ -117,7 +118,7 @@ public partial class Game : Node
 			//<Controls(19), [Security2(18)]>
 			{19, new Dictionary<int, Vector2> { { 18, new Vector2(289,848) } } },
 			//<Boss(20), [Security2(18)]>
-			{20, new Dictionary<int, Vector2> { { 18, new Vector2(0,0) } } }
+			{20, new Dictionary<int, Vector2> { { 18, new Vector2(-251,401) } } }
 		};
 	
 	// Room UID's
@@ -148,15 +149,13 @@ public partial class Game : Node
 	
 	public bool GameStart = false;
 	
-	public bool isPaused = false;
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		//Create a global instance of the Game
 		Instance = this;
 		//Set up local suspicions, thresholds, and NPCs
-		for(int i = 0; i < 20; i++)
+		for(int i = 0; i < 21; i++)
 		{
 			LocalSuspicions[i] = 0;
 			RoomsHostile[i] = false;
@@ -238,24 +237,9 @@ public partial class Game : Node
 				movePaul();
 				paulCanMove = false;
 			}
-			
-			//Contain Paul
-			foreach(var node in GetTree().GetNodesInGroup("Pausable"))
-			{
-				if(node is Entity)
-				{
-					if(((Entity)node).Stop == true)
-					{
-						isPaused = true;
-						break;
-					} 
-					else 
-					{
-						isPaused = false;
-					}
-				}
+			if(PlayerRoom == PatrolRoom){
+				//GD.Print("Player and Paul are in the same room");
 			}
-			
 		}
 		
 	}
@@ -277,6 +261,11 @@ public partial class Game : Node
 		LocalSuspicions[Room] += Amount;
 		//Make sure the local suspicion doesn't go over the max
 		LocalSuspicions[Room] = Mathf.Min(LocalSuspicions[Room],MaxLocalSuspicions[Room]);
+		//Contribute to global suspicion if the local suspicion went over the threshold
+		if(LocalSuspicions[Room] > LocalSuspicionThresholds[Room])
+		{
+			GlobalSuspicion += (LocalSuspicions[Room] - LocalSuspicionThresholds[Room]);
+		}
 	}
 	
 	//Handle the player losing
@@ -414,24 +403,8 @@ public partial class Game : Node
 	public async void paulWait()
 	{
 		paulCanMove = false;
-		//await ToSignal(GetTree().CreateTimer(10, false),"timeout");
-		await paulTimeTest(10f);
+		await ToSignal(GetTree().CreateTimer(10),"timeout");
 		paulCanMove = true;
 	}
-	
-	public async Task paulTimeTest(float duration)
-	{
-		float elapsed = 0f;
-		
-		while (elapsed < duration)
-		{
-			if (!isPaused)
-			{
-				elapsed += (float)GetProcessDeltaTime();
-			}
-			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-		}
-	}
-	
 	
 }
