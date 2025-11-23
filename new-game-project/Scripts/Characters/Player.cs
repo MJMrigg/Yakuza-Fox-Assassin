@@ -92,6 +92,13 @@ public partial class Player : Entity
 	{
 		base._Process(delta);
 		
+		//If the player killed the boss, tell the player
+		if(Game.Instance.BossIsDead)
+		{
+			InformOfDeath();
+			return;
+		}
+		
 		//If the player has no more health, kill the player
 		if(Health <= 0)
 		{
@@ -270,6 +277,7 @@ public partial class Player : Entity
 		{
 			GetTree().CallGroup("Pausable","Pause");
 		}
+		//Make the inventory and Settings menu invisible.
 		Inv.Visible = !Inv.Visible;
 		((Control)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Settings")).Visible = false;
 	}
@@ -408,12 +416,17 @@ public partial class Player : Entity
 		Game.Instance.IncreaseLocalSuspicion(RoomId, amount);
 	}
 	
-	//Tell the game that the player died
+	//Tell the player that either the player or the boss has died
 	public void InformOfDeath()
 	{
 		ColorRect WinLoseMenu = (ColorRect)PlayerUI.GetNode("WinLoseMenu");
 		WinLoseMenu.Visible = true;
-		((Label)WinLoseMenu.GetNode("Text")).Text = "You Died.";
+		if(Game.Instance.BossIsDead) //The boss died
+		{
+			((Label)WinLoseMenu.GetNode("Text")).Text = "You have taken down the Yakuza!";
+		}else{ //The player died
+			((Label)WinLoseMenu.GetNode("Text")).Text = "You Died.";
+		}
 	}
 	
 	//Deal damage when attacking something

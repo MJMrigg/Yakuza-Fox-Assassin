@@ -27,6 +27,11 @@ public partial class Boss : Enemy
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//If the NPC is dying, do nothing
+		if(Health <= 0 || Dying)
+		{
+			return;
+		}
 		base._Process(delta);
 	}
 	
@@ -140,11 +145,8 @@ public partial class Boss : Enemy
 	}
 	
 	//Boss has special death logic
-	public override void Remove()
+	public async override void Remove()
 	{
-		//Death logic goes here
-		
-		base.Remove();
 	}
 	
 	//Cool down for explosion attack
@@ -153,6 +155,9 @@ public partial class Boss : Enemy
 		ExplosionCooledDown = false;
 		await ToSignal(GetTree().CreateTimer(ExplosionCoolDown),"timeout");
 		ExplosionCooledDown = true;
-		SpawnExplosions();
+		if(!Stop)
+		{ //If not paused, continue spawning explosions
+			SpawnExplosions();
+		}
 	}
 }

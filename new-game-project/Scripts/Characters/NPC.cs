@@ -219,8 +219,19 @@ public partial class NPC : Interactable
 		{ //Wait for the animation to play
 			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		}
-		await ToSignal(GetTree().CreateTimer(2),"timeout");
-		this.QueueFree();
+		//The boss and NPCs have different death logic
+		if(IsBoss)
+		{ //Boss' death
+			//Pause the game
+			GetTree().CallGroup("Pausable","Pause");
+			//Tell the player that they won
+			Game.Instance.BossIsDead = true;
+		}
+		else
+		{ //Normal NPC death
+			await ToSignal(GetTree().CreateTimer(2),"timeout");
+			this.QueueFree();
+		}
 	}
 	
 	//Pick a new target for the NPC to travel to

@@ -68,7 +68,8 @@ public partial class Game : Node
 	public int PlayerHealth = 100;
 	public int MaxPlayerHealth = 100;
 	
-	public int SceneIndex = 2;
+	public int SceneIndex = 2; //Index of the current scene within the root node
+	public bool BossIsDead = false; //Whether the boss is dead
 	
 	//Test Info for room transition
 	//<key, value>
@@ -96,7 +97,6 @@ public partial class Game : Node
 			{8, new Dictionary<int, Vector2> { { 7, new Vector2(394, -54) } } },
 			// <Production(9), [Market(1)]>
 			{9, new Dictionary<int, Vector2> { { 1, new Vector2(433, -211) } } },
-
 			//SECOND HALF
 			//<Training Yard(10), [Market(1), Medic(11), Bar2(13), Range(14), Living(16), Security2(18)]>
 			{10, new Dictionary<int, Vector2> { {1, new Vector2(-141,251) }, {11, new Vector2(180,-57) }, {13, new Vector2(469,-57) }, {14, new Vector2(684,-61) }, { 16, new Vector2(364,693) }, { 18, new Vector2(860,257) } } },
