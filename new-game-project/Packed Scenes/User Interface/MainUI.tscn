@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bidfdywgj441a"]
+[gd_scene load_steps=7 format=3 uid="uid://bidfdywgj441a"]
 
 [ext_resource type="Texture2D" uid="uid://b3al5dm6i1cxl" path="res://Art Assets/Characters/Player/Portraits/Neutral-Por_Player.png" id="1_tkf6q"]
 [ext_resource type="Script" uid="uid://b548d0386yolb" path="res://Scripts/User Interface/WeaponSlot.cs" id="2_f31s5"]
 [ext_resource type="Script" uid="uid://c32h6ccmoveru" path="res://Scripts/User Interface/Inventory.cs" id="4_f31s5"]
+[ext_resource type="Script" uid="uid://b0oo8urfdnhmy" path="res://Scripts/User Interface/LocalSusMeter.cs" id="4_tppbg"]
+[ext_resource type="Script" uid="uid://b4fbppnpdxxnm" path="res://Scripts/User Interface/HealthBar.cs" id="5_qb4gu"]
 [ext_resource type="PackedScene" uid="uid://dglnssijjwpgx" path="res://Packed Scenes/User Interface/DialogOption.tscn" id="6_tppbg"]
 
 [node name="MainUI" type="CanvasLayer"]
@@ -40,26 +42,6 @@ columns = 3
 [node name="DialogOption" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
 layout_mode = 2
 text = "Dialog Option 1"
-
-[node name="DialogOption2" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
-layout_mode = 2
-text = "Dialog Option 2"
-
-[node name="DialogOption3" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
-layout_mode = 2
-text = "Dialog Option 3"
-
-[node name="DialogOption4" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
-layout_mode = 2
-text = "Dialog Option 4"
-
-[node name="DialogOption5" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
-layout_mode = 2
-text = "Dialog Option 5"
-
-[node name="DialogOption6" parent="Dialog/DialogText/DialogOptions" instance=ExtResource("6_tppbg")]
-layout_mode = 2
-text = "Dialog Option 6"
 
 [node name="Portrait" type="TextureRect" parent="Dialog"]
 layout_mode = 2
@@ -142,6 +124,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("4_tppbg")
 
 [node name="Player" type="HBoxContainer" parent="Main"]
 layout_mode = 2
@@ -200,7 +183,7 @@ text = " HP:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Main/Player/WeaponsAndHealth/Health"]
+[node name="HealthBar" type="ProgressBar" parent="Main/Player/WeaponsAndHealth/Health"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -208,6 +191,7 @@ size_flags_vertical = 4
 step = 1.0
 value = 100.0
 rounded = true
+script = ExtResource("5_qb4gu")
 
 [node name="GlobalSuspicion" type="HBoxContainer" parent="."]
 anchors_preset = 1

@@ -91,6 +91,7 @@ public partial class Door : StaticBody2D
 				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
 			}
 		}
+		Game.Instance.FirstSaved[CurrentRoom] = true; //Mark the room as having saved data
 		//Change scene based on the room the door takes the player during the next physics process
 		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}

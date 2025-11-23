@@ -139,7 +139,7 @@ public partial class NPC : Interactable
 			Game.Instance.RoomsHostile[RoomId] = true;
 			//Increase the local suspicion to max
 			Game.Instance.IncreaseLocalSuspicion(RoomId,Game.Instance.MaxLocalSuspicions[RoomId]);
-			LocalSusMeter.Value = Game.Instance.LocalSuspicions[RoomId];
+			//LocalSusMeter.Value = Game.Instance.LocalSuspicions[RoomId];
 		}
 		
 		//Handle if the NPC died

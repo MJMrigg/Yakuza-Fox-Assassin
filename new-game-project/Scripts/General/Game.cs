@@ -9,13 +9,13 @@ public partial class Game : Node
 	
 	public float MaxGlobalSuspicion = 0;
 	
-	public float[] LocalSuspicions = new float[20]; //Local Suspcisions of every room
+	public float[] LocalSuspicions = new float[21]; //Local Suspcisions of every room
 	
-	public float[] MaxLocalSuspicions = new float[20]; //Maximum Local Supsicions
+	public float[] MaxLocalSuspicions = new float[21]; //Maximum Local Supsicions
 	
-	public float[] LocalSuspicionThresholds = new float[20]; //Local Suspicion thresholds of each room
+	public float[] LocalSuspicionThresholds = new float[21]; //Local Suspicion thresholds of each room
 	
-	public bool[] RoomsHostile = new bool[20]; //Whether each room is hostile
+	public bool[] RoomsHostile = new bool[21]; //Whether each room is hostile
 	
 	public float MasterVolume; //Master volume of the whole game
 	
@@ -36,6 +36,7 @@ public partial class Game : Node
 	public bool paulCanMove = true;
 	
 	//Save/load data
+	public bool[] FirstSaved = new bool[21]; //Whether the room has saved data
 	public Item[] PlayerInventory = new Item[10]; //Player's inventory
 	public Weapon[] PlayerWeapons = new Weapon[2]; //Player's equiped weapons
 	public Dictionary<int, List<string>> NPCs = new Dictionary<int, List<string>>(); //NPC data
@@ -64,6 +65,7 @@ public partial class Game : Node
 	public Dictionary<int, List<string>> Projectiles = new Dictionary<int, List<string>>(); //Projectile data
 	public Weapon Bite = new Weapon(); //Bite data
 	public int PlayerHealth = 100;
+	public int MaxPlayerHealth = 100;
 	
 	//Test Info for room transition
 	//<key, value>
@@ -123,7 +125,7 @@ public partial class Game : Node
 	//WARNING: Please be careful moving files around outside of Godot. This may fuck up its UID's
 	public Dictionary<int, string> roomIDS = new Dictionary<int, string>
 		{
-			{0, "uid://usxq7o82i0fb"}, {1, "uid://bj6i0sm27sq0y"}, {2, "uid://b5nusknx2t2"}, {3, "uid://yp8mbu2mbiq4"}, {4, "uid://drppupoqbsboi"}, {5, "uid://di3dj135mkpr1"}, {6, "uid://d0rvt1e2grm7m"},
+			{0, "uid://usxq7o82i0fb"}, {1, "uid://cfrkcj0r61ak1"}, {2, "uid://b5nusknx2t2"}, {3, "uid://yp8mbu2mbiq4"}, {4, "uid://drppupoqbsboi"}, {5, "uid://di3dj135mkpr1"}, {6, "uid://d0rvt1e2grm7m"},
 			{7, "uid://btmygoh2s5mhk"}, {8, "uid://cpommox3imbij"}, {9, "uid://bfwsfpm7kj31g"}, {10, "uid://bo6rq3jnspnsh"}, {11, "uid://iekpssg83fnc"}, {12, "uid://bo2n32asslba0"}, {13, "uid://15ua3onjiawf"},
 			{14, "uid://obh4emo4mbpj"}, {15, "uid://bt0dqpbuyngjm"}, {16, "uid://blvgy3jyqklp4"}, {17, "uid://t7rl7tpgiehl"}, {18, "uid://w6j3y6jgntrl"}, {19, "uid://d0xe8p32vykp"}, {20, "uid://dvgnk8gvwgja8"}
 		};
@@ -157,8 +159,9 @@ public partial class Game : Node
 			RoomsHostile[i] = false;
 			NPCs[i] = new List<string>();
 			Projectiles[i] = new List<string>();
+			FirstSaved[i] = false; //The rooms currently have no saved data
 		}
-		RoomsHostile[19] = true; //Boss room starts hostile
+		RoomsHostile[20] = true; //Boss room starts hostile
 		NPCs[0] = null; //No NPCs in the first room
 		MaxLocalSuspicions = 
 		[
@@ -176,7 +179,7 @@ public partial class Game : Node
 		];
 		
 		//Calculate Max Global Suspcition
-		for(int i = 0; i < 20; i++)
+		for(int i = 0; i < 21; i++)
 		{
 			//Ignore rooms without suspicion
 			if(MaxLocalSuspicions[i] == -1)

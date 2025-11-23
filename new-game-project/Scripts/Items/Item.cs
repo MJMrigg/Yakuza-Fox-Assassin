@@ -42,7 +42,7 @@ public partial class Item : Interactable
 	public void PickUp()
 	{
 		//Send the object to the player's inventory, end the dialogue and remove it from the scene
-		EmitSignal(SignalName.SendToPlayer, ID);
+		((Player)GetTree().GetRoot().GetChild(1).GetNode("Player")).Pickup(ID);
 		EndDialogue();
 		Remove();
 	}

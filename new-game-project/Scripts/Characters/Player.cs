@@ -35,9 +35,6 @@ public partial class Player : Entity
 	[Export]
 	public CanvasLayer PlayerUI; //Menus the player controls
 	
-	[Export]
-	public ProgressBar HealthBar; //The player's health bar
-	
 	public bool Choice = false; //Whether the player has chosen to start combat
 	
 	public override void _Ready()
@@ -88,7 +85,7 @@ public partial class Player : Entity
 		
 		//Set player current health
 		Health = Game.Instance.PlayerHealth;
-		HealthBar.Value = Health;
+		//HealthBar.Value = Health;
 	}
 
 	public override void _Process(double delta)
@@ -499,7 +496,8 @@ public partial class Player : Entity
 		}
 		//Take the damage
 		Health -= damage;
-		HealthBar.Value = Health;
+		Game.Instance.PlayerHealth -= damage;
+		//HealthBar.Value = Health;
 		//If the player's health is below 0, die
 		if(Health <= 0)
 		{

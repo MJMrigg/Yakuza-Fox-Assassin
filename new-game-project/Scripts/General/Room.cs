@@ -59,12 +59,18 @@ public partial class Room : Node2D
 		Game.Instance.PlayerRoom = RoomId;
 		
 		//Load NPC data
-		if(Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].Count > 0)
+		if(Game.Instance.NPCs[RoomId] != null)
 		{
-			//Clear out all current NPCs
-			foreach(Node npc in GetNode("NPCs").GetChildren())
+			//Clear out all current NPCs if the room has saved data
+			if(Game.Instance.FirstSaved[RoomId])
 			{
-				npc.QueueFree();
+				if(HasNode("NPCs"))
+				{
+					foreach(Node npc in GetNode("NPCs").GetChildren())
+					{
+						npc.QueueFree();
+					}
+				}
 			}
 			int amount = Game.Instance.NPCs[RoomId].Count;
 			//Add each NPC to the scene
@@ -169,12 +175,18 @@ public partial class Room : Node2D
 			}
 		}
 		//Load item data
-		if(Game.Instance.RoomItems.ContainsKey(RoomId) && Game.Instance.RoomItems[RoomId].Count > 0)
+		if(Game.Instance.RoomItems.ContainsKey(RoomId))
 		{
-			//Clear out all current items
-			foreach(Node item in GetNode("Items").GetChildren())
+			//Clear out all current items if there is saved data
+			if(Game.Instance.FirstSaved[RoomId])
 			{
-				item.QueueFree();
+				if(HasNode("Items"))
+				{
+					foreach(Node npc in GetNode("Items").GetChildren())
+					{
+						npc.QueueFree();
+					}
+				}
 			}
 			PackedScene ItemScene = null;
 			for(int i = 0; i < Game.Instance.RoomItems[RoomId].Count; i+=3)
