@@ -209,6 +209,9 @@ public partial class Game : Node
 			}
 		}
 		
+		//DEBUG TEST
+		//spawnPaul();
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -343,7 +346,38 @@ public partial class Game : Node
 		}
 		GD.Print("Paul is now in Room: " + PatrolRoom);
 		GD.Print("-----------------");
+		spawnPaul(); // Add Paul to the room he has entered
+		killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
 		paulWait();
+	}
+	
+	// I summon Paul in defense position
+	// Add Paul's String to NPC
+	public void spawnPaul()
+	{
+		//Save Paul's data into the list
+		NPCs[PatrolRoom].Add((7).ToString()); // Paul's TYPE
+		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position (Same as Player)
+		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position (Same as Player)
+		NPCs[PatrolRoom].Add((500).ToString()); // Paul's HP
+		NPCs[PatrolRoom].Add(("D").ToString()); // Paul's Current direction (same as Player)
+		NPCs[PatrolRoom].Add(("Walk_D").ToString()); // Paul's current animation
+		NPCs[PatrolRoom].Add((0).ToString()); // Paul's Current frame
+		NPCs[PatrolRoom].Add((false).ToString()); // Paul's down
+		
+		GD.Print("Paul's Data has been added to Room ID: " + PatrolRoom);
+	}
+	
+	//I'm sorry little one...
+	// Remove's Paul's String from NPC.
+	public void killPaul(int removeFromHere)
+	{
+		var index = NPCs[removeFromHere].FindIndex(x => x == "7"); // Find paul's type
+		if (index != -1)
+		{
+			NPCs[removeFromHere].RemoveRange(index, 8); // Remove that type and the next indexs with his data
+			GD.Print("Paul's Data has been removed from Room ID: " + removeFromHere);
+		}
 	}
 	
 	//How long Paul waits in a room
