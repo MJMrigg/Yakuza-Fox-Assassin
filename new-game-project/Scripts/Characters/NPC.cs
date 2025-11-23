@@ -33,6 +33,12 @@ public partial class NPC : Interactable
 	public override void _Ready()
 	{
 		base._Ready();
+		//If the NPC spawned already in the process of dying, kill it
+		if(MySpriteAnimation.Animation == ("Die_"+CurrentDir))
+		{
+			Remove();
+			return;
+		}
 		this.AddToGroup("NPCs");
 		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(1).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
 		PickNewTarget();
@@ -41,13 +47,6 @@ public partial class NPC : Interactable
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//If the NPC spawned already in the process of dying, kill it
-		if(MySpriteAnimation.Animation == ("Die_"+CurrentDir))
-		{
-			Remove();
-			return;
-		}
-		
 		//If the NPC is dying, do nothing
 		if(Dying)
 		{
@@ -147,7 +146,6 @@ public partial class NPC : Interactable
 		if(Health <= 0)
 		{
 			Dying = true;
-			GD.Print("TEST");
 			Remove();
 			return;
 		}
@@ -217,7 +215,7 @@ public partial class NPC : Interactable
 			MySpriteAnimation.Animation = "Die_"+CurrentDir;
 		}
 		MySpriteAnimation.Play();
-		if(MySpriteAnimation.Frame < 4)
+		if(MySpriteAnimation.Frame < 3)
 		{ //Wait for the animation to play
 			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		}

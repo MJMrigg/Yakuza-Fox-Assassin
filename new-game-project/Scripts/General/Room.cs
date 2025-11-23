@@ -59,7 +59,7 @@ public partial class Room : Node2D
 		Game.Instance.PlayerRoom = RoomId;
 		
 		//Load NPC data
-		if(Game.Instance.NPCs[RoomId].Count > 0)
+		if(Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].Count > 0)
 		{
 			//Clear out all current NPCs
 			foreach(Node npc in GetNode("NPCs").GetChildren())
@@ -166,9 +166,57 @@ public partial class Room : Node2D
 					if(type == 6) { newNPC.Transformed = true; }
 					AddChild(newNPC);
 				}
-				
 			}
 		}
+		//Load item data
+		if(Game.Instance.RoomItems.ContainsKey(RoomId) && Game.Instance.RoomItems[RoomId].Count > 0)
+		{
+			//Clear out all current items
+			foreach(Node item in GetNode("Items").GetChildren())
+			{
+				item.QueueFree();
+			}
+			PackedScene ItemScene = null;
+			for(int i = 0; i < Game.Instance.RoomItems[RoomId].Count; i+=3)
+			{ //This for loop shouldn't take too long. At most, there's two items in the room
+				//Load the item based off of its type
+				int ItemType = (int)(Game.Instance.RoomItems[RoomId][i]);
+				switch(ItemType)
+				{
+					case 2: //Knife
+						ItemScene = GD.Load<PackedScene>("res://Packed Scenes/Items/Knife.tscn");
+						Weapon Knife = (Weapon)ItemScene.Instantiate();
+						Knife.Position = new Vector2(Game.Instance.RoomItems[RoomId][i+1], Game.Instance.RoomItems[RoomId][i+2]);
+						Knife.Scale = new Vector2(0.5f,0.5f);
+						GetNode("Items").AddChild(Knife);
+						break;
+					case 3: //Shotgun
+						ItemScene = GD.Load<PackedScene>("res://Packed Scenes/Items/ShotGun.tscn");
+						Weapon Shotgun = (Weapon)ItemScene.Instantiate();
+						Shotgun.Position = new Vector2(Game.Instance.RoomItems[RoomId][i+1], Game.Instance.RoomItems[RoomId][i+2]);
+						Shotgun.Scale = new Vector2(0.5f,0.5f);
+						GetNode("Items").AddChild(Shotgun);
+						break;
+					case 4: //Green Key
+						ItemScene = GD.Load<PackedScene>("res://Packed Scenes/Items/Green Key.tscn");
+						Key GreenKey = (Key)ItemScene.Instantiate();
+						GreenKey.Position = new Vector2(Game.Instance.RoomItems[RoomId][i+1], Game.Instance.RoomItems[RoomId][i+2]);
+						GreenKey.Scale = new Vector2(0.5f,0.5f);
+						GetNode("Items").AddChild(GreenKey);
+						break;
+					case 5: //Red Key
+						ItemScene = GD.Load<PackedScene>("res://Packed Scenes/Items/Red Key.tscn");
+						Key RedKey = (Key)ItemScene.Instantiate();
+						RedKey.Position = new Vector2(Game.Instance.RoomItems[RoomId][i+1], Game.Instance.RoomItems[RoomId][i+2]);
+						RedKey.Scale = new Vector2(0.5f,0.5f);
+						GetNode("Items").AddChild(RedKey);
+						break;
+					case 6: //Hamster
+						break;
+				}
+			}
+		}
+		
 	}
 	
 	public override void _Process(double delta)

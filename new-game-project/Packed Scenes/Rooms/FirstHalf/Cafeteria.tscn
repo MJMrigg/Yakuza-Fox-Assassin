@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://drppupoqbsboi"]
+[gd_scene load_steps=8 format=4 uid="uid://drppupoqbsboi"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_68ae1"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_80cra"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_80cra"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_tyo82"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="5_xbene"]
+[ext_resource type="PackedScene" uid="uid://bgm3dx1u53tnj" path="res://Packed Scenes/Items/Knife.tscn" id="7_tyo82"]
 
 [node name="Cafeteria" type="Node2D"]
 script = ExtResource("1_80cra")
@@ -31,17 +32,27 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_tyo82")
 
-[node name="ToMarket" parent="." instance=ExtResource("5_xbene")]
+[node name="Doors" type="Node" parent="."]
+
+[node name="ToMarket" parent="Doors" instance=ExtResource("5_xbene")]
 position = Vector2(973.9999, 1057)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 1
 regDoor = true
 
-[node name="ToBar" parent="." instance=ExtResource("5_xbene")]
+[node name="ToBar" parent="Doors" instance=ExtResource("5_xbene")]
 position = Vector2(323, -356)
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 5
 regDoor = true
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Knife" parent="Items" instance=ExtResource("7_tyo82")]
+position = Vector2(109, 166)
+scale = Vector2(0.5, 0.5)
 
 [editable path="MainUI"]

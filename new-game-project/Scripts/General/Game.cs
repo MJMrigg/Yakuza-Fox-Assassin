@@ -40,9 +40,16 @@ public partial class Game : Node
 	public Weapon[] PlayerWeapons = new Weapon[2]; //Player's equiped weapons
 	public Dictionary<int, List<string>> NPCs = new Dictionary<int, List<string>>(); //NPC data
 	//NPC Data key = _type, x, y, health, direction, animation, frame, dying
-	public Dictionary<int, List<Projectile>> Projectiles = new Dictionary<int, List<Projectile>>(); //Projectile data
-	public Weapon Bite = new Weapon(); //Bite data
-	public int[] ItemData = {
+	public Dictionary<int, List<float>> RoomItems = new Dictionary<int, List<float>>
+	{ //Data to store items in rooms
+		{ 4, new List<float>() }, //Knife in the cafeteria
+		{ 7, new List<float>() }, //Green key in security1
+		{ 11, new List<float>() }, //Red key in medic
+		{ 12, new List<float>() }, //Hamster in lab
+		{ 15, new List<float>() } //Shotgun in armory
+	};
+	//Item Data key = ID
+	public int[] ItemData = { //Data regarding items
 		//ID, damage, cooldown
 		0,7,1, //Bite
 		1,7,1, //Pistol
@@ -54,6 +61,8 @@ public partial class Game : Node
 		//ID
 		6 //Hamster
 	};
+	public Dictionary<int, List<string>> Projectiles = new Dictionary<int, List<string>>(); //Projectile data
+	public Weapon Bite = new Weapon(); //Bite data
 	public int PlayerHealth = 100;
 	
 	//Test Info for room transition
@@ -147,7 +156,7 @@ public partial class Game : Node
 			LocalSuspicions[i] = 0;
 			RoomsHostile[i] = false;
 			NPCs[i] = new List<string>();
-			Projectiles[i] = new List<Projectile>();
+			Projectiles[i] = new List<string>();
 		}
 		RoomsHostile[19] = true; //Boss room starts hostile
 		NPCs[0] = null; //No NPCs in the first room

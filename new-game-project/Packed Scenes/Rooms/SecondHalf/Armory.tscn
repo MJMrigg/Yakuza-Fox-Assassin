@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bt0dqpbuyngjm"]
+[gd_scene load_steps=8 format=4 uid="uid://bt0dqpbuyngjm"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_02ggb"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_xo4rf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_htgpj"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="3_xo4rf"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_xo4rf"]
+[ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="7_3nlun"]
 
 [node name="Armory" type="Node2D"]
 script = ExtResource("1_xo4rf")
@@ -37,5 +38,13 @@ rotation = -3.1415925
 scale = Vector2(2.23319, 1)
 ConnectedRoom = 14
 regDoor = true
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="ShotGun" parent="Items" instance=ExtResource("7_3nlun")]
+position = Vector2(179, 123)
+scale = Vector2(0.5, 0.5)
 
 [editable path="MainUI"]

@@ -82,7 +82,7 @@ public partial class Player : Entity
 			}
 			if(ItemCount > 0)
 			{
-				Inv.EquipItem(Game.Instance.PlayerWeapons[i].ID, ItemCount-1);
+				Inv.EquipItem(Game.Instance.PlayerWeapons[i].ID, Game.Instance.PlayerWeapons[i].InventorySlot);
 			}
 		}
 		
@@ -583,6 +583,7 @@ public partial class Player : Entity
 			}
 			//Place weapon in the inventory
 			NewWeapon.Portrait = (CompressedTexture2D)GD.Load(path);
+			NewWeapon.InventorySlot = ItemCount;
 			Inv.ItemsStored[ItemCount] = NewWeapon;
 		}
 		else if(ItemId == 4 || ItemId == 5)
@@ -601,6 +602,7 @@ public partial class Player : Entity
 			}
 			//Place key in the inventory
 			NewKey.Portrait = (CompressedTexture2D)GD.Load(path);
+			NewKey.InventorySlot = ItemCount;
 			Inv.ItemsStored[ItemCount] = NewKey;
 		}
 		else
@@ -609,11 +611,33 @@ public partial class Player : Entity
 			Item NewItem = new Item();
 			path = ""; //Path to hamster
 			NewItem.ID = ItemId;
+			NewItem.InventorySlot = ItemCount;
 			Inv.ItemsStored[ItemCount] = NewItem;
 		}
 		//Add item to the player inventory in the game master
 		Game.Instance.PlayerInventory[ItemCount] = new Item();
 		Game.Instance.PlayerInventory[ItemCount].ID = ItemId;
+		//Remove the item from the room save and load data in the game master
+		//Go through each item. Shouldn't be too bad since rooms have at most 2 items
+		if(Game.Instance.RoomItems.ContainsKey(RoomId))
+		{
+			for(int i = 0; i < Game.Instance.RoomItems[RoomId].Count; i+=3)
+			{
+				//If the item wasn't in the room, but rather in the player's inventory, do noting
+				if(!Game.Instance.RoomItems.ContainsKey(RoomId))
+				{
+					break;
+				}
+				//If this isn't the item, move on
+				if(Game.Instance.RoomItems[RoomId][i] != ItemId)
+				{
+					continue;
+				}
+				//Remove the item
+				(Game.Instance.RoomItems[RoomId]).RemoveRange(i,3);
+				break;
+			}
+		}
 		//Increase number of items in the inventory
 		ItemCount += 1;
 		//Add weapon to the inventory on the screen
@@ -623,7 +647,7 @@ public partial class Player : Entity
 		NewSlot.ID = ItemId;
 		((TextureRect)NewSlot.GetNode("Portrait")).Texture = (CompressedTexture2D)GD.Load(path);
 		//If it's not a weapon, get rid of the equip button. If it is, add functionality to the button
-		if(ItemId > 4)
+		if(ItemId >= 4)
 		{
 			((Button)NewSlot.GetNode("EquipButton")).Visible = false;
 		}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bo2n32asslba0"]
+[gd_scene load_steps=8 format=4 uid="uid://bo2n32asslba0"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_phl0v"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_rpopm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_urbrd"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_eabx2"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_h781g"]
+[ext_resource type="PackedScene" uid="uid://bsrb5biavqiyq" path="res://Packed Scenes/Items/Hamster.tscn" id="7_urbrd"]
 
 [node name="Lab" type="Node2D"]
 script = ExtResource("1_phl0v")
@@ -37,5 +38,13 @@ rotation = -1.5707964
 scale = Vector2(1.9200001, 1)
 ConnectedRoom = 11
 regDoor = true
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Hamster" parent="Items" instance=ExtResource("7_urbrd")]
+position = Vector2(540, 120)
+scale = Vector2(0.5, 0.5)
 
 [editable path="MainUI"]

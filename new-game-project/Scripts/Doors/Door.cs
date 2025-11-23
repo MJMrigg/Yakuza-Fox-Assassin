@@ -78,6 +78,19 @@ public partial class Door : StaticBody2D
 				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
 			}
 		}
+		//Save all item data
+		var Items = GetTree().GetNodesInGroup("Items");
+		int ItemCount = GetTree().GetNodeCountInGroup("Items");
+		Game.Instance.RoomItems[CurrentRoom] = new List<float>(); //Overwrite previous data
+		if(ItemCount > 0)
+		{
+			for(int i = 0; i < ItemCount; i++)
+			{
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).ID);
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.X);
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
+			}
+		}
 		//Change scene based on the room the door takes the player during the next physics process
 		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}
@@ -85,6 +98,10 @@ public partial class Door : StaticBody2D
 	//Change scenes during the next physics process
 	public void PhysicsProcessSceneChange()
 	{
+		if(!IsInsideTree())
+		{
+			return;
+		}
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
 	}
 	

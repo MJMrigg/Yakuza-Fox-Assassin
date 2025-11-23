@@ -43,4 +43,6 @@ scale = Vector2(2.2, 1)
 ConnectedRoom = 1
 regDoor = true
 
+[node name="NPCs" type="Node" parent="."]
+
 [editable path="MainUI"]

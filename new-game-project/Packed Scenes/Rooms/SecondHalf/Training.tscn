@@ -40,36 +40,40 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_2xho8")
 
-[node name="ToMarket" parent="." instance=ExtResource("6_xguhg")]
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="ToMarket" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(-285, 234)
 rotation = -1.5707964
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 1
 regDoor = true
 
-[node name="ToMedic" parent="." instance=ExtResource("6_xguhg")]
+[node name="ToMedic" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(180, -196)
 ConnectedRoom = 11
 regDoor = true
 
-[node name="ToLiving2" parent="." instance=ExtResource("6_xguhg")]
+[node name="ToLiving2" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(359, 831)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(2.440002, 1)
 ConnectedRoom = 16
 regDoor = true
 
-[node name="ToBar2" parent="." instance=ExtResource("6_xguhg")]
+[node name="ToBar2" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(463, -196)
 ConnectedRoom = 13
 regDoor = true
 
-[node name="ToRange" parent="." instance=ExtResource("6_xguhg")]
+[node name="ToRange" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(686, -196)
 ConnectedRoom = 14
 regDoor = true
 
-[node name="ToSecurity" parent="." instance=ExtResource("6_xguhg")]
+[node name="ToSecurity" parent="Doors" instance=ExtResource("6_xguhg")]
 position = Vector2(970, 236)
 rotation = 1.5707964
 ConnectedRoom = 18

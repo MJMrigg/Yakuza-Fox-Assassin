@@ -10,6 +10,8 @@ public partial class Item : Interactable
 	public CompressedTexture2D Portrait; //Portrait of the item(for when it's in the inventory)
 	
 	public bool Equipable; //If the item can be equiped
+	
+	public int InventorySlot = 0; //The slot in the player's inventory the weapon is in
 		
 	[Signal]
 	public delegate void SendToPlayerEventHandler(int ID); //Signal to send the object to the player's invtory

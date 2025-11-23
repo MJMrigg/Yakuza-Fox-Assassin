@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://iekpssg83fnc"]
+[gd_scene load_steps=8 format=4 uid="uid://iekpssg83fnc"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_2rrmd"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_4qrtg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="3_4qrtg"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_5lsts"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_4qrtg"]
+[ext_resource type="PackedScene" uid="uid://bsfdmyk170c53" path="res://Packed Scenes/Items/Red Key.tscn" id="7_nvk0x"]
 
 [node name="Medic" type="Node2D"]
 script = ExtResource("1_4qrtg")
@@ -31,18 +32,28 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_4qrtg")
 
-[node name="ToTraining" parent="." instance=ExtResource("3_4qrtg")]
+[node name="Doors" type="Node" parent="."]
+
+[node name="ToTraining" parent="Doors" instance=ExtResource("3_4qrtg")]
 position = Vector2(363, 1061)
 rotation = -3.1415925
 scale = Vector2(1.9200001, 1)
 ConnectedRoom = 10
 regDoor = true
 
-[node name="ToLab" parent="." instance=ExtResource("3_4qrtg")]
+[node name="ToLab" parent="Doors" instance=ExtResource("3_4qrtg")]
 position = Vector2(1533, 493)
 rotation = 1.5707964
 scale = Vector2(1.9200001, 1)
 ConnectedRoom = 12
 regDoor = true
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Red Key" parent="Items" instance=ExtResource("7_nvk0x")]
+position = Vector2(461, 247)
+scale = Vector2(0.5, 0.5)
 
 [editable path="MainUI"]

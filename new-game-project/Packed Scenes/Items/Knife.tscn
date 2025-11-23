@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikmsh"]
 size = Vector2(80, 80)
 
-[node name="Knife" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider") groups=["Pausable"]]
+[node name="Knife" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider") groups=["Items", "Pausable"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ikmsh")
