@@ -151,6 +151,7 @@ public partial class Game : Node
 	public bool GameStart = false;
 	
 	public bool isPaused = false;
+	public bool canDecay = true;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -225,23 +226,19 @@ public partial class Game : Node
 				defControls.Add(i, test);
 			}
 		}
-		
-		//DEBUG TEST
-		//spawnPaul();
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if(GameStart){
-			if(paulCanMove)
+			// Paul is allowed to move to another room if
+			// 1. paulCanMove == True --> The timer has expired
+			// 2. Paul is not in the same hostile room as the Player. If he his then he needs to kick the player's ass
+			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]))
 			{
 				movePaul();
 				paulCanMove = false;
-			}
-			if(PlayerRoom == PatrolRoom){
-				//GD.Print("Player and Paul are in the same room");
 			}
 			
 			//Contain Paul
@@ -261,14 +258,43 @@ public partial class Game : Node
 				}
 			}
 			
+			//Decay Sus of each room
+			if(canDecay)
+			{
+				decayWait();
+				canDecay = false;
+			}
+			
+			//Paul increases theshold of where he is
+			if(LocalSuspicionThresholds[PatrolRoom] < LocalSuspicions[PatrolRoom])
+			{
+				IncreaseSuspicionThreshold(PatrolRoom);
+			}
+			
 		}
 		
 	}
 	
 	//Decay all local suspicions and global suspicion
+	// Should be called every 3 seconds. 
 	public void DecaySuspicion()
 	{
-		
+		for(int i = 1; i < LocalSuspicions.Count(); i++)
+		{
+			//Ignores room's 0,5,13,20 and the room the Player and Paul is in
+			if(i == 5 || i == 13 || i == 20 || i == PlayerRoom || i == PatrolRoom)
+			{
+				continue;
+			}
+			// If a room is above its threshold it will decay down to it. 
+			if(LocalSuspicions[i] > LocalSuspicionThresholds[i])
+			{
+				LocalSuspicions[i] = LocalSuspicions[i] * 0.99f;
+				//DEBUG STATEMENT
+				GD.Print("Local Sus has decayed in room: " + i);
+			}
+			
+		}
 	}
 	
 	//Increase the local suspicion of a room
@@ -287,6 +313,13 @@ public partial class Game : Node
 		{
 			GlobalSuspicion += (LocalSuspicions[Room] - LocalSuspicionThresholds[Room]);
 		}
+	}
+	
+	
+	//Increase the suspicion threshold of inputed Room
+	public void IncreaseSuspicionThreshold(int Room)
+	{
+		LocalSuspicionThresholds[Room] = LocalSuspicions[Room];
 	}
 	
 	//Handle the player losing
@@ -317,8 +350,12 @@ public partial class Game : Node
 		//Player Combat Move; Priority 1
 		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
 		{
+			prevPatrolRoom = PatrolRoom;
 			PatrolRoom = PlayerRoom;
 			GD.Print("Combat Detected at: " + PatrolRoom);
+			spawnPaul(); // Add Paul to the room he has entered
+			killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
+			paulWait();
 			return;
 		}
 		
@@ -427,6 +464,15 @@ public partial class Game : Node
 		//await ToSignal(GetTree().CreateTimer(10, false),"timeout");
 		await paulTimeTest(10f);
 		paulCanMove = true;
+	}
+	
+	//How long for each deacy tick
+	public async void decayWait()
+	{
+		canDecay = false;
+		DecaySuspicion();
+		await paulTimeTest(3f);
+		canDecay = true;
 	}
 	
 	public async Task paulTimeTest(float duration)
