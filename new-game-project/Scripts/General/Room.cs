@@ -8,6 +8,8 @@ public partial class Room : Node2D
 {
 	[Export]
 	public int RoomId; //Identifier of the room
+	
+	public bool paulNotSpawned = true;
 		
 	public override void _Ready()
 	{
@@ -233,31 +235,69 @@ public partial class Room : Node2D
 	
 	public override void _Process(double delta)
 	{
-	}
-	
-	//Kept as refrence for now.
-	// DO NOT USE FOR SCENE TRANSITIONS
-	// Please use doors instead
-	public void moveSceneTest(Node2D thing)
-	{
-		//Note to self - DT
-		/*
-		This function will have an Area2D connected to it. If it detects the player then this function is called.
-		When called this function will need to determine the following.
-		1. What room am I sending the player to. 
-		*/
-		Node2D Player = (Node2D)GetNode("Player");
-		GD.Print("Detected Thing: " + thing);
-		GD.Print("Player: " + Player);
-		if (thing == Player)
+		// Spawn Paul if he is not here, and in the room.
+		// Checks if paulNotSpawned == True && if the rooms data is not null and contains Paul's ID
+		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(x => x == "7") != -1)
 		{
-			GD.Print("Player Detected! Moving to new room");
-			//Get this area2D's ID to figure out what scene to load
+			GD.Print("Pauls is in the same room as the Player. Getting Paul Data!");
+			int i = Game.Instance.NPCs[RoomId].FindIndex(x => x == "7");
+			//Get NPC properties for Paul
+			int type = int.Parse(Game.Instance.NPCs[RoomId][i]);
+			float x = float.Parse(Game.Instance.NPCs[RoomId][i+1]);
+			float y = float.Parse(Game.Instance.NPCs[RoomId][i+2]);
+			int health = int.Parse(Game.Instance.NPCs[RoomId][i+3]);
+			string dir = Game.Instance.NPCs[RoomId][i+4];
+			string animation = Game.Instance.NPCs[RoomId][i+5];
+			int frame = int.Parse(Game.Instance.NPCs[RoomId][i+6]);
+			bool IsDying = bool.Parse(Game.Instance.NPCs[RoomId][i+7]);
 			
+			//DEBUG STATEMENTS. REMOVE LATER
+			/*
+			GD.Print("Pauls Type: " + type);
+			GD.Print("Pauls X: " + x);
+			GD.Print("Pauls Y: " + y);
+			GD.Print("Pauls HP: " + health);
+			GD.Print("Pauls Dir: " + dir);
+			GD.Print("Pauls Anim: " + animation);
+			GD.Print("Pauls Frame:" + frame);
+			GD.Print("Pauls IsDying: " + IsDying);
+			*/
 			
-			GetTree().ChangeSceneToFile("uid://cpommox3imbij");
-			//GetTree().ChangeSceneToFile("res://Packed Scenes/Rooms/FirstHalf/Engine.tscn");
+			PackedScene NPCPackedScene = null;
+			NPCPackedScene = GD.Load<PackedScene>("uid://bpa0yurigcfsn");
+			PatrollingNPC newNPC = (PatrollingNPC)NPCPackedScene.Instantiate();
+			newNPC._type = type;
+			newNPC.Position = new Vector2(x,y);
+			newNPC.Health = health;
+			newNPC.CurrentDir = dir;
+			// Not sure why but these two are not working.
+			//newNPC.MySpriteAnimation.Animation = animation;
+			//newNPC.MySpriteAnimation.Frame = frame;
+			newNPC.Dying = IsDying;
+			newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+			
+			if(HasNode("NPCs"))
+			{
+				GetNode("NPCs").AddChild(newNPC);
+			} else {
+				GD.Print("NO NPC NODE TO ADD PAUL TO");
+			}
+			//AddChild(newNPC);
+			paulNotSpawned = false;
+		}
+		
+		//Remove Paul if he has left the room
+		// Checks if paulNotSpawned == false && if the rooms data is null or does not contain Paul's ID
+		if(!paulNotSpawned && (Game.Instance.NPCs[RoomId] == null || Game.Instance.NPCs[RoomId].FindIndex(x => x == "7") == -1))
+		{
+			GD.Print("Paul should not be in Room: " + RoomId);
+			if(HasNode("NPCs/Security"))
+			{
+				GetNode("NPCs/Security").QueueFree();
+			} else {
+				GD.Print("DAVID FUCKED UP");
+			}
+			paulNotSpawned = true;
 		}
 	}
-	
 }

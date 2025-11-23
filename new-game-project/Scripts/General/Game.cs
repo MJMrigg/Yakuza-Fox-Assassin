@@ -236,7 +236,7 @@ public partial class Game : Node
 				paulCanMove = false;
 			}
 			if(PlayerRoom == PatrolRoom){
-				GD.Print("Player and Paul are in the same room");
+				//GD.Print("Player and Paul are in the same room");
 			}
 		}
 		
