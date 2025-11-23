@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 public partial class Game : Node
 {
@@ -149,6 +150,8 @@ public partial class Game : Node
 	
 	public bool GameStart = false;
 	
+	public bool isPaused = false;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -240,6 +243,24 @@ public partial class Game : Node
 			if(PlayerRoom == PatrolRoom){
 				//GD.Print("Player and Paul are in the same room");
 			}
+			
+			//Contain Paul
+			foreach(var node in GetTree().GetNodesInGroup("Pausable"))
+			{
+				if(node is Entity)
+				{
+					if(((Entity)node).Stop == true)
+					{
+						isPaused = true;
+						break;
+					} 
+					else 
+					{
+						isPaused = false;
+					}
+				}
+			}
+			
 		}
 		
 	}
@@ -403,8 +424,23 @@ public partial class Game : Node
 	public async void paulWait()
 	{
 		paulCanMove = false;
-		await ToSignal(GetTree().CreateTimer(10),"timeout");
+		//await ToSignal(GetTree().CreateTimer(10, false),"timeout");
+		await paulTimeTest(10f);
 		paulCanMove = true;
+	}
+	
+	public async Task paulTimeTest(float duration)
+	{
+		float elapsed = 0f;
+		
+		while (elapsed < duration)
+		{
+			if (!isPaused)
+			{
+				elapsed += (float)GetProcessDeltaTime();
+			}
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		}
 	}
 	
 }

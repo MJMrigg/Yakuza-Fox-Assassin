@@ -44,9 +44,10 @@ public partial class PatrollingNPC : Enemy
 		
 	}
 	
-	//Increase the suspicion threshold of a room
+	//Increase the suspicion threshold of Paul's current room
 	public void IncreaseSuspicionThreshold()
 	{
-		
+		var curRoom = Game.Instance.PatrolRoom;
+		Game.Instance.LocalSuspicionThresholds[curRoom] = Game.Instance.LocalSuspicions[curRoom];
 	}
 }
