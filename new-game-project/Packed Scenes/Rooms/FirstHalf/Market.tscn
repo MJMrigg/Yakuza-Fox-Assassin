@@ -42,12 +42,12 @@ tile_set = ExtResource("1_dwaw2")
 tile_map_data = PackedByteArray("AAAAAAEAAQACAAkAAAAAAAAAAQADAAYAAAAKAAYAAQABAAYAAAAFAAYAAQADAAYAAAAEAAYAAQADAAYAAAA=")
 tile_set = ExtResource("1_dwaw2")
 
+[node name="MainUI" parent="." instance=ExtResource("3_kq3qv")]
+
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera", "HealthBar") instance=ExtResource("2_muswh")]
 position = Vector2(935, 250)
 PlayerCamera = NodePath("../Camera2D")
 HealthBar = NodePath("../MainUI/Main/Player/WeaponsAndHealth/Health/ProgressBar")
-
-[node name="MainUI" parent="." instance=ExtResource("3_kq3qv")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(440, 198)

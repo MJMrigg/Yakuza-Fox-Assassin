@@ -372,7 +372,7 @@ public partial class Player : Entity
 			Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
 			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
 			Bullets[i].CurrentDir = CurrentDir;
-			GetTree().GetRoot().AddChild(Bullets[i]);
+			GetTree().GetRoot().GetChild(1).AddChild(Bullets[i]);
 		}
 		//Play sound and animation
 		if(Weapon == 1)
@@ -460,6 +460,7 @@ public partial class Player : Entity
 			{
 				Attacked = (NPC)body;
 				Attacked.TakeDamage(Inv.EquipedWeapons[0].Damage);
+				Game.Instance.RoomsHostile[RoomId] = true; //Set room to hostile
 			}
 		}
 		

@@ -29,9 +29,8 @@ public partial class Game : Node
 	public bool[] StoragePuzzle = new bool[5];
 	public bool[] ControlPuzzle = new bool[5];
 	
-	//Rooms of player and patrolling NPC
+	//Rooms of player
 	public int PlayerRoom = 0;
-	public int PatrolRoom = 18;
 	
 	//Can Pual Move
 	public bool paulCanMove = true;
@@ -126,7 +125,8 @@ public partial class Game : Node
 	//Global instance of the game
 	public static Game Instance { get; private set; }
 	
-	//DEBUG BOOL
+	//Patrolling NPC data
+	public int PatrolRoom = 18;
 	public bool debugBool = true;
 	public int prevPatrolRoom = 18; 
 	

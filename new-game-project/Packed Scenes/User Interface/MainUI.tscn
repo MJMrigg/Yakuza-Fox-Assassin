@@ -233,7 +233,5 @@ size_flags_horizontal = 3
 
 [connection signal="ChangeMeleeWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="EquipWeapon"]
 [connection signal="ChangeRangedWeapon" from="Inventory" to="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="EquipWeapon"]
-[connection signal="Unequip" from="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" to="Inventory" method="UnEquipItem"]
 [connection signal="pressed" from="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" to="Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="UnequipWeapon"]
-[connection signal="Unequip" from="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" to="Inventory" method="UnEquipItem"]
 [connection signal="pressed" from="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" to="Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="UnequipWeapon"]

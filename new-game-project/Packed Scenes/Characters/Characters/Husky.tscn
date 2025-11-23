@@ -465,7 +465,7 @@ shape = SubResource("ConvexPolygonShape2D_0nspq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3nkod")
-animation = &"Die_D"
+animation = &"Walk_D"
 
 [node name="Sounds" type="Node" parent="."]
 

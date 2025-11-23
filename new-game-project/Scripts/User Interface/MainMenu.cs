@@ -17,6 +17,9 @@ public partial class MainMenu : Node
 	[Export]
 	public ColorRect playMenu;
 	
+	[Export]
+	public AudioStreamPlayer buttonSound;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -31,7 +34,6 @@ public partial class MainMenu : Node
 		{
 			playMenu.Visible = true;
 		}
-		
 	}
 	
 	//Open the settings menu
@@ -41,6 +43,7 @@ public partial class MainMenu : Node
 		{
 			setMenu.Visible = true; 
 			playMenu.Visible = false;
+			buttonSound.Play();
 		} else {
 			GD.Print("Setting Menu has not been assigned");
 		}
@@ -53,6 +56,7 @@ public partial class MainMenu : Node
 		{
 			difMenu.Visible = true; 
 			playMenu.Visible = false;
+			buttonSound.Play();
 		} else {
 			GD.Print("Difficulty Menu has not been assigned");
 		}
@@ -65,6 +69,7 @@ public partial class MainMenu : Node
 		{
 			quitMenu.Visible = true; 
 			playMenu.Visible = false;
+			buttonSound.Play();
 		} else {
 			GD.Print("Quit Menu has not been assigned");
 		}

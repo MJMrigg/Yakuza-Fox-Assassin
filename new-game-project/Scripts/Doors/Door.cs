@@ -78,9 +78,14 @@ public partial class Door : StaticBody2D
 				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
 			}
 		}
-		//Change scene based on the room the door takes the player
+		//Change scene based on the room the door takes the player during the next physics process
+		CallDeferred(nameof(PhysicsProcessSceneChange));
+	}
+	
+	//Change scenes during the next physics process
+	public void PhysicsProcessSceneChange()
+	{
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
-		
 	}
 	
 	//Detect if the player has the key or not

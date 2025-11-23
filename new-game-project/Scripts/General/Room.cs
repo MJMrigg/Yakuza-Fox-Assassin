@@ -171,6 +171,10 @@ public partial class Room : Node2D
 		}
 	}
 	
+	public override void _Process(double delta)
+	{
+	}
+	
 	//Kept as refrence for now.
 	// DO NOT USE FOR SCENE TRANSITIONS
 	// Please use doors instead

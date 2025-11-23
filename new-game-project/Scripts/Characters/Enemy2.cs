@@ -87,7 +87,7 @@ public partial class Enemy2 : Enemy
 				NewBullet.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
 				NewBullet.Damage = Damage;
 				//Create the bullet
-				GetTree().GetRoot().AddChild(NewBullet);
+				GetTree().GetRoot().GetChild(1).AddChild(NewBullet);
 				//Play the animation and sound
 				MySpriteAnimation.Animation = "Shoot_"+CurrentDir;
 				MySpriteAnimation.Play();

@@ -147,6 +147,7 @@ public partial class NPC : Interactable
 		if(Health <= 0)
 		{
 			Dying = true;
+			GD.Print("TEST");
 			Remove();
 			return;
 		}
@@ -210,13 +211,16 @@ public partial class NPC : Interactable
 	public async override void Remove()
 	{
 		Dying = true;
-		if(!(MySpriteAnimation.Animation != ("Die_"+CurrentDir)))
+		if(MySpriteAnimation.Animation != ("Die_"+CurrentDir))
 		{ //If the animation isn't already set
 			MySpriteAnimation.Stop();
 			MySpriteAnimation.Animation = "Die_"+CurrentDir;
 		}
 		MySpriteAnimation.Play();
-		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		if(MySpriteAnimation.Frame < 4)
+		{ //Wait for the animation to play
+			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		}
 		await ToSignal(GetTree().CreateTimer(2),"timeout");
 		this.QueueFree();
 	}
