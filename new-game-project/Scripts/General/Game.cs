@@ -286,10 +286,17 @@ public partial class Game : Node
 			{
 				continue;
 			}
+			float decayed = LocalSuspicions[i] * 0.99f;
 			// If a room is above its threshold it will decay down to it. 
-			if(LocalSuspicions[i] > LocalSuspicionThresholds[i])
+			if(LocalSuspicions[i] >= LocalSuspicionThresholds[i])
 			{
-				LocalSuspicions[i] = LocalSuspicions[i] * 0.99f;
+				LocalSuspicions[i] = decayed <= LocalSuspicionThresholds[i] ? LocalSuspicionThresholds[i] : decayed;
+				GD.Print("Local Sus has decayed in room: " + i);
+			}
+			else
+			{
+				// Otherwise it decays down to 0
+				LocalSuspicions[i] = decayed;
 				//DEBUG STATEMENT
 				GD.Print("Local Sus has decayed in room: " + i);
 			}
