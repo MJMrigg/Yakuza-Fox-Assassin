@@ -270,9 +270,8 @@ public partial class Room : Node2D
 			newNPC.Position = new Vector2(x,y);
 			newNPC.Health = health;
 			newNPC.CurrentDir = dir;
-			// Not sure why but these two are not working.
-			//newNPC.MySpriteAnimation.Animation = animation;
-			//newNPC.MySpriteAnimation.Frame = frame;
+			newNPC.MySpriteAnimation.Animation = animation;
+			newNPC.MySpriteAnimation.Frame = frame;
 			newNPC.Dying = IsDying;
 			newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
 			
@@ -280,7 +279,7 @@ public partial class Room : Node2D
 			{
 				GetNode("NPCs").AddChild(newNPC);
 			} else {
-				GD.Print("NO NPC NODE TO ADD PAUL TO");
+				GD.PrintErr("NO NPC NODE TO ADD PAUL TO");
 			}
 			//AddChild(newNPC);
 			paulNotSpawned = false;
@@ -295,7 +294,7 @@ public partial class Room : Node2D
 			{
 				GetNode("NPCs/Security").QueueFree();
 			} else {
-				GD.Print("DAVID FUCKED UP");
+				GD.PrintErr("DAVID FUCKED UP!");
 			}
 			paulNotSpawned = true;
 		}

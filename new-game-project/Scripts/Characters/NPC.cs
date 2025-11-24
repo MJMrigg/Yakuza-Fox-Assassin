@@ -29,6 +29,9 @@ public partial class NPC : Interactable
 	[Export]
 	public int _type; //Type of NPC
 	
+	//DEBUG TESTING
+	public NavigationRegion2D NavRegion; //NavRegion for pathfinding
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -41,6 +44,26 @@ public partial class NPC : Interactable
 		}
 		this.AddToGroup("NPCs");
 		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
+		
+		//DEBUG STATEMENTS
+		// WHY IS THERE A SECOND HUSKY
+		/*
+		GD.Print("This Node is: " + Name);
+		GD.Print("This Node's id is: " + GetRid());
+		GD.Print(Name + " Parent is: " + GetParent().Name);
+		GD.Print("My current scene is: " + GetTree().CurrentScene + ", Name: " + GetTree().CurrentScene.Name);
+		*/
+		
+		if(GetTree().CurrentScene.HasNode("NavigationRegion2D"))
+		{
+			NavRegion = GetTree().CurrentScene.GetNode<NavigationRegion2D>("NavigationRegion2D");
+		}
+		else
+		{
+			GD.PrintErr("NavRegion not found");
+		}
+		
+		
 		PickNewTarget();
 	}
 
@@ -242,9 +265,23 @@ public partial class NPC : Interactable
 	public void PickNewTarget()
 	{
 		//Generate random set of coordinates
-		float RandX = Position.X+(GD.Randf()*400 - 200);
-		float RandY = Position.Y+(GD.Randf()*400 - 200);
-		NavAgent.TargetPosition = new Vector2(RandX,RandY);
+		//DT NOTE - This will not work on every map because these coordinates do not apply to every map.
+		//float RandX = Position.X+(GD.Randf()*400 - 200);
+		//float RandY = Position.Y+(GD.Randf()*400 - 200);
+		//NavAgent.TargetPosition = new Vector2(RandX,RandY);
+		
+		//Instead we must get random positions from the NavRegion
+		if (NavRegion == null)
+		{
+			GD.PrintErr("NavRegion is not assigned");
+			return;
+		}
+		// RID of the nav region
+		Rid regionRid = NavRegion.GetRegionRid();
+		//GD.Print("NavRegion: " + regionRid);
+		Vector2 randomPoint = NavigationServer2D.RegionGetRandomPoint(regionRid, 1, true);
+		//GD.Print("Random Point: " + randomPoint);
+		NavAgent.TargetPosition = randomPoint;
 	}
 	
 	//Set the NPC's direction

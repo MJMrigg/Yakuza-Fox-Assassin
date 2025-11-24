@@ -157,8 +157,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Security" type="CharacterBody2D"]
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "MyPhysicsCollider", "MySpriteAnimation")]
 script = ExtResource("1_6uiao")
+Speed = 180.0
+NavAgent = NodePath("NavigationAgent2D")
+MyPhysicsCollider = NodePath("CollisionShape2D")
+MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7and2")
@@ -213,3 +217,12 @@ position = Vector2(0, -1)
 stream = ExtResource("15_8435d")
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("16_e6fmn")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+path_max_distance = 200.0
+path_postprocessing = 2
+avoidance_enabled = true
+radius = 75.0
+neighbor_distance = 200.0

@@ -143,6 +143,8 @@ public partial class Game : Node
 	public int PatrolRoom = 18;
 	public bool debugBool = true;
 	public int prevPatrolRoom = 18; 
+	public int destPatrolRoom = 18; 
+	public bool exitAnimPlayed = true; 
 	
 	//Paul move probd
 	public float baseProbability = 1f;
@@ -275,10 +277,24 @@ public partial class Game : Node
 	public override void _Process(double delta)
 	{
 		if(GameStart){
+			//Paul animation debug
+			if(PatrolRoom != PlayerRoom)
+			{
+				exitAnimPlayed = true;
+			}
+			
+			//If allowed to move, and destRoom has not been determined yet
+			if(paulCanMove && destPatrolRoom == PatrolRoom)
+			{
+				//Then determine dest
+				determinePaulLoc();
+			}
+			
 			// Paul is allowed to move to another room if
 			// 1. paulCanMove == True --> The timer has expired
 			// 2. Paul is not in the same hostile room as the Player. If he his then he needs to kick the player's ass
-			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]))
+			// 3. If Paul is in the same room as the player, and he has reached his exit. 
+			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]) && exitAnimPlayed)
 			{
 				movePaul();
 				paulCanMove = false;
@@ -334,14 +350,13 @@ public partial class Game : Node
 			if(LocalSuspicions[i] >= LocalSuspicionThresholds[i])
 			{
 				LocalSuspicions[i] = decayed <= LocalSuspicionThresholds[i] ? LocalSuspicionThresholds[i] : decayed;
-				GD.Print("Local Sus has decayed in room: " + i);
+				//GD.Print("Local Sus has decayed in room: " + i);
 			}
 			else
 			{
 				// Otherwise it decays down to 0
 				LocalSuspicions[i] = decayed;
-				//DEBUG STATEMENT
-				GD.Print("Local Sus has decayed in room: " + i);
+				
 			}
 			
 		}
@@ -386,9 +401,20 @@ public partial class Game : Node
 	//Changes Paul's current room
 	public void movePaul()
 	{
-		Random random = new Random();
 		GD.Print("-----------------");
+		prevPatrolRoom = PatrolRoom;
 		GD.Print("Paul was in Room: " + prevPatrolRoom);
+		PatrolRoom = destPatrolRoom;
+		GD.Print("Paul is now in Room: " + PatrolRoom);
+		GD.Print("-----------------");
+		spawnPaul(); // Add Paul to the room he has entered
+		killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
+		paulWait();
+	}
+	
+	public void determinePaulLoc()
+	{
+		Random random = new Random();
 		//Get room options
 		var roomOptions = roomMap[PatrolRoom].Keys.ToList();
 		
@@ -400,12 +426,8 @@ public partial class Game : Node
 		//Player Combat Move; Priority 1
 		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
 		{
-			prevPatrolRoom = PatrolRoom;
-			PatrolRoom = PlayerRoom;
-			GD.Print("Combat Detected at: " + PatrolRoom);
-			spawnPaul(); // Add Paul to the room he has entered
-			killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
-			paulWait();
+			destPatrolRoom = PlayerRoom;
+			GD.Print("Combat Detected at: " + destPatrolRoom);
 			return;
 		}
 		
@@ -456,7 +478,6 @@ public partial class Game : Node
 			totalWeight += weight;
 		}
 		GD.Print("Total Weight: " + totalWeight);
-		prevPatrolRoom = PatrolRoom;
 		
 		// Weighted random selection
 		float roll = (float)random.NextDouble() * totalWeight;
@@ -466,16 +487,11 @@ public partial class Game : Node
 			cumulative += weights[i];
 			if (roll <= cumulative)
 			{
-				PatrolRoom = roomOptions.ElementAt(i);
-				GD.Print("Selected Room: " + PatrolRoom);
+				destPatrolRoom = roomOptions.ElementAt(i);
+				GD.Print("Selected Room: " + destPatrolRoom);
 				break;
 			}
 		}
-		GD.Print("Paul is now in Room: " + PatrolRoom);
-		GD.Print("-----------------");
-		spawnPaul(); // Add Paul to the room he has entered
-		killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
-		paulWait();
 	}
 	
 	// I summon Paul in defense position
