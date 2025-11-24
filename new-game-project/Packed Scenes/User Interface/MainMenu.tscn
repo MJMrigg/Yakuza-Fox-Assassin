@@ -68,7 +68,7 @@ offset_top = -0.24000168
 offset_right = 0.21496582
 offset_bottom = 0.19197845
 grow_horizontal = 2
-text = "Return of the Lost Child"
+text = "Interstellar Fox Yakuza Takedown"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -119,6 +119,7 @@ text = "Quit"
 
 [node name="ButtonSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_m5yk3")
+bus = &"soundEffect"
 
 [connection signal="pressed" from="Menu/PlayButton" to="." method="GoDifficultyMenu"]
 [connection signal="pressed" from="Menu/SettingsButton" to="." method="GoSettingsMenu"]

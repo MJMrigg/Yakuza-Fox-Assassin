@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcnf2vciav3oj"]
+
+[ext_resource type="Script" uid="uid://kfq0aftqe660" path="res://Scripts/User Interface/Credits.cs" id="1_d44a3"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 3.022
+offset_bottom = -0.25610352
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_d44a3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.54
+anchor_right = 1.0
+anchor_bottom = 2.9080002
+offset_top = -707.32007
+offset_bottom = -707.7842
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Intersteller Fox Yakuza Takedown"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Names" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "A game by Matthew Rigg, Megan Ruiz, and David Thompson"
+horizontal_alignment = 1
+
+[node name="Credits" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Music Credits:
+Song1: perfect for stealth sniper missions music by DesiFreeMusic
+Song2: perfect for stealth sniper missions music by DesiFreeMusic
+BossSong: Spy Thriller Mission (Covert Ops Music) by DesiFreeMusic
+BarSong: Bar Noir by 99qtz
+
+Sound Effect Credits:
+ChihuahuaBark: Chihuahua Barking by freesound_community
+ChihuahuaDeath: Chihuahua Whines by freesound_community
+HuskyBark: 071078_Husky dog barking and \"talking\" by Freesound Community
+HuskyDeath: DOG YELP by Stu9
+TanukiBark: Monkey by MagiaZ
+TabukiDeath: Puppy crying by belen_abo (Freesound)
+PaulBark1: Bark (Wave Leighlah) (F) (Female Furry Funny) by BalancedEnergy10 (Freesound)
+PaulBark2-9: Angry Pitbull Dog Barking - Aggressive Guard Dog Sound Effect by MrVailen
+PaulAttack1: Cartoon Slap 1 by floraphonic
+PaulAttack2: Thud by Universfield
+PaulNotice: Spotted Owl2 no noise by Ittldude9 (Freesound)
+PaulHasArrived: Suddenly And Without Warning by Universfield
+PaulHasArrivedDunDun: Video Game Whoosh Sound Effect by DRAGON-STUDIO
+PaulKnockOut: Body Hitting Ground by Universfield
+PaulUnconcious: Cartoon dizzy birds - Meme Sound Effect Button for Soundboard by zaakkii05
+FireBall1: fire magic (6) by yodguard
+FireBall2: fire magic (2) by yodguard
+FireBall3: fire magic (1) by yodguard
+FireBall4: fire magic (5) by yodguard
+FireExplosion: Fire Ball by freesound_CrunchpixStudio
+BattleCry: Epic Dragon Roar by DRAGON-STUDIO
+BossGrowl: troll roars by Darycho (Freesound)
+BossDeath: Ultra Kill by SoundReality
+BossHowl: howling by PhonosUPF (Freesound)
+BiteAttack: Dog eating a bone and growling by freesound_community
+Knife1: Knife Swish 2 by potentjello
+Knife2: Knife slice by NeoSpica (Freesound)
+Knife3: knife_swish01 by konpeito_sound
+PistolLoud: pistol shot by mrfriends
+ShotgunAndReload (fire): 080902_Shotgun by Freesound Community and 
+ShotgunAndReload (reload): Doom Shotgun 2017 by morganpurkis (Freesound)
+PlayerDeathWhine: Animal Dying Sound by ZpPizza
+PlayerDeathRetro: Retro Video Game Death by SRJA_Gaming (Freesound)
+PlayerGameOver: 080205_Life Lost Game Over by Freesound Community
+PlayerGameOverSad: Game Over by Alphix
+Crouch: Sneaky Walking by jimmybombimmy (Freesound)
+Dash: Quick Whoosh by DRAGON-STUDIO
+Drinking: Dog Drinking Water 3 by SOUND_GARAGE
+MenuButtonClick: menu click by Lesaek_Szary (Freesound)
+MenuPlayAndQuit: Button Press by DRAGON-STUDIO
+GlobalSuspicionToHigh: ALERT by freesound_community
+DogHurt: Injured Street Dog Crying with Barking Dogs Reacting by arunangshubanerjee
+RetroHurt: hit sound(video game type) by RibhavAgrawal
+MetalFootsteps: Metal Footsteps by Phil25 (Freesound)
+WoodFootstep: Footsteps on Wood by DRAGON-STUDIO
+DoorOpen: Spaceship Door Open by MarcusGraham325 (Freesound)"

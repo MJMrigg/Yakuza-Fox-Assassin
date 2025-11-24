@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://15ua3onjiawf"]
+[gd_scene load_steps=8 format=4 uid="uid://15ua3onjiawf"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_mof58"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_s3uin"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_fm4wg"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_fgg6f"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_72dqy"]
+[ext_resource type="PackedScene" uid="uid://dqjgyl2i4nf07" path="res://Packed Scenes/Characters/Characters/Bartender.tscn" id="7_fm4wg"]
 
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_s3uin")
@@ -27,10 +28,9 @@ tile_set = ExtResource("1_mof58")
 tile_map_data = PackedByteArray("AAACAAAAAQAAAAMAAAAHAAAAAQAAAAMAAAAGAAAAAQABAAMAAAACAP//AQABAAMAAAADAAAAAQABAAMAAAAFAAAAAQAAAAMAABACAAIAAQABAAMAAAAGAAIAAQAAAAMAAAAAAAMAAQAAAAMAABAHAAQAAQAAAAYAAAACAAUAAQAAAAMAAAAIAAQAAQAAAAMAAAAIAAAAAQADAAEAAAA=")
 tile_set = ExtResource("1_mof58")
 
-[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera", "HealthBar") instance=ExtResource("3_431ec")]
+[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("3_431ec")]
 position = Vector2(289, 589)
 PlayerCamera = NodePath("../Camera2D")
-HealthBar = NodePath("../MainUI/Main/Player/WeaponsAndHealth/Health/ProgressBar")
 
 [node name="MainUI" parent="." instance=ExtResource("4_fm4wg")]
 
@@ -47,5 +47,8 @@ ConnectedRoom = 10
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
+
+[node name="Bartender" parent="." instance=ExtResource("7_fm4wg")]
+position = Vector2(331, 95)
 
 [editable path="MainUI"]

@@ -153,22 +153,15 @@ public partial class Game : Node
 	public bool isPaused = false;
 	public bool canDecay = true;
 	
+	//Limits on how many times the player can drink at the bar
+	public int DrinkLimit = 3;
+	public int CurrentDrinks = 0;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		//Create a global instance of the Game
 		Instance = this;
-		//Set up local suspicions, thresholds, and NPCs
-		for(int i = 0; i < 21; i++)
-		{
-			LocalSuspicions[i] = 0;
-			RoomsHostile[i] = false;
-			NPCs[i] = new List<string>();
-			Projectiles[i] = new List<string>();
-			FirstSaved[i] = false; //The rooms currently have no saved data
-		}
-		RoomsHostile[20] = true; //Boss room starts hostile
-		NPCs[0] = null; //No NPCs in the first room
 		MaxLocalSuspicions = 
 		[
 			//First Half
@@ -183,7 +176,6 @@ public partial class Game : Node
 			//Second Half
 			4,1,1,-1,5,1,4,1,3.5f,3,-1
 		];
-		
 		//Calculate Max Global Suspcition
 		for(int i = 0; i < 21; i++)
 		{
@@ -194,7 +186,59 @@ public partial class Game : Node
 			}
 			MaxGlobalSuspicion += MaxLocalSuspicions[i];
 		}
+		//Set Up Default controls
+		var actions = InputMap.GetActions();
+		foreach (var i in actions)
+		{
+			string actionName = i.ToString();
+			if (!actionName.StartsWith("ui_"))
+			{
+				var test = InputMap.ActionGetEvents(actionName);
+				defControls.Add(i, test);
+			}
+		}
 		
+		StartGame();
+	}
+
+	//Start the game with all initial values
+	public void StartGame()
+	{
+		GlobalSuspicion = 0;
+		PlayerRoom = 0;
+		paulCanMove = true;
+		RoomItems = new Dictionary<int, List<float>>
+		{ //Data to store items in rooms
+			{ 4, new List<float>() }, //Knife in the cafeteria
+			{ 7, new List<float>() }, //Green key in security1
+			{ 11, new List<float>() }, //Red key in medic
+			{ 12, new List<float>() }, //Hamster in lab
+			{ 15, new List<float>() } //Shotgun in armory
+		};
+		PlayerHealth = 100;
+		MaxPlayerHealth = 100;
+		BossIsDead = false; //Boss is not dead
+		//Patrolling NPC data
+		PatrolRoom = 18;
+		debugBool = true;
+		prevPatrolRoom = 18; 
+		//Paul move probd
+		baseProbability = 1f;
+		susWeightMult = 3f;
+		GameStart = false;
+		isPaused = false;
+		canDecay = true;
+		//Set up local suspicions, thresholds, and NPCs
+		for(int i = 0; i < 21; i++)
+		{
+			LocalSuspicions[i] = 0;
+			RoomsHostile[i] = false;
+			NPCs[i] = new List<string>();
+			Projectiles[i] = new List<string>();
+			FirstSaved[i] = false; //The rooms currently have no saved data
+		}
+		RoomsHostile[20] = true; //Boss room starts hostile
+		NPCs[0] = null; //No NPCs in the first room
 		//Set up player inventory
 		for(int i = 0; i < 5; i++)
 		{
@@ -214,18 +258,17 @@ public partial class Game : Node
 		//Place it in their inventory
 		PlayerInventory[0] = new Item();
 		PlayerInventory[0].ID = ItemData[3];
-		
-		//Set Up Default controls
-		var actions = InputMap.GetActions();
-		foreach (var i in actions)
+		//Calculate Max Global Suspcition
+		for(int i = 0; i < 21; i++)
 		{
-			string actionName = i.ToString();
-			if (!actionName.StartsWith("ui_"))
+			//Ignore rooms without suspicion
+			if(MaxLocalSuspicions[i] == -1)
 			{
-				var test = InputMap.ActionGetEvents(actionName);
-				defControls.Add(i, test);
+				continue;
 			}
+			MaxGlobalSuspicion += MaxLocalSuspicions[i];
 		}
+		CurrentDrinks = 0;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

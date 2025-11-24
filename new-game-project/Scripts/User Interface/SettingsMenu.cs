@@ -10,10 +10,13 @@ public partial class SettingsMenu : Control
 	public string curAction;
 	public string curText;
 	public Button curButton;
+	
+	public AudioStreamPlayer ButtonSound;
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ButtonSound = ((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +26,7 @@ public partial class SettingsMenu : Control
 	
 	//Change a keybinding
 	public void ChangeKeyBinding(InputEvent @event, string action) {
+		//ButtonSound.Play();
 		// CHECK WHAT TYPE OF EVENT
 		InputEvent newEvent = null;
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
@@ -59,12 +63,14 @@ public partial class SettingsMenu : Control
 			// We good boss
 			InputMap.ActionEraseEvents(action);
 			InputMap.ActionAddEvent(action, newEvent);
+			ButtonSound.Play();
 		}
 		SetProcessInput(false);
 		var events = InputMap.ActionGetEvents(action);
 		if(curButton != null)
 		{
 			curButton.Text = events[0].AsText();
+			ButtonSound.Play();
 		}
 	}
 	
@@ -86,6 +92,7 @@ public partial class SettingsMenu : Control
 	public void buttonsTog(Button thisBut, bool tog, string defaultText, string action)
 	{
 		if(tog){
+			ButtonSound.Play();
 			thisBut.Text = "Press A Key";
 			curAction = action;
 			curButton = thisBut;
@@ -141,12 +148,14 @@ public partial class SettingsMenu : Control
 	//Return to the scene
 	public void ReturnToScene()
 	{
+		ButtonSound.Play();
 		Visible = false;
 	}
 	
 	// Restores default controls scheme
 	public void restoreDefault()
 	{
+		ButtonSound.Play();
 		var actions = InputMap.GetActions();
 		foreach (var i in actions)
 		{
@@ -198,6 +207,7 @@ public partial class SettingsMenu : Control
 	//Open the settings menu
 	public void OpenSettings()
 	{
+		((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound")).Play();
 		Visible = true;
 	}
 	

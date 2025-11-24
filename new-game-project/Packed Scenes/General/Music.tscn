@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr3gnv32x7lfb"]
+[gd_scene load_steps=4 format=3 uid="uid://dr3gnv32x7lfb"]
 
+[ext_resource type="AudioStream" uid="uid://bmgs2cf2ro1uh" path="res://Art Assets/Music/Music/Song2.mp3" id="1_me6yv"]
 [ext_resource type="Script" uid="uid://bg4d5km2hc4ur" path="res://Scripts/General/MusicPlayer.cs" id="2_b6ggh"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="3_m3ijk"]
 
 [node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_me6yv")
+autoplay = true
 bus = &"music"
 script = ExtResource("2_b6ggh")
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m3ijk")
+bus = &"soundEffect"

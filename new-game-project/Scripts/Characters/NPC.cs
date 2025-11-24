@@ -214,6 +214,10 @@ public partial class NPC : Interactable
 			MySpriteAnimation.Stop();
 			MySpriteAnimation.Animation = "Die_"+CurrentDir;
 		}
+		if(IsBoss) //Play the boss death sound
+		{
+			((AudioStreamPlayer2D)GetNode("Sounds/BossDeath")).Play();
+		}
 		MySpriteAnimation.Play();
 		if(MySpriteAnimation.Frame < 3)
 		{ //Wait for the animation to play

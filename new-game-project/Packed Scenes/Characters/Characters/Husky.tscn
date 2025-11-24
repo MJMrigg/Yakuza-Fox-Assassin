@@ -447,7 +447,7 @@ NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
 _type = 4
 InitialDialog = "Why hello there!"
-DialogueOptions = PackedStringArray("Aren;t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
+DialogueOptions = PackedStringArray("Aren\'t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
 DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I had to come here.", "It\'s not bad. Except when you\'re the only one who bothers cleaning their weapon. I\'m looking at you Gary!", "Oh, not under my watch you will")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
 MyPhysicsCollider = NodePath("CollisionShape2D")
@@ -489,6 +489,7 @@ stream = ExtResource("7_uetyp")
 [node name="PistolLoud" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("10_modip")
 volume_db = -20.0
+bus = &"soundEffect"
 
 [node name="HostileRadius" type="Area2D" parent="."]
 collision_layer = 2

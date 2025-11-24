@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://di3dj135mkpr1"]
+[gd_scene load_steps=8 format=4 uid="uid://di3dj135mkpr1"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_ajb25"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_nqe3y"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="4_elh2u"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_fgguh"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_elh2u"]
+[ext_resource type="PackedScene" uid="uid://dqjgyl2i4nf07" path="res://Packed Scenes/Characters/Characters/Bartender.tscn" id="7_elh2u"]
 
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_ajb25")
@@ -52,5 +53,8 @@ ConnectedRoom = 4
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
+
+[node name="Bartender" parent="." instance=ExtResource("7_elh2u")]
+position = Vector2(331, 95)
 
 [editable path="MainUI"]

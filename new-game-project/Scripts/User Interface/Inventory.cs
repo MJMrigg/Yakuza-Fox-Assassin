@@ -7,6 +7,8 @@ public partial class Inventory : VBoxContainer
 	
 	public Weapon[] EquipedWeapons = new Weapon[2]; //Array of equiped weapons
 	
+	public AudioStreamPlayer ButtonSound;
+	
 	//Signals to tell the weapon slots to change to a different texture
 	[Signal]
 	public delegate void ChangeMeleeWeaponEventHandler(string path, int ID);
@@ -16,6 +18,7 @@ public partial class Inventory : VBoxContainer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ButtonSound = (AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,6 +66,7 @@ public partial class Inventory : VBoxContainer
 	//Unequip an item
 	public void UnEquipItem(int UnEquip)
 	{
+		ButtonSound.Play();
 		if(UnEquip % 2 == 0)
 		{ //Uequip the melee weapon
 			EquipedWeapons[0] = Game.Instance.Bite;
@@ -75,5 +79,13 @@ public partial class Inventory : VBoxContainer
 			EmitSignal(SignalName.ChangeRangedWeapon,"",-1);
 			Game.Instance.PlayerWeapons[1] = Game.Instance.Bite;
 		}
+	}
+	
+	//Close the inventory
+	public void CloseInventory()
+	{
+		ButtonSound.Play();
+		Player player = (Player)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("Player");
+		player.OpenInv();
 	}
 }

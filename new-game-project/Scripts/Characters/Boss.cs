@@ -144,11 +144,6 @@ public partial class Boss : Enemy
 		ExplosionAttackCoolDown();
 	}
 	
-	//Boss has special death logic
-	public async override void Remove()
-	{
-	}
-	
 	//Cool down for explosion attack
 	public async void ExplosionAttackCoolDown()
 	{

@@ -19,11 +19,12 @@ public partial class DifficultyMenu : ColorRect
 	}
 	
 	//Start the game
-	public async void StartGame()
+	public void StartGame()
 	{
 		//On call change to appropriate scene and start game
+		Game.Instance.StartGame();
+		Game.Instance.MaxGlobalSuspicion *= Difficulty;
 		Game.Instance.GameStart = true;
-		await ToSignal(buttonSound,AudioStreamPlayer.SignalName.Finished);
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[0]);
 	}
 	
@@ -33,28 +34,24 @@ public partial class DifficultyMenu : ColorRect
 		foreach(Button i in GetTree().GetNodesInGroup("difButtons"))
 		{
 			if(i.IsPressed()){
-				buttonSound.Play();
+				((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound")).Play();
 				switch(i.Text.ToLower().Trim())
 				{
 					case "easy":
 						Difficulty = 0.9f;
-						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					case "medium":
 						Difficulty = 0.8f;
-						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					case "hard":
 						Difficulty = 0.7f;
-						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 					default:
 						// Somehow broke the game. So **** you, you get the hardest difficulty.
 						Difficulty = 0.1f; 
-						Game.Instance.MaxGlobalSuspicion *= Difficulty;
 						StartGame();
 						break;
 				}

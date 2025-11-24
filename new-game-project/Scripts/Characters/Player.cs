@@ -95,6 +95,7 @@ public partial class Player : Entity
 		//If the player killed the boss, tell the player
 		if(Game.Instance.BossIsDead)
 		{
+			MySpriteAnimation.Stop();
 			InformOfDeath();
 			return;
 		}
@@ -111,6 +112,24 @@ public partial class Player : Entity
 			{
 				MySpriteAnimation.Stop();
 			}
+			return;
+		}
+		
+		//If the player became to suspicious, tell the player
+		if(Game.Instance.GlobalSuspicion >= Game.Instance.MaxGlobalSuspicion)
+		{
+			MySpriteAnimation.Stop();
+			GetTree().CallGroup("Pausable","Pause");
+			InformOfDeath();
+			return;
+		}
+		
+		//If the player drank too much champaw, tell the player
+		if(Game.Instance.CurrentDrinks >= Game.Instance.DrinkLimit)
+		{
+			MySpriteAnimation.Stop();
+			GetTree().CallGroup("Pausable","Pause");
+			InformOfDeath();
 			return;
 		}
 		
@@ -285,6 +304,11 @@ public partial class Player : Entity
 	//Shoot a bullet
 	public void CreateProjectile()
 	{
+		//If the player is in the bar, do not attack
+		if(RoomId == 5 || RoomId == 13)
+		{
+			return;
+		}
 		//If there is no gun equipped, do a bite attack
 		if(Inv.EquipedWeapons[1].ID == 0)
 		{
@@ -416,22 +440,39 @@ public partial class Player : Entity
 		Game.Instance.IncreaseLocalSuspicion(RoomId, amount);
 	}
 	
-	//Tell the player that either the player or the boss has died
+	//Tell the player that they lost or won the game
 	public void InformOfDeath()
 	{
 		ColorRect WinLoseMenu = (ColorRect)PlayerUI.GetNode("WinLoseMenu");
 		WinLoseMenu.Visible = true;
 		if(Game.Instance.BossIsDead) //The boss died
-		{
+		{ //The boss died
 			((Label)WinLoseMenu.GetNode("Text")).Text = "You have taken down the Yakuza!";
-		}else{ //The player died
+		}else if(Dying || Health <= 0) //The player died
+		{ //The player died
 			((Label)WinLoseMenu.GetNode("Text")).Text = "You Died.";
+		}
+		else if(Game.Instance.GlobalSuspicion >= Game.Instance.MaxGlobalSuspicion)
+		{ //Global suspicion is too high
+			((Label)WinLoseMenu.GetNode("Text")).Text = "You triggered the alarm. The boss has fled.";
+			((AudioStreamPlayer2D)GetNode("Sounds/GlobalSuspicionTooHigh")).Play();
+		}
+		else if(Game.Instance.CurrentDrinks >= Game.Instance.DrinkLimit)
+		{ //The player drank to much champawn
+			((Label)WinLoseMenu.GetNode("Text")).Text = "You drank too much. You pass and are captured.";
+			((AudioStreamPlayer2D)GetNode("Sounds/PlayerGameOverSad")).Play();
 		}
 	}
 	
 	//Deal damage when attacking something
 	public async void DealDamage()
 	{
+		//If the player is in the bar, do not attack
+		if(RoomId == 5 || RoomId == 13)
+		{
+			return;
+		}
+		
 		//If the melee attack is still on cool down, do not melee attack
 		if(!MeleeCooldown)
 		{

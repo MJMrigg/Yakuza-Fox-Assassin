@@ -24,6 +24,7 @@ public partial class MainMenu : Node
 	public override void _Ready()
 	{
 		GameStart = false;
+		buttonSound = ((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,9 +42,9 @@ public partial class MainMenu : Node
 	{
 		if (setMenu != null)
 		{
+			buttonSound.Play();
 			setMenu.Visible = true; 
 			playMenu.Visible = false;
-			buttonSound.Play();
 		} else {
 			GD.Print("Setting Menu has not been assigned");
 		}
@@ -54,9 +55,9 @@ public partial class MainMenu : Node
 	{
 		if (difMenu != null)
 		{
+			buttonSound.Play();
 			difMenu.Visible = true; 
 			playMenu.Visible = false;
-			buttonSound.Play();
 		} else {
 			GD.Print("Difficulty Menu has not been assigned");
 		}
