@@ -18,6 +18,7 @@ public partial class PatrollingNPC : Enemy
 		base._Ready();
 		Damage = 15;
 		AttackCooldown = 3;
+		IsHostile = Game.Instance.RoomsHostile[RoomId];
 		
 		// Set exitAnimPlayed in Game.cs to false to prevent Paul from despawning
 		Game.Instance.exitAnimPlayed = false;
@@ -83,9 +84,9 @@ public partial class PatrollingNPC : Enemy
 					return;
 				}
 				//Play attack sound and animation
-				int Chosen = (int)GD.Randi()%8 + 1;
+				int Chosen = GD.RandRange(1,8);
 				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/PaulBark"+Chosen));
-				AttackSound.SetVolumeDb(-15.0f);
+				//AttackSound.SetVolumeDb(-15.0f);
 				AttackSound.Play();
 				//PAUL DOES NOT HAVE AN ATTACK ANIMATION RIGHT NOW
 				player.TakeDamage(Damage);
@@ -95,6 +96,17 @@ public partial class PatrollingNPC : Enemy
 				return;
 			}
 		}
+	}
+	
+	//Begin dialogue
+	public override void BeginDialogue()
+	{
+		base.BeginDialogue();
+		//Set second to last dialogue option to pick up the item
+		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
+		int DialogueCount = DialogueContainer.GetChildCount();
+		DialogueOption PickUpOption = (DialogueOption)DialogueContainer.GetChild(DialogueCount-2);
+		PickUpOption.Pressed += EndDialogue;
 	}
 	
 	//Paul falls unconsious instead of being removed from the scene

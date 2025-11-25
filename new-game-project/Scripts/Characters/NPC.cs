@@ -155,14 +155,15 @@ public partial class NPC : Interactable
 		//Take away health
 		Health -= damage;
 		
+		GD.Print(IsHostile);
 		//Make the room hostile
 		if(!IsHostile)
 		{
 			GetTree().CallGroup("NPCs","MakeHostile");
 			Game.Instance.RoomsHostile[RoomId] = true;
 			//Increase the local suspicion to max
+			GD.Print("Increase Local suspsicion");
 			Game.Instance.IncreaseLocalSuspicion(RoomId,Game.Instance.MaxLocalSuspicions[RoomId]);
-			//LocalSusMeter.Value = Game.Instance.LocalSuspicions[RoomId];
 		}
 		
 		//Handle if the NPC died
@@ -172,11 +173,12 @@ public partial class NPC : Interactable
 			Remove();
 			return;
 		}
-		int Chosen = (int)(GD.Randi() % 12) + 1;
+		//Play hurt animation and sound
 		MySpriteAnimation.Animation = "Hurt_"+CurrentDir;
 		MySpriteAnimation.Play();
 		if(!IsBoss)
 		{
+			int Chosen = (int)(GD.Randi() % 12) + 1;
 			((AudioStreamPlayer2D)GetNode("Sounds/GeneralSounds/DogHurt"+Chosen)).Play();
 		}
 	}

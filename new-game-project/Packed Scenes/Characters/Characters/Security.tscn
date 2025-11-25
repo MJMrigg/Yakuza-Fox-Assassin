@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=55 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Script" uid="uid://dfvydf8b2b5hi" path="res://Scripts/Characters/PatrollingNPC.cs" id="1_6uiao"]
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
 [ext_resource type="AudioStream" uid="uid://4l5aslkhqptf" path="res://Art Assets/Sounds/Paul/PaulAttack1.mp3" id="2_rdvp8"]
+[ext_resource type="Texture2D" uid="uid://ogwnn820rtfd" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Die-Anim_NPC-2.png" id="2_x6gxg"]
 [ext_resource type="AudioStream" uid="uid://8bjwd1nw2bdm" path="res://Art Assets/Sounds/Paul/PaulAttack2.mp3" id="3_sx5u6"]
 [ext_resource type="AudioStream" uid="uid://dwdabw2nrnpwj" path="res://Art Assets/Sounds/Paul/PaulBark1.mp3" id="4_dklhh"]
 [ext_resource type="AudioStream" uid="uid://bi6a7kcqqykbv" path="res://Art Assets/Sounds/Paul/PaulBark2.mp3" id="5_i6j1q"]
@@ -24,6 +25,70 @@ height = 82.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uiao"]
 size = Vector2(100, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptyyj"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bv6b"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl15h"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edawj"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(288, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh3n7"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kel72"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb46i"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wmmk"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(288, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpxj2"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hmre"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj6en"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3i2b"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(288, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koa7i"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t63mi"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx4g8"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsm1a"]
+atlas = ExtResource("2_x6gxg")
+region = Rect2(288, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17at2"]
 atlas = ExtResource("1_sht32")
@@ -91,22 +156,70 @@ region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qkkyo"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptyyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bv6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sl15h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edawj")
+}],
 "loop": false,
 "name": &"Hurt_D",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh3n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kel72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb46i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wmmk")
+}],
 "loop": false,
 "name": &"Hurt_L",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpxj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hmre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj6en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3i2b")
+}],
 "loop": false,
 "name": &"Hurt_R",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koa7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t63mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx4g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsm1a")
+}],
 "loop": false,
 "name": &"Hurt_U",
 "speed": 5.0
@@ -183,15 +296,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6uiao"]
 radius = 300.0
 
-[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_6uiao")
 AttackRadius = NodePath("CollisionShape2D/AttackRadius")
-Speed = 180.0
+DeathSound = NodePath("Sounds/PaulUnconcious")
+Speed = 150.0
 Health = 170
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+InitialDialog = "Waddaya want?!"
+DialogueOptions = PackedStringArray("Who are you?", "How old are you?", "Hey, so I\'m an intruder.", "Goodbye!")
+DialogResponses = PackedStringArray("I am the Paw Patrol Guard of this ship. If it weren\'t for me, this place would be in flames!", "Old enough to know never to ask an old man that question.", "WHAT?!", "")
+DialogSuspicion = PackedFloat32Array(0, 0, 19, 0)
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -209,52 +327,66 @@ shape = SubResource("RectangleShape2D_6uiao")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
-animation = &"Walk_R"
+animation = &"Hurt_U"
 
 [node name="Sounds" type="Node" parent="."]
 
 [node name="PaulAttack1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("2_rdvp8")
+bus = &"soundEffect"
 
 [node name="PaulAttack2" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("3_sx5u6")
+bus = &"soundEffect"
 
 [node name="PaulBark1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_dklhh")
+bus = &"soundEffect"
 
 [node name="PaulBark2" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("5_i6j1q")
+bus = &"soundEffect"
 
 [node name="PaulBark3" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("6_e6fmn")
+bus = &"soundEffect"
 
 [node name="PaulBark4" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("7_8435d")
+bus = &"soundEffect"
 
 [node name="PaulBark5" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_q7rhs")
+bus = &"soundEffect"
 
 [node name="PaulBark6" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("9_8vqx4")
+bus = &"soundEffect"
 
 [node name="PaulBark7" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("10_y4wq0")
+bus = &"soundEffect"
 
 [node name="PaulBark8" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("11_suhcy")
+bus = &"soundEffect"
 
 [node name="PaulBark9" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("12_7qwtg")
+bus = &"soundEffect"
 
 [node name="PaulKnockOut" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("13_i6j1q")
+bus = &"soundEffect"
 
 [node name="PaulNotice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("14_e6fmn")
+bus = &"soundEffect"
 
 [node name="PaulUnconcious" type="AudioStreamPlayer2D" parent="Sounds"]
 position = Vector2(0, -1)
 stream = ExtResource("15_8435d")
+bus = &"soundEffect"
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("16_e6fmn")]
 

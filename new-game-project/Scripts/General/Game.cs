@@ -388,6 +388,7 @@ public partial class Game : Node
 		{
 			GlobalSuspicion += (LocalSuspicions[Room] - LocalSuspicionThresholds[Room]);
 		}
+		GD.Print("MAde it!");
 	}
 	
 	
@@ -508,10 +509,27 @@ public partial class Game : Node
 	// Add Paul's String to NPC
 	public void spawnPaul()
 	{
+		Dictionary<int, Dictionary<int, Vector2>> PaulMap = new Dictionary<int, Dictionary<int, Vector2>>
+		{
+			// <Market(1), [Docks(0), Living1(2), Cafeteria(4), Storage(6), SecurityEngine(7), Production(9), TrainingYard(10)]>
+			{1, new Dictionary<int, Vector2> { { 0, new Vector2(-19, 252) }, { 2, new Vector2(181, -17) }, { 4, new Vector2(466, -17) }, { 6, new Vector2(684, -17) }, { 7, new Vector2(145, 634) }, { 9, new Vector2(578, 634) }, { 10, new Vector2(845, 250) } } },
+			//<Training Yard(10), [Market(1), Medic(11), Bar2(13), Range(14), Living(16), Security2(18)]>
+			{10, new Dictionary<int, Vector2> { {1, new Vector2(-59,251) }, {11, new Vector2(180,41) }, {13, new Vector2(469,41) }, {14, new Vector2(684,43) }, { 16, new Vector2(364,585) }, { 18, new Vector2(771,257) } } },
+			//<Security2(18), [Training Yard(10), Controls(19)]>
+			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-26,256) }, { 19, new Vector2(687,-25) } } },
+		};
 		//Save Paul's data into the list
 		NPCs[PatrolRoom].Add((7).ToString()); // Paul's TYPE
-		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position (Same as Player)
-		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position (Same as Player)
+		if(PatrolRoom == 1 || PatrolRoom == 10 || PatrolRoom == 18)
+		{
+			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
+			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
+		}
+		else
+		{
+			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
+			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
+		}
 		NPCs[PatrolRoom].Add((1).ToString()); // Paul's HP
 		NPCs[PatrolRoom].Add(("D").ToString()); // Paul's Current direction (same as Player)
 		NPCs[PatrolRoom].Add(("Walk_D").ToString()); // Paul's current animation

@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_xguhg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xguhg"]
-vertices = PackedVector2Array(690, 246, 836.53125, 246, 836.4219, 258, 690, 258, 402, 713.4922, 318, 714.1406, 318, 474, 402, 474, 462, 102, 462, -103.3125, 474, -103.24219, 474, 128.84375, 678, 102, 678, -102.078125, 690, -102.00781, 174, 102, 174, -104.953125, 186, -104.88281, 186, 102, 30, 258, -154.78125, 258, -154.72656, 246, 30, 246, 606, 125.17969, 606, 102, 690, 402, 618, 402, 204.60938, 436.35938, 201.71875, 474, 174, 474, 174, 402, 30, 402, 102, 125.17969, 102, 102, 30, 144, 29.992188, 127.171875, 618, 433.6797, 564.6094, 436.35938, 561.71875, 474, 299.57813, 431.60938, 303.71875, 474)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 0), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 12, 0), PackedInt32Array(3, 25, 26, 11), PackedInt32Array(27, 28, 29, 30, 18), PackedInt32Array(15, 18, 30, 31, 19, 32), PackedInt32Array(32, 33, 15), PackedInt32Array(34, 35, 32), PackedInt32Array(26, 36, 37, 11), PackedInt32Array(11, 37, 38, 7, 39, 18, 8), PackedInt32Array(6, 40, 39), PackedInt32Array(22, 34, 32), PackedInt32Array(7, 6, 39), PackedInt32Array(11, 23, 0, 3), PackedInt32Array(18, 39, 27), PackedInt32Array(32, 19, 22)])
+vertices = PackedVector2Array(685, 251, 831.4922, 251, 831.46875, 253, 685, 253, 179, 107, 179, -99.921875, 181, -99.90625, 181, 107, 397, 708.53125, 323, 709.10156, 323, 469, 397, 469, 467, 107, 467, -98.28125, 469, -98.27344, 469, 133.99219, 683, 107, 683, -97.046875, 685, -97.03906, 35, 253, -149.75781, 253, -149.75, 251, 35, 251, 611, 130.03906, 611, 107, 685, 397, 613, 397, 197.09375, 469, 179, 469, 179, 397, 199.96875, 431.57813, 35, 397, 107, 130.03906, 107, 107, 35, 132.03906, 613, 428.9297, 559.96875, 431.57813, 304.09375, 426.3828, 557.09375, 469, 308.25, 469)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 0), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 16, 0), PackedInt32Array(3, 25, 26, 15), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(4, 7, 29, 31, 19, 32), PackedInt32Array(32, 33, 4), PackedInt32Array(22, 34, 32), PackedInt32Array(26, 35, 36, 15), PackedInt32Array(37, 7, 12, 15, 11, 10), PackedInt32Array(36, 38, 11, 15), PackedInt32Array(10, 39, 37), PackedInt32Array(37, 30, 29, 7), PackedInt32Array(15, 23, 0, 3), PackedInt32Array(32, 19, 22)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-183, -137, 870, -131, 862, 740, -187, 748)])
-agent_radius = 30.0
+agent_radius = 35.0
 
 [node name="Training" type="Node2D"]
 script = ExtResource("1_106sx")
@@ -38,7 +38,7 @@ tile_map_data = PackedByteArray("AAAEAAEAAQACAAIAAAAGAAQAAQACAAIAAAAEAAAAAQADAAU
 tile_set = ExtResource("1_org7o")
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("3_nm6ad")]
-position = Vector2(860, 257)
+position = Vector2(-59, 251)
 PlayerCamera = NodePath("../Camera2D")
 
 [node name="MainUI" parent="." instance=ExtResource("4_xguhg")]
