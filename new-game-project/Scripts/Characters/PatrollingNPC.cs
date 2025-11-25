@@ -27,6 +27,7 @@ public partial class PatrollingNPC : Enemy
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+		//GD.Print("PAUL PROCESS");
 	}
 	
 	//Attack for Paul
@@ -91,9 +92,11 @@ public partial class PatrollingNPC : Enemy
 	}
 	
 	//Paul falls unconsious instead of being removed from the scene
-	public override void Remove()
+	public async overrided void Remove()
 	{
+		GD.Print("PAUL REMOVE");
 		Dying = true;
+		Game.Instance.unconsious = true;
 		//Paul does not have an unconcious animation atm. This is where it would place
 	}
 	
@@ -122,7 +125,7 @@ public partial class PatrollingNPC : Enemy
 			MoveToExit();
 			TimeToMove = false;
 			paulStuckTime();
-			GD.Print("Final Destination Selected");
+			//GD.Print("Final Destination Selected");
 			return;
 		}
 		
@@ -131,7 +134,7 @@ public partial class PatrollingNPC : Enemy
 		{
 			//Final destination has been reached. Move to new room
 			Game.Instance.exitAnimPlayed = true;
-			GD.Print("Final Destination reached");
+			//GD.Print("Final Destination reached");
 			return;
 		}
 		
@@ -139,14 +142,14 @@ public partial class PatrollingNPC : Enemy
 		if((NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable()) && TimeToMove)
 		{
 			PickNewTarget();
-			GD.Print("New Random Point selected");
+			//GD.Print("New Random Point selected");
 			return;
 		}
 		
 		if(IsHostile)
 		{ //If the room is hostile, run away from the player
 			HandleHostile();
-			GD.Print("Paul is coming for your ass");
+			//GD.Print("Paul is coming for your ass");
 		}
 		
 		//Set up velocity

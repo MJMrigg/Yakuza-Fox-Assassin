@@ -145,6 +145,7 @@ public partial class Game : Node
 	public int prevPatrolRoom = 18; 
 	public int destPatrolRoom = 18; 
 	public bool exitAnimPlayed = true; 
+	public bool unconsious = false;
 	
 	//Paul move probd
 	public float baseProbability = 1f;
@@ -294,7 +295,8 @@ public partial class Game : Node
 			// 1. paulCanMove == True --> The timer has expired
 			// 2. Paul is not in the same hostile room as the Player. If he his then he needs to kick the player's ass
 			// 3. If Paul is in the same room as the player, and he has reached his exit. 
-			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]) && exitAnimPlayed)
+			// 4. Paul is not unconsious
+			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]) && exitAnimPlayed && !unconsious)
 			{
 				movePaul();
 				paulCanMove = false;
@@ -328,6 +330,14 @@ public partial class Game : Node
 			if(LocalSuspicionThresholds[PatrolRoom] < LocalSuspicions[PatrolRoom])
 			{
 				IncreaseSuspicionThreshold(PatrolRoom);
+			}
+			
+			//Paul uncon timer
+			if(unconsious && debugBool)
+			{
+				paulIsDown();
+				GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
+				debugBool = false;
 			}
 			
 		}
@@ -502,11 +512,18 @@ public partial class Game : Node
 		NPCs[PatrolRoom].Add((7).ToString()); // Paul's TYPE
 		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position (Same as Player)
 		NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position (Same as Player)
-		NPCs[PatrolRoom].Add((500).ToString()); // Paul's HP
+		NPCs[PatrolRoom].Add((1).ToString()); // Paul's HP
 		NPCs[PatrolRoom].Add(("D").ToString()); // Paul's Current direction (same as Player)
 		NPCs[PatrolRoom].Add(("Walk_D").ToString()); // Paul's current animation
 		NPCs[PatrolRoom].Add((0).ToString()); // Paul's Current frame
-		NPCs[PatrolRoom].Add((false).ToString()); // Paul's down
+		if(unconsious)
+		{
+			NPCs[PatrolRoom].Add((true).ToString()); // Paul's down
+		}
+		else
+		{
+			NPCs[PatrolRoom].Add((false).ToString()); // Paul's down
+		}
 		
 		GD.Print("Paul's Data has been added to Room ID: " + PatrolRoom);
 	}
@@ -539,6 +556,18 @@ public partial class Game : Node
 		DecaySuspicion();
 		await paulTimeTest(3f);
 		canDecay = true;
+	}
+	
+	//How long paul is unconsious for
+	// currently 5 sec for testing
+	public async void paulIsDown()
+	{
+		unconsious = true;
+		debugBool = false;
+		await paulTimeTest(5f);
+		GD.Print("PAUL HAS BEEN UNLEASHED");
+		unconsious = false;
+		debugBool = true;
 	}
 	
 	public async Task paulTimeTest(float duration)

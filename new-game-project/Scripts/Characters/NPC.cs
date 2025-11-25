@@ -229,7 +229,7 @@ public partial class NPC : Interactable
 	}
 	
 	//Remove the NPC from the scene(by dying)
-	public async override void Remove()
+	public async virtual void Remove()
 	{
 		Dying = true;
 		if(MySpriteAnimation.Animation != ("Die_"+CurrentDir))

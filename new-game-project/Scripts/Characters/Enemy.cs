@@ -45,7 +45,7 @@ public partial class Enemy : NPC
 	}
 	
 	//Die
-	public async virtual void Remove()
+	public async override void Remove()
 	{
 		DeathSound.Play();
 		base.Remove();
