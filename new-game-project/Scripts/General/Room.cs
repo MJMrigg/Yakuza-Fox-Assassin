@@ -101,6 +101,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 				else if(type == 1)
@@ -115,6 +116,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 				else if(type == 2)
@@ -129,6 +131,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 				else if(type == 3)
@@ -143,6 +146,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 				else if(type == 4)
@@ -157,6 +161,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 				else if(type == 5 || type == 6)
@@ -171,6 +176,7 @@ public partial class Room : Node2D
 					newNPC.MySpriteAnimation.Frame = frame;
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					if(type == 6) { newNPC.Transformed = true; }
 					AddChild(newNPC);
 				}

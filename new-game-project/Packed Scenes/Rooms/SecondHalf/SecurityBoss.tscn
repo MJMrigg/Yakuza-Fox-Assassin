@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://w6j3y6jgntrl"]
+[gd_scene load_steps=9 format=4 uid="uid://w6j3y6jgntrl"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_8dwe0"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_ubuym"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="3_0b8xx"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_8dwe0"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_r2vjp"]
+[ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="7_r2vjp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8dwe0"]
 vertices = PackedVector2Array(-41.539063, 258, -42.1875, 246, 30, 246, 30, 258, 402, 330, 227.57813, 359.60938, 174, 362.28125, 174, 330, 186, 102, 534, 102, 114, 56.84375, 186, 54.84375, 102, 102, 762, 246, 876.3594, 246, 876.1328, 258, 762, 258, 678, 30, 678, -80.49219, 690, -80.3125, 690, 102, 762, 102, 762, 402, 750, 402, 750, 330, 618, 330, 618, 402, 534, 402, 534, 330, 402, 402, 231.71875, 402, 42, 330, 42, 402, 30, 402, 30, 102, 102, 30, 114, 30, 534, 30)
@@ -53,6 +54,10 @@ regDoor = true
 position = Vector2(690, -239)
 ConnectedRoom = 19
 regDoor = true
+
+[node name="ToSecurityEngine" parent="." instance=ExtResource("7_r2vjp")]
+position = Vector2(92, -9)
+ConnectedRoom = 7
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("3_0b8xx")]
 position = Vector2(-26, 256)

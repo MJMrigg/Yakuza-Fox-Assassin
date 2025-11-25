@@ -23,6 +23,7 @@ public partial class Entity : CharacterBody2D
 	{
 		base._Ready();
 		this.AddToGroup("Pausable");
+		RoomId = ((Room)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex)).RoomId;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

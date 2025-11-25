@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://btmygoh2s5mhk"]
+[gd_scene load_steps=11 format=4 uid="uid://btmygoh2s5mhk"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_0hh5a"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_wwkr1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_y1l8v"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="6_yoohm"]
 [ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_lwimm"]
+[ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="8_o61pd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lwimm"]
 vertices = PackedVector2Array(822, 174, 822, 42, 906, 30, 906, 330, 330, 30, 330, 42, 762, 330, 330, 174, 174, 345.15625, 102, 347.14844, 102, 258, 174, 30, 174, -45.359375, 330, -44.898438, 762, 492.21094, 678, 492.28906, 678, 402, 564.6094, 364.35938, 561.71875, 402, 174, 402, 30, 258, 30, 100.36719, 102, 96.38281, 102, 30, 659.5781, 359.60938, 663.71875, 402)
@@ -70,6 +71,10 @@ scale = Vector2(2.4400043, 1)
 DoorColor = false
 ConnectedRoom = 1
 regDoor = true
+
+[node name="ToSecurityBoss" parent="Doors" instance=ExtResource("8_o61pd")]
+position = Vector2(812, -9)
+ConnectedRoom = 18
 
 [node name="Items" type="Node" parent="."]
 

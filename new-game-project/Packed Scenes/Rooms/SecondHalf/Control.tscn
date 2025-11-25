@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://d0xe8p32vykp"]
+[gd_scene load_steps=9 format=4 uid="uid://d0xe8p32vykp"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_nk4ch"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_ymalb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_hnbj7"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="3_ymalb"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_ymalb"]
+[ext_resource type="PackedScene" uid="uid://sgnoxpp88wpe" path="res://Packed Scenes/Doors/SecretPassage.tscn" id="7_utvqq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ymalb"]
 vertices = PackedVector2Array(330, 618, 330, 729.03125, 246, 728.59375, 246, 618, 1194, 30, 1194, 618, 30, 30, 30, 618)
@@ -47,5 +48,9 @@ ConnectedRoom = 18
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
+
+[node name="ToBoss" parent="." instance=ExtResource("7_utvqq")]
+position = Vector2(900, 612)
+ConnectedRoom = 20
 
 [editable path="MainUI"]

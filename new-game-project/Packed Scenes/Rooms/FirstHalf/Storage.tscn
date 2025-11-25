@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://d0rvt1e2grm7m"]
+[gd_scene load_steps=9 format=4 uid="uid://d0rvt1e2grm7m"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_kj4f6"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_tnjdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_s67oi"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_3ubxf"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_s67oi"]
+[ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="7_3ubxf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_s67oi"]
 vertices = PackedVector2Array(1122, 400, 1110, 400, 1110, 388, 1122, 388, 42, 272.8203, 30, 273.14844, 30, 244, 42, 244, 462, 382.3828, 546, 472, 546, 544, 474, 544, 246, 533.71094, 246, 400, 330, 389.71094, 1050, 256, 1050, 328, 978, 328, 822, 316, 822, 184, 822, 461.71094, 978, 454.3828, 1050, 458.3672, 966, 472, 834, 472, 966, 605.71094, 1050, 618, 750, 618, 834, 598.3828, 822, 166.36719, 978, 100, 1050, 112, 1050, 245.71094, 750, 559.15625, 1050, 544, 1122, 241.70313, 1122, 256, 102, 184, 102, 97.71094, 144, 100.046875, 174, 184, 186, 97.71094, 186, 101.71094, 114, 400, 102, 388, 102, 313.71094, 174, 317.71094, 258, 97.71094, 258, 172, 813.10156, 166.85938, 813.6094, 172, 720.8125, 172, 690, 184, 690, 173.72656, 822, 328, 690, 316, 534, 310.3828, 534, 184, 678, 561.14844, 678, 472, 690, 454.3828, 474, 684.60156, 390, 685.1406, 390, 618, 1122, 100, 1122, 112, 822, 40, 978, 30, 678, 30, 690, 40, 678, 100, 504.8125, 100, 462, 172, 474, 101.72656, 402, 184, 402, 256, 330, 256, 690, 328, 1050, 532, 1122, 532, 1122, 544, 318, 618, 318, 544, 186, 544, 186, 618, 102, 618, 114, 526.3828, 102, 472, 30, 472, 30, 388, 462, 40, 318, 40, 318, 30, 474, 30, 462, 314.3672)
@@ -57,5 +58,9 @@ ConnectedRoom = 1
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
+
+[node name="ToLab" parent="." instance=ExtResource("7_3ubxf")]
+position = Vector2(668, -11)
+ConnectedRoom = 12
 
 [editable path="MainUI"]

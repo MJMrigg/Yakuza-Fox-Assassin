@@ -38,7 +38,7 @@ public partial class HealerNPC : NPC
 	public override void BeginDialogue()
 	{
 		base.BeginDialogue();
-		//Set second to last dialogue option to pick up the item
+		//Set second to last dialogue option to heal the player
 		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
 		int DialogueCount = DialogueContainer.GetChildCount();
 		DialogueOption PickUpOption = (DialogueOption)DialogueContainer.GetChild(DialogueCount-2);
