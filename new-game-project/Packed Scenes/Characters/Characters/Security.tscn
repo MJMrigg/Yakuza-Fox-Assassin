@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=38 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Script" uid="uid://dfvydf8b2b5hi" path="res://Scripts/Characters/PatrollingNPC.cs" id="1_6uiao"]
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
@@ -21,6 +21,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 28.0
 height = 82.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uiao"]
+size = Vector2(100, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17at2"]
 atlas = ExtResource("1_sht32")
@@ -177,13 +180,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6uiao"]
+radius = 300.0
+
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_6uiao")
+AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 Speed = 180.0
 Health = 170
 NavAgent = NodePath("NavigationAgent2D")
+HostileRadius = NodePath("HostileRadius")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -191,9 +199,17 @@ MySpriteAnimation = NodePath("AnimatedSprite2D")
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_7and2")
 
+[node name="AttackRadius" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(0, 49)
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackRadius"]
+shape = SubResource("RectangleShape2D_6uiao")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
-animation = &"Walk_D"
+animation = &"Walk_R"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -250,3 +266,10 @@ path_postprocessing = 2
 avoidance_enabled = true
 radius = 75.0
 neighbor_distance = 200.0
+
+[node name="HostileRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
+shape = SubResource("CircleShape2D_6uiao")

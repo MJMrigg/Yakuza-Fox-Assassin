@@ -16,6 +16,8 @@ public partial class PatrollingNPC : Enemy
 	{
 		//Make sure to set the damage of the boss
 		base._Ready();
+		Damage = 15;
+		AttackCooldown = 3;
 		
 		// Set exitAnimPlayed in Game.cs to false to prevent Paul from despawning
 		Game.Instance.exitAnimPlayed = false;
@@ -30,13 +32,69 @@ public partial class PatrollingNPC : Enemy
 	//Attack for Paul
 	public override void HandleHostile()
 	{
+		//If the function was accidently called, don't run it
+		if(!IsHostile)
+		{
+			return;
+		}
 		
+		//Get the player's position
+		Vector2 NewTarget = GetPlayerPosition();
+		//If the player wasn't in the hostile radiue, don't handle being hostile
+		if(NewTarget.X == Position.X || NewTarget.Y == Position.Y)
+		{
+			return;
+		}
+		
+		//Face the player
+		NavAgent.TargetPosition = NewTarget;
+		
+		//If the attack is still cooling down, do nothing
+		if(!AttackCooledDown)
+		{
+			return;
+		}
+		
+		//If the player is in the attack radius, attack the player
+		Godot.Collections.Array<Node2D> InAttackRadius = AttackRadius.GetOverlappingBodies();
+		foreach(Node2D body in InAttackRadius)
+		{
+			//Attack the player
+			if(body is Player)
+			{
+				Player player = (Player)body;
+				//If the player is already dead, pause the game
+				if(player.Health <= 0)
+				{
+					GetTree().CallGroup("Pausable","Pause");
+					player.Stop = false;
+					return;
+				}
+				//If the attack sound is still playing, do not attack
+				if(AttackSound != null && AttackSound.Playing)
+				{
+					return;
+				}
+				//Play attack sound and animation
+				int Chosen = (int)GD.Randi()%8 + 1;
+				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/PaulBark"+Chosen));
+				AttackSound.SetVolumeDb(-15.0f);
+				AttackSound.Play();
+				//PAUL DOES NOT HAVE AN ATTACK ANIMATION RIGHT NOW
+				player.TakeDamage(Damage);
+				//Begin the attack cool down
+				AttackCooledDown = false;
+				AttackCoolDown();
+				return;
+			}
+		}
 	}
 	
 	//Paul falls unconsious instead of being removed from the scene
 	public override void Remove()
 	{
-		
+		Dying = true;
+		//Paul does not have an unconcious animation atm. This is where it would place
 	}
 	
 	//Paul has special move logic
@@ -58,8 +116,8 @@ public partial class PatrollingNPC : Enemy
 			}
 		}
 		
-		//If Paul is supposed to be moving to an exit, and this destination has not been set yet
-		if(Game.Instance.paulCanMove && Game.Instance.PatrolRoom != Game.Instance.destPatrolRoom && TimeToMove){
+		//If Paul is supposed to be moving to an exit, this destination has not been set yet
+		if(Game.Instance.paulCanMove && Game.Instance.PatrolRoom != Game.Instance.destPatrolRoom && TimeToMove && !IsHostile){
 			//Pick final destination
 			MoveToExit();
 			TimeToMove = false;
@@ -69,7 +127,7 @@ public partial class PatrollingNPC : Enemy
 		}
 		
 		// Checl for final dest
-		if(!TimeToMove && (NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable() || stuckTime))
+		if(!TimeToMove && !IsHostile && (NavAgent.IsTargetReached() || !NavAgent.IsTargetReachable() || stuckTime))
 		{
 			//Final destination has been reached. Move to new room
 			Game.Instance.exitAnimPlayed = true;
@@ -83,6 +141,12 @@ public partial class PatrollingNPC : Enemy
 			PickNewTarget();
 			GD.Print("New Random Point selected");
 			return;
+		}
+		
+		if(IsHostile)
+		{ //If the room is hostile, run away from the player
+			HandleHostile();
+			GD.Print("Paul is coming for your ass");
 		}
 		
 		//Set up velocity
