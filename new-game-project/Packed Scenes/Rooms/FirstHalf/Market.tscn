@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cfrkcj0r61ak1"]
+[gd_scene load_steps=10 format=4 uid="uid://cfrkcj0r61ak1"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_blnwy"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_0ir1l"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="6_4c7xv"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_blnwy"]
+[ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_bv1ab"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bv1ab"]
-vertices = PackedVector2Array(390, 402, 690, 128.84375, 762, 126.84375, 762, 246, 534, 474, 390, 474, 462, 30, 462, -163.92969, 474, -163.90625, 474, 102, 678, 102, 678, -163.57031, 690, -163.54688, 997.4375, 246, 997.4531, 258, 762, 258, 30, 258, -148.45313, 258, -148.4375, 246, 30, 246, 174, 102, 174, -164.39844, 186, -164.38281, 186, 30, 618, 474, 618, 787.64844, 534, 787.5781, 186, 474, 186, 787.28906, 102, 787.21875, 102, 402, 258, 30, 258, 102, 390, 102, 390, 30, 762, 402, 690, 402, 690, 474, 258, 402, 258, 474, 102, 174, 30, 402, 30, 174, 102, 102)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 1), PackedInt32Array(13, 14, 15, 3), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(24, 25, 26, 4), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(23, 31, 32, 20), PackedInt32Array(33, 34, 6, 9), PackedInt32Array(15, 35, 36), PackedInt32Array(36, 37, 24), PackedInt32Array(38, 39, 27, 30, 16, 19, 40), PackedInt32Array(30, 41, 16), PackedInt32Array(19, 42, 40), PackedInt32Array(40, 43, 20, 38), PackedInt32Array(9, 10, 1, 0), PackedInt32Array(38, 20, 32), PackedInt32Array(38, 32, 33, 0), PackedInt32Array(0, 33, 9), PackedInt32Array(4, 3, 15, 36, 24)])
+vertices = PackedVector2Array(690, 128.84375, 762, 126.84375, 762, 246, 534, 474, 388.1797, 81.97656, 388.0625, 30, 462, 30, 475.96094, 81.99219, 676.1797, 81.97656, 676.0625, 30, 678, 30, 172.17969, 81.97656, 172.0625, 30, 174, 30, 462, -163.92969, 474, -163.90625, 474, 30, 678, -163.57031, 690, -163.54688, 997.4375, 246, 997.4531, 258, 762, 258, 30, 258, -148.45313, 258, -148.4375, 246, 30, 246, 174, -164.39844, 186, -164.38281, 186, 30, 618, 474, 618, 787.64844, 534, 787.5781, 186, 474, 186, 787.28906, 102, 787.21875, 102, 402, 547.96094, 81.97656, 547.96094, 81.99219, 475.96875, 30, 259.96875, 30, 259.96094, 82.03125, 382.03906, 86.546875, 382.03906, 81.97656, 762, 402, 690, 402, 690, 474, 258, 443.95313, 258, 474, 30, 402, 30, 171.97656, 100.03125, 171.97656, 268.17188, 415.96094, 102, 125.203125, 102, 81.97656, 387.9375, 474, 387.89063, 446.35156, 268.03125, 443.95313, 268.10156, 82.00781, 268.1328, 85.9375, 379.9922, 446.25, 380.0703, 415.92188, 99.953125, 125.25)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 3), PackedInt32Array(8, 9, 10, 0), PackedInt32Array(11, 12, 13), PackedInt32Array(6, 14, 15, 16), PackedInt32Array(10, 17, 18, 0), PackedInt32Array(19, 20, 21, 2), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(13, 26, 27, 28), PackedInt32Array(29, 30, 31, 3), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(7, 36, 37, 3), PackedInt32Array(16, 38, 7), PackedInt32Array(28, 39, 40, 11), PackedInt32Array(41, 42, 4, 3), PackedInt32Array(21, 43, 44), PackedInt32Array(44, 45, 29), PackedInt32Array(46, 47, 32, 35), PackedInt32Array(35, 48, 22), PackedInt32Array(25, 49, 50, 51), PackedInt32Array(52, 53, 11), PackedInt32Array(3, 54, 55), PackedInt32Array(51, 56, 46, 35, 22, 25), PackedInt32Array(40, 57, 58, 51), PackedInt32Array(55, 59, 60), PackedInt32Array(50, 61, 52), PackedInt32Array(11, 13, 28), PackedInt32Array(6, 16, 7), PackedInt32Array(37, 8, 0, 3), PackedInt32Array(3, 55, 60, 41), PackedInt32Array(51, 50, 52, 11, 40), PackedInt32Array(51, 58, 41, 60), PackedInt32Array(3, 2, 21, 44, 29)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-178, -195, 1027, -193, 1028, 818, -179, 817)])
 agent_radius = 30.0
 
@@ -57,6 +58,9 @@ script = ExtResource("4_0ir1l")
 
 [node name="Husky" parent="NPCs" instance=ExtResource("6_4c7xv")]
 position = Vector2(466, 244)
+
+[node name="Npc2" parent="NPCs" instance=ExtResource("7_bv1ab")]
+position = Vector2(617, 246)
 
 [node name="Doors" type="Node" parent="."]
 

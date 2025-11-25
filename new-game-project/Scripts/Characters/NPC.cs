@@ -99,6 +99,11 @@ public partial class NPC : Interactable
 	//Move around
 	public virtual void Move()
 	{
+		//If they are in the bar, simply relax
+		if(RoomId == 5 || RoomId == 13)
+		{
+			return;
+		}
 		//If the animation is currently not walking
 		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
 		{

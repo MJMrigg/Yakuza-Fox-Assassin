@@ -862,7 +862,6 @@ bus = &"soundEffect"
 
 [node name="PistolLoud" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("17_0cc5g")
-volume_db = -20.0
 bus = &"soundEffect"
 
 [node name="ShotgunAndReload" type="AudioStreamPlayer2D" parent="Sounds"]

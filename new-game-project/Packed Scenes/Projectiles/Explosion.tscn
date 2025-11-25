@@ -105,6 +105,7 @@ shape = SubResource("CircleShape2D_xvx42")
 [node name="FireExplosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xvx42")
 volume_db = -10.0
+bus = &"soundEffect"
 
 [node name="Despawn" type="Area2D" parent="."]
 position = Vector2(0, 17)

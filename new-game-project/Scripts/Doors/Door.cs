@@ -60,48 +60,53 @@ public partial class Door : StaticBody2D
 		{
 			return;
 		}
-		//Save all NPC data
-		int CurrentRoom = Game.Instance.PlayerRoom;
-		Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
-		var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
-		for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
-		{
-			if(NPCsInRoom[i] is NPC)
+		
+		//Save all NPC data if the player isn't leaving the bars
+		if(CurrentRoom != 5 && CurrentRooom != 13)
+		{ //Nothing to save in the bars
+			int CurrentRoom = Game.Instance.PlayerRoom;
+			Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
+			var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
+			for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
 			{
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i])._type).ToString() );
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.X).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.Y).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Health).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).CurrentDir).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Animation).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Frame).ToString());
-				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
+				if(NPCsInRoom[i] is NPC)
+				{
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i])._type).ToString() );
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.X).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.Y).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Health).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).CurrentDir).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Animation).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Frame).ToString());
+					Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
+				}
+			}
+			//Save all item data
+			var Items = GetTree().GetNodesInGroup("Items");
+			int ItemCount = GetTree().GetNodeCountInGroup("Items");
+			Game.Instance.RoomItems[CurrentRoom] = new List<float>(); //Overwrite previous data
+			if(ItemCount > 0)
+			{
+				for(int i = 0; i < ItemCount; i++)
+				{
+					Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).ID);
+					Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.X);
+					Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
+				}
+			}
+			//Mark the room as having saved data
+			Game.Instance.FirstSaved[CurrentRoom] = true;
+			//Change the music based on the room
+			if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
+			{ //If the player is going to the boss room or the bar
+				((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+			}
+			else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
+			{ //If the player is leaving the boss room or the bar
+				((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
 			}
 		}
-		//Save all item data
-		var Items = GetTree().GetNodesInGroup("Items");
-		int ItemCount = GetTree().GetNodeCountInGroup("Items");
-		Game.Instance.RoomItems[CurrentRoom] = new List<float>(); //Overwrite previous data
-		if(ItemCount > 0)
-		{
-			for(int i = 0; i < ItemCount; i++)
-			{
-				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).ID);
-				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.X);
-				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
-			}
-		}
-		//Mark the room as having saved data
-		Game.Instance.FirstSaved[CurrentRoom] = true;
-		//Change the music based on the room
-		if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
-		{ //If the player is going to the boss room or the bar
-			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
-		}
-		else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
-		{ //If the player is leaving the boss room or the bar
-			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
-		}
+		
 		//Change scene based on the room the door takes the player during the next physics process
 		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}

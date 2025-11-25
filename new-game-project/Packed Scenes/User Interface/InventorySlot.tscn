@@ -29,5 +29,6 @@ text = "Equip"
 
 [node name="ButtonClicked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2u8qn")
+bus = &"soundEffect"
 
 [connection signal="pressed" from="EquipButton" to="." method="WhenPressed"]

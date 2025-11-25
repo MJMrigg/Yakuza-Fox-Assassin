@@ -16,5 +16,6 @@ script = ExtResource("1_373dk")
 
 [node name="ButtonClicked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ys2ix")
+bus = &"soundEffect"
 
 [connection signal="pressed" from="." to="." method="ReturnOption"]
