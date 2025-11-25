@@ -92,7 +92,7 @@ public partial class PatrollingNPC : Enemy
 	}
 	
 	//Paul falls unconsious instead of being removed from the scene
-	public async overrided void Remove()
+	public async override void Remove()
 	{
 		GD.Print("PAUL REMOVE");
 		Dying = true;
