@@ -35,6 +35,17 @@ public partial class SecretPassage : Interactable
 	public void AddSuspicion()
 	{
 		Game.Instance.IncreaseLocalSuspicion(RoomId,Suspicion);
+		//Mark the room as having saved data
+		Game.Instance.FirstSaved[RoomId] = true;
+		//Change the music based on the room
+		if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
+		{ //If the player is going to the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
+		else if(RoomId == 20 || RoomId == 5 || RoomId == 13)
+		{ //If the player is leaving the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
 		//Change scene based on the room the passage takes the player during the next physics process
 		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}

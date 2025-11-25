@@ -89,10 +89,10 @@ public partial class Game : Node
 			{4, new Dictionary<int, Vector2> { { 1, new Vector2(974, 910) }, { 5, new Vector2(323, -177) } } },
 			//<Bar1(5) [Cafeteria(4)]>
 			{5, new Dictionary<int, Vector2> { { 4, new Vector2(289, 607) } } },
-			//<Storage(6) [Market(1)]>
-			{6, new Dictionary<int, Vector2> { { 1, new Vector2(434, 874) } } },
-			// <SecurityEngine(7), [Market(1), Engine(8)]>
-			{7, new Dictionary<int, Vector2> { { 1, new Vector2(253, -171) }, { 8, new Vector2(718, 489) } } },
+			//<Storage(6) [Market(1), Lab(12)]>
+			{6, new Dictionary<int, Vector2> { { 1, new Vector2(434, 874) }, { 12, new Vector2(686, 55) } } },
+			// <SecurityEngine(7), [Market(1), Engine(8), SecurityBoss(18)]>
+			{7, new Dictionary<int, Vector2> { { 1, new Vector2(253, -171) }, { 8, new Vector2(718, 489) }, { 18, new Vector2(829, 58) } } },
 			// <Engine(8), [SecurityEngine(7)]>
 			{8, new Dictionary<int, Vector2> { { 7, new Vector2(394, -54) } } },
 			// <Production(9), [Market(1)]>
@@ -102,8 +102,8 @@ public partial class Game : Node
 			{10, new Dictionary<int, Vector2> { {1, new Vector2(-141,251) }, {11, new Vector2(180,-57) }, {13, new Vector2(469,-57) }, {14, new Vector2(684,-61) }, { 16, new Vector2(364,693) }, { 18, new Vector2(860,257) } } },
 			//<Medic(11), [Training Yard(10, Lab(12)]>
 			{11, new Dictionary<int, Vector2> { { 10, new Vector2(360,913) }, { 12, new Vector2(1407,502) } } },
-			//<Lab(12), [Medic(11)]>
-			{12, new Dictionary<int, Vector2> { { 11, new Vector2(-57,577) } } },
+			//<Lab(12), [Medic(11), Storage(6)]>
+			{12, new Dictionary<int, Vector2> { { 11, new Vector2(-57,577) }, { 6, new Vector2(258,137) } } },
 			//<Bar2(13), [Training Yard(10)]>
 			{13, new Dictionary<int, Vector2> { { 10, new Vector2(289,589) } } },
 			//<Range(14), [Training Yard(10), Armory(15)]>
@@ -115,9 +115,9 @@ public partial class Game : Node
 			//<Bathroom2(17), [Living2(16)]>
 			{17, new Dictionary<int, Vector2> { { 16, new Vector2(-57,582) } } },
 			//<Security2(18), [Training Yard(10), Controls(19)]>
-			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-107,256) }, { 19, new Vector2(687,-109) } } },
-			//<Controls(19), [Security2(18)]>
-			{19, new Dictionary<int, Vector2> { { 18, new Vector2(289,848) } } },
+			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-107,256) }, { 19, new Vector2(687,-109) }, { 7, new Vector2(109,60) } } },
+			//<Controls(19), [Security2(18), Boss(20)]>
+			{19, new Dictionary<int, Vector2> { { 18, new Vector2(289,848) }, { 20, new Vector2(830,598) } } },
 			//<Boss(20), [Security2(18)]>
 			{20, new Dictionary<int, Vector2> { { 18, new Vector2(-251,401) } } }
 		};
