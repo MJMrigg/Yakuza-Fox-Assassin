@@ -239,7 +239,6 @@ public partial class Room : Node2D
 		// Checks if paulNotSpawned == True && if the rooms data is not null and contains Paul's ID
 		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(x => x == "7") != -1)
 		{
-			GD.Print("Pauls is in the same room as the Player. Getting Paul Data!");
 			int i = Game.Instance.NPCs[RoomId].FindIndex(x => x == "7");
 			//Get NPC properties for Paul
 			int type = int.Parse(Game.Instance.NPCs[RoomId][i]);
@@ -250,18 +249,6 @@ public partial class Room : Node2D
 			string animation = Game.Instance.NPCs[RoomId][i+5];
 			int frame = int.Parse(Game.Instance.NPCs[RoomId][i+6]);
 			bool IsDying = bool.Parse(Game.Instance.NPCs[RoomId][i+7]);
-			
-			//DEBUG STATEMENTS. REMOVE LATER
-			/*
-			GD.Print("Pauls Type: " + type);
-			GD.Print("Pauls X: " + x);
-			GD.Print("Pauls Y: " + y);
-			GD.Print("Pauls HP: " + health);
-			GD.Print("Pauls Dir: " + dir);
-			GD.Print("Pauls Anim: " + animation);
-			GD.Print("Pauls Frame:" + frame);
-			GD.Print("Pauls IsDying: " + IsDying);
-			*/
 			
 			PackedScene NPCPackedScene = null;
 			NPCPackedScene = GD.Load<PackedScene>("uid://bpa0yurigcfsn");

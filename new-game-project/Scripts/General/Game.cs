@@ -336,7 +336,7 @@ public partial class Game : Node
 			if(unconsious && debugBool)
 			{
 				paulIsDown();
-				GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
+				//GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
 				debugBool = false;
 			}
 			
@@ -388,7 +388,6 @@ public partial class Game : Node
 		{
 			GlobalSuspicion += (LocalSuspicions[Room] - LocalSuspicionThresholds[Room]);
 		}
-		GD.Print("MAde it!");
 	}
 	
 	
@@ -412,12 +411,12 @@ public partial class Game : Node
 	//Changes Paul's current room
 	public void movePaul()
 	{
-		GD.Print("-----------------");
+		//GD.Print("-----------------");
 		prevPatrolRoom = PatrolRoom;
-		GD.Print("Paul was in Room: " + prevPatrolRoom);
+		//GD.Print("Paul was in Room: " + prevPatrolRoom);
 		PatrolRoom = destPatrolRoom;
-		GD.Print("Paul is now in Room: " + PatrolRoom);
-		GD.Print("-----------------");
+		//GD.Print("Paul is now in Room: " + PatrolRoom);
+		//GD.Print("-----------------");
 		spawnPaul(); // Add Paul to the room he has entered
 		killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
 		paulWait();
@@ -438,7 +437,7 @@ public partial class Game : Node
 		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
 		{
 			destPatrolRoom = PlayerRoom;
-			GD.Print("Combat Detected at: " + destPatrolRoom);
+			//GD.Print("Combat Detected at: " + destPatrolRoom);
 			return;
 		}
 		
@@ -458,37 +457,37 @@ public partial class Game : Node
 			if (LocalSuspicionThresholds[room] < LocalSuspicions[room])
 			{
 				weight *= 1.5f;
-				GD.Print("Above Thres Weight Applied");
+				//GD.Print("Above Thres Weight Applied");
 			}
 			
 			// If the Player is there, Paul is more likely to move to a room
 			if (room == PlayerRoom)
 			{
 				weight *= 1.25f;
-				GD.Print("Player Location Weight Applied");
+				//GD.Print("Player Location Weight Applied");
 			}
 			
 			//If Paul had just left a room he is less likely to go there
 			if(room == prevPatrolRoom)
 			{
 				weight *= 0.75f;
-				GD.Print("Prev Room Weight Applied");
+				//GD.Print("Prev Room Weight Applied");
 			}
 			
 			// If the room would be a dead end, Paul is less likely to go there
 			if(!(roomMap[room].Count > 1))
 			{
 				weight *= 0.75f;
-				GD.Print("Dead End Weight Applied");
+				//GD.Print("Dead End Weight Applied");
 			}
 				
 			
 			
 			weights.Add(weight);
-			GD.Print("Room " + room + " Weight: " + weight);
+			//GD.Print("Room " + room + " Weight: " + weight);
 			totalWeight += weight;
 		}
-		GD.Print("Total Weight: " + totalWeight);
+		//GD.Print("Total Weight: " + totalWeight);
 		
 		// Weighted random selection
 		float roll = (float)random.NextDouble() * totalWeight;
@@ -499,7 +498,7 @@ public partial class Game : Node
 			if (roll <= cumulative)
 			{
 				destPatrolRoom = roomOptions.ElementAt(i);
-				GD.Print("Selected Room: " + destPatrolRoom);
+				//GD.Print("Selected Room: " + destPatrolRoom);
 				break;
 			}
 		}
@@ -543,7 +542,7 @@ public partial class Game : Node
 			NPCs[PatrolRoom].Add((false).ToString()); // Paul's down
 		}
 		
-		GD.Print("Paul's Data has been added to Room ID: " + PatrolRoom);
+		//GD.Print("Paul's Data has been added to Room ID: " + PatrolRoom);
 	}
 	
 	//I'm sorry little one...
@@ -554,7 +553,7 @@ public partial class Game : Node
 		if (index != -1)
 		{
 			NPCs[removeFromHere].RemoveRange(index, 8); // Remove that type and the next indexs with his data
-			GD.Print("Paul's Data has been removed from Room ID: " + removeFromHere);
+			//GD.Print("Paul's Data has been removed from Room ID: " + removeFromHere);
 		}
 	}
 	
@@ -583,7 +582,7 @@ public partial class Game : Node
 		unconsious = true;
 		debugBool = false;
 		await paulTimeTest(5f);
-		GD.Print("PAUL HAS BEEN UNLEASHED");
+		//GD.Print("PAUL HAS BEEN UNLEASHED");
 		unconsious = false;
 		debugBool = true;
 	}

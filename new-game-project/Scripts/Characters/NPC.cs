@@ -162,7 +162,6 @@ public partial class NPC : Interactable
 			GetTree().CallGroup("NPCs","MakeHostile");
 			Game.Instance.RoomsHostile[RoomId] = true;
 			//Increase the local suspicion to max
-			GD.Print("Increase Local suspsicion");
 			Game.Instance.IncreaseLocalSuspicion(RoomId,Game.Instance.MaxLocalSuspicions[RoomId]);
 		}
 		

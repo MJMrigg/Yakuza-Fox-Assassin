@@ -19,6 +19,7 @@ public partial class PatrollingNPC : Enemy
 		Damage = 15;
 		AttackCooldown = 3;
 		IsHostile = Game.Instance.RoomsHostile[RoomId];
+		RoomId = Game.Instance.PatrolRoom;
 		
 		// Set exitAnimPlayed in Game.cs to false to prevent Paul from despawning
 		Game.Instance.exitAnimPlayed = false;
