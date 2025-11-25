@@ -26,6 +26,12 @@ public partial class PatrollingNPC : Enemy
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//CHECK IF PAUL SHOULD NOT BE unconscious 
+		if(!(Game.Instance.unconsious))
+		{
+			Dying = false;
+			Health = 170;
+		}
 		base._Process(delta);
 		//GD.Print("PAUL PROCESS");
 	}
