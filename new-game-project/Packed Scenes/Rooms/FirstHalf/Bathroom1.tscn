@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://yp8mbu2mbiq4"]
+[gd_scene load_steps=11 format=4 uid="uid://yp8mbu2mbiq4"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_2a4gy"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_arivb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="5_w7w68"]
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_4xqij"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="8_w7w68"]
+[ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_1o5u2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arivb"]
 vertices = PackedVector2Array(1110, 638.71875, 1038, 641.71875, 1038, 638.71875, 966, 641.71875, 966, 638.71875, 978, 318, 894, 641.71875, 894, 638.71875, 822, 641.71875, 822, 638.71875, 750, 641.71875, 750, 638.71875, 762, 318, 678, 641.71875, 678, 638.71875, 606, 641.71875, 606, 638.71875, 534, 641.71875, 534, 638.71875, 546, 318, 1122, 641.21875, 1110, 641.71875, 1122, 318, 330, 690, 330, 1151.6094, 174, 1150.3281, 174, 690, 318, 318, 186, 102, 186, 186, 114, 186, 102, 102, 102, 318, 114, 318, 318, 102, 402, 102, 402, 186, 330, 186, 330, 318, 534, 102, 618, 102, 618, 186, 546, 186, 534, 318, 750, 102, 834, 102, 834, 186, 762, 186, 750, 318, 966, 102, 1050, 102, 1050, 186, 978, 186, 966, 318, 402, 644.21875, 402, 690, 30, 690, 30, 318)
@@ -69,8 +70,7 @@ InitialDialog = "Huh, who are you?"
 DialogueOptions = PackedStringArray("Aren\'t you supposed to be on the iditarod?", "What is this place?", "I plan to kill your boss today.", "Goodbye.")
 DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I had to come here.", "A place where unspeakable acts take place..", "Fine by me. He doesn\'t pay me well anyway.")
 
-[node name="Husky2" parent="NPCs" instance=ExtResource("8_w7w68")]
-position = Vector2(548, 417)
-DialogResponses = PackedStringArray("Aren\'t you supposed to be not reenforcing stereotypes?", "It\'s actually pretty good. Except Gary keeps missing his shots.", "Dang it! I just got a promotion!")
+[node name="Chihuahua" parent="NPCs" instance=ExtResource("9_1o5u2")]
+position = Vector2(552, 448)
 
 [editable path="MainUI"]

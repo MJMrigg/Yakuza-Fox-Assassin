@@ -64,7 +64,6 @@ public partial class Game : Node
 		//ID
 		6 //Hamster
 	};
-	public Dictionary<int, List<string>> Projectiles = new Dictionary<int, List<string>>(); //Projectile data
 	public Weapon Bite = new Weapon(); //Bite data
 	public int PlayerHealth = 100;
 	public int MaxPlayerHealth = 100;
@@ -233,12 +232,19 @@ public partial class Game : Node
 		isPaused = false;
 		canDecay = true;
 		//Set up local suspicions, thresholds, and NPCs
+		//Set local suspicion thresholds
+		LocalSuspicionThresholds = 
+		[
+			//First Half
+			-1,5,4,1,5,-1,5,3.5f,7,4,
+			//Second Half
+			4,1,1,-1,5,1,4,1,3.5f,3,-1
+		];
 		for(int i = 0; i < 21; i++)
 		{
 			LocalSuspicions[i] = 0;
 			RoomsHostile[i] = false;
 			NPCs[i] = new List<string>();
-			Projectiles[i] = new List<string>();
 			FirstSaved[i] = false; //The rooms currently have no saved data
 		}
 		RoomsHostile[20] = true; //Boss room starts hostile
@@ -272,75 +278,77 @@ public partial class Game : Node
 			}
 			MaxGlobalSuspicion += MaxLocalSuspicions[i];
 		}
+		//Set number of drinks the player has had
 		CurrentDrinks = 0;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(GameStart){
-			//Paul animation debug
-			if(PatrolRoom != PlayerRoom)
+		if(!GameStart)
+		{
+			return;
+		}
+		//Paul animation debug
+		if(PatrolRoom != PlayerRoom)
+		{
+			exitAnimPlayed = true;
+		}
+		
+		//If allowed to move, and destRoom has not been determined yet
+		if(paulCanMove && destPatrolRoom == PatrolRoom)
+		{
+			//Then determine dest
+			determinePaulLoc();
+		}
+		
+		// Paul is allowed to move to another room if
+		// 1. paulCanMove == True --> The timer has expired
+		// 2. Paul is not in the same hostile room as the Player. If he his then he needs to kick the player's ass
+		// 3. If Paul is in the same room as the player, and he has reached his exit. 
+		// 4. Paul is not unconsious
+		if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]) && exitAnimPlayed && !unconsious)
+		{
+			movePaul();
+			paulCanMove = false;
+		}
+		
+		//Contain Paul
+		foreach(var node in GetTree().GetNodesInGroup("Pausable"))
+		{
+			if(node is Entity)
 			{
-				exitAnimPlayed = true;
-			}
-			
-			//If allowed to move, and destRoom has not been determined yet
-			if(paulCanMove && destPatrolRoom == PatrolRoom)
-			{
-				//Then determine dest
-				determinePaulLoc();
-			}
-			
-			// Paul is allowed to move to another room if
-			// 1. paulCanMove == True --> The timer has expired
-			// 2. Paul is not in the same hostile room as the Player. If he his then he needs to kick the player's ass
-			// 3. If Paul is in the same room as the player, and he has reached his exit. 
-			// 4. Paul is not unconsious
-			if(paulCanMove && !(PatrolRoom == PlayerRoom && RoomsHostile[PatrolRoom]) && exitAnimPlayed && !unconsious)
-			{
-				movePaul();
-				paulCanMove = false;
-			}
-			
-			//Contain Paul
-			foreach(var node in GetTree().GetNodesInGroup("Pausable"))
-			{
-				if(node is Entity)
+				if(((Entity)node).Stop == true)
 				{
-					if(((Entity)node).Stop == true)
-					{
-						isPaused = true;
-						break;
-					} 
-					else 
-					{
-						isPaused = false;
-					}
+					isPaused = true;
+					break;
+				} 
+				else 
+				{
+					isPaused = false;
 				}
 			}
-			
-			//Decay Sus of each room
-			if(canDecay)
-			{
-				decayWait();
-				canDecay = false;
-			}
-			
-			//Paul increases theshold of where he is
-			if(LocalSuspicionThresholds[PatrolRoom] < LocalSuspicions[PatrolRoom])
-			{
-				IncreaseSuspicionThreshold(PatrolRoom);
-			}
-			
-			//Paul uncon timer
-			if(unconsious && debugBool)
-			{
-				paulIsDown();
-				//GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
-				debugBool = false;
-			}
-			
+		}
+		
+		//Decay Sus of each room
+		if(canDecay)
+		{
+			decayWait();
+			canDecay = false;
+		}
+		
+		//Paul increases theshold of where he is
+		if(LocalSuspicionThresholds[PatrolRoom] < LocalSuspicions[PatrolRoom])
+		{
+			IncreaseSuspicionThreshold(PatrolRoom);
+		}
+		
+		//Paul uncon timer
+		if(unconsious && debugBool)
+		{
+			paulIsDown();
+			//GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
+			debugBool = false;
 		}
 		
 	}

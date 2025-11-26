@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dvgnk8gvwgja8"]
+[gd_scene load_steps=9 format=4 uid="uid://dvgnk8gvwgja8"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_rsiio"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_yq0du"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xa2kt5clmxbo" path="res://Packed Scenes/Characters/Characters/Boss.tscn" id="3_mdc6g"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_tq2ua"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_rsiio"]
+[ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="7_pwbl7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yq0du"]
 vertices = PackedVector2Array(298, 35.726563, 350, 34.28125, 350, 51.859375, 298, 53.140625, 442, 35.726563, 494, 34.28125, 494, 51.859375, 442, 53.140625, 1070, 612.28125, 1142, 610.28125, 1142, 638, 10, 638, 10, 556.1406, 82, 557.1406, 926, 586, 10, 370, 10, 340.14063, 82, 341.14063, 10, 278, 10, 196.14063, 82, 197.14063, 82, 278, -71.828125, 422, -71.96094, 370, 10, 422, 586, 53.140625, 586, 10, 1070, 10, 1070, 36.28125, 926, 62, 1142, 34.28125, 1142, 566, 1090, 566, 1090, 62, 926, 154, 998, 154, 998, 494, 926, 494, 1070, 586, 82, 494, 10, 494, 82, 134, 10, 134, 10, 35.726563, 82, 33.726563, 206, 51.859375, 82, 10, 206, 10)
@@ -58,4 +59,16 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_rsiio")
 
+[node name="RedDoor" parent="." instance=ExtResource("7_pwbl7")]
+position = Vector2(-403, 397)
+rotation = 1.5707964
+scale = Vector2(0.5, 1)
+
+[node name="DoorBack" parent="RedDoor" index="2"]
+collision_mask = 0
+
+[node name="DoorFront" parent="RedDoor" index="3"]
+collision_mask = 0
+
 [editable path="MainUI"]
+[editable path="RedDoor"]

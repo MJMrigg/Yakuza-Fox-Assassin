@@ -67,6 +67,7 @@ position = Vector2(1132, 484)
 [node name="Hamster" parent="Items" instance=ExtResource("7_urbrd")]
 position = Vector2(500, 180)
 scale = Vector2(0.5, 0.5)
+DialogResponses = PackedStringArray("It looks kind of depressed. It\'s seen things.", "Squeak!", "The hamster is now in your inventory.")
 
 [node name="ToStorage" parent="." instance=ExtResource("8_eabx2")]
 position = Vector2(180, 108)

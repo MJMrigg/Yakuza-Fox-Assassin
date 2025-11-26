@@ -4,7 +4,9 @@ using System;
 public partial class Player : Entity
 {
 	[Export]
-	public int Speed = 100; //Movement speed
+	public int Speed = 200; //Movement speed
+	
+	public bool IsSlow = false; //Whether the player is slowing
 	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
 	
@@ -213,14 +215,16 @@ public partial class Player : Entity
 			DashCoolDown();
 		} 
 		
-		/*if(Input.IsActionPressed("p_slow"))
+		if(Input.IsActionPressed("p_slow"))
 		{
 			Speed = 50;
+			IsSlow = true;
 		}
-		else
+		else if(IsSlow)
 		{
-			Speed = 100;
-		}*/
+			Speed = 200;
+			IsSlow = false;
+		}
 		
 		//Get player input and set up velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
@@ -670,9 +674,9 @@ public partial class Player : Entity
 		}
 		else
 		{
-			//Place key in the inventory
+			//Place hamster in the inventory
 			Item NewItem = new Item();
-			path = ""; //Path to hamster
+			path = "res://Art Assets/Items/hamster.png"; //Path to hamster
 			NewItem.ID = ItemId;
 			NewItem.InventorySlot = ItemCount;
 			Inv.ItemsStored[ItemCount] = NewItem;

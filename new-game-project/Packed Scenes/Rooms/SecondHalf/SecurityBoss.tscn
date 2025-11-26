@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://w6j3y6jgntrl"]
+[gd_scene load_steps=11 format=4 uid="uid://w6j3y6jgntrl"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_8dwe0"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_ubuym"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_8dwe0"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_r2vjp"]
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="7_r2vjp"]
+[ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_jd73o"]
+[ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="9_rricm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8dwe0"]
 vertices = PackedVector2Array(-41.539063, 258, -42.1875, 246, 30, 246, 30, 258, 402, 330, 227.57813, 359.60938, 174, 362.28125, 174, 330, 186, 102, 534, 102, 114, 56.84375, 186, 54.84375, 102, 102, 762, 246, 876.3594, 246, 876.1328, 258, 762, 258, 678, 30, 678, -80.49219, 690, -80.3125, 690, 102, 762, 102, 762, 402, 750, 402, 750, 330, 618, 330, 618, 402, 534, 402, 534, 330, 402, 402, 231.71875, 402, 42, 330, 42, 402, 30, 402, 30, 102, 102, 30, 114, 30, 534, 30)
@@ -71,5 +73,12 @@ zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_r2vjp")
 
 [node name="NPCs" type="Node" parent="."]
+
+[node name="Tanuki" parent="NPCs" instance=ExtResource("8_jd73o")]
+position = Vector2(756, 161)
+Transformed = true
+
+[node name="Husky" parent="NPCs" instance=ExtResource("9_rricm")]
+position = Vector2(298, 293)
 
 [editable path="MainUI"]

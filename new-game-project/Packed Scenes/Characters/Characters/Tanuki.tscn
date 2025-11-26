@@ -580,13 +580,7 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_mp6cj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
-path_desired_distance = 100.0
-target_desired_distance = 100.0
-path_max_distance = 200.0
-path_postprocessing = 2
 avoidance_enabled = true
-radius = 75.0
-neighbor_distance = 200.0
 
 [node name="TransformRadius" type="Area2D" parent="."]
 collision_layer = 2

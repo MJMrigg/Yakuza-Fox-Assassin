@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bfwsfpm7kj31g"]
+[gd_scene load_steps=10 format=4 uid="uid://bfwsfpm7kj31g"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_d77iq"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_gtfk6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_ygqll"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="5_fxce2"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="7_ygqll"]
+[ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="8_fxce2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d77iq"]
 vertices = PackedVector2Array(186, 103.71094, 258, 99.703125, 258, 102, 174, 474, 165.49219, 100.84375, 186, 99.703125, 165.60938, 102, 390, 102, 390, -233.75781, 474, -233.34375, 474, 30, 1050, 30, 1050, 618, 390, 618, 390, 546, 174, 546, 102, 474, 102, 102, 114, 103.71094, 114, 102, 144.77344, 102)
@@ -69,7 +70,22 @@ regDoor = true
 [node name="Husky" parent="NPCs" instance=ExtResource("7_ygqll")]
 position = Vector2(249, 182)
 InitialDialog = "Be careful in here."
-DialogueOptions = PackedStringArray("What...is...this...room?", "What is that dog thing?", "What if I were to tell you I plan to kill your boss?", "Goodbye.")
-DialogResponses = PackedStringArray("Surprisingly, his is our Production facility.", "That\'s the Chihuahua god. They pray to them and it produces things the ship needs. Makes about as much as a family circus comic, but it works.", "I\'d tell you that I\'d shoot you.")
+DialogueOptions = PackedStringArray("What...is...this...room?", "What is that dog thing?", "Are there more of them?", "What if I were to tell you I plan to kill your boss?", "Goodbye.")
+DialogResponses = PackedStringArray("Surprisingly, his is our Production facility.", "That\'s the Chihuahua god. They pray to them and it produces things the ship needs. Makes about as much as a family circus comic, but it works.", "Yeah, we take them and put them around the upper side of the ship. They make good decoration.", "I\'d tell you that I\'d shoot you.")
+DialogSuspicion = PackedFloat32Array(0, 0, 0, 5)
+
+[node name="Chihuahua" parent="NPCs" instance=ExtResource("8_fxce2")]
+position = Vector2(536, 207)
+InitialDialog = "All hail...."
+DialogueOptions = PackedStringArray("What is that thing the center of the room?", "Aren\'t floor candles a fire harzard?", "What if I did something violent in here?", "Goodybe")
+DialogResponses = PackedStringArray("That is our god. We worship him and he bestows upon us what we desire.", "They are neccessary to please our god.", "You be tried and found a heretic to our god.")
+DialogSuspicion = PackedFloat32Array(0, 0, 7)
+
+[node name="Chihuahua2" parent="NPCs" instance=ExtResource("8_fxce2")]
+position = Vector2(822, 520)
+InitialDialog = "All praise...."
+DialogueOptions = PackedStringArray("What is that thing the center of the room?", "What kind of ritiuals go on in here?", "I think that thing in the center is a little ugly.", "Goodybe")
+DialogResponses = PackedStringArray("That is our god, and you will show him respsect.", "We pray to our god and he creates what we desire.", "You are a heretic! A false prophet! You will be EXCOMMUNICATED!")
+DialogSuspicion = PackedFloat32Array(0, 0, 7)
 
 [editable path="MainUI"]

@@ -233,6 +233,11 @@ public partial class Room : Node2D
 						break;
 					case 6: //Hamster
 						break;
+						ItemScene = GD.Load<PackedScene>("res://Packed Scenes/Items/Red Key.tscn");
+						Item Hamster = (Item)ItemScene.Instantiate();
+						Hamster.Position = new Vector2(Game.Instance.RoomItems[RoomId][i+1], Game.Instance.RoomItems[RoomId][i+2]);
+						Hamster.Scale = new Vector2(0.5f,0.5f);
+						GetNode("Items").AddChild(Hamster);
 				}
 			}
 		}
