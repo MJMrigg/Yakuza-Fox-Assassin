@@ -15,6 +15,7 @@
 vertices = PackedVector2Array(822, 174, 822, 42, 906, 30, 906, 330, 834, 330, 330, 30, 330, 42, 174, 30, 174, -45.359375, 330, -44.898438, 762, 492.21094, 678, 492.28906, 678, 402, 762, 371.95313, 102, 258, 30, 258, 30, 100.36719, 102, 96.38281, 330, 174, 102, 30, 163.96094, 360.03125, 102, 360, 834, 343.9297, 772.1719, 343.96094, 564.6094, 364.35938, 561.71875, 402, 163.99219, 402, 772.03125, 371.95313, 659.5781, 359.60938, 663.71875, 402)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 2, 1, 6), PackedInt32Array(7, 8, 9, 5), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 5, 6), PackedInt32Array(14, 15, 16, 17, 18), PackedInt32Array(18, 17, 19, 7, 6), PackedInt32Array(20, 21, 14, 18), PackedInt32Array(4, 22, 23, 18, 0), PackedInt32Array(24, 25, 26, 20, 18), PackedInt32Array(18, 23, 27, 13, 28), PackedInt32Array(12, 29, 28, 13), PackedInt32Array(24, 18, 28)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-44, -76, 984, -73, 976, 522, -17, 523)])
+cell_size = 10.0
 agent_radius = 30.0
 
 [node name="SecurityEngine" type="Node2D"]

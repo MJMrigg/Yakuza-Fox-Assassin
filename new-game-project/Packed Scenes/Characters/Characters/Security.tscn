@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
-radius = 28.0
-height = 82.0
+radius = 26.0
+height = 70.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uiao"]
 size = Vector2(100, 60)
@@ -327,7 +327,7 @@ shape = SubResource("RectangleShape2D_6uiao")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
-animation = &"Hurt_U"
+animation = &"Walk_D"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -393,7 +393,6 @@ bus = &"soundEffect"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
 path_desired_distance = 100.0
 target_desired_distance = 100.0
-path_max_distance = 200.0
 path_postprocessing = 2
 avoidance_enabled = true
 radius = 75.0

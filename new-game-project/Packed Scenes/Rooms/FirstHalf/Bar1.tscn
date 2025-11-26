@@ -74,7 +74,7 @@ rotation = 1.5707964
 animation = &"Walk_L"
 
 [node name="Tanuki" parent="." instance=ExtResource("8_bltij")]
-position = Vector2(65, 367)
+position = Vector2(60, 382)
 InitialDialog = "This is the life."
 DialogueOptions = PackedStringArray("What is this place?", "Why is this place so chill?", "I\'m an intruder.", "Goodbye")
 DialogResponses = PackedStringArray("This is heaven is what it is.", "Because there is no life like this one.", "Please not right now. I\'m loving life too much.")

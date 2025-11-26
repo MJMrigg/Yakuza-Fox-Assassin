@@ -809,6 +809,7 @@ animation = &"Walk_D"
 
 [node name="BiteAttack" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_jdabq")
+volume_db = 10.0
 bus = &"soundEffect"
 
 [node name="Crouch1" type="AudioStreamPlayer2D" parent="Sounds"]

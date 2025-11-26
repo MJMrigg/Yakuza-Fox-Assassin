@@ -61,10 +61,10 @@ public partial class Door : StaticBody2D
 			return;
 		}
 		
+		int CurrentRoom = Game.Instance.PlayerRoom;
 		//Save all NPC data if the player isn't leaving the bars
-		if(CurrentRoom != 5 && CurrentRooom != 13)
+		if(CurrentRoom != 5 && CurrentRoom != 13)
 		{ //Nothing to save in the bars
-			int CurrentRoom = Game.Instance.PlayerRoom;
 			Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
 			var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
 			for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
@@ -96,15 +96,15 @@ public partial class Door : StaticBody2D
 			}
 			//Mark the room as having saved data
 			Game.Instance.FirstSaved[CurrentRoom] = true;
-			//Change the music based on the room
-			if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
-			{ //If the player is going to the boss room or the bar
-				((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
-			}
-			else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
-			{ //If the player is leaving the boss room or the bar
-				((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
-			}
+		}
+		//Change the music based on the room
+		if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
+		{ //If the player is going to the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
+		else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
+		{ //If the player is leaving the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
 		}
 		
 		//Change scene based on the room the door takes the player during the next physics process

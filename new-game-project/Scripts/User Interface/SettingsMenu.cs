@@ -12,10 +12,20 @@ public partial class SettingsMenu : Control
 	public Button curButton;
 	
 	public AudioStreamPlayer ButtonSound;
+	
+	[Export]
+	public HSlider MasterVolume;
+	[Export]
+	public HSlider MusicVolume;
+	[Export]
+	public HSlider SoundVolume;
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		MasterVolume.Value = Game.Instance.MasterVolume;
+		MusicVolume.Value = Game.Instance.MusicVolume;
+		SoundVolume.Value = Game.Instance.SoundVolume;
 		ButtonSound = ((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound"));
 	}
 
@@ -117,32 +127,35 @@ public partial class SettingsMenu : Control
 	//Change the current master volume
 	public void ChangeMasterVolume(float NewVolume)
 	{
-		if (NewVolume > maxVolume){
-			NewVolume = maxVolume;
+		if (NewVolume >= maxVolume){
+			return;
 		}
 		//audiobus 0 is master bus
 		AudioServer.SetBusVolumeDb(0, NewVolume);
+		Game.Instance.MasterVolume = NewVolume;
 	}
 	
 	
 	//Change the current sound effect volume
 	public void ChangeSoundVolume(float NewVolume)
 	{
-		if (NewVolume > maxVolume){
-			NewVolume = maxVolume;
+		if (NewVolume >= maxVolume){
+			return;
 		}
 		//audiobus 1 is the sound effect bus
 		AudioServer.SetBusVolumeDb(1, NewVolume);
+		Game.Instance.SoundVolume = NewVolume;
 	}
 	
 	//Change the current music volume
 	public void ChangeMusicVolume(float NewVolume)
 	{
-		if (NewVolume > maxVolume){
-			NewVolume = maxVolume;
+		if (NewVolume >= maxVolume){
+			return;
 		}
 		//audiobus 2 is the music bus
 		AudioServer.SetBusVolumeDb(2, NewVolume);
+		Game.Instance.MusicVolume = NewVolume;
 	}
 	
 	//Return to the scene

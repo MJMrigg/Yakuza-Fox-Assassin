@@ -13,8 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="10_modip"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
-radius = 40.0
-height = 124.0
+radius = 25.0
+height = 96.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0nspq"]
 points = PackedVector2Array(0, 0, 212, 212, 150, 259, 0, 300, -150, 259, -212, 212)
@@ -454,6 +454,7 @@ MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_tvtjo")
 
 [node name="AttackRadius" type="Area2D" parent="CollisionShape2D"]

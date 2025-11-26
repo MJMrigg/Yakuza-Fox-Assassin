@@ -398,8 +398,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ndqf"]
-radius = 35.0
-height = 100.0
+radius = 25.0
+height = 94.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3uop3"]
 radius = 200.0
@@ -425,6 +425,7 @@ sprite_frames = SubResource("SpriteFrames_3uop3")
 animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_1ndqf")
 
 [node name="HostileRadius" type="Area2D" parent="."]
@@ -440,7 +441,7 @@ target_desired_distance = 100.0
 path_max_distance = 200.0
 path_postprocessing = 2
 avoidance_enabled = true
-radius = 75.0
+radius = 76.0
 neighbor_distance = 200.0
 
 [node name="Sounds" type="Node" parent="."]

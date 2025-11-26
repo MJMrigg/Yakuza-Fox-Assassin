@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_r1kc7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
-radius = 34.0
-height = 118.0
+radius = 27.0
+height = 86.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mp6cj"]
 points = PackedVector2Array(0, 0, 212, 212, 150, 259, 0, 300, -150, 259, -212, 212)
@@ -525,6 +525,7 @@ MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_d5f1y")
 
 [node name="AttackRadius" type="Area2D" parent="CollisionShape2D"]
@@ -536,7 +537,7 @@ shape = SubResource("ConvexPolygonShape2D_mp6cj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
-animation = &"Die_U"
+animation = &"Walk_D"
 
 [node name="Sounds" type="Node" parent="."]
 

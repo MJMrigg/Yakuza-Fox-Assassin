@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Threading.Tasks;
 
 public partial class Player : Entity
 {
@@ -37,10 +36,6 @@ public partial class Player : Entity
 	public CanvasLayer PlayerUI; //Menus the player controls
 	
 	public bool Choice = false; //Whether the player has chosen to start combat
-	
-	//Player sus go up
-	public bool increraseSus = true;
-	public bool susDelay = false;
 	
 	public override void _Ready()
 	{
@@ -91,10 +86,6 @@ public partial class Player : Entity
 		//Set player current health
 		Health = Game.Instance.PlayerHealth;
 		//HealthBar.Value = Health;
-		
-		//Start Player susDelay timer
-		initialSusDelay();
-		
 	}
 
 	public override void _Process(double delta)
@@ -141,15 +132,6 @@ public partial class Player : Entity
 			InformOfDeath();
 			return;
 		}
-		
-		//Increase Player sus every X amount seconds
-		if(susDelay && increraseSus)
-		{
-			//Increase Player sus
-			increraseSus = false;
-			susIncreaseOverTime();
-		}
-		
 		
 		//I'm sick of waiting
 		if(Input.IsActionPressed("cheat"))
@@ -226,9 +208,19 @@ public partial class Player : Entity
 		if(Input.IsActionJustPressed("p_dash") && DashCooldown)
 		{
 			Speed = 500;
+			((AudioStreamPlayer2D)GetNode("Sounds/Dash")).Play();
 			DashDistanceCoolDown();
 			DashCoolDown();
 		} 
+		
+		/*if(Input.IsActionPressed("p_slow"))
+		{
+			Speed = 50;
+		}
+		else
+		{
+			Speed = 100;
+		}*/
 		
 		//Get player input and set up velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
@@ -748,55 +740,4 @@ public partial class Player : Entity
 	{
 		Choice = PlayerChoice;
 	}
-	
-	
-	//The initial delay before a room sus starts increasing
-	public async void initialSusDelay()
-	{
-		susDelay = false;
-		await ToSignal(GetTree().CreateTimer(5),"timeout");
-		susDelay = true;
-	}
-	
-	//Start the cool down for the ranged attack
-	public async void susIncreaseOverTime()
-	{
-		increraseSus = false;
-		//var pRoom = Game.Instance.PlayerRoom;
-		//GD.Print("susIncreaseOverTime has been called.");
-		//GD.Print("This is room id: " + RoomId);
-		if(RoomId == 0 || RoomId == 5 || RoomId == 13 || RoomId == 20 )
-		{
-			//GD.Print("Safe room id");
-		}
-		else
-		{
-			var roomSus = Game.Instance.LocalSuspicions[RoomId];
-			//GD.Print("This room's sus: " + roomSus);
-			float x = roomSus * 0.05f;
-			//GD.Print("Increasing this room's sus by: " + x);
-			//Not using local function because I need a float
-			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
-		}
-		//await ToSignal(GetTree().CreateTimer(5),"timeout");
-		await playerTimeWithPause(5f);
-		increraseSus = true;
-	}
-	
-	public async Task playerTimeWithPause(float duration)
-	{
-		float elapsed = 0f;
-		
-		while (elapsed < duration)
-		{
-			if (!(Game.Instance.isPaused))
-			{
-				elapsed += (float)GetProcessDeltaTime();
-			}
-			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-		}
-	}
-	
-	
-	
 }

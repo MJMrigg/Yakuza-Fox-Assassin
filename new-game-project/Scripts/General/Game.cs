@@ -18,11 +18,12 @@ public partial class Game : Node
 	
 	public bool[] RoomsHostile = new bool[21]; //Whether each room is hostile
 	
-	public float MasterVolume; //Master volume of the whole game
-	
-	public float SoundVolume; //Volume of all sound effects
-	
-	public float MusicVolume; //Volume of all music
+	//Master volume of the whole game
+	public float MasterVolume = 10;
+	//Volume of all sound effects
+	public float SoundVolume = 0;
+	//Volume of all music
+	public float MusicVolume = 0;
 	
 	//Whether each step in a puzzle in complete
 	public bool[] SecurityPuzzle = new bool[5];

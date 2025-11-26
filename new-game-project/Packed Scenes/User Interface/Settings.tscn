@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://sfkdkxgb78ic" path="res://Scripts/User Interface/SettingsMenu.cs" id="1_u8t1i"]
 [ext_resource type="Script" uid="uid://biuva7fxggax3" path="res://Scripts/User Interface/buttonSendId.cs" id="2_qh64w"]
 
-[node name="Settings" type="Control"]
+[node name="Settings" type="Control" node_paths=PackedStringArray("MasterVolume", "MusicVolume", "SoundVolume")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8t1i")
+MasterVolume = NodePath("SettingsContainer/Settings/Keybindings2/MasterSlider")
+MusicVolume = NodePath("SettingsContainer/Settings/Keybindings2/MusicSlider")
+SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundSlider")
 
 [node name="SettingsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
