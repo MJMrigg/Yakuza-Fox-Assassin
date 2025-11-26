@@ -119,7 +119,7 @@ public partial class Game : Node
 			//<Controls(19), [Security2(18), Boss(20)]>
 			{19, new Dictionary<int, Vector2> { { 18, new Vector2(289,848) }, { 20, new Vector2(830,598) } } },
 			//<Boss(20), [Security2(18)]>
-			{20, new Dictionary<int, Vector2> { { 18, new Vector2(-251,401) } } }
+			{20, new Dictionary<int, Vector2> { { 18, new Vector2(-251,401) }, {19, new Vector2(168, 72) } } }
 		};
 	
 	// Room UID's
@@ -216,7 +216,8 @@ public partial class Game : Node
 			{ 7, new List<float>() }, //Green key in security1
 			{ 11, new List<float>() }, //Red key in medic
 			{ 12, new List<float>() }, //Hamster in lab
-			{ 15, new List<float>() } //Shotgun in armory
+			{ 15, new List<float>() }, //Shotgun in armory
+			{ 10, new List<float>() } //Green key in training
 		};
 		PlayerHealth = 100;
 		MaxPlayerHealth = 100;
@@ -437,10 +438,11 @@ public partial class Game : Node
 		//Get room options
 		var roomOptions = roomMap[PatrolRoom].Keys.ToList();
 		
-		//Remove bar rooms and docks
+		//Remove bar rooms, docks, and boss office
 		roomOptions.Remove(13);
 		roomOptions.Remove(5);
 		roomOptions.Remove(0);
+		roomOptions.Remove(20);
 		
 		//Player Combat Move; Priority 1
 		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
@@ -524,7 +526,7 @@ public partial class Game : Node
 			//<Training Yard(10), [Market(1), Medic(11), Bar2(13), Range(14), Living(16), Security2(18)]>
 			{10, new Dictionary<int, Vector2> { {1, new Vector2(-59,251) }, {11, new Vector2(180,41) }, {13, new Vector2(469,41) }, {14, new Vector2(684,43) }, { 16, new Vector2(364,585) }, { 18, new Vector2(771,257) } } },
 			//<Security2(18), [Training Yard(10), Controls(19)]>
-			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-26,256) }, { 19, new Vector2(687,-25) } } },
+			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-26,256) }, { 19, new Vector2(687,-25) }, { 7, new Vector2(109,60) } } },
 		};
 		//Save Paul's data into the list
 		NPCs[PatrolRoom].Add((7).ToString()); // Paul's TYPE

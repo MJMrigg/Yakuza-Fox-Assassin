@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://sgnoxpp88wpe" path="res://Packed Scenes/Doors/SecretPassage.tscn" id="7_utvqq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ymalb"]
-vertices = PackedVector2Array(966, 318, 966, 186, 1122, 186, 1122, 462, 534, 462, 534, 186, 618, 402, 618, 534, 966, 534, 966, 402, 1122, 474, 1122, 618, 330, 618, 402, 462, 330, 729.03125, 246, 728.59375, 246, 618, 1194, 144.57813, 1194, 186, 1122, 143.59375, 174, 96.38281, 1194, 462, 1194, 474, 618, 318, 618, 186, 174, 618, 174, 546, 102, 546, 102, 474, 30, 474, 30, 462, 102, 462, 102, 186, 30, 186, 30, 172.36719, 102, 168.38281, 174, 30, 1122, 30, 402, 186, 102, 100.36719)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(8, 11, 12, 7), PackedInt32Array(4, 7, 12, 13), PackedInt32Array(12, 14, 15, 16), PackedInt32Array(17, 18, 2, 19), PackedInt32Array(19, 2, 1, 20), PackedInt32Array(3, 21, 22, 10), PackedInt32Array(3, 10, 9, 0), PackedInt32Array(23, 0, 9, 6), PackedInt32Array(23, 6, 5), PackedInt32Array(24, 23, 5), PackedInt32Array(16, 25, 26), PackedInt32Array(26, 27, 28), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(20, 36, 37, 19), PackedInt32Array(20, 1, 24), PackedInt32Array(20, 24, 5), PackedInt32Array(20, 5, 38), PackedInt32Array(13, 35, 39, 20, 38), PackedInt32Array(32, 35, 13), PackedInt32Array(31, 32, 13, 12, 16, 26), PackedInt32Array(31, 26, 28)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-51, -110, 1331, -89, 1278, 764, -59, 757)])
-agent_radius = 30.0
+vertices = PackedVector2Array(539, 467, 539, 181, 613, 397, 613, 539, 971, 539, 971, 397, 1117, 469, 1117, 613, 325, 613, 397, 467, 325, 878.59375, 251, 881.90625, 251, 613, 1128.8984, 297.34375, 1129, 325.96094, 971, 323, 971, 181, 53.710938, 186.88281, 35, 186.89063, 35, 177.10938, 107, 173.10938, 95.22656, 223.03906, 1154.7266, 465.02344, 1189, 465.02344, 1189, 469, 1131.8281, 429.8672, 1129, 397.96094, 1128.8984, 369.34375, 613, 323, 179, 613, 179, 541, 107, 541, 107, 469, 35, 469, 35, 465.02344, 71.72656, 465.02344, 92.46094, 428.42188, 179, 101.109375, 179, 35, 1117, 35, 1117, 148.52344, 613, 181, 1189, 149.52344, 1189, 186.89063, 1168.3203, 186.90625, 1128.8984, 225.34375, 107, 105.109375, 397, 181, 1131.8281, 357.8672, 1135.2578, 291.1328, 1131.8281, 285.8672, 1129, 253.96094, 1135.2578, 363.1328, 95.22656, 367.03906, 89.34375, 361.90625, 92.46094, 356.42188, 95.22656, 295.03906, 89.34375, 289.90625, 92.46094, 284.42188, 94.8125, 253.28906, 94.8125, 325.28906, 94.8125, 397.28906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(4, 7, 8, 3), PackedInt32Array(0, 3, 8, 9), PackedInt32Array(10, 11, 12, 8), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 17, 20, 9), PackedInt32Array(22, 23, 24, 6), PackedInt32Array(25, 22, 6, 5), PackedInt32Array(26, 25, 5), PackedInt32Array(15, 27, 26, 5, 28), PackedInt32Array(12, 29, 30), PackedInt32Array(30, 31, 32), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(32, 35, 36), PackedInt32Array(37, 38, 39, 40, 16, 41), PackedInt32Array(42, 43, 44, 40), PackedInt32Array(40, 44, 45, 16), PackedInt32Array(9, 20, 46, 37, 47), PackedInt32Array(15, 14, 48, 27), PackedInt32Array(49, 13, 16, 50), PackedInt32Array(51, 50, 16), PackedInt32Array(45, 51, 16), PackedInt32Array(48, 52, 27), PackedInt32Array(28, 5, 2), PackedInt32Array(28, 2, 1), PackedInt32Array(41, 28, 1), PackedInt32Array(37, 41, 1), PackedInt32Array(37, 1, 47), PackedInt32Array(53, 54, 55, 9), PackedInt32Array(56, 57, 58, 9), PackedInt32Array(59, 21, 9), PackedInt32Array(58, 59, 9), PackedInt32Array(60, 56, 9), PackedInt32Array(55, 60, 9), PackedInt32Array(61, 53, 9, 8, 12, 30), PackedInt32Array(61, 30, 32, 36)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-51, -110, 1331, -89, 1294, 870, -61, 931)])
+agent_radius = 35.0
 
 [node name="Control" type="Node2D"]
 script = ExtResource("1_ymalb")
@@ -43,7 +43,6 @@ position = Vector2(830, 598)
 PlayerCamera = NodePath("../Camera2D")
 
 [node name="MainUI" parent="." instance=ExtResource("3_hnbj7")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(440, 198)

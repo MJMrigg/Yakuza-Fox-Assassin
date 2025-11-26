@@ -248,9 +248,9 @@ public partial class Room : Node2D
 	{
 		// Spawn Paul if he is not here, and in the room.
 		// Checks if paulNotSpawned == True && if the rooms data is not null and contains Paul's ID
-		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(x => x == "7") != -1)
+		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(z => z == "7") != -1)
 		{
-			int i = Game.Instance.NPCs[RoomId].FindIndex(x => x == "7");
+			int i = Game.Instance.NPCs[RoomId].FindIndex(z => z == "7");
 			//Get NPC properties for Paul
 			int type = int.Parse(Game.Instance.NPCs[RoomId][i]);
 			float x = float.Parse(Game.Instance.NPCs[RoomId][i+1]);

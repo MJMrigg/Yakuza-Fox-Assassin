@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="8_o61pd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lwimm"]
-vertices = PackedVector2Array(822, 174, 822, 42, 906, 30, 906, 330, 834, 330, 330, 30, 330, 42, 174, 30, 174, -45.359375, 330, -44.898438, 762, 492.21094, 678, 492.28906, 678, 402, 762, 371.95313, 102, 258, 30, 258, 30, 100.36719, 102, 96.38281, 330, 174, 102, 30, 163.96094, 360.03125, 102, 360, 834, 343.9297, 772.1719, 343.96094, 564.6094, 364.35938, 561.71875, 402, 163.99219, 402, 772.03125, 371.95313, 659.5781, 359.60938, 663.71875, 402)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 2, 1, 6), PackedInt32Array(7, 8, 9, 5), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 5, 6), PackedInt32Array(14, 15, 16, 17, 18), PackedInt32Array(18, 17, 19, 7, 6), PackedInt32Array(20, 21, 14, 18), PackedInt32Array(4, 22, 23, 18, 0), PackedInt32Array(24, 25, 26, 20, 18), PackedInt32Array(18, 23, 27, 13, 28), PackedInt32Array(12, 29, 28, 13), PackedInt32Array(24, 18, 28)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-44, -76, 984, -73, 976, 522, -17, 523)])
+vertices = PackedVector2Array(827, 179, 827, 37, 901, 35, 901, 325, 829, 325, 325, 35, 325, 37, 179, 35, 179, -166.92188, 325, -165.49219, 757, 522.4297, 682.9922, 522.90625, 683, 504, 757, 366.95313, 683, 397, 107, 253, 35, 253, 35, 105.109375, 107, 101.109375, 325, 179, 107, 35, 168.95313, 355.03125, 107, 355, 829, 338.9297, 767.1875, 338.96094, 559.96875, 359.57813, 557.09375, 397, 168.97656, 397, 767.0469, 366.95313, 664.09375, 354.3828, 668.25, 397)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 2, 1, 6), PackedInt32Array(7, 8, 9, 5), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(13, 12, 14), PackedInt32Array(7, 5, 6), PackedInt32Array(15, 16, 17, 18, 19), PackedInt32Array(19, 18, 20, 7, 6), PackedInt32Array(21, 22, 15, 19), PackedInt32Array(4, 23, 24, 19, 0), PackedInt32Array(25, 26, 27, 21, 19), PackedInt32Array(19, 24, 28, 13, 29), PackedInt32Array(14, 30, 29, 13), PackedInt32Array(25, 19, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-31, -204, 985, -194, 979, 556, -96, 563)])
 cell_size = 10.0
-agent_radius = 30.0
+agent_radius = 35.0
 
 [node name="SecurityEngine" type="Node2D"]
 script = ExtResource("1_wwkr1")

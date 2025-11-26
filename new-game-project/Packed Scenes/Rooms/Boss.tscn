@@ -37,11 +37,12 @@ tile_map_data = PackedByteArray("AAAOAAEAAQABAAkAAAANAAEAAQACAAkAAAAOAAcAAQACAAk
 tile_set = ExtResource("1_yq0du")
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_l5e51")]
-position = Vector2(-251, 401)
+position = Vector2(168, 72)
 PlayerCamera = NodePath("../Camera2D")
 
 [node name="Boss" parent="." instance=ExtResource("3_mdc6g")]
 position = Vector2(553, 321)
+Health = 180
 
 [node name="MainUI" parent="." instance=ExtResource("4_tq2ua")]
 

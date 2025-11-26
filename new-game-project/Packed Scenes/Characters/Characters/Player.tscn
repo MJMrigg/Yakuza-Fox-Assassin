@@ -786,13 +786,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs7tr"]
-radius = 61.008198
+radius = 74.00676
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "PlayerUI", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 16
 collision_mask = 27
 script = ExtResource("1_gs7tr")
-Speed = 200
 InteractionZone = NodePath("InteractionZone")
 PlayerUI = NodePath("PlayerUI")
 MyPhysicsCollider = NodePath("CollisionShape2D")
@@ -802,7 +801,7 @@ MySpriteAnimation = NodePath("AnimatedSprite2D")
 shape = SubResource("CapsuleShape2D_0rwas")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="CollisionShape2D"]
-radius = 49.02
+radius = 50.0
 vertices = PackedVector2Array(31, 0, 31, 18, 29, 30, 22, 40, 12, 47, 0, 49, -12, 47, -22, 40, -29, 30, -31, 18, -31, 0, -31, -18, -29, -30, -22, -40, -12, -47, 0, -49, 12, -47, 22, -40, 29, -30, 31, -18)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
@@ -896,5 +895,7 @@ visible = false
 
 [node name="YesNoMenu" parent="PlayerUI" instance=ExtResource("24_hrhlh")]
 visible = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="Choice" from="PlayerUI/YesNoMenu" to="." method="ChoiceMade"]

@@ -172,8 +172,15 @@ public partial class PatrollingNPC : Enemy
 		}
 		
 		//Set up velocity
-		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition()).Normalized();
-		Velocity = NextPosition * Speed;
+		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition());
+		if(NavAgent.AvoidanceEnabled)
+		{
+			NavAgent.Velocity = NextPosition * Speed;
+		}
+		else
+		{
+			OnVelocityComputed(NextPosition);
+		}
 		
 		//Set up direction it's facing
 		SetDirection();

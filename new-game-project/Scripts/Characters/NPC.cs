@@ -132,8 +132,16 @@ public partial class NPC : Interactable
 		{ //If the room is hostile, run away from the player
 			HandleHostile();
 		}
-		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition()).Normalized();
-		Velocity = NextPosition * Speed;
+		
+		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition()) * Speed;
+		if(NavAgent.AvoidanceEnabled)
+		{
+			NavAgent.Velocity = NextPosition * Speed;
+		}
+		else
+		{
+			OnVelocityComputed(NextPosition);
+		}
 		
 		//Set up direction it's facing
 		SetDirection();
@@ -335,5 +343,11 @@ public partial class NPC : Interactable
 	public void MakeHostile()
 	{
 		IsHostile = true;
+	}
+	
+	//Safe velocity has been computed
+	public void OnVelocityComputed(Vector2 SafeVelocity)
+	{
+		Velocity = SafeVelocity;
 	}
 }

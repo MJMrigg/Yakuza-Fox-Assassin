@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="8_kiqlt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h132m"]
-vertices = PackedVector2Array(1122, 618, 102, 618, 750, 606, 906, 606, 474, 606, 1122, 258, 906, 258, 750, 174, 906, 174, 1122, 474, 906, 474, 750, 390, 906, 390, 318, 30, 318, -158.20313, 474, -156.42969, 474, 30, 1122, 30, 1122, 42, 906, 42, 1122, 174, 750, 42, 474, 42, 1122, 390, 750, 258, 474, 174, 474, 258, 1122, 606, 750, 474, 474, 390, 474, 474, 102, 606, 318, 606, 318, 474, 318, 390, 102, 474, 102, 390, 318, 258, 318, 174, 102, 258, 102, 174, 318, 42, 102, 42, 102, 30)
+vertices = PackedVector2Array(1117, 613, 107, 613, 755, 611, 901, 611, 469, 611, 1117, 253, 901, 253, 755, 179, 901, 179, 1117, 469, 901, 469, 755, 395, 901, 395, 323, 35, 323, -153.14063, 469, -151.49219, 469, 35, 1117, 35, 1117, 37, 901, 37, 1117, 179, 755, 37, 469, 37, 1117, 395, 755, 253, 469, 179, 469, 253, 1117, 611, 755, 469, 469, 395, 469, 469, 107, 611, 323, 611, 323, 469, 323, 395, 107, 469, 107, 395, 323, 253, 323, 179, 107, 253, 107, 179, 323, 37, 107, 37, 107, 35)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(8, 20, 5), PackedInt32Array(19, 8, 7, 21), PackedInt32Array(16, 19, 21), PackedInt32Array(16, 21, 22, 13), PackedInt32Array(12, 23, 9), PackedInt32Array(6, 12, 11, 24), PackedInt32Array(7, 6, 24, 25), PackedInt32Array(25, 24, 26), PackedInt32Array(3, 27, 0), PackedInt32Array(10, 3, 2, 28), PackedInt32Array(11, 10, 28, 29), PackedInt32Array(29, 28, 30), PackedInt32Array(1, 31, 32), PackedInt32Array(4, 1, 32), PackedInt32Array(30, 4, 32, 33), PackedInt32Array(29, 30, 33, 34), PackedInt32Array(33, 35, 36, 34), PackedInt32Array(26, 29, 34, 37), PackedInt32Array(25, 26, 37, 38), PackedInt32Array(37, 39, 40, 38), PackedInt32Array(22, 25, 38, 41), PackedInt32Array(13, 22, 41), PackedInt32Array(13, 41, 42, 43)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-15, -192, 1394, -176, 1322, 719, 10, 713)])
-agent_radius = 30.0
+agent_radius = 35.0
 
 [node name="Engine" type="Node2D"]
 script = ExtResource("1_m6eb7")

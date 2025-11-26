@@ -141,7 +141,7 @@ public partial class Door : StaticBody2D
 		{
 			Item CurrentItem = PlayerInventory.ItemsStored[i];
 			//If the player does not have an item in that part of the inventory or that item is not a key, move on
-			if(CurrentItem == null || CurrentItem.ID < 4)
+			if(CurrentItem == null || CurrentItem.ID < 4 || CurrentItem.ID > 5)
 			{
 				continue;
 			}

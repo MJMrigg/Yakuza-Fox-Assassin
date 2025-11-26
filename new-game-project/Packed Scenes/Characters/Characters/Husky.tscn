@@ -503,4 +503,8 @@ collision_mask = 31
 shape = SubResource("CircleShape2D_0nspq")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+target_desired_distance = 50.0
 avoidance_enabled = true
+radius = 75.0
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

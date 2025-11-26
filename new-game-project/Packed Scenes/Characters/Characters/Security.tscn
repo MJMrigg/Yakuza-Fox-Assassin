@@ -392,6 +392,7 @@ bus = &"soundEffect"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
 avoidance_enabled = true
+radius = 75.0
 
 [node name="HostileRadius" type="Area2D" parent="."]
 collision_layer = 2
@@ -399,3 +400,5 @@ collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
 shape = SubResource("CircleShape2D_6uiao")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

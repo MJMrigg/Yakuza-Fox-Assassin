@@ -580,7 +580,9 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_mp6cj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
+target_desired_distance = 50.0
 avoidance_enabled = true
+radius = 75.0
 
 [node name="TransformRadius" type="Area2D" parent="."]
 collision_layer = 2
@@ -589,5 +591,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformRadius"]
 shape = SubResource("CircleShape2D_rlrp6")
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]
 [connection signal="body_entered" from="TransformRadius" to="." method="Ambush"]
 [connection signal="body_exited" from="TransformRadius" to="." method="LieInWait"]
