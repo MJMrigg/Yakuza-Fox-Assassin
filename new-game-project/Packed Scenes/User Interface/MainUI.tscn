@@ -52,7 +52,6 @@ size_flags_vertical = 4
 texture = ExtResource("1_tkf6q")
 
 [node name="Inventory" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -67,6 +66,11 @@ custom_minimum_size = Vector2(0, 270)
 layout_mode = 2
 theme_override_constants/v_separation = 0
 columns = 5
+
+[node name="Button" type="Button" parent="Inventory"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="PauseMenu" type="HBoxContainer" parent="Inventory"]
 custom_minimum_size = Vector2(0, 210)

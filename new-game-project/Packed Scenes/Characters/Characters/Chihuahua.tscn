@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://tt8pocwt0mag"]
+[gd_scene load_steps=63 format=3 uid="uid://tt8pocwt0mag"]
 
 [ext_resource type="Script" uid="uid://bfqcrgxftxgls" path="res://Scripts/Characters/Enemy1.cs" id="1_ag17j"]
 [ext_resource type="AudioStream" uid="uid://mhmksetncvvc" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark1.mp3" id="1_et5m4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://blg8bfi333ypr" path="res://Art Assets/Characters/Enemies/Chihuahua/Animations/Die_Anim_Chihuahua.png" id="11_qhu44"]
 [ext_resource type="Texture2D" uid="uid://bnbpxarg81i2" path="res://Art Assets/Characters/Enemies/Chihuahua/Animations/Hurt-Anim_Chihuahua.png" id="12_hglv6"]
 [ext_resource type="Texture2D" uid="uid://b55ai0jqy361e" path="res://Art Assets/Characters/Enemies/Chihuahua/Animations/Walk-Anim_Chihuahua.png" id="13_gs1lu"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="14_hglv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8p4b6"]
 atlas = ExtResource("11_qhu44")
@@ -435,7 +436,7 @@ size = Vector2(100, 60)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhu44"]
 radius = 200.0
 
-[node name="Chihuahua" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Chihuahua" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 30
 script = ExtResource("1_ag17j")
@@ -449,10 +450,11 @@ InitialDialog = "HELLO"
 DialogueOptions = PackedStringArray("Why are you screaming?", "Do you know any other words?", "Did you know that I plan to kill your boss?", "Goodybe")
 DialogResponses = PackedStringArray("HELLO", "HELLO", "OOH FUN")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="ChihuahuaBark1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("1_et5m4")
@@ -490,7 +492,7 @@ bus = &"soundEffect"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ag17j")
-animation = &"Die_D"
+animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7y6ms")
@@ -511,9 +513,11 @@ collision_mask = 31
 shape = SubResource("CircleShape2D_qhu44")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
-target_desired_distance = 100.0
-path_postprocessing = 2
+target_desired_distance = 60.0
 avoidance_enabled = true
 radius = 75.0
+
+[node name="Interactable" parent="." instance=ExtResource("14_hglv6")]
+position = Vector2(-19, -89)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

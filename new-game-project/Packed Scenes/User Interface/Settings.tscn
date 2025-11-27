@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bojq5vpsx41i8"]
+[gd_scene load_steps=8 format=3 uid="uid://bojq5vpsx41i8"]
 
 [ext_resource type="Script" uid="uid://sfkdkxgb78ic" path="res://Scripts/User Interface/SettingsMenu.cs" id="1_u8t1i"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="2_prkho"]
 [ext_resource type="Script" uid="uid://biuva7fxggax3" path="res://Scripts/User Interface/buttonSendId.cs" id="2_qh64w"]
+[ext_resource type="Theme" uid="uid://crf5h8eqa0lx7" path="res://Themes/Settings.tres" id="3_q5cyt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prkho"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5cyt"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk0lb"]
+bg_color = Color(0.6, 0, 0, 1)
 
 [node name="Settings" type="Control" node_paths=PackedStringArray("MasterVolume", "MusicVolume", "SoundVolume")]
 layout_mode = 3
@@ -15,274 +31,291 @@ MasterVolume = NodePath("SettingsContainer/Settings/Keybindings2/MasterVolume/Ma
 MusicVolume = NodePath("SettingsContainer/Settings/Keybindings2/MusicVolume/MusicSlider")
 SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundVolume/SoundSlider")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_prkho")
+
 [node name="SettingsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.028
+anchor_top = 0.013
 anchor_right = 1.0
-anchor_bottom = 0.9710001
-offset_top = -0.144001
-offset_bottom = -0.20806885
+anchor_bottom = 0.9850001
+offset_top = 9.576
+offset_bottom = -9.280029
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme = ExtResource("3_q5cyt")
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="SettingsContainer"]
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Settings" type="HBoxContainer" parent="SettingsContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 30
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Keybindings" type="VBoxContainer" parent="SettingsContainer/Settings"]
-custom_minimum_size = Vector2(576, 0)
+custom_minimum_size = Vector2(615, 490)
 layout_mode = 2
-theme_override_constants/separation = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
 
 [node name="Keybindings" type="Label" parent="SettingsContainer/Settings/Keybindings"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Key Bindings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/Settings/Keybindings"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/Settings/Keybindings"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Up"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "W"
 script = ExtResource("2_qh64w")
 actionType = "p_w"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Down"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "S"
 script = ExtResource("2_qh64w")
 actionType = "p_s"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Left"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "A"
 script = ExtResource("2_qh64w")
 actionType = "p_a"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Right"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "D"
 script = ExtResource("2_qh64w")
 actionType = "p_d"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Inventory"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "Tab"
 script = ExtResource("2_qh64w")
 actionType = "p_inv"
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Melee"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "Left Click"
 script = ExtResource("2_qh64w")
 actionType = "p_melee"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Ranged"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "Right Click"
 script = ExtResource("2_qh64w")
 actionType = "p_ranged"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer8" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Dash"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "Shift"
 script = ExtResource("2_qh64w")
 actionType = "p_dash"
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer9" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Slow"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "Crtl"
 script = ExtResource("2_qh64w")
 actionType = "p_slow"
 
-[node name="HBoxContainer10" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer10" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10"]
+[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10"]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 text = "Interact"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 200
 
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10" groups=["keyBinds"]]
+[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10" groups=["keyBinds"]]
 custom_minimum_size = Vector2(164, 30)
 layout_mode = 2
+theme = ExtResource("3_q5cyt")
 toggle_mode = true
 text = "E"
 script = ExtResource("2_qh64w")
 actionType = "p_interact"
 
-[node name="defaultBut" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
+[node name="defaultBut" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 text = "Reset Controls
 "
@@ -290,11 +323,12 @@ text = "Reset Controls
 [node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="AudioSettings" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Audio Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -304,6 +338,7 @@ layout_mode = 2
 
 [node name="MasterVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Master Volume"
 
 [node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
@@ -316,6 +351,7 @@ custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("3_q5cyt")
 min_value = -10.0
 max_value = 10.0
 value = 10.0
@@ -326,6 +362,7 @@ alignment = 1
 
 [node name="MusicVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Music Volume"
 
 [node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
@@ -337,6 +374,8 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("3_q5cyt")
 min_value = -10.0
 max_value = 10.0
 value = 10.0
@@ -358,6 +397,8 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("3_q5cyt")
 min_value = -10.0
 max_value = 10.0
 value = 10.0
@@ -366,31 +407,34 @@ value = 10.0
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_prkho")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q5cyt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tk0lb")
 text = "CLOSE SETTINGS"
 icon_alignment = 1
 
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer3/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer4/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer5/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer6/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer7/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" method="buttonToggle"]
-[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/defaultBut" to="." method="restoreDefault"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer2/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer3/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer4/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer5/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer6/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" to="." method="buttonsTog"]
+[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" method="buttonToggle"]
+[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/VBoxContainer/defaultBut" to="." method="restoreDefault"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterVolume/MasterSlider" to="." method="ChangeMasterVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MusicVolume/MusicSlider" to="." method="ChangeMusicVolume"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/SoundVolume/SoundSlider" to="." method="ChangeSoundVolume"]

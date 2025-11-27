@@ -1,12 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://8bq274s7uyyh"]
+[gd_scene load_steps=9 format=3 uid="uid://8bq274s7uyyh"]
 
 [ext_resource type="Script" uid="uid://jyen63v4cw3t" path="res://Scripts/User Interface/MainMenu.cs" id="1_5smlt"]
 [ext_resource type="PackedScene" uid="uid://bd1urlla04r60" path="res://Packed Scenes/User Interface/QuitMenu.tscn" id="1_e1quc"]
 [ext_resource type="PackedScene" uid="uid://co5tsjnc018nv" path="res://Packed Scenes/User Interface/DifficultyMenu.tscn" id="2_tddvn"]
 [ext_resource type="PackedScene" uid="uid://bojq5vpsx41i8" path="res://Packed Scenes/User Interface/Settings.tscn" id="4_odmmc"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="5_5nomv"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="5_m5yk3"]
 
 [sub_resource type="Theme" id="Theme_m5yk3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nomv"]
+bg_color = Color(0, 0.7294118, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("quitMenu", "difMenu", "setMenu", "playMenu", "buttonSound")]
 layout_mode = 3
@@ -19,7 +27,7 @@ script = ExtResource("1_5smlt")
 quitMenu = NodePath("QuitMenu")
 difMenu = NodePath("DifficultyMenu")
 setMenu = NodePath("Settings")
-playMenu = NodePath("Menu")
+playMenu = NodePath("")
 buttonSound = NodePath("ButtonSound")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -43,7 +51,7 @@ visible = false
 layout_mode = 1
 buttonSound = NodePath("../ButtonSound")
 
-[node name="Menu" type="ColorRect" parent="."]
+[node name="Menu" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30600002
@@ -56,19 +64,19 @@ offset_right = -0.032043457
 offset_bottom = 0.0079956055
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.26666668)
+theme = ExtResource("5_5nomv")
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.002
-anchor_top = 0.065000005
-anchor_right = 0.99500006
-anchor_bottom = 0.28300002
-offset_left = 0.11399996
-offset_top = 0.19999695
-offset_right = 0.21496582
-offset_bottom = -0.16001892
+anchor_left = 0.045
+anchor_top = 0.062000003
+anchor_right = 0.95500004
+anchor_bottom = 0.30200002
+offset_left = 0.06499863
+offset_top = -0.24000168
+offset_right = -0.06503296
+offset_bottom = -0.040008545
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Interstellar Fox Yakuza Takedown"
@@ -90,6 +98,7 @@ offset_bottom = -0.2400055
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_m5yk3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5nomv")
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="Menu"]

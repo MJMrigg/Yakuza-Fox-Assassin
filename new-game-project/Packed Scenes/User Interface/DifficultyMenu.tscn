@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://co5tsjnc018nv"]
 
 [ext_resource type="Script" uid="uid://2c1o6g17cb6v" path="res://Scripts/User Interface/DifficultyMenu.cs" id="1_1mf4c"]
-[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Packed Scenes/User Interface/Theme.tres" id="1_rvof5"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="1_rvof5"]
 
 [node name="Background" type="ColorRect"]
 anchors_preset = -1

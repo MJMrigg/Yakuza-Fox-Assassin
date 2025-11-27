@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://crf5h8eqa0lx7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2onxd"]
+bg_color = Color(0, 0, 0.40784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vewjf"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0.40784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqtsa"]
+bg_color = Color(0, 0, 0.40784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jtng"]
+bg_color = Color(0.07025019, 0.47463787, 0.3349799, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fik2h"]
+bg_color = Color(0.99958104, 0.76683885, 0.31721792, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fik2h"]
+color = Color(0.28235295, 0.28235295, 0.28235295, 0)
+thickness = 30
+
+[resource]
+Button/font_sizes/font_size = 22
+Button/styles/hover = SubResource("StyleBoxFlat_2onxd")
+Button/styles/normal = SubResource("StyleBoxFlat_vewjf")
+Button/styles/pressed = SubResource("StyleBoxFlat_iqtsa")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_0jtng")
+Label/colors/font_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+Label/font_sizes/font_size = 20
+Label/styles/normal = SubResource("StyleBoxFlat_fik2h")
+VSeparator/styles/separator = SubResource("StyleBoxLine_fik2h")

@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd1urlla04r60"]
+[gd_scene load_steps=7 format=3 uid="uid://bd1urlla04r60"]
 
 [ext_resource type="Script" uid="uid://dtcnwl0hhjx2b" path="res://Scripts/User Interface/QuitMenu.cs" id="1_5rumk"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="2_piop2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vusvc"]
+bg_color = Color(0, 0.7294118, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.4674126, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqr0s"]
+bg_color = Color(0.9882353, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6388948, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_piop2"]
+bg_color = Color(0.6392157, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vtwe"]
+bg_color = Color(0.6392157, 0, 0, 1)
 
 [node name="QuitMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5rumk")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.287
@@ -24,20 +47,21 @@ offset_right = -0.2880249
 offset_bottom = 0.23995972
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.26666668)
+theme = ExtResource("2_piop2")
 
 [node name="AreYouSure" type="Label" parent="Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.19700001
-anchor_top = 0.105000004
-anchor_right = 0.80100006
-anchor_bottom = 0.374
-offset_left = 0.09099579
-offset_top = -0.069999695
-offset_right = -0.09701538
-offset_bottom = 0.083992004
+anchor_left = 0.163
+anchor_top = 0.08400001
+anchor_right = 0.83500004
+anchor_bottom = 0.5
+offset_left = -0.011001587
+offset_top = -0.056001663
+offset_right = 0.0049743652
+offset_bottom = 3.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
 text = "Are you sure you want to quit?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -56,6 +80,7 @@ offset_right = -0.08100891
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vusvc")
 text = "Yes"
 
 [node name="No" type="Button" parent="Background"]
@@ -71,6 +96,9 @@ offset_right = 0.24499512
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_uqr0s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_piop2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0vtwe")
 text = "No"
 
 [connection signal="pressed" from="Background/Yes" to="." method="quitGame"]
