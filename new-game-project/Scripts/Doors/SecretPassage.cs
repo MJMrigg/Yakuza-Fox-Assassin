@@ -35,6 +35,7 @@ public partial class SecretPassage : Interactable
 	public void AddSuspicion()
 	{
 		Game.Instance.IncreaseLocalSuspicion(RoomId,Suspicion);
+		Game.Instance.IncreaseLocalSuspicion(ConnectedRoom,Suspicion);
 		//Mark the room as having saved data
 		Game.Instance.FirstSaved[RoomId] = true;
 		//Change the music based on the room

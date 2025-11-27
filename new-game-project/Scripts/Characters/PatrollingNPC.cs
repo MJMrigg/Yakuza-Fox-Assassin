@@ -29,10 +29,14 @@ public partial class PatrollingNPC : Enemy
 	public override void _Process(double delta)
 	{
 		//CHECK IF PAUL SHOULD NOT BE unconscious 
-		if(!(Game.Instance.unconsious))
+		if(Game.Instance.unconsious)
 		{
-			Dying = false;
-			Health = 170;
+			if(!Dying)
+			{
+				Remove();
+			}
+			Dying = true;
+			return;
 		}
 		base._Process(delta);
 		//GD.Print("PAUL PROCESS");
@@ -113,10 +117,17 @@ public partial class PatrollingNPC : Enemy
 	//Paul falls unconsious instead of being removed from the scene
 	public async override void Remove()
 	{
-		GD.Print("PAUL REMOVE");
+		GD.Print("TEST");
 		Dying = true;
 		Game.Instance.unconsious = true;
+		//Call the function in the game saying that Paul is down and then wait for it to be over
+		Game.Instance.paulIsDown();
+		await ToSignal(Game.Instance, Game.SignalName.PaulNoLongerDown);
+		Dying = false;
+		Game.Instance.unconsious = false;
+		Health = 170;
 		//Paul does not have an unconcious animation atm. This is where it would place
+		GD.Print("TESTSTSTS");
 	}
 	
 	//Paul has special move logic

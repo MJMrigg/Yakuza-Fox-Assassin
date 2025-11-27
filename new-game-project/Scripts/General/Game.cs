@@ -160,6 +160,10 @@ public partial class Game : Node
 	public int DrinkLimit = 3;
 	public int CurrentDrinks = 0;
 	
+	//Paul is no longer down signal
+	[Signal]
+	public delegate void PaulNoLongerDownEventHandler();
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -596,6 +600,7 @@ public partial class Game : Node
 		//GD.Print("PAUL HAS BEEN UNLEASHED");
 		unconsious = false;
 		debugBool = true;
+		EmitSignal(SignalName.PaulNoLongerDown);
 	}
 	
 	public async Task paulTimeTest(float duration)

@@ -30,5 +30,11 @@ public partial class LocalSusMeter : ProgressBar
 		}
 		//Update local suspicion in real time
 		Value = Game.Instance.LocalSuspicions[RoomId];
+		//Make the room hostile if it's not hostile
+		if(Value >= MaxValue && !(Game.Instance.RoomsHostile[RoomId]))
+		{
+			Game.Instance.RoomsHostile[RoomId] = true;
+			GetTree().CallGroup("NPCs","MakeHostile");
+		}
 	}
 }

@@ -11,9 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8t1i")
-MasterVolume = NodePath("SettingsContainer/Settings/Keybindings2/MasterSlider")
-MusicVolume = NodePath("SettingsContainer/Settings/Keybindings2/MusicSlider")
-SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundSlider")
+MasterVolume = NodePath("SettingsContainer/Settings/Keybindings2/MasterVolume/MasterSlider")
+MusicVolume = NodePath("SettingsContainer/Settings/Keybindings2/MusicVolume/MusicSlider")
+SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundVolume/SoundSlider")
 
 [node name="SettingsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -22,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="SettingsContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -33,12 +34,13 @@ vertical_alignment = 1
 [node name="Settings" type="HBoxContainer" parent="SettingsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 30
+alignment = 1
 
 [node name="Keybindings" type="VBoxContainer" parent="SettingsContainer/Settings"]
 custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="Keybindings" type="Label" parent="SettingsContainer/Settings/Keybindings"]
 custom_minimum_size = Vector2(0, 50)
@@ -53,18 +55,6 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer"]
 layout_mode = 2
-
-[node name="closeBut" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "CLOSE SETTINGS"
-
-[node name="inputTestButton" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "INPUT MAP TEST BUTTON"
-
-[node name="defaultBut" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Controls Reset"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -286,10 +276,14 @@ text = "E"
 script = ExtResource("2_qh64w")
 actionType = "p_interact"
 
-[node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
-custom_minimum_size = Vector2(576, 0)
+[node name="defaultBut" type="Button" parent="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+text = "Reset Controls
+"
+
+[node name="Keybindings2" type="VBoxContainer" parent="SettingsContainer/Settings"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 
 [node name="AudioSettings" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
 custom_minimum_size = Vector2(0, 50)
@@ -298,23 +292,39 @@ text = "Audio Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="MasterVolume" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+
+[node name="MasterVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
 layout_mode = 2
 text = "Master Volume"
 
-[node name="MasterSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MasterSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 min_value = -10.0
 max_value = 10.0
 value = 10.0
 
-[node name="MusicVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="MusicVolume" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+alignment = 1
+
+[node name="MusicVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
 layout_mode = 2
 text = "Music Volume"
 
-[node name="MusicSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -322,11 +332,19 @@ min_value = -10.0
 max_value = 10.0
 value = 10.0
 
-[node name="SoundVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="SoundVolume" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings2"]
+layout_mode = 2
+alignment = 1
+
+[node name="SoundVolume" type="Label" parent="SettingsContainer/Settings/Keybindings2/SoundVolume"]
 layout_mode = 2
 text = "Sound Effects Volume"
 
-[node name="SoundSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2"]
+[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/SoundVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SoundSlider" type="HSlider" parent="SettingsContainer/Settings/Keybindings2/SoundVolume"]
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -334,9 +352,12 @@ min_value = -10.0
 max_value = 10.0
 value = 10.0
 
-[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/closeBut" to="." method="ReturnToScene"]
-[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/inputTestButton" to="." method="printInput"]
-[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/defaultBut" to="." method="restoreDefault"]
+[node name="closeBut" type="Button" parent="SettingsContainer"]
+layout_mode = 2
+text = "CLOSE SETTINGS"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer2/Button" to="." method="buttonsTog"]
@@ -356,6 +377,8 @@ value = 10.0
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" method="buttonToggle"]
-[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterSlider" to="." method="ChangeMasterVolume"]
-[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MusicSlider" to="." method="ChangeMusicVolume"]
-[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/SoundSlider" to="." method="ChangeSoundVolume"]
+[connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/defaultBut" to="." method="restoreDefault"]
+[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterVolume/MasterSlider" to="." method="ChangeMasterVolume"]
+[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MusicVolume/MusicSlider" to="." method="ChangeMusicVolume"]
+[connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/SoundVolume/SoundSlider" to="." method="ChangeSoundVolume"]
+[connection signal="pressed" from="SettingsContainer/closeBut" to="." method="ReturnToScene"]

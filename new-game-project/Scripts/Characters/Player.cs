@@ -413,7 +413,7 @@ public partial class Player : Entity
 		for(int i = 0; i < Weapon; i++)
 		{
 			Bullets[i].Speed = BulletSpeed;
-			Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
+			//Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
 			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
 			Bullets[i].CurrentDir = CurrentDir;
 			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(Bullets[i]);

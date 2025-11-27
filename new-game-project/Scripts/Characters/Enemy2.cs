@@ -82,7 +82,7 @@ public partial class Enemy2 : Enemy
 				}
 				//Set bullet speed and collision layers
 				NewBullet.Speed = 300;
-				NewBullet.SetCollisionLayerValue(4,true); //Bullet is enemy projectile
+				//NewBullet.SetCollisionLayerValue(4,true); //Bullet is enemy projectile
 				NewBullet.SetCollisionMaskValue(5,true); //Bullet is looking for the player
 				NewBullet.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
 				NewBullet.Damage = Damage;
