@@ -13,15 +13,9 @@ public partial class buttonSendId : Button
 	
 	public override void _Ready()
 	{
-		var actions = InputMap.GetActions();
-		foreach (var i in actions){
-			if(i == actionType){
-				var events = InputMap.ActionGetEvents(i);
-				defText = events[0].AsText();
-				Text = events[0].AsText();
-				break;
-			}
-		}
+		var action = InputMap.ActionGetEvents(actionType);
+		defText = action[0].AsText();
+		Text = action[0].AsText();
 	}
 	
 	public void buttonToggle(bool tog)

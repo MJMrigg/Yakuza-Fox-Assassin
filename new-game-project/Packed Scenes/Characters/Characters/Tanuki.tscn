@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=66 format=3 uid="uid://dxcjch6ow0kbd"]
 
 [ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_5j40h"]
 [ext_resource type="Script" uid="uid://beqgj5ur66lhn" path="res://Scripts/Characters/Enemy3.cs" id="1_rlrp6"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_x51gj"]
 [ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_1w38c"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_r1kc7"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_2fc67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 27.0
@@ -504,7 +505,7 @@ radius = 300.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlrp6"]
 radius = 130.0
 
-[node name="Tanuki" type="CharacterBody2D" node_paths=PackedStringArray("TransformRadius", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Tanuki" type="CharacterBody2D" node_paths=PackedStringArray("TransformRadius", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_rlrp6")
@@ -521,6 +522,7 @@ InitialDialog = "Shhhh....I'm stealthy"
 DialogueOptions = PackedStringArray("I can see you though.", "What are you, Solid Snake?", "Oh yeah? I\'m an intruder. Nobody  has noticed!", "Goodbye")
 DialogResponses = PackedStringArray("No you can\'t.", "Ha! I make Solid Snake look more like Liquid Lake!", "I\'m going to assume that was a joke.")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -539,7 +541,7 @@ shape = SubResource("ConvexPolygonShape2D_mp6cj")
 sprite_frames = SubResource("SpriteFrames_mh0sn")
 animation = &"Walk_D"
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="TanukiBark1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("2_ybuk3")
@@ -590,6 +592,9 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformRadius"]
 shape = SubResource("CircleShape2D_rlrp6")
+
+[node name="Interactable" parent="." instance=ExtResource("12_2fc67")]
+position = Vector2(-20, -73)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]
 [connection signal="body_entered" from="TransformRadius" to="." method="Ambush"]

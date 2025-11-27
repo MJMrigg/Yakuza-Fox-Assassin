@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsrb5biavqiyq"]
+[gd_scene load_steps=5 format=3 uid="uid://bsrb5biavqiyq"]
 
 [ext_resource type="Script" uid="uid://hy24va66myct" path="res://Scripts/Items/Weapon.cs" id="1_76nx0"]
 [ext_resource type="Texture2D" uid="uid://bkaq2dgodrgi2" path="res://Art Assets/Items/hamster.png" id="2_76nx0"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="3_heg4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikmsh"]
 size = Vector2(80, 80)
 
-[node name="Knife" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider") groups=["Items", "Pausable"]]
+[node name="Knife" type="CharacterBody2D" node_paths=PackedStringArray("InteractionBox", "MyPhysicsCollider") groups=["Items", "Pausable"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_76nx0")
@@ -16,6 +17,7 @@ InitialDialog = "There's a tiny hamster here."
 DialogueOptions = PackedStringArray("Examine", "Pet", "Pick Up", "Leave")
 DialogResponses = PackedStringArray("It looks depressed. It\'s seen some stuff.", "Squeak!", "The hamster is now in your inventory.")
 DialogSuspicion = PackedFloat32Array(0, 0, 3)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,3 +30,7 @@ texture = ExtResource("2_76nx0")
 vertices = PackedVector2Array(40, 40, 40, -40, -40, -40, -40, 40)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="Interactable" parent="." instance=ExtResource("3_heg4i")]
+position = Vector2(-40, -30)
+scale = Vector2(2, 2)

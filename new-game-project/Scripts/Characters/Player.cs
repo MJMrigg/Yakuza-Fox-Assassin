@@ -618,13 +618,18 @@ public partial class Player : Entity
 		if(Body is Interactable)
 		{
 			CurrentInteraction = (Interactable)Body;
+			CurrentInteraction.InteractionBox.Visible = true;
 		}
 	}
 	
 	//Mark the object that the player is interacting with as no longer interactable
 	public void MarkNoLongerInteractable(Node2D Body)
 	{
-		CurrentInteraction = null;
+		if(Body is Interactable)
+		{
+			CurrentInteraction = (Interactable)Body;
+			CurrentInteraction.InteractionBox.Visible = false;
+		}
 	}
 	
 	//Pick up an item

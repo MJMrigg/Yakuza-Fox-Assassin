@@ -17,16 +17,21 @@ SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundVolume/Soun
 
 [node name="SettingsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.028
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.9710001
+offset_top = -0.144001
+offset_bottom = -0.20806885
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="Label" type="Label" parent="SettingsContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_font_sizes/font_size = 70
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,6 +50,7 @@ theme_override_constants/separation = 0
 [node name="Keybindings" type="Label" parent="SettingsContainer/Settings/Keybindings"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Key Bindings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -288,6 +294,7 @@ layout_mode = 2
 [node name="AudioSettings" type="Label" parent="SettingsContainer/Settings/Keybindings2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Audio Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -300,6 +307,7 @@ layout_mode = 2
 text = "Master Volume"
 
 [node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MasterVolume"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -321,6 +329,7 @@ layout_mode = 2
 text = "Music Volume"
 
 [node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/MusicVolume"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -341,6 +350,7 @@ layout_mode = 2
 text = "Sound Effects Volume"
 
 [node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings2/SoundVolume"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -353,10 +363,12 @@ max_value = 10.0
 value = 10.0
 
 [node name="closeBut" type="Button" parent="SettingsContainer"]
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "CLOSE SETTINGS"
 icon_alignment = 1
-vertical_icon_alignment = 0
 
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]
@@ -376,6 +388,7 @@ vertical_icon_alignment = 0
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer8/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
+[connection signal="butID" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" to="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/HBoxContainer10/Button" method="buttonToggle"]
 [connection signal="pressed" from="SettingsContainer/Settings/Keybindings/ScrollContainer/VBoxContainer/defaultBut" to="." method="restoreDefault"]
 [connection signal="value_changed" from="SettingsContainer/Settings/Keybindings2/MasterVolume/MasterSlider" to="." method="ChangeMasterVolume"]

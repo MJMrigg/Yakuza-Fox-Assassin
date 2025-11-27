@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctv05unu720g3"]
-
-[sub_resource type="MeshTexture" id="MeshTexture_r1jg2"]
-
-[node name="Interactable" type="Sprite2D"]
-texture = SubResource("MeshTexture_r1jg2")

@@ -17,12 +17,17 @@ public partial class Interactable : Entity
 	
 	public HBoxContainer DialogueBox; //Dialogue box on the screen
 	
+	[Export]
+	public Sprite2D InteractionBox; //Box that will pop up to remind the player to interact with it
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
 		//Get the dialog box on the screen
 		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialog"));
+		//Hide interaction box
+		InteractionBox.Visible = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

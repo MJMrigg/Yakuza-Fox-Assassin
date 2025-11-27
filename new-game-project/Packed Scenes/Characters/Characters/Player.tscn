@@ -810,7 +810,7 @@ carve_navigation_mesh = true
 sprite_frames = SubResource("SpriteFrames_0rwas")
 animation = &"Walk_D"
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="BiteAttack" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("4_jdabq")
@@ -898,4 +898,6 @@ visible = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[connection signal="body_entered" from="InteractionZone" to="." method="MarkInteractable"]
+[connection signal="body_exited" from="InteractionZone" to="." method="MarkNoLongerInteractable"]
 [connection signal="Choice" from="PlayerUI/YesNoMenu" to="." method="ChoiceMade"]

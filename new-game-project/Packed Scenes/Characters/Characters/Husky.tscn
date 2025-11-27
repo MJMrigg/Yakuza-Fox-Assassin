@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=61 format=3 uid="uid://cckd5u6wwg8gx"]
 
 [ext_resource type="Script" uid="uid://v87lc1o8kvw7" path="res://Scripts/Characters/Enemy2.cs" id="1_0nspq"]
 [ext_resource type="Texture2D" uid="uid://btg0pfwq8nsay" path="res://Art Assets/Characters/Enemies/Husky/Animations/Die-Anim_Husky.png" id="1_5o7ni"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dkhx4c5px57k6" path="res://Art Assets/Sounds/Husky/HuskyDeath.mp3" id="7_uetyp"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="8_1uy3h"]
 [ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="10_modip"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_el87n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
 radius = 25.0
@@ -433,7 +434,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nspq"]
 radius = 300.0
 
-[node name="Husky" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Husky" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_0nspq")
@@ -450,6 +451,7 @@ InitialDialog = "Why hello there!"
 DialogueOptions = PackedStringArray("Aren\'t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
 DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I had to come here.", "It\'s not bad. Except when you\'re the only one who bothers cleaning their weapon. I\'m looking at you Gary!", "Oh, not under my watch you will")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -468,7 +470,7 @@ shape = SubResource("ConvexPolygonShape2D_0nspq")
 sprite_frames = SubResource("SpriteFrames_3nkod")
 animation = &"Walk_D"
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="HuskyBark1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("3_ssrmf")
@@ -506,5 +508,8 @@ shape = SubResource("CircleShape2D_0nspq")
 target_desired_distance = 50.0
 avoidance_enabled = true
 radius = 75.0
+
+[node name="Interactable" parent="." instance=ExtResource("12_el87n")]
+position = Vector2(-20, -77)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

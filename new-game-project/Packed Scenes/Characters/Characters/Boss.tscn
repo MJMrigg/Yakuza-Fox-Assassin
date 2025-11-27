@@ -531,7 +531,7 @@ shape = SubResource("RectangleShape2D_21mar")
 sprite_frames = SubResource("SpriteFrames_bh72c")
 animation = &"Walk_U"
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="BossDeath" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("1_5a4u7")

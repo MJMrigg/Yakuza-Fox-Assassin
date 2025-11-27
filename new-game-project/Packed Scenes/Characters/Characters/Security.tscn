@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=56 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Script" uid="uid://dfvydf8b2b5hi" path="res://Scripts/Characters/PatrollingNPC.cs" id="1_6uiao"]
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cb7ahh3iths4b" path="res://Art Assets/Sounds/Paul/PaulNotice.mp3" id="14_e6fmn"]
 [ext_resource type="AudioStream" uid="uid://6yvqsut464mb" path="res://Art Assets/Sounds/Paul/PaulUnconcious.mp3" id="15_8435d"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="19_ptyyj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 26.0
@@ -296,7 +297,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6uiao"]
 radius = 300.0
 
-[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_6uiao")
@@ -310,6 +311,7 @@ InitialDialog = "Waddaya want?!"
 DialogueOptions = PackedStringArray("Who are you?", "How old are you?", "Hey, so I\'m an intruder.", "Goodbye!")
 DialogResponses = PackedStringArray("I am the Paw Patrol Guard of this ship. If it weren\'t for me, this place would be in flames!", "Old enough to know never to ask an old man that question.", "WHAT?!", "")
 DialogSuspicion = PackedFloat32Array(0, 0, 19, 0)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -328,7 +330,7 @@ shape = SubResource("RectangleShape2D_6uiao")
 sprite_frames = SubResource("SpriteFrames_qkkyo")
 animation = &"Walk_D"
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="PaulAttack1" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("2_rdvp8")
@@ -398,5 +400,8 @@ collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HostileRadius"]
 shape = SubResource("CircleShape2D_6uiao")
+
+[node name="Interactable" parent="." instance=ExtResource("19_ptyyj")]
+position = Vector2(-20, -63)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

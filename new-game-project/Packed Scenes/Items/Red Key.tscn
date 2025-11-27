@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsfdmyk170c53"]
+[gd_scene load_steps=5 format=3 uid="uid://bsfdmyk170c53"]
 
 [ext_resource type="Script" uid="uid://cq6w6ee5nbhvf" path="res://Scripts/Items/Key.cs" id="1_upp3l"]
 [ext_resource type="Texture2D" uid="uid://f1e6mv6yu83o" path="res://Art Assets/Items/keycard_red.png" id="2_upp3l"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="3_ydnqh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikmsh"]
 size = Vector2(80, 80)
 
-[node name="Red Key" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider") groups=["Items", "Pausable"]]
+[node name="Red Key" type="CharacterBody2D" node_paths=PackedStringArray("InteractionBox", "MyPhysicsCollider") groups=["Items", "Pausable"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_upp3l")
@@ -15,6 +16,7 @@ InitialDialog = "You find a small card like item."
 DialogueOptions = PackedStringArray("Examine", "Would taking it be theft?", "Take", "Leave")
 DialogResponses = PackedStringArray("Upon closer inspection, it looks like some sort of key card.", "Would killing a head yakuza be murder?", "You pick up the key")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -27,3 +29,7 @@ texture = ExtResource("2_upp3l")
 vertices = PackedVector2Array(40, 40, 40, -40, -40, -40, -40, 40)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="Interactable" parent="." instance=ExtResource("3_ydnqh")]
+position = Vector2(-40, -30)
+scale = Vector2(2, 2)

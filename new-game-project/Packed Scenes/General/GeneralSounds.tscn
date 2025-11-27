@@ -24,7 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://yngv8eg1ry4n" path="res://Art Assets/Sounds/General/WoodFootstep7.mp3" id="22_kb7f5"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="23_jyhik"]
 
-[node name="GeneralSounds" type="Node"]
+[node name="GeneralSounds" type="CharacterBody2D"]
 
 [node name="DogHurt1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_6wvn2")

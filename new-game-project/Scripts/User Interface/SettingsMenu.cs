@@ -144,6 +144,7 @@ public partial class SettingsMenu : Control
 		}
 		//audiobus 1 is the sound effect bus
 		AudioServer.SetBusVolumeDb(1, NewVolume);
+		ButtonSound.Play();
 		Game.Instance.SoundVolume = NewVolume;
 	}
 	
@@ -181,7 +182,7 @@ public partial class SettingsMenu : Control
 					if (InputMap.ActionGetEvents(actionName)[0].AsText() == j.Text)
 					{
 						//This button's text needs to change
-						j.Text = Game.Instance.defControls[i][0].AsText();
+						j.Text = (Game.Instance.defControls[i][0].AsText());
 						break;
 					}
 				}
@@ -191,28 +192,6 @@ public partial class SettingsMenu : Control
 				{
 					InputMap.ActionAddEvent(i, events);
 				}
-			}
-		}
-	}
-	
-	// Test Function
-	public void printInput()
-	{
-		var actions = InputMap.GetActions();
-		foreach (var i in actions)
-		{
-			string actionName = i.ToString();
-			if (!actionName.StartsWith("ui_"))
-			{
-				GD.Print($"Action: {actionName}");
-				
-				var events = InputMap.ActionGetEvents(actionName);
-				foreach (var ev in events)
-				{
-					GD.Print($"  - {ev.AsText()}");
-				}
-				
-				GD.Print("");
 			}
 		}
 	}

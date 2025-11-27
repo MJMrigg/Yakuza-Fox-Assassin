@@ -91,7 +91,7 @@ regDoor = true
 [node name="Items" type="Node" parent="."]
 
 [node name="Green Key" parent="Items" instance=ExtResource("7_2xho8")]
-position = Vector2(50, 253)
+position = Vector2(48, 253)
 scale = Vector2(0.5, 0.5)
 InitialDialog = "You find a small card like item just lying on the ground."
 
