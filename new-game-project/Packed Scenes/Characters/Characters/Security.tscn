@@ -1,9 +1,10 @@
-[gd_scene load_steps=69 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=70 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Script" uid="uid://dfvydf8b2b5hi" path="res://Scripts/Characters/PatrollingNPC.cs" id="1_6uiao"]
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
-[ext_resource type="Texture2D" uid="uid://c621ew6pl1qrl" path="res://Art Assets/Characters/Enemies/Security/Animations/Hurt-Anim_Paul.png" id="2_1bv6b"]
+[ext_resource type="Texture2D" uid="uid://cwknkwhm1jfkh" path="res://Art Assets/Characters/Enemies/Security/Portraits/Neutral-Por-Right_Paul.png" id="2_1bv6b"]
 [ext_resource type="AudioStream" uid="uid://4l5aslkhqptf" path="res://Art Assets/Sounds/Paul/PaulAttack1.mp3" id="2_rdvp8"]
+[ext_resource type="Texture2D" uid="uid://c621ew6pl1qrl" path="res://Art Assets/Characters/Enemies/Security/Animations/Hurt-Anim_Paul.png" id="3_edawj"]
 [ext_resource type="Texture2D" uid="uid://cr7d6110y0mn7" path="res://Art Assets/Characters/Enemies/Security/Animations/Unconscious-Anim_Paul.png" id="3_sl15h"]
 [ext_resource type="AudioStream" uid="uid://8bjwd1nw2bdm" path="res://Art Assets/Sounds/Paul/PaulAttack2.mp3" id="3_sx5u6"]
 [ext_resource type="AudioStream" uid="uid://dwdabw2nrnpwj" path="res://Art Assets/Sounds/Paul/PaulBark1.mp3" id="4_dklhh"]
@@ -29,51 +30,51 @@ height = 80.0
 size = Vector2(100, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_edawj"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(0, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bh3n7"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(96, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kel72"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(192, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb46i"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(0, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wmmk"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(96, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpxj2"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(192, 360, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hmre"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(0, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oj6en"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(96, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3i2b"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(192, 120, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koa7i"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(0, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t63mi"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(96, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx4g8"]
-atlas = ExtResource("2_1bv6b")
+atlas = ExtResource("3_edawj")
 region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsm1a"]
@@ -410,11 +411,13 @@ AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 DeathSound = NodePath("Sounds/PaulUnconcious")
 Speed = 150.0
 Health = 170
+Portrait = ExtResource("2_1bv6b")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 7
 InitialDialog = "Waddaya want?!"
 DialogueOptions = PackedStringArray("Who are you?", "How old are you?", "Hey, so I\'m an intruder.", "Goodbye!")
-DialogResponses = PackedStringArray("I am the Paw Patrol Guard of this ship. If it weren\'t for me, this place would be in flames!", "Old enough to know never to ask an old man that question.", "WHAT?!", "")
+DialogResponses = PackedStringArray("I am the Paw Patrol Guard of this ship. If it weren\'t for me, this place would be in flames!", "Old enough to know to never ask an old dog that question.", "Oh, I\'ve got my eye on you now.", "")
 DialogSuspicion = PackedFloat32Array(0, 0, 19, 0)
 InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
@@ -433,7 +436,7 @@ shape = SubResource("RectangleShape2D_6uiao")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
-animation = &"Unconscious_U"
+animation = &"Hurt_U"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

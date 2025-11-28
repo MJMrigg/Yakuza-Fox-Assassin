@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cfrkcj0r61ak1"]
+[gd_scene load_steps=11 format=4 uid="uid://cfrkcj0r61ak1"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_blnwy"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dwaw2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="6_4c7xv"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_blnwy"]
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_bv1ab"]
+[ext_resource type="Texture2D" uid="uid://bh0tdmfr00fs6" path="res://Art Assets/Items/greenDoor.png" id="9_oyby1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bv1ab"]
 vertices = PackedVector2Array(683.7969, 35.796875, 683.7969, -157.77344, 684.2031, -157.75781, 684.2031, 134.8125, 756.2031, 132.8125, 756.2031, 251.79688, 539.7969, 468.20313, 991.6406, 251.79688, 991.64844, 252.20313, 756.2031, 252.20313, 35.796875, 252.20313, -142.64844, 252.20313, -142.64063, 251.79688, 35.796875, 251.79688, 179.79688, 35.796875, 179.79688, -158.60156, 180.20313, -158.59375, 180.20313, 35.796875, 681.9922, 87.77344, 681.8672, 35.796875, 177.99219, 87.77344, 177.86719, 35.796875, 393.9922, 87.78125, 393.8672, 35.796875, 467.79688, 35.796875, 470.15625, 87.796875, 612.2031, 468.20313, 612.2031, 781.85156, 539.7969, 781.78125, 180.20313, 468.20313, 180.20313, 781.4922, 107.796875, 781.4219, 107.796875, 396.20313, 468.20313, 35.796875, 470.17188, 35.796875, 254.17188, 35.796875, 254.15625, 87.84375, 542.15625, 87.78125, 542.15625, 87.796875, 387.84375, 92.38281, 387.84375, 87.78125, 467.79688, -158.11719, 468.20313, -158.11719, 756.2031, 396.20313, 684.2031, 396.20313, 684.2031, 468.20313, 252.20313, 438.14844, 252.20313, 468.20313, 35.796875, 396.20313, 35.796875, 177.78125, 105.84375, 177.78125, 262.39844, 410.15625, 107.796875, 130.85156, 107.796875, 87.78125, 393.72656, 468.20313, 393.6875, 440.6172, 262.34375, 87.82031, 262.3672, 91.71094, 262.2578, 438.14844, 385.8125, 440.52344, 385.8828, 410.1172, 105.75781, 130.89844)
@@ -77,6 +78,12 @@ rotation = 1.5707964
 scale = Vector2(0.495, 1)
 ConnectedRoom = 10
 
+[node name="DoorSprite" parent="Doors/GreenDoor(ToTraining)" index="0"]
+position = Vector2(-1.5258789e-05, 4.038989e-05)
+rotation = -1.5707964
+scale = Vector2(0.347, 1.386)
+texture = ExtResource("9_oyby1")
+
 [node name="ToProduction" parent="Doors" instance=ExtResource("6_blnwy")]
 position = Vector2(572, 888)
 rotation = -3.1415925
@@ -107,3 +114,4 @@ ConnectedRoom = 6
 regDoor = true
 
 [editable path="MainUI"]
+[editable path="Doors/GreenDoor(ToTraining)"]

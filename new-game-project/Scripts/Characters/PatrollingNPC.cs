@@ -43,7 +43,7 @@ public partial class PatrollingNPC : Enemy
 	}
 	
 	//Attack for Paul
-	public override void HandleHostile()
+	public async override void HandleHostile()
 	{
 		//If the function was accidently called, don't run it
 		if(!IsHostile)
@@ -117,17 +117,25 @@ public partial class PatrollingNPC : Enemy
 	//Paul falls unconsious instead of being removed from the scene
 	public async override void Remove()
 	{
-		GD.Print("TEST");
+		//Mark Paul as unconcious
 		Dying = true;
 		Game.Instance.unconsious = true;
+		//Play knock out animation and sound
+		MySpriteAnimation.Animation = "Unconscious_"+CurrentDir;
+		((AudioStreamPlayer2D)GetNode("Sounds/PaulKnockOut")).Play();
+		MySpriteAnimation.Play();
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		//Play the unconcious sound effect
+		DeathSound.Play(); //For normal NPCs, this means death. Paul is not a normal NPC
 		//Call the function in the game saying that Paul is down and then wait for it to be over
 		Game.Instance.paulIsDown();
 		await ToSignal(Game.Instance, Game.SignalName.PaulNoLongerDown);
-		Dying = false;
+		//Bring Paul back up
 		Game.Instance.unconsious = false;
 		Health = 170;
+		Dying = false;
 		//Paul does not have an unconcious animation atm. This is where it would place
-		GD.Print("TESTSTSTS");
+		//No, it should be up there. -MR
 	}
 	
 	//Paul has special move logic

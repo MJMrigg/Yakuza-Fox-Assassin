@@ -211,7 +211,7 @@ public partial class NPC : Interactable
 	}
 	
 	//Handle being hostile(either by running away or attacking)
-	public virtual void HandleHostile()
+	public async virtual void HandleHostile()
 	{
 		if(!IsHostile)
 		{

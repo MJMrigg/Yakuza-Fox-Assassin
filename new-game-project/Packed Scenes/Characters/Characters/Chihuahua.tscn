@@ -1,7 +1,8 @@
-[gd_scene load_steps=63 format=3 uid="uid://tt8pocwt0mag"]
+[gd_scene load_steps=64 format=3 uid="uid://tt8pocwt0mag"]
 
 [ext_resource type="Script" uid="uid://bfqcrgxftxgls" path="res://Scripts/Characters/Enemy1.cs" id="1_ag17j"]
 [ext_resource type="AudioStream" uid="uid://mhmksetncvvc" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark1.mp3" id="1_et5m4"]
+[ext_resource type="Texture2D" uid="uid://bh810oinpefmk" path="res://Art Assets/Characters/Enemies/Chihuahua/Portraits/Neutral-Por-Right_Chihuahua.png" id="2_gs1lu"]
 [ext_resource type="AudioStream" uid="uid://d38wwgp7u6gv6" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark2.mp3" id="2_uspop"]
 [ext_resource type="AudioStream" uid="uid://d0i2fodxsdlai" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark3.mp3" id="3_8kduo"]
 [ext_resource type="AudioStream" uid="uid://bjk546q1kx1qv" path="res://Art Assets/Sounds/Chihuahua/ChihuahuaBark4.mp3" id="4_xkf4a"]
@@ -444,6 +445,7 @@ AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 DeathSound = NodePath("Sounds/ChihuahuaDeath")
 Speed = 170.0
 Health = 50
+Portrait = ExtResource("2_gs1lu")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
 _type = 3

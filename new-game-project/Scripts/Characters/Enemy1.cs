@@ -19,7 +19,7 @@ public partial class Enemy1 : Enemy
 	}
 	
 	//Attack for enemy 1
-	public override void HandleHostile()
+	public async override void HandleHostile()
 	{
 		//Increase speed
 		Speed = 270;

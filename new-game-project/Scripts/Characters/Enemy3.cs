@@ -60,7 +60,7 @@ public partial class Enemy3 : Enemy
 	}
 	
 	//Attack for enemy 3
-	public override void HandleHostile()
+	public async override void HandleHostile()
 	{
 		if(!IsHostile)
 		{
@@ -86,12 +86,6 @@ public partial class Enemy3 : Enemy
 			return;
 		}
 		
-		//If the attack is still cooling down, do nothing
-		if(!AttackCooledDown)
-		{
-			return;
-		}
-		
 		//If the player is in the attack radius, attack the player
 		Godot.Collections.Array<Node2D> InAttackRadius = AttackRadius.GetOverlappingBodies();
 		foreach(Node2D body in InAttackRadius)
@@ -101,8 +95,9 @@ public partial class Enemy3 : Enemy
 			{
 				continue;
 			}
+			AttackCooledDown = false;
 			//Create the bullets
-			PackedScene ProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Bullet.tscn");
+			PackedScene ProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/TanukiBox.tscn");
 			Projectile NewBullet = (Projectile)ProjectileScene.Instantiate();
 			float BulletDistance = ((CapsuleShape2D)MyPhysicsCollider.GetShape()).Height/2+50; //Distance the bullet will spawn from the enemy
 			//Set Bullet dirction
@@ -131,10 +126,11 @@ public partial class Enemy3 : Enemy
 			//Create the bullet
 			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewBullet);
 			//Play the attack sound and animation
-			int Chosen = (int)GD.RandRange(1, 4);
-			((AudioStreamPlayer2D)GetNode("Sounds/TanukiBark"+Chosen)).Play();
 			MySpriteAnimation.Animation = "Throw_"+CurrentDir;
 			MySpriteAnimation.Play();
+			int Chosen = (int)GD.RandRange(1, 4);
+			((AudioStreamPlayer2D)GetNode("Sounds/TanukiBark"+Chosen)).Play();
+			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 			//Begin the attack cool down
 			AttackCooledDown = false;
 			AttackCoolDown();

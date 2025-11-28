@@ -24,7 +24,7 @@ public partial class Enemy2 : Enemy
 	}
 	
 	//Attack for enemy 2
-	public override void HandleHostile()
+	public async override void HandleHostile()
 	{
 		//If the function was accidently called, don't run it
 		if(!IsHostile)

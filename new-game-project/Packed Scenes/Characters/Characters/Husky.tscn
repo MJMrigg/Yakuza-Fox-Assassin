@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=62 format=3 uid="uid://cckd5u6wwg8gx"]
 
 [ext_resource type="Script" uid="uid://v87lc1o8kvw7" path="res://Scripts/Characters/Enemy2.cs" id="1_0nspq"]
 [ext_resource type="Texture2D" uid="uid://btg0pfwq8nsay" path="res://Art Assets/Characters/Enemies/Husky/Animations/Die-Anim_Husky.png" id="1_5o7ni"]
 [ext_resource type="Texture2D" uid="uid://clkcw7i6acred" path="res://Art Assets/Characters/Enemies/Husky/Animations/Hurt-Anim_Husky.png" id="1_udhs2"]
+[ext_resource type="Texture2D" uid="uid://bib0ln1s8ttqk" path="res://Art Assets/Characters/Enemies/Husky/Portraits/Neutral-Por-Right_Husky.png" id="2_mvgwq"]
 [ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Animations/Walk-Anim_Husky.png" id="2_t8407"]
 [ext_resource type="AudioStream" uid="uid://b3c0rjtkjsi01" path="res://Art Assets/Sounds/Husky/HuskyBark1.mp3" id="3_ssrmf"]
 [ext_resource type="AudioStream" uid="uid://tixg14vcn20t" path="res://Art Assets/Sounds/Husky/HuskyBark2.mp3" id="4_n07xk"]
@@ -444,6 +445,7 @@ AttackCooldown = 2
 DeathSound = NodePath("Sounds/HuskyDeath")
 Speed = 150.0
 Health = 20
+Portrait = ExtResource("2_mvgwq")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
 _type = 4

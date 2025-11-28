@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://w6j3y6jgntrl"]
+[gd_scene load_steps=12 format=4 uid="uid://w6j3y6jgntrl"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_8dwe0"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_ubuym"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="2_g18mc"]
 [ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="3_0b8xx"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_8dwe0"]
+[ext_resource type="Texture2D" uid="uid://ctkhtccx61adi" path="res://Art Assets/Items/redDoor.png" id="4_amjt2"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_r2vjp"]
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="7_r2vjp"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_jd73o"]
@@ -46,6 +47,12 @@ rotation = 1.5707964
 scale = Vector2(0.49, 1)
 ConnectedRoom = 20
 
+[node name="DoorSprite" parent="RedDoor(ToBoss)" index="0"]
+position = Vector2(0.17615655, 0.0021408005)
+rotation = -1.5707964
+scale = Vector2(0.34724927, 1.386074)
+texture = ExtResource("4_amjt2")
+
 [node name="ToTraining" parent="." instance=ExtResource("2_g18mc")]
 position = Vector2(-251, 243)
 rotation = -1.5707964
@@ -81,4 +88,5 @@ Transformed = true
 [node name="Husky" parent="NPCs" instance=ExtResource("9_rricm")]
 position = Vector2(298, 293)
 
+[editable path="RedDoor(ToBoss)"]
 [editable path="MainUI"]

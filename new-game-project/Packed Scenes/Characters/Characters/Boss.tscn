@@ -1,10 +1,11 @@
-[gd_scene load_steps=77 format=3 uid="uid://xa2kt5clmxbo"]
+[gd_scene load_steps=78 format=3 uid="uid://xa2kt5clmxbo"]
 
 [ext_resource type="AudioStream" uid="uid://daqitwnwy0p8j" path="res://Art Assets/Sounds/Boss/BossDeath.mp3" id="1_5a4u7"]
 [ext_resource type="Script" uid="uid://d1afavkqei2jh" path="res://Scripts/Characters/Boss.cs" id="1_21mar"]
 [ext_resource type="Texture2D" uid="uid://ogwnn820rtfd" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Die-Anim_NPC-2.png" id="2_2wwe6"]
 [ext_resource type="AudioStream" uid="uid://cwx3thdv365jx" path="res://Art Assets/Sounds/Boss/BossGrowl1.mp3" id="2_lru0g"]
 [ext_resource type="Texture2D" uid="uid://d37mk7vahs82t" path="res://Art Assets/Characters/Enemies/Boss/Animations/Base/Die-Anim_Boss.png" id="2_wp64s"]
+[ext_resource type="Texture2D" uid="uid://c0dh0augifbh" path="res://Art Assets/Characters/Enemies/Boss/Portraits/Neutral-Por-Right_Boss.png" id="2_y2r7x"]
 [ext_resource type="AudioStream" uid="uid://fjmwxgtxrenq" path="res://Art Assets/Sounds/Boss/BossGrowl2.mp3" id="3_f3oyd"]
 [ext_resource type="Texture2D" uid="uid://d21jm0w8i6jxk" path="res://Art Assets/Characters/Enemies/Boss/Animations/Base/Hurt-Anim_Boss.png" id="3_y2r7x"]
 [ext_resource type="AudioStream" uid="uid://cpliao1cnwt05" path="res://Art Assets/Sounds/Boss/BossGrowl3.mp3" id="4_6t3qb"]
@@ -512,6 +513,7 @@ AttackCooldown = 3
 DeathSound = NodePath("Sounds/BossDeath")
 Speed = 200.0
 Health = 10
+Portrait = ExtResource("2_y2r7x")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
 MyPhysicsCollider = NodePath("CollisionShape2D")

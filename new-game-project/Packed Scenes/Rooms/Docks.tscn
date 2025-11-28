@@ -35,7 +35,7 @@ tile_set = ExtResource("1_wegsx")
 
 [node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
 allow_lesser = true
-show_percentage = false
+script = null
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_40qyh")]
 position = Vector2(37, 219)

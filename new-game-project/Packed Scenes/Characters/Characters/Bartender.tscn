@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqjgyl2i4nf07"]
+[gd_scene load_steps=24 format=3 uid="uid://dqjgyl2i4nf07"]
 
 [ext_resource type="Script" uid="uid://cdcbk7xjygpt3" path="res://Scripts/Characters/HealerNPC.cs" id="1_bey35"]
 [ext_resource type="Texture2D" uid="uid://c7pcor1cfg7ho" path="res://Art Assets/Characters/NPCS/Bartender/Animations/Walk-Anim_Bartender.png" id="1_npnro"]
 [ext_resource type="AudioStream" uid="uid://i8rw0ug76wis" path="res://Art Assets/Sounds/Bark-Keep/Drinking.mp3" id="2_lk56q"]
+[ext_resource type="Texture2D" uid="uid://ctamlud025vmr" path="res://Art Assets/Characters/NPCS/Bartender/Portraits/Neutral-Por-Right_Bartender.png" id="2_qs1ft"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="3_ff51h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu4u"]
@@ -189,6 +190,7 @@ collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_bey35")
 Speed = 0.0
+Portrait = ExtResource("2_qs1ft")
 InitialDialog = "Hello there! Care for a drink?"
 DialogueOptions = PackedStringArray("Who are you?", "What can I drink?", "I\'d like a drink.", "Goodbye.")
 DialogResponses = PackedStringArray("I am a Bark-keep of  this ship.", "I\'d recommend the Champawn. It\'s quite a delicacy. Just be careful that you don\'t drink to much. It\'ll have you out like a light.", "One Champaw coming right up!")
