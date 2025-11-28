@@ -12,6 +12,7 @@ public partial class DialogueOption : Button
 	public override void _Ready()
 	{
 		Text = Dialogue; //Set the text on the button to the text in the dialogue
+		SetTheme(null);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

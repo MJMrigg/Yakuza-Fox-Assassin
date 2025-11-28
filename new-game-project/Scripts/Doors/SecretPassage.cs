@@ -25,7 +25,7 @@ public partial class SecretPassage : Interactable
 	{
 		base.BeginDialogue();
 		//Set second to last dialogue option to take the player to the next room
-		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
+		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("MainUI/Dialogue/Dialog"));
 		int DialogueCount = DialogueContainer.GetChildCount();
 		DialogueOption PickUpOption = (DialogueOption)DialogueContainer.GetChild(DialogueCount-2);
 		PickUpOption.Pressed += AddSuspicion;

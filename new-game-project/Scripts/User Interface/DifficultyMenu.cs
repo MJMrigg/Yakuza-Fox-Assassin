@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DifficultyMenu : ColorRect
+public partial class DifficultyMenu : Panel
 {
 	public float Difficulty; //Chosen difficulty
 	

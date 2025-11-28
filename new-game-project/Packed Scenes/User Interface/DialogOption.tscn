@@ -1,15 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://dglnssijjwpgx"]
+[gd_scene load_steps=6 format=3 uid="uid://dglnssijjwpgx"]
 
 [ext_resource type="Script" uid="uid://cnuu7fvbkuhvg" path="res://Scripts/User Interface/DialogueOption.cs" id="1_373dk"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="2_ys2ix"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys2ix"]
+bg_color = Color(0.8784314, 0.8666667, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5686275, 0.56078434, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_801yb"]
+bg_color = Color(0.5686275, 0.56078434, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b18k"]
+bg_color = Color(0.5686275, 0.56078434, 0, 1)
+
 [node name="DialogOption" type="Button"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(190, 50)
 anchors_preset = -1
-anchor_right = 0.17400001
+anchor_right = 0.165
 anchor_bottom = 0.07700001
-offset_right = -192.44801
+offset_right = -182.08
 offset_bottom = -41.896004
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_ys2ix")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_801yb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b18k")
 text = "Dialog Option"
 autowrap_mode = 2
 script = ExtResource("1_373dk")

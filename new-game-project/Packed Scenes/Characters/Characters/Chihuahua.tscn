@@ -446,6 +446,7 @@ Speed = 170.0
 Health = 50
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+_type = 3
 InitialDialog = "HELLO"
 DialogueOptions = PackedStringArray("Why are you screaming?", "Do you know any other words?", "Did you know that I plan to kill your boss?", "Goodybe")
 DialogResponses = PackedStringArray("HELLO", "HELLO", "OOH FUN")

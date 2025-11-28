@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_x51gj"]
 [ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_1w38c"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_r1kc7"]
-[ext_resource type="PackedScene" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_2fc67"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_2fc67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 27.0
@@ -851,7 +851,7 @@ shape = SubResource("ConvexPolygonShape2D_mp6cj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
-animation = &"Walk_U"
+animation = &"TransformIn_R"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

@@ -16,6 +16,7 @@ public partial class Interactable : Entity
 	public float[] DialogSuspicion; //How much each option increases suspicion
 	
 	public HBoxContainer DialogueBox; //Dialogue box on the screen
+	public PanelContainer DialoguePanel;
 	
 	[Export]
 	public Sprite2D InteractionBox; //Box that will pop up to remind the player to interact with it
@@ -25,7 +26,8 @@ public partial class Interactable : Entity
 	{
 		base._Ready();
 		//Get the dialog box on the screen
-		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialog"));
+		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialogue/Dialog"));
+		DialoguePanel = ((PanelContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialogue"));
 		//Hide interaction box
 		InteractionBox.Visible = false;
 	}
@@ -52,7 +54,7 @@ public partial class Interactable : Entity
 			return;
 		}
 		//Reveal the dialogue box
-		DialogueBox.Visible = true;
+		DialoguePanel.Visible = true;
 		//But hide the portrait(NPC children will handle the portrait)
 		((TextureRect)DialogueBox.GetNode("Portrait")).Visible = false;
 		//Place the initial dialogue on the screen
@@ -100,7 +102,7 @@ public partial class Interactable : Entity
 				break;
 			}
 		} 
-		DialogueBox.Visible = false;
+		DialoguePanel.Visible = false;
 	}
 	
 	//Send the dialogue response to the dialogue box

@@ -9,13 +9,13 @@ public partial class MainMenu : Node
 	public Control quitMenu;
 	
 	[Export]
-	public ColorRect difMenu; //This bitch won't appear for some reason.
+	public Panel difMenu; //This bitch won't appear for some reason.
 	
 	[Export]
 	public Control setMenu;
 	
 	[Export]
-	public ColorRect playMenu;
+	public Panel playMenu;
 	
 	[Export]
 	public AudioStreamPlayer buttonSound;

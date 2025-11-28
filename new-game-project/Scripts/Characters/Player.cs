@@ -26,6 +26,7 @@ public partial class Player : Entity
 	
 	public Interactable CurrentInteraction; //Current interaction with the player
 	
+	public PanelContainer InvPanel;
 	public Inventory Inv; //Player's inventory
 	
 	public int ItemCount = 0; //Player's item count
@@ -51,7 +52,8 @@ public partial class Player : Entity
 		
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
-		Inv = (Inventory)(GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Inventory")); //Get Player's inventory
+		Inv = (Inventory)(GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Inventory/Inventory")); //Get Player's inventory\
+		InvPanel = (PanelContainer)(GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Inventory"));
 		
 		//Set up the player's inventory
 		for(int i = 0; i < 6; i++)
@@ -311,7 +313,7 @@ public partial class Player : Entity
 			GetTree().CallGroup("Pausable","Pause");
 		}
 		//Make the inventory and Settings menu invisible.
-		Inv.Visible = !Inv.Visible;
+		InvPanel.Visible = !InvPanel.Visible;
 		((Control)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Settings")).Visible = false;
 	}
 	
@@ -717,7 +719,7 @@ public partial class Player : Entity
 		PackedScene SlotScene = GD.Load<PackedScene>("res://Packed Scenes/User Interface/InventorySlot.tscn");
 		InventorySlot NewSlot = (InventorySlot)SlotScene.Instantiate();
 		NewSlot.ID = ItemId;
-		((TextureRect)NewSlot.GetNode("Portrait")).Texture = (CompressedTexture2D)GD.Load(path);
+		((TextureRect)NewSlot.GetNode("PanelContainer/Portrait")).Texture = (CompressedTexture2D)GD.Load(path);
 		//If it's not a weapon, get rid of the equip button. If it is, add functionality to the button
 		if(ItemId >= 4)
 		{

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://2c1o6g17cb6v" path="res://Scripts/User Interface/DifficultyMenu.cs" id="1_1mf4c"]
 [ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="1_rvof5"]
 
-[node name="Background" type="ColorRect"]
+[node name="Background" type="Panel"]
 anchors_preset = -1
 anchor_left = 0.34100002
 anchor_top = 0.16700001
@@ -16,7 +16,6 @@ offset_bottom = -0.32000732
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rvof5")
-color = Color(1, 1, 1, 0.26666668)
 script = ExtResource("1_1mf4c")
 
 [node name="Choose" type="Label" parent="."]
@@ -31,6 +30,7 @@ offset_top = -0.012001038
 offset_right = 0.0049743652
 offset_bottom = -0.055999756
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
 text = "Choose your difficulty"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -50,6 +50,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rvof5")
+theme_type_variation = &"GreenButton"
 text = "Easy"
 
 [node name="Medium" type="Button" parent="." groups=["difButtons"]]
@@ -65,21 +66,23 @@ offset_right = 0.0049743652
 offset_bottom = -0.044006348
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"YellowButton"
 text = "Medium"
 
 [node name="Hard" type="Button" parent="." groups=["difButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18800001
-anchor_top = 0.702
+anchor_top = 0.72700006
 anchor_right = 0.81500006
-anchor_bottom = 0.82600003
+anchor_bottom = 0.851
 offset_left = -0.12400055
-offset_top = -0.072021484
+offset_top = 0.02798462
 offset_right = 0.0049743652
-offset_bottom = -0.13601685
+offset_bottom = -0.036010742
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"RedButton"
 text = "Hard"
 
 [connection signal="pressed" from="Easy" to="." method="ChangeDifficulty"]

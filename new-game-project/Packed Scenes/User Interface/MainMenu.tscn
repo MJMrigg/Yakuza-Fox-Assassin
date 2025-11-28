@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8bq274s7uyyh"]
+[gd_scene load_steps=7 format=3 uid="uid://8bq274s7uyyh"]
 
 [ext_resource type="Script" uid="uid://jyen63v4cw3t" path="res://Scripts/User Interface/MainMenu.cs" id="1_5smlt"]
 [ext_resource type="PackedScene" uid="uid://bd1urlla04r60" path="res://Packed Scenes/User Interface/QuitMenu.tscn" id="1_e1quc"]
@@ -6,15 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bojq5vpsx41i8" path="res://Packed Scenes/User Interface/Settings.tscn" id="4_odmmc"]
 [ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="5_5nomv"]
 [ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="5_m5yk3"]
-
-[sub_resource type="Theme" id="Theme_m5yk3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nomv"]
-bg_color = Color(0, 0.7294118, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("quitMenu", "difMenu", "setMenu", "playMenu", "buttonSound")]
 layout_mode = 3
@@ -27,7 +18,7 @@ script = ExtResource("1_5smlt")
 quitMenu = NodePath("QuitMenu")
 difMenu = NodePath("DifficultyMenu")
 setMenu = NodePath("Settings")
-playMenu = NodePath("")
+playMenu = NodePath("Menu")
 buttonSound = NodePath("ButtonSound")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -97,8 +88,8 @@ offset_right = 0.15997314
 offset_bottom = -0.2400055
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_m5yk3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_5nomv")
+theme = ExtResource("5_5nomv")
+theme_type_variation = &"GreenButton"
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="Menu"]
@@ -114,6 +105,8 @@ offset_right = 0.15997314
 offset_bottom = -0.08001709
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_5nomv")
+theme_type_variation = &"BlueButton"
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="Menu"]
@@ -129,6 +122,8 @@ offset_right = 0.15997314
 offset_bottom = 0.07998657
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_5nomv")
+theme_type_variation = &"RedButton"
 text = "Quit"
 
 [node name="ButtonSound" type="AudioStreamPlayer" parent="."]

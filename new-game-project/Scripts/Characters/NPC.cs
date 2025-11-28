@@ -21,9 +21,7 @@ public partial class NPC : Interactable
 	public Area2D HostileRadius; //Radius the NPC will use to detect the player when hostile
 	
 	public bool Dying = false; //Whether the NPC is dying
-	
-	public ProgressBar LocalSusMeter; //Local suspicion meter of the room
-	
+		
 	public bool IsBoss = false; //Whether this NPC is the boss
 	
 	[Export]
@@ -43,7 +41,6 @@ public partial class NPC : Interactable
 			return;
 		}
 		this.AddToGroup("NPCs");
-		LocalSusMeter = ((ProgressBar)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Main/LocalSuspicion/LocalSuspicionMeter"));
 		
 		//DEBUG STATEMENTS
 		// WHY IS THERE A SECOND HUSKY
