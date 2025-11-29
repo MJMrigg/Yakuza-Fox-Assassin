@@ -11,6 +11,7 @@ public partial class SettingsMenu : Control
 	public string curText;
 	public Button curButton;
 	
+	[Export]
 	public AudioStreamPlayer ButtonSound;
 	
 	[Export]
@@ -19,6 +20,8 @@ public partial class SettingsMenu : Control
 	public HSlider MusicVolume;
 	[Export]
 	public HSlider SoundVolume;
+	
+	public bool Initializing = true;
 		
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -26,7 +29,7 @@ public partial class SettingsMenu : Control
 		MasterVolume.Value = Game.Instance.MasterVolume;
 		MusicVolume.Value = Game.Instance.MusicVolume;
 		SoundVolume.Value = Game.Instance.SoundVolume;
-		ButtonSound = ((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound"));
+		Initializing = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +39,6 @@ public partial class SettingsMenu : Control
 	
 	//Change a keybinding
 	public void ChangeKeyBinding(InputEvent @event, string action) {
-		//ButtonSound.Play();
 		// CHECK WHAT TYPE OF EVENT
 		InputEvent newEvent = null;
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
@@ -144,7 +146,10 @@ public partial class SettingsMenu : Control
 		}
 		//audiobus 1 is the sound effect bus
 		AudioServer.SetBusVolumeDb(1, NewVolume);
-		ButtonSound.Play();
+		if(!Initializing)
+		{
+			ButtonSound.Play();
+		}
 		Game.Instance.SoundVolume = NewVolume;
 	}
 	
@@ -199,7 +204,7 @@ public partial class SettingsMenu : Control
 	//Open the settings menu
 	public void OpenSettings()
 	{
-		((AudioStreamPlayer)GetTree().GetRoot().GetChild(1).GetNode("ButtonSound")).Play();
+		ButtonSound.Play();
 		Visible = true;
 	}
 	

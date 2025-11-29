@@ -35,7 +35,7 @@ public partial class Room : Node2D
 		ProgressBar LocalSuspicion = (ProgressBar)GetNode("MainUI/Main/VBoxContainer/Main/LocalSuspicion/LocalSuspicionMeter");
 		LocalSuspicion.MaxValue = Game.Instance.MaxLocalSuspicions[RoomId];
 		LocalSuspicion.Value = Game.Instance.LocalSuspicions[RoomId];
-		ProgressBar GlobalSuspicion = (ProgressBar)GetNode("MainUI/GlobalSuspicion/GlobalSuspicionMeter");
+		ProgressBar GlobalSuspicion = (ProgressBar)GetNode("MainUI/GlobalSuspicion/GlobalSuspicion/GlobalSuspicionMeter");
 		GlobalSuspicion.MaxValue = Game.Instance.MaxGlobalSuspicion;
 		GlobalSuspicion.Value = Game.Instance.GlobalSuspicion;
 		

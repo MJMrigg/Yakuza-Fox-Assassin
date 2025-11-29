@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bojq5vpsx41i8"]
+[gd_scene load_steps=9 format=3 uid="uid://bojq5vpsx41i8"]
 
 [ext_resource type="Script" uid="uid://sfkdkxgb78ic" path="res://Scripts/User Interface/SettingsMenu.cs" id="1_u8t1i"]
 [ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="2_prkho"]
 [ext_resource type="Script" uid="uid://biuva7fxggax3" path="res://Scripts/User Interface/buttonSendId.cs" id="2_qh64w"]
 [ext_resource type="Theme" uid="uid://crf5h8eqa0lx7" path="res://Themes/Settings.tres" id="3_q5cyt"]
+[ext_resource type="AudioStream" uid="uid://dh82jdaum7ojo" path="res://Art Assets/Sounds/Player/MenuButtonClick.mp3" id="5_q5cyt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prkho"]
 bg_color = Color(1, 0, 0, 1)
@@ -19,7 +20,7 @@ bg_color = Color(0.6, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk0lb"]
 bg_color = Color(0.6, 0, 0, 1)
 
-[node name="Settings" type="Control" node_paths=PackedStringArray("MasterVolume", "MusicVolume", "SoundVolume")]
+[node name="Settings" type="Control" node_paths=PackedStringArray("ButtonSound", "MasterVolume", "MusicVolume", "SoundVolume")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8t1i")
+ButtonSound = NodePath("ButtonSound")
 MasterVolume = NodePath("SettingsContainer/Settings/Keybindings2/MasterVolume/MasterSlider")
 MusicVolume = NodePath("SettingsContainer/Settings/Keybindings2/MusicVolume/MusicSlider")
 SoundVolume = NodePath("SettingsContainer/Settings/Keybindings2/SoundVolume/SoundSlider")
@@ -413,6 +415,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_q5cyt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tk0lb")
 text = "CLOSE SETTINGS"
 icon_alignment = 1
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_q5cyt")
+bus = &"soundEffect"
 
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer/Button" method="buttonToggle"]

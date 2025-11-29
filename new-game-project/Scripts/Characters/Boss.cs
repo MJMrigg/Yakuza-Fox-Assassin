@@ -36,7 +36,7 @@ public partial class Boss : Enemy
 	}
 	
 	//Attack for the boss
-	public override void HandleHostile()
+	public async override void HandleHostile()
 	{
 		//If the function was accidently called, don't run it
 		if(!IsHostile)

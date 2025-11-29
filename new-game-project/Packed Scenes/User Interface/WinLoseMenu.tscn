@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b83ndkjxusnkr"]
+[gd_scene load_steps=4 format=3 uid="uid://b83ndkjxusnkr"]
 
 [ext_resource type="Script" uid="uid://0yfvqfpei5c0" path="res://Scripts/User Interface/WinLoseMenu.cs" id="1_ayh2u"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_uww5m"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="1_xkaoa"]
 
-[node name="WinLoseMenu" type="ColorRect"]
+[node name="WinLoseMenu" type="Panel"]
 anchors_preset = -1
 anchor_left = 0.287
 anchor_top = 0.23
@@ -15,7 +16,7 @@ offset_right = -0.2880249
 offset_bottom = 0.23995972
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.26666668)
+theme = ExtResource("1_xkaoa")
 script = ExtResource("1_ayh2u")
 
 [node name="Text" type="Label" parent="."]
@@ -48,6 +49,8 @@ offset_right = 0.007980347
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"GreenButton"
+theme_override_font_sizes/font_size = 16
 text = "Replay"
 
 [node name="Return" type="Button" parent="."]
@@ -63,6 +66,8 @@ offset_right = -0.055999756
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"YellowButton"
+theme_override_font_sizes/font_size = 16
 text = "Main Menu"
 
 [node name="Credits" type="Button" parent="."]
@@ -78,6 +83,8 @@ offset_right = -0.120025635
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"BlueButton"
+theme_override_font_sizes/font_size = 16
 text = "Credits"
 
 [node name="GeneralSounds" parent="." instance=ExtResource("1_uww5m")]

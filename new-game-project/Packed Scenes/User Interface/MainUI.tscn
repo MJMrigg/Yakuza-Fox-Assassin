@@ -161,6 +161,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_type_variation = &"YellowButton"
 theme_override_font_sizes/font_size = 16
 alignment = 0
@@ -174,10 +175,13 @@ theme_override_constants/separation = 0
 [node name="LocalSuspicion" type="HBoxContainer" parent="Main/VBoxContainer/Main"]
 custom_minimum_size = Vector2(360, 30)
 layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
 
 [node name="Label" type="Label" parent="Main/VBoxContainer/Main/LocalSuspicion"]
-custom_minimum_size = Vector2(135, 30)
+custom_minimum_size = Vector2(130, 30)
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_jqgxl")
 theme_override_font_sizes/font_size = 16
 text = "Local Suspicion:"
@@ -186,9 +190,9 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="LocalSuspicionMeter" type="ProgressBar" parent="Main/VBoxContainer/Main/LocalSuspicion"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(220, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 script = ExtResource("4_tppbg")
 
 [node name="HSeparator" type="HSeparator" parent="Main/VBoxContainer/Main"]
@@ -211,92 +215,106 @@ theme_override_constants/separation = 0
 [node name="Weapons" type="HBoxContainer" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth"]
 custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 4
+alignment = 1
 
 [node name="MeleeWeapon" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons" node_paths=PackedStringArray("Portrait")]
+custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_type_variation = &"WeaponButton"
 script = ExtResource("2_f31s5")
 Portrait = NodePath("MeleeWeapon")
 
 [node name="MeleeWeapon" type="TextureRect" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon"]
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.022000002
-anchor_top = 0.022000002
-anchor_right = 0.97800004
-anchor_bottom = 0.97800004
-offset_left = 0.019999862
-offset_top = 0.019999862
-offset_right = -0.020004272
-offset_bottom = -0.020004272
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RangedWeapon" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons" node_paths=PackedStringArray("Portrait")]
+custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_type_variation = &"WeaponButton"
 script = ExtResource("2_f31s5")
 Portrait = NodePath("RangedWeapon")
 
 [node name="RangedWeapon" type="TextureRect" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon"]
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.022000002
-anchor_top = 0.022000002
-anchor_right = 0.97800004
-anchor_bottom = 0.97800004
-offset_left = 0.019999862
-offset_top = 0.019999862
-offset_right = -0.020004272
-offset_bottom = -0.020004272
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Health" type="HBoxContainer" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth"]
 custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
 
 [node name="Label" type="Label" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Health"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_jqgxl")
 text = " HP:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Health"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(130, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 4
 step = 1.0
 value = 100.0
 rounded = true
 script = ExtResource("5_qb4gu")
 
-[node name="GlobalSuspicion" type="HBoxContainer" parent="."]
+[node name="GlobalSuspicion" type="PanelContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -360.0
-offset_bottom = 30.0
+offset_left = -335.0
+offset_bottom = 52.0
 grow_horizontal = 0
-theme_override_constants/separation = 0
+theme = ExtResource("3_2l70p")
 
-[node name="Label" type="Label" parent="GlobalSuspicion"]
+[node name="GlobalSuspicion" type="HBoxContainer" parent="GlobalSuspicion"]
+custom_minimum_size = Vector2(325, 40)
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GlobalSuspicion/GlobalSuspicion"]
 custom_minimum_size = Vector2(137, 30)
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_jqgxl")
+theme_override_font_sizes/font_size = 16
 text = "Global Suspicion:"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="GlobalSuspicionMeter" type="ProgressBar" parent="GlobalSuspicion"]
-custom_minimum_size = Vector2(0, 30)
+[node name="GlobalSuspicionMeter" type="ProgressBar" parent="GlobalSuspicion/GlobalSuspicion"]
+custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("7_f31s5")
 
 [node name="Settings" parent="." instance=ExtResource("8_k1iea")]

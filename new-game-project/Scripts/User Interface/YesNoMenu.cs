@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class YesNoMenu : Control
+public partial class YesNoMenu : Panel
 {
 	[Signal]
 	public delegate void ChoiceEventHandler(bool choice);

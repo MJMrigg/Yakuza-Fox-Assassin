@@ -130,6 +130,22 @@ public partial class NPC : Interactable
 			HandleHostile();
 		}
 		
+		//Make sure the animation didn't get changed to an attack animation
+		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
+		{
+			//If the attack animation is not playing, walk
+			if (!MySpriteAnimation.IsPlaying())
+			{
+				MySpriteAnimation.Animation = "Walk_"+CurrentDir;
+				MySpriteAnimation.Frame = 0;
+			}
+			else
+			{
+				//If it is playing, do nothing, as the animation must finish playing
+				return;
+			}
+		}
+		
 		Vector2 NextPosition = GlobalPosition.DirectionTo(NavAgent.GetNextPathPosition()) * Speed;
 		if(NavAgent.AvoidanceEnabled)
 		{

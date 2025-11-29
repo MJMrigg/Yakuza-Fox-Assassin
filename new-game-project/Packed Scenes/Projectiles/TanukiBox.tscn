@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl34e"]
-size = Vector2(30, 28)
+size = Vector2(32, 30)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 0

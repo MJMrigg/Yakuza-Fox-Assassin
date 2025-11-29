@@ -59,7 +59,11 @@ public partial class Entity : CharacterBody2D
 	//Remove the entity from the scene(varies)
 	public async virtual void Remove()
 	{
-		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		//Finish playing the remove animation if there is one
+		if(MySpriteAnimation.SpriteFrames.GetFrameCount(MySpriteAnimation.Animation.ToString()) > 0)
+		{
+			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+		}
 		this.QueueFree();
 	}
 }

@@ -43,7 +43,7 @@ public partial class PatrollingNPC : Enemy
 	}
 	
 	//Attack for Paul
-	public async override void HandleHostile()
+	public override void HandleHostile()
 	{
 		//If the function was accidently called, don't run it
 		if(!IsHostile)

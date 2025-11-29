@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cytrxnmia0hlo"]
+[gd_scene load_steps=3 format=3 uid="uid://cytrxnmia0hlo"]
 
 [ext_resource type="Script" uid="uid://c1tmoi151fdlo" path="res://Scripts/User Interface/YesNoMenu.cs" id="1_ahx3f"]
+[ext_resource type="Theme" uid="uid://j2exgckdljrl" path="res://Themes/Theme.tres" id="1_b2aq2"]
 
-[node name="YesNoMenu" type="ColorRect"]
+[node name="YesNoMenu" type="Panel"]
 anchors_preset = -1
 anchor_left = 0.287
 anchor_top = 0.23
@@ -14,7 +15,7 @@ offset_right = -0.2880249
 offset_bottom = 0.23995972
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.26666668)
+theme = ExtResource("1_b2aq2")
 script = ExtResource("1_ahx3f")
 
 [node name="AreYouSure" type="Label" parent="."]
@@ -47,6 +48,7 @@ offset_right = -0.08100891
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"GreenButton"
 text = "Yes"
 
 [node name="No" type="Button" parent="."]
@@ -62,6 +64,7 @@ offset_right = 0.24499512
 offset_bottom = 0.14196777
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"RedButton"
 text = "No"
 
 [connection signal="pressed" from="Yes" to="." method="Yes"]

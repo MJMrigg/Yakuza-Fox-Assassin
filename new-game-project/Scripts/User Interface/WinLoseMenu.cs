@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class WinLoseMenu : ColorRect
+public partial class WinLoseMenu : Panel
 {
 	
 	public string Text; //Text the menu says

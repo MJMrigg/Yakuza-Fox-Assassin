@@ -56,6 +56,23 @@ public partial class Enemy3 : Enemy
 				return;
 			}
 		}
+		
+		//If the animation is currently not walking
+		if (!MySpriteAnimation.Animation.ToString().StartsWith("Walk"))
+		{
+			//If the animation is not playing, have the NPC face its current direction
+			if (!MySpriteAnimation.IsPlaying())
+			{
+				MySpriteAnimation.Animation = "Walk_"+CurrentDir;
+				MySpriteAnimation.Frame = 0;
+			}
+			else
+			{
+				//If it is playing, do nothing, as the animation must finish playing
+				return;
+			}
+		}
+		
 		base._Process(delta);
 	}
 	
@@ -63,6 +80,11 @@ public partial class Enemy3 : Enemy
 	public async override void HandleHostile()
 	{
 		if(!IsHostile)
+		{
+			return;
+		}
+		
+		if(MySpriteAnimation.Animation.ToString().StartsWith("Throw_"))
 		{
 			return;
 		}
@@ -123,13 +145,13 @@ public partial class Enemy3 : Enemy
 			//dNewBullet.SetCollisionLayerValue(4,true); //Bullet is enemy projectile
 			NewBullet.SetCollisionMaskValue(5,true); //Bullet is looking for the player
 			NewBullet.Direction = (NewTarget-Position).Normalized(); //Aim the bullet at the player
-			//Create the bullet
-			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewBullet);
 			//Play the attack sound and animation
-			MySpriteAnimation.Animation = "Throw_"+CurrentDir;
+			MySpriteAnimation.Animation = "Throw_" + CurrentDir;
 			MySpriteAnimation.Play();
 			int Chosen = (int)GD.RandRange(1, 4);
 			((AudioStreamPlayer2D)GetNode("Sounds/TanukiBark"+Chosen)).Play();
+			//Create the bullet
+			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewBullet);
 			await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 			//Begin the attack cool down
 			AttackCooledDown = false;

@@ -664,7 +664,7 @@ shape = SubResource("RectangleShape2D_21mar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bh72c")
-animation = &"Explosion_D"
+animation = &"Walk_D"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
