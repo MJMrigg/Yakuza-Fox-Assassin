@@ -114,13 +114,17 @@ public partial class Boss : Enemy
 	}
 	
 	//Create explosions all around the map with one being on the player
-	public void SpawnExplosions()
+	public async void SpawnExplosions()
 	{
 		//If the explosion cool down isn't finished yet, do nothing
 		if(!ExplosionCooledDown)
 		{
 			return;
 		}
+		//Play the animation
+		MySpriteAnimation.Animation = "Explosion_"+CurrentDir;
+		MySpriteAnimation.Play();
+		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		//Generate random explosions
 		int Amount = (int)GD.RandRange(5,10);
 		PackedScene ExplosionScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Explosion.tscn");

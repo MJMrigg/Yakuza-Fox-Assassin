@@ -11,6 +11,9 @@ public partial class Enemy3 : Enemy
 	
 	public Player Ambushee = null;
 	
+	[Export]
+	public int TransformType; //The object the tanuki will transform into
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -22,10 +25,9 @@ public partial class Enemy3 : Enemy
 		if(Transformed)
 		{
 			Speed = 0;
-			_type = 6;
-			//Transform the tanuki
-			MySpriteAnimation.Animation = "TransformOut_"+CurrentDir;
-			MySpriteAnimation.Frame = 0;
+			MySpriteAnimation.Animation = "Transformed";
+			MySpriteAnimation.Frame = TransformType - 6;
+			_type = TransformType;
 		}
 		else
 		{
@@ -89,6 +91,9 @@ public partial class Enemy3 : Enemy
 			return;
 		}
 		
+		//Change the Tanuki to its transformed type so that it is transformed when the player returns to the room
+		_type = TransformType;
+		
 		//Get the player's position
 		Vector2 NewTarget = GetPlayerPosition();
 		//If the player wasn't in the hostile radiue, don't handle being hostile
@@ -148,6 +153,7 @@ public partial class Enemy3 : Enemy
 			//Play the attack sound and animation
 			MySpriteAnimation.Animation = "Throw_" + CurrentDir;
 			MySpriteAnimation.Play();
+			//await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 			int Chosen = (int)GD.RandRange(1, 4);
 			((AudioStreamPlayer2D)GetNode("Sounds/TanukiBark"+Chosen)).Play();
 			//Create the bullet

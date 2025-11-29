@@ -75,8 +75,9 @@ DialogueOptions = PackedStringArray("Who are you?", "So, where can I find Led Ze
 DialogResponses = PackedStringArray("I am the record holder.", "Not those kind of records.", "Glad I got that on record!")
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("8_nil2g")]
-position = Vector2(829, 403)
+position = Vector2(829, 396)
 Transformed = true
+TransformType = 9
 
 [node name="Items" type="Node" parent="."]
 

@@ -36,11 +36,8 @@ PlayerCamera = NodePath("../Camera2D")
 
 [node name="MainUI" parent="." instance=ExtResource("4_fgguh")]
 
-[node name="Label" parent="MainUI/Main/LocalSuspicion" index="0"]
-visible = false
-
-[node name="LocalSuspicionMeter" parent="MainUI/Main/LocalSuspicion" index="1"]
-visible = false
+[node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
+script = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(440, 198)

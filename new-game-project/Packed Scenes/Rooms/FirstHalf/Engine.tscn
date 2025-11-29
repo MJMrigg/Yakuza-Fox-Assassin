@@ -59,6 +59,7 @@ regDoor = true
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("7_dp5oo")]
 position = Vector2(831, 166)
+TransformType = 8
 InitialDialog = "I hate my job."
 DialogueOptions = PackedStringArray("How does a Tanuki end up in an office.", "Have you considered retiring?", "Oh yeah? I\'m an intruder. Nobody  has noticed!", "Goodbye")
 DialogResponses = PackedStringArray("I drew the short straw.", "No, my car is fine.", "I\'m going to assume that was a joke.")

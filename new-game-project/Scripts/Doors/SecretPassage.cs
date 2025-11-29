@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class SecretPassage : Interactable
 {
@@ -25,7 +26,7 @@ public partial class SecretPassage : Interactable
 	{
 		base.BeginDialogue();
 		//Set second to last dialogue option to take the player to the next room
-		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("MainUI/Dialogue/Dialog"));
+		GridContainer DialogueContainer = ((GridContainer)DialogueBox.GetNode("DialogText/DialogOptions"));
 		int DialogueCount = DialogueContainer.GetChildCount();
 		DialogueOption PickUpOption = (DialogueOption)DialogueContainer.GetChild(DialogueCount-2);
 		PickUpOption.Pressed += AddSuspicion;
@@ -36,6 +37,37 @@ public partial class SecretPassage : Interactable
 	{
 		Game.Instance.IncreaseLocalSuspicion(RoomId,Suspicion);
 		Game.Instance.IncreaseLocalSuspicion(ConnectedRoom,Suspicion);
+		int CurrentRoom = Game.Instance.PlayerRoom;
+		//Save all NPC data
+		Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
+		var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
+		for(int i = 0; i < GetTree().GetNodeCountInGroup("NPCs"); i++)
+		{
+			if(NPCsInRoom[i] is NPC)
+			{
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i])._type).ToString() );
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.X).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Position.Y).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Health).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).CurrentDir).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Animation).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).MySpriteAnimation.Frame).ToString());
+				Game.Instance.NPCs[CurrentRoom].Add((((NPC)NPCsInRoom[i]).Dying).ToString());
+			}
+		}
+		//Save all item data
+		var Items = GetTree().GetNodesInGroup("Items");
+		int ItemCount = GetTree().GetNodeCountInGroup("Items");
+		Game.Instance.RoomItems[CurrentRoom] = new List<float>(); //Overwrite previous data
+		if(ItemCount > 0)
+		{
+			for(int i = 0; i < ItemCount; i++)
+			{
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).ID);
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.X);
+				Game.Instance.RoomItems[CurrentRoom].Add(((Item)Items[i]).Position.Y);
+			}
+		}
 		//Mark the room as having saved data
 		Game.Instance.FirstSaved[RoomId] = true;
 		//Change the music based on the room

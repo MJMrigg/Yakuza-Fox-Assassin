@@ -1,8 +1,7 @@
-[gd_scene load_steps=95 format=3 uid="uid://xa2kt5clmxbo"]
+[gd_scene load_steps=82 format=3 uid="uid://xa2kt5clmxbo"]
 
 [ext_resource type="AudioStream" uid="uid://daqitwnwy0p8j" path="res://Art Assets/Sounds/Boss/BossDeath.mp3" id="1_5a4u7"]
 [ext_resource type="Script" uid="uid://d1afavkqei2jh" path="res://Scripts/Characters/Boss.cs" id="1_21mar"]
-[ext_resource type="Texture2D" uid="uid://ogwnn820rtfd" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Die-Anim_NPC-2.png" id="2_2wwe6"]
 [ext_resource type="AudioStream" uid="uid://cwx3thdv365jx" path="res://Art Assets/Sounds/Boss/BossGrowl1.mp3" id="2_lru0g"]
 [ext_resource type="Texture2D" uid="uid://d37mk7vahs82t" path="res://Art Assets/Characters/Enemies/Boss/Animations/Base/Die-Anim_Boss.png" id="2_wp64s"]
 [ext_resource type="Texture2D" uid="uid://c0dh0augifbh" path="res://Art Assets/Characters/Enemies/Boss/Portraits/Neutral-Por-Right_Boss.png" id="2_y2r7x"]
@@ -202,54 +201,6 @@ region = Rect2(154, 360, 154, 180)
 atlas = ExtResource("3_y2r7x")
 region = Rect2(308, 360, 154, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_08o7f"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(288, 240, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vk64e"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(192, 240, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwupg"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(96, 240, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7q54g"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(0, 240, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f6pb"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(0, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x170"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(96, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rryed"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(192, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4nh7c"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(288, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wf8n"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(0, 120, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w1qg2"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(96, 120, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rde4f"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(192, 120, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmjmj"]
-atlas = ExtResource("2_2wwe6")
-region = Rect2(288, 120, 96, 120)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc50d"]
 atlas = ExtResource("5_hqqrs")
 region = Rect2(0, 0, 154, 180)
@@ -399,7 +350,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explosion_D",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -416,7 +367,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explosion_L",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -433,7 +384,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explosion_R",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -450,7 +401,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explosion_U",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -508,53 +459,17 @@ animations = [{
 "name": &"Hurt_U",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_08o7f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vk64e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fwupg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7q54g")
-}],
+"frames": [],
 "loop": false,
 "name": &"Shoot_D",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4f6pb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7x170")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rryed")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4nh7c")
-}],
+"frames": [],
 "loop": false,
 "name": &"Shoot_L",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6wf8n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w1qg2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rde4f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmjmj")
-}],
+"frames": [],
 "loop": false,
 "name": &"Shoot_R",
 "speed": 5.0
@@ -664,7 +579,7 @@ shape = SubResource("RectangleShape2D_21mar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bh72c")
-animation = &"Walk_D"
+animation = &"Explosion_R"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

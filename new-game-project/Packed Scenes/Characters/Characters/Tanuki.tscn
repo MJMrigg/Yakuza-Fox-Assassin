@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=123 format=3 uid="uid://dxcjch6ow0kbd"]
 
 [ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_5j40h"]
 [ext_resource type="Script" uid="uid://beqgj5ur66lhn" path="res://Scripts/Characters/Enemy3.cs" id="1_rlrp6"]
@@ -15,7 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://d1nd8iomdep3f" path="res://Art Assets/Sounds/Tanuki/TanukiDeath1.mp3" id="6_x6w1p"]
 [ext_resource type="AudioStream" uid="uid://bgytkpnajeig5" path="res://Art Assets/Sounds/Tanuki/TanukiDeath2.mp3" id="7_x51gj"]
 [ext_resource type="AudioStream" uid="uid://wr0pf5gpf7d1" path="res://Art Assets/Sounds/Tanuki/TanukiDisguise.mp3" id="8_1w38c"]
+[ext_resource type="Texture2D" uid="uid://bjshl0n0fc0ce" path="res://Art Assets/Projectiles/Tanuki Things/bigBox.png" id="8_ij4vt"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="9_r1kc7"]
+[ext_resource type="Texture2D" uid="uid://cpvsu4urqmbkh" path="res://Art Assets/Projectiles/Tanuki Things/drinkBox.png" id="9_x654s"]
+[ext_resource type="Texture2D" uid="uid://dteovvawsmxey" path="res://Art Assets/Projectiles/Tanuki Things/smallBox.png" id="10_c8tus"]
+[ext_resource type="Texture2D" uid="uid://cr7dso087eido" path="res://Art Assets/Projectiles/Tanuki Things/tree.png" id="11_0wreo"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_2fc67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
@@ -328,6 +332,22 @@ region = Rect2(192, 240, 96, 120)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tijoy"]
 atlas = ExtResource("6_5h07f")
 region = Rect2(288, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss5h7"]
+atlas = ExtResource("8_ij4vt")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fma31"]
+atlas = ExtResource("9_x654s")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbww2"]
+atlas = ExtResource("10_c8tus")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aisn"]
+atlas = ExtResource("11_0wreo")
+region = Rect2(0, 0, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb22i"]
 atlas = ExtResource("1_5j40h")
@@ -745,6 +765,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ss5h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fma31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbww2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aisn")
+}],
+"loop": false,
+"name": &"Transformed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cb22i")
 }, {
 "duration": 1.0,
@@ -853,7 +890,8 @@ shape = SubResource("ConvexPolygonShape2D_mp6cj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
-animation = &"Throw_U"
+animation = &"Transformed"
+frame = 3
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

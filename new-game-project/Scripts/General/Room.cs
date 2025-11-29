@@ -31,14 +31,6 @@ public partial class Room : Node2D
 			}
 		}
 		
-		//Set local and global suspicion meters
-		ProgressBar LocalSuspicion = (ProgressBar)GetNode("MainUI/Main/VBoxContainer/Main/LocalSuspicion/LocalSuspicionMeter");
-		LocalSuspicion.MaxValue = Game.Instance.MaxLocalSuspicions[RoomId];
-		LocalSuspicion.Value = Game.Instance.LocalSuspicions[RoomId];
-		ProgressBar GlobalSuspicion = (ProgressBar)GetNode("MainUI/GlobalSuspicion/GlobalSuspicion/GlobalSuspicionMeter");
-		GlobalSuspicion.MaxValue = Game.Instance.MaxGlobalSuspicion;
-		GlobalSuspicion.Value = Game.Instance.GlobalSuspicion;
-		
 		// Determine Player Position
 		if(Game.Instance.roomMap.ContainsKey(RoomId)){
 			var RoomPlayerStats = Game.Instance.roomMap[RoomId];
@@ -164,7 +156,7 @@ public partial class Room : Node2D
 					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
-				else if(type == 5 || type == 6)
+				else if(type >= 5)
 				{ //Two different tanukis, normal and transformed
 					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Tanuki.tscn");
 					Enemy3 newNPC = (Enemy3)NPCPackedScene.Instantiate();
@@ -177,7 +169,12 @@ public partial class Room : Node2D
 					newNPC.Dying = IsDying;
 					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
 					newNPC.RoomId = RoomId;
-					if(type == 6) { newNPC.Transformed = true; }
+					if(type > 5) { //Transform the tanuki into its object
+						newNPC.Transformed = true; 
+						newNPC.MySpriteAnimation.Animation = "Transformed";
+						newNPC.MySpriteAnimation.Frame = type-6;
+						newNPC.TransformType = type;
+					}
 					AddChild(newNPC);
 				}
 			}

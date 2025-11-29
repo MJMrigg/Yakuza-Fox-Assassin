@@ -29,7 +29,10 @@ public partial class Interactable : Entity
 		DialogueBox = ((HBoxContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialogue/Dialog"));
 		DialoguePanel = ((PanelContainer)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Dialogue"));
 		//Hide interaction box
-		InteractionBox.Visible = false;
+		if(InteractionBox != null)
+		{
+			InteractionBox.Visible = false;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

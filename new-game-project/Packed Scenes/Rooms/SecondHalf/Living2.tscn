@@ -66,9 +66,11 @@ regDoor = true
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("7_621wv")]
 position = Vector2(939, 617)
+TransformType = 9
 
 [node name="Tanuki2" parent="NPCs" instance=ExtResource("7_621wv")]
 position = Vector2(279, 634)
+TransformType = 8
 
 [node name="Husky" parent="NPCs" instance=ExtResource("8_lejn0")]
 position = Vector2(501, 630)

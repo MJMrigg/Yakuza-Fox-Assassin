@@ -34,6 +34,9 @@ PlayerCamera = NodePath("../Camera2D")
 
 [node name="MainUI" parent="." instance=ExtResource("4_fm4wg")]
 
+[node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
+script = null
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)

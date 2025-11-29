@@ -58,8 +58,9 @@ script = ExtResource("5_lwimm")
 position = Vector2(390, 259)
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("7_dima3")]
-position = Vector2(108, 60)
+position = Vector2(107, 40)
 Transformed = true
+TransformType = 8
 
 [node name="Doors" type="Node" parent="."]
 
