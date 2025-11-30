@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bidfdywgj441a"]
+[gd_scene load_steps=14 format=3 uid="uid://bidfdywgj441a"]
 
 [ext_resource type="Texture2D" uid="uid://b3al5dm6i1cxl" path="res://Art Assets/Characters/Player/Portraits/Neutral-Por_Player.png" id="1_tkf6q"]
 [ext_resource type="Script" uid="uid://b548d0386yolb" path="res://Scripts/User Interface/WeaponSlot.cs" id="2_f31s5"]
@@ -14,9 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://bd1urlla04r60" path="res://Packed Scenes/User Interface/QuitMenu.tscn" id="9_3qi6m"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nupds"]
-color = Color(0, 0, 0, 0)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_jqgxl"]
 color = Color(0, 0, 0, 0)
 
 [node name="MainUI" type="CanvasLayer"]
@@ -146,6 +143,7 @@ theme_type_variation = &"RedButton"
 text = "Quit"
 
 [node name="Main" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(372, 270)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -155,10 +153,20 @@ grow_vertical = 0
 theme = ExtResource("3_2l70p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+custom_minimum_size = Vector2(356, 258)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
 
-[node name="InvButton" type="Button" parent="Main/VBoxContainer"]
-custom_minimum_size = Vector2(250, 40)
+[node name="Main" type="VBoxContainer" parent="Main/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="InvButton" type="Button" parent="Main/VBoxContainer/Main"]
+custom_minimum_size = Vector2(250, 38)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -168,13 +176,11 @@ alignment = 0
 autowrap_mode = 2
 script = ExtResource("5_nupds")
 
-[node name="Main" type="VBoxContainer" parent="Main/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
 [node name="LocalSuspicion" type="HBoxContainer" parent="Main/VBoxContainer/Main"]
-custom_minimum_size = Vector2(360, 30)
+custom_minimum_size = Vector2(356, 30)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
@@ -195,34 +201,36 @@ layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("4_tppbg")
 
-[node name="HSeparator" type="HSeparator" parent="Main/VBoxContainer/Main"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_jqgxl")
-
 [node name="Player" type="HBoxContainer" parent="Main/VBoxContainer/Main"]
 layout_mode = 2
-theme_override_constants/separation = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 1
 
 [node name="PlayerPortrait" type="TextureRect" parent="Main/VBoxContainer/Main/Player"]
 layout_mode = 2
 texture = ExtResource("1_tkf6q")
 
 [node name="WeaponsAndHealth" type="VBoxContainer" parent="Main/VBoxContainer/Main/Player"]
-custom_minimum_size = Vector2(90, 180)
+custom_minimum_size = Vector2(87, 180)
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Weapons" type="HBoxContainer" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth"]
-custom_minimum_size = Vector2(180, 90)
+custom_minimum_size = Vector2(175, 90)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 4
 alignment = 1
 
 [node name="MeleeWeapon" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons" node_paths=PackedStringArray("Portrait")]
-custom_minimum_size = Vector2(85, 85)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"WeaponButton"
+disabled = true
 script = ExtResource("2_f31s5")
 Portrait = NodePath("MeleeWeapon")
 
@@ -238,10 +246,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RangedWeapon" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons" node_paths=PackedStringArray("Portrait")]
-custom_minimum_size = Vector2(85, 85)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"WeaponButton"
+disabled = true
 script = ExtResource("2_f31s5")
 Portrait = NodePath("RangedWeapon")
 
@@ -260,8 +269,32 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DequipButtons" type="HBoxContainer" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MeleeButton" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons" node_paths=PackedStringArray("Portrait")]
+custom_minimum_size = Vector2(76, 25)
+layout_mode = 2
+theme_type_variation = &"RedButton"
+theme_override_font_sizes/font_size = 15
+text = "Dequip"
+script = ExtResource("2_f31s5")
+Portrait = NodePath("../../Weapons/MeleeWeapon/MeleeWeapon")
+
+[node name="RangedButton" type="Button" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons" node_paths=PackedStringArray("Portrait")]
+custom_minimum_size = Vector2(76, 25)
+layout_mode = 2
+theme_type_variation = &"RedButton"
+theme_override_font_sizes/font_size = 15
+text = "Dequip"
+script = ExtResource("2_f31s5")
+Portrait = NodePath("../../Weapons/RangedWeapon/RangedWeapon")
+
 [node name="Health" type="HBoxContainer" parent="Main/VBoxContainer/Main/Player/WeaponsAndHealth"]
-custom_minimum_size = Vector2(180, 90)
+custom_minimum_size = Vector2(175, 40)
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
@@ -323,13 +356,17 @@ visible = false
 [node name="QuitMenu" parent="." instance=ExtResource("9_3qi6m")]
 visible = false
 
-[connection signal="ChangeMeleeWeapon" from="Inventory/Inventory" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="EquipWeapon"]
-[connection signal="ChangeRangedWeapon" from="Inventory/Inventory" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="EquipWeapon"]
+[connection signal="ChangeMeleeWeapon" from="Inventory/Inventory" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/MeleeButton" method="EquipWeapon"]
+[connection signal="ChangeRangedWeapon" from="Inventory/Inventory" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/RangedButton" method="EquipWeapon"]
 [connection signal="pressed" from="Inventory/Inventory/PauseMenu/Menu/CloseButton" to="Inventory/Inventory" method="CloseInventory"]
 [connection signal="pressed" from="Inventory/Inventory/PauseMenu/Menu/SettingsButton" to="Settings" method="OpenSettings"]
 [connection signal="pressed" from="Inventory/Inventory/PauseMenu/Menu/QuitButton" to="QuitMenu" method="openMenu"]
-[connection signal="pressed" from="Main/VBoxContainer/InvButton" to="Main/VBoxContainer/InvButton" method="OpenInventory"]
+[connection signal="pressed" from="Main/VBoxContainer/Main/InvButton" to="Main/VBoxContainer/Main/InvButton" method="OpenInventory"]
 [connection signal="Unequip" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" to="Inventory/Inventory" method="UnEquipItem"]
 [connection signal="pressed" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/MeleeWeapon" method="UnequipWeapon"]
 [connection signal="Unequip" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" to="Inventory/Inventory" method="UnEquipItem"]
 [connection signal="pressed" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/Weapons/RangedWeapon" method="UnequipWeapon"]
+[connection signal="Unequip" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/MeleeButton" to="Inventory/Inventory" method="UnEquipItem"]
+[connection signal="pressed" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/MeleeButton" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/MeleeButton" method="UnequipWeapon"]
+[connection signal="Unequip" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/RangedButton" to="Inventory/Inventory" method="UnEquipItem"]
+[connection signal="pressed" from="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/RangedButton" to="Main/VBoxContainer/Main/Player/WeaponsAndHealth/DequipButtons/RangedButton" method="UnequipWeapon"]

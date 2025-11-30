@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_urbrd"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_eabx2"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_h781g"]
-[ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="6_j551u"]
+[ext_resource type="PackedScene" uid="uid://f4lev6mhev37" path="res://Packed Scenes/Characters/Characters/NPC3.tscn" id="7_j551u"]
 [ext_resource type="PackedScene" uid="uid://bsrb5biavqiyq" path="res://Packed Scenes/Items/Hamster.tscn" id="7_urbrd"]
 [ext_resource type="PackedScene" uid="uid://sgnoxpp88wpe" path="res://Packed Scenes/Doors/SecretPassage.tscn" id="8_eabx2"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="10_m100n"]
@@ -37,7 +37,7 @@ tile_map_data = PackedByteArray("AAAGAAgAAQABAAAAAAAHAAgAAQABAAAAAAAIAAgAAQABAAA
 tile_set = ExtResource("1_rpopm")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D/Decor"]
-tile_map_data = PackedByteArray("AAAGAAQAAQABAAkAAAAHAAQAAQACAAkAAAAIAAQAAQACAAkAAAAJAAQAAQABAAMAAAAKAAQAAQABAAkAAAALAAQAAQAAAAMAAAAHAAYAAQABAAMAAAAKAAIAAQABAAMAAAAIAAYAAQAAAAMAAAAGAAIAAQAAAAMAAAAIAAIAAQABAAMAAAAKAAYAAQABAAMAAAAJAAYAAQABAAkAAAALAAYAAQABAAkAAAAGAAYAAQABAAkAAAAJAAIAAQABAAkAAAAHAAIAAQABAAkAAAALAAIAAQABAAkAAAAIAAgAAQABAAMAAAALAAgAAQABAAMAAAAJAAgAAQAAAAMAAAAHAAgAAQACAAkAAAAKAAgAAQACAAkAAAAGAAgAAQABAAkAAAA=")
+tile_map_data = PackedByteArray("AAAGAAQAAQABAAkAAAAJAAQAAQABAAMAAAAKAAQAAQABAAkAAAALAAQAAQAAAAMAAAAHAAYAAQABAAMAAAAKAAIAAQABAAMAAAAIAAYAAQAAAAMAAAAGAAIAAQAAAAMAAAAIAAIAAQABAAMAAAAKAAYAAQABAAMAAAAJAAYAAQABAAkAAAALAAYAAQABAAkAAAAGAAYAAQABAAkAAAAJAAIAAQABAAkAAAAHAAIAAQABAAkAAAALAAIAAQABAAkAAAAIAAgAAQABAAMAAAALAAgAAQABAAMAAAAJAAgAAQAAAAMAAAAGAAgAAQABAAkAAAA=")
 tile_set = ExtResource("1_rpopm")
 
 [node name="MainUI" parent="." instance=ExtResource("4_urbrd")]
@@ -56,11 +56,11 @@ regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
 
-[node name="Npc2" parent="NPCs" instance=ExtResource("6_j551u")]
-position = Vector2(1138, 200)
-
 [node name="Husky" parent="NPCs" instance=ExtResource("10_m100n")]
 position = Vector2(1132, 484)
+
+[node name="Npc3" parent="NPCs" instance=ExtResource("7_j551u")]
+position = Vector2(1153, 212)
 
 [node name="Items" type="Node" parent="."]
 

@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_tyo82"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="5_xbene"]
 [ext_resource type="PackedScene" uid="uid://bgm3dx1u53tnj" path="res://Packed Scenes/Items/Knife.tscn" id="7_tyo82"]
-[ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_xbene"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_4q26e"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_4q26e"]
+[ext_resource type="PackedScene" uid="uid://f4lev6mhev37" path="res://Packed Scenes/Characters/Characters/NPC3.tscn" id="10_u3lif"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tyo82"]
 vertices = PackedVector2Array(1105.0391, 174.99219, 1189, 133.99219, 1261, 131.97656, 1187, 273.5078, 1115, 273.5078, 1187, 395, 1261, 685, 1187, 611, 1045, 685, 109, 611, 1104.9531, 67.03125, 1189, 37, 1115, 276.5078, 1043, 276.5078, 1043, 273.5078, 971, 276.5078, 971, 273.5078, 899, 276.5078, 899, 273.5078, 827, 276.5078, 827, 273.5078, 755, 276.5078, 755, 273.5078, 683, 276.5078, 683, 273.5078, 611, 276.5078, 611, 273.5078, 539, 276.5078, 539, 273.5078, 467, 276.5078, 467, 273.5078, 469, 179, 395, 276.5078, 395, 273.5078, 323, 276.5078, 323, 273.5078, 469, 37, 251, 276.5078, 251, 273.5078, 397, 35, 1187, 489.5078, 1115, 492.5078, 1115, 489.5078, 1043, 492.5078, 1043, 489.5078, 971, 492.5078, 971, 489.5078, 899, 492.5078, 899, 489.5078, 827, 492.5078, 827, 489.5078, 755, 492.5078, 755, 489.5078, 683, 492.5078, 683, 489.5078, 611, 492.5078, 611, 489.5078, 539, 492.5078, 539, 489.5078, 467, 492.5078, 467, 489.5078, 395, 492.5078, 395, 489.5078, 323, 492.5078, 323, 489.5078, 251, 492.5078, 251, 489.5078, 1045, 943.72656, 899, 945.3828, 899, 685, 107, 685, 107, 613, 251, -66.38281, 397, -67.78125, 251, 35, 1261, 35, 1261, 37, 35, 613, 35, 35, 109, 495.4297, 1043, 179, 1043, 175, 1043, 67, 1043, 37, 109, 279.4297, 109, 395)
@@ -70,11 +70,6 @@ regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
 
-[node name="Npc2" parent="NPCs" instance=ExtResource("7_xbene")]
-position = Vector2(680, 436)
-DialogueOptions = PackedStringArray("Who are you?", "This room is filthy.", "I am an intruder.", "Goodbye")
-DialogResponses = PackedStringArray("The only janitor for this entire side of the ship.", "Yeah, blame the Chihuahuas. One even left his knife over there. I\'m touching that.", "Oh no.")
-
 [node name="Tanuki" parent="NPCs" instance=ExtResource("8_4q26e")]
 position = Vector2(273, 154)
 TransformType = 7
@@ -84,6 +79,11 @@ position = Vector2(1229, 263)
 InitialDialog = "Are you food?"
 DialogueOptions = PackedStringArray("What?", "What kind of question is that?", "You know what, I am food, but you\'ll have to fight me to eat me.", "Goodybe")
 DialogResponses = PackedStringArray("Are you food? I\'m hungry.", "The question I ask many. Some say yes, and then I eat!", "Oh this will be fun.")
+
+[node name="Npc3" parent="NPCs" instance=ExtResource("10_u3lif")]
+position = Vector2(761, 434)
+DialogueOptions = PackedStringArray("Don\'t you guys usually herd sheep?", "This room is filthy.", "Is okay if I take that knife over there and stab your boss.", "Goodbye")
+DialogResponses = PackedStringArray("Yeah, when the sheep herding econmy isn\'t going kaput.", "Yeah, blame the Chihuahuas. One even left his knife over there. I\'m not touching that.", "What? What the heck? What?")
 
 [node name="Items" type="Node" parent="."]
 

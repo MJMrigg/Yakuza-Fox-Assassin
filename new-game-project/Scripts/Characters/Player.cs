@@ -723,7 +723,9 @@ public partial class Player : Entity
 		//If it's not a weapon, get rid of the equip button. If it is, add functionality to the button
 		if(ItemId >= 4)
 		{
-			((Button)NewSlot.GetNode("EquipButton")).Visible = false;
+			Button EquipButton = ((Button)NewSlot.GetNode("EquipButton"));
+			EquipButton.Disabled = true;
+			EquipButton.Text = "";
 		}
 		else
 		{

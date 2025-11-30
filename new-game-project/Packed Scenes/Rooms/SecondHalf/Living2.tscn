@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://blvgy3jyqklp4"]
+[gd_scene load_steps=12 format=4 uid="uid://blvgy3jyqklp4"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_6a2h8"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_daref"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_laead"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_621wv"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="8_lejn0"]
+[ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="9_lejn0"]
+[ext_resource type="PackedScene" uid="uid://f4lev6mhev37" path="res://Packed Scenes/Characters/Characters/NPC3.tscn" id="10_hqqis"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_laead"]
 vertices = PackedVector2Array(973, 37, 971, 37, 971, 35, 973, 35, 465.1875, 417.03125, 902.9922, 395, 1040.9063, 395, 1115, 541, 973, 541, 464.90625, 539, 902.96094, 273, 326.96094, 417, 249.1875, 374.96875, 248.99219, 288.07813, 249.1875, 201.03125, 469, 179, 1041.1875, 273.03125, 1043, 148.52344, 1189, 107, 1189, 467, 1117, 541, 1321.2734, 467, 1320.4688, 541, 323, 107, 323, -29.71875, 397, -29.242188, 397, 148.52344, 1117, 626.9297, 1115, 626.9375, 1043, 107, 971, 149.52344, 971, 179, 973, 685, 899, 685, 899, 613, 757, 613, 757, 685, 683, 685, 683, 613, 541, 613, 541, 685, 467, 685, 467, 613, 326.9922, 539, 325, 613, 251, 541, 325, 685, 251, 685, 109, 541, 109, 685, 107, 685, 107, 107, 469, 149.52344, 110.96094, 201, 110.97656, 288.0078, 110.96094, 375)
@@ -68,17 +70,16 @@ regDoor = true
 position = Vector2(939, 617)
 TransformType = 9
 
-[node name="Tanuki2" parent="NPCs" instance=ExtResource("7_621wv")]
-position = Vector2(279, 634)
-TransformType = 8
-
 [node name="Husky" parent="NPCs" instance=ExtResource("8_lejn0")]
 position = Vector2(501, 630)
 
-[node name="Husky2" parent="NPCs" instance=ExtResource("8_lejn0")]
-position = Vector2(725, 606)
-
 [node name="Husky3" parent="NPCs" instance=ExtResource("8_lejn0")]
 position = Vector2(540, 201)
+
+[node name="Npc1" parent="NPCs" instance=ExtResource("9_lejn0")]
+position = Vector2(723, 638)
+
+[node name="Npc3" parent="NPCs" instance=ExtResource("10_hqqis")]
+position = Vector2(292, 636)
 
 [editable path="MainUI"]

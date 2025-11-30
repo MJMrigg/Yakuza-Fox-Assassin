@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://7w7gvjn4f0yy"]
+[gd_scene load_steps=55 format=3 uid="uid://7w7gvjn4f0yy"]
 
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_rqn5h"]
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_t4kyu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://doytjxh52kkho" path="res://Art Assets/Characters/NPCS/NPC-1/Animations/Die-Anim_NPC-1.png" id="3_5ynit"]
 [ext_resource type="Texture2D" uid="uid://pc0lmrtnv1wj" path="res://Art Assets/Characters/NPCS/NPC-1/Animations/Walk-Anim_NPC-1.png" id="3_qxp0h"]
 [ext_resource type="Texture2D" uid="uid://dd33ao84gpncd" path="res://Art Assets/Characters/NPCS/NPC-1/Animations/Hurt-Anim_NPC-1.png" id="4_if4i1"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="7_if4i1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ek4g"]
 atlas = ExtResource("3_5ynit")
@@ -399,13 +400,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4kyu"]
-radius = 35.0
+radius = 27.0
 height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtwxd"]
 radius = 200.0
 
-[node name="Npc1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_t4kyu")
@@ -417,12 +418,13 @@ InitialDialog = "Woah, who are you?"
 DialogueOptions = PackedStringArray("I\'m your new coworker.", "I\'m your boss\' kid come to claim his throne.", "I don\'t know why, but you remind me of a dog named Max.", "Goodbye.")
 DialogResponses = PackedStringArray("Well, I hope you enjoy awkward office birthday parties then.", "Oh no!", "That\'s too meta.")
 DialogSuspicion = PackedFloat32Array(0, 5, 1)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rqn5h")
-animation = &"Walk_U"
+animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t4kyu")
@@ -446,3 +448,8 @@ neighbor_distance = 200.0
 [node name="Sounds" type="Node" parent="."]
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_rqn5h")]
+
+[node name="Interactable" parent="." instance=ExtResource("7_if4i1")]
+position = Vector2(-20, -82)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

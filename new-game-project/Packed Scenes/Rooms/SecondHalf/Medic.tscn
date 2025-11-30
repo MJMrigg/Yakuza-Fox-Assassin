@@ -78,6 +78,9 @@ DialogResponses = PackedStringArray("I am the record holder.", "Not those kind o
 position = Vector2(829, 396)
 Transformed = true
 TransformType = 9
+DialogueOptions = PackedStringArray("Show  yourself. I know you\'re watching me, show yourself. I can see you.", "Ha, I was lying! And you fell for my bluff! Hahahaha!", "You first, and maybe I\'ll do the same.", "Nah, don\'t be modest, I know you\'re a goddess, so lets be honest, you are ATHENA!", "Goodbye.")
+DialogResponses = PackedStringArray("How can you see through my spell?", "Well done, enlighten me, what\'s your name?", "Nice try, but two can place this game.", "If you get this reference, what\'s the next line? If you get it right, you\'re a genius.")
+DialogSuspicion = PackedFloat32Array(0, 0, 0, 0, 0)
 
 [node name="Items" type="Node" parent="."]
 

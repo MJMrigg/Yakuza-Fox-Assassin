@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_el87n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
-radius = 25.0
+radius = 30.0
 height = 96.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0nspq"]

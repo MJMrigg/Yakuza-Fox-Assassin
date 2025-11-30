@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="5_w3und"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_u0mkw"]
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="8_p7dgq"]
-[ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_wgmim"]
+[ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="9_wgmim"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ldmwp"]
 vertices = PackedVector2Array(1261, 613, 1045, 613, 251, 395, 325, 395, 1261, 35, 1261, 253, 1189, 253, 1115, 179, 1115, 37, 325, 35, 829, 37, 1045, 917.90625, 899, 914.39844, 899, 613, 35, 613, 109, 395, 109, 253, 35, 91.22656, 99.03906, 91.578125, 179, -232.53125, 325, -233.82031, 179, 35, 99.03906, 91.1875, 171.03906, 91.578125, 251, 253, 829, 179, 1189, 395, 683, 395, 683, 253, 1261, 395, 171.03906, 35, 541, 253, 325, 253, 541, 395, 467, 395, 467, 253)
@@ -75,7 +75,10 @@ position = Vector2(982, 456)
 DialogueOptions = PackedStringArray("What is this place?", "Why is there a vent grate on the desk?", "I am an assassin.", "Goodbye")
 DialogResponses = PackedStringArray("This is our living quarters. We sleep on beds of sand and get stalked by trees every night. I blame the Chihuahuas.", "That\'s Gary\'s work. He has an obsession with vents.", "Please don\'t kill me!")
 
-[node name="Chihuahua" parent="NPCs" instance=ExtResource("9_wgmim")]
-position = Vector2(284, 187)
+[node name="Npc1" parent="NPCs" instance=ExtResource("9_wgmim")]
+position = Vector2(304, 169)
+DialogueOptions = PackedStringArray("Is this your place of residence?", "I\'m your boss\' kid come to claim his throne.", "Do you all share that computer?", "Goodbye.")
+DialogResponses = PackedStringArray("No, I\'m a commuter. I take the shuttle.", "Oh no!", "Yeah. You should have seen the last one. It was an old retro one that Gary only put there to mess with all of us. Dawn put him in his place.")
+DialogSuspicion = PackedFloat32Array(0, 5, 0)
 
 [editable path="MainUI"]

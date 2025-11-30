@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_h132m"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_h132m"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_dp5oo"]
-[ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="8_kiqlt"]
+[ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="9_r4g3b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h132m"]
 vertices = PackedVector2Array(1117, 613, 107, 613, 755, 611, 901, 611, 469, 611, 1117, 253, 901, 253, 755, 179, 901, 179, 1117, 469, 901, 469, 755, 395, 901, 395, 323, 35, 323, -153.14063, 469, -151.49219, 469, 35, 1117, 35, 1117, 37, 901, 37, 1117, 179, 755, 37, 469, 37, 1117, 395, 755, 253, 469, 179, 469, 253, 1117, 611, 755, 469, 469, 395, 469, 469, 107, 611, 323, 611, 323, 469, 323, 395, 107, 469, 107, 395, 323, 253, 323, 179, 107, 253, 107, 179, 323, 37, 107, 37, 107, 35)
@@ -64,10 +64,11 @@ InitialDialog = "I hate my job."
 DialogueOptions = PackedStringArray("How does a Tanuki end up in an office.", "Have you considered retiring?", "Oh yeah? I\'m an intruder. Nobody  has noticed!", "Goodbye")
 DialogResponses = PackedStringArray("I drew the short straw.", "No, my car is fine.", "I\'m going to assume that was a joke.")
 
-[node name="Npc2" parent="NPCs" instance=ExtResource("8_kiqlt")]
-position = Vector2(406, 321)
+[node name="Npc1" parent="NPCs" instance=ExtResource("9_r4g3b")]
+position = Vector2(396, 317)
 InitialDialog = "Are you the new intern?"
-DialogueOptions = PackedStringArray("I am the new intern.", "What is this room?", "I am an intruder.", "Goodbye")
-DialogResponses = PackedStringArray("Brilliant. We have a bunch of Excel sheets. Go through them all and look for cells that equal 180.", "This is the office, or as I call it, the coffee drinking room.", "Oh dear! Please don\'t hurt me!")
+DialogueOptions = PackedStringArray("I am the new intern.", "What is this room?", "I\'m your boss\' kid come to claim his throne.", "Goodbye.")
+DialogResponses = PackedStringArray("Brilliant. We have a bunch of Excel sheets. Go through them all and look for cells that equal 180.", "This is the office, or as I call it, the coffee drinking room.", "Oh no!")
+DialogSuspicion = PackedFloat32Array(0, 0, 5)
 
 [editable path="MainUI"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://f4lev6mhev37"]
+[gd_scene load_steps=55 format=3 uid="uid://f4lev6mhev37"]
 
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_aw31w"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_ormxa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bttoq2g4s6plr" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Die-Anim_NPC-3.png" id="3_ffgjf"]
 [ext_resource type="Texture2D" uid="uid://i50aqdi0ocd0" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Hurt-Anim_NPC-3.png" id="4_nlnmw"]
 [ext_resource type="Texture2D" uid="uid://pwq0vt7b48ff" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Walk-Anim_NPC-3.png" id="5_bbqnb"]
+[ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="7_nlnmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3ekp"]
 atlas = ExtResource("3_ffgjf")
@@ -399,13 +400,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3ej6"]
-radius = 35.0
+radius = 30.0
 height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aw31w"]
 radius = 200.0
 
-[node name="Npc3" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc3" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_aw31w")
@@ -418,12 +419,13 @@ InitialDialog = "Oh hello!"
 DialogueOptions = PackedStringArray("Don\'t you guys usually herd sheep?", "How much do you get paid?", "Is it okay if I steel weapons and keys from around the ship?", "Goodbye")
 DialogResponses = PackedStringArray("When the sheep economy isn\'t going kaput, usually.", "I get payed 12 bones an hour and plus a squeek toy insurance plan.", "What? No. What kind of question is that?")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
+InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ormxa")
-animation = &"Die_D"
+animation = &"Walk_D"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_m3ej6")
@@ -436,14 +438,15 @@ collision_mask = 31
 shape = SubResource("CircleShape2D_aw31w")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["NPCs"]]
-path_desired_distance = 75.0
-target_desired_distance = 100.0
-path_max_distance = 200.0
-path_postprocessing = 2
+target_desired_distance = 50.0
 avoidance_enabled = true
 radius = 75.0
-neighbor_distance = 200.0
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_ormxa")]
+
+[node name="Interactable" parent="." instance=ExtResource("7_nlnmw")]
+position = Vector2(-19, -82)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

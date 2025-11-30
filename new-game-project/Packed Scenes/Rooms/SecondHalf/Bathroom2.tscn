@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://t7rl7tpgiehl"]
+[gd_scene load_steps=12 format=4 uid="uid://t7rl7tpgiehl"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_eomq5"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_lf2jl"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_wq2jg"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="7_mo7y8"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="8_enflf"]
+[ext_resource type="PackedScene" uid="uid://f4lev6mhev37" path="res://Packed Scenes/Characters/Characters/NPC3.tscn" id="9_enflf"]
+[ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="10_junbl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wq2jg"]
 vertices = PackedVector2Array(462, 125.17969, 462, 42, 474, 30, 474, 462, 102, 30, 114, 42, 102, 534, 114, 128.84375, 102, 618, -3.6171875, 618, 5.453125, 534, 585.28125, 462, 582.27344, 390, 585.28125, 390, 716.21875, 462, 1038, 762, 582.27344, 318, 585.28125, 318, 710.71875, 330, 582.27344, 246, 585.28125, 246, 710.71875, 258, 713.72656, 330, 582.27344, 174, 585.28125, 174, 710.71875, 186, 713.72656, 258, 582.27344, 102, 585.28125, 102, 710.71875, 114, 713.72656, 186, 582.27344, 30, 713.22656, 30, 710.71875, 42, 713.72656, 114, 873.28125, 462, 870.27344, 390, 873.28125, 390, 1004.21875, 462, 870.27344, 318, 873.28125, 318, 998.71875, 330, 870.27344, 246, 873.28125, 246, 998.71875, 258, 1001.72656, 330, 870.27344, 174, 873.28125, 174, 998.71875, 186, 1001.72656, 258, 870.27344, 102, 873.28125, 102, 998.71875, 114, 1001.72656, 186, 870.27344, 30, 1001.22656, 30, 998.71875, 42, 1001.72656, 114, 1428.6094, 796.3594, 1161.2813, 462, 1158.2734, 390, 1161.2813, 390, 1292.2188, 462, 1482, 690, 1482, 793.6797, 1158.2734, 318, 1161.2813, 318, 1286.7188, 330, 1158.2734, 246, 1161.2813, 246, 1286.7188, 258, 1289.7266, 330, 1158.2734, 174, 1161.2813, 174, 1286.7188, 186, 1289.7266, 258, 1158.2734, 102, 1161.2813, 102, 1286.7188, 114, 1289.7266, 186, 1158.2734, 30, 1289.2266, 30, 1286.7188, 42, 1289.7266, 114, 1563.6172, 656.10156, 1449.2813, 462, 1446.2734, 390, 1449.2813, 390, 1580.2188, 462, 1626, 655.9531, 1446.2734, 318, 1449.2813, 318, 1574.7188, 330, 1446.2734, 246, 1449.2813, 246, 1574.7188, 258, 1577.7266, 330, 1446.2734, 174, 1449.2813, 174, 1574.7188, 186, 1577.7266, 258, 1446.2734, 102, 1449.2813, 102, 1574.7188, 114, 1577.7266, 186, 1446.2734, 30, 1577.2266, 30, 1574.7188, 42, 1577.7266, 114, 713.72656, 42, 1001.72656, 42, 1289.7266, 42, 1577.7266, 42, 186, 126.84375, 186, 128.84375, 258, 126.84375, 258, 128.84375, 330, 126.84375, 330, 128.84375, 1563.8203, 690, 1626, 462, 1425.7188, 834, 1038, 834, 102, 762)
@@ -61,13 +63,13 @@ regDoor = true
 [node name="Husky" parent="NPCs" instance=ExtResource("7_mo7y8")]
 position = Vector2(823, 700)
 
-[node name="Husky2" parent="NPCs" instance=ExtResource("7_mo7y8")]
-position = Vector2(418, 701)
-
 [node name="Chihuahua" parent="NPCs" instance=ExtResource("8_enflf")]
 position = Vector2(639, 200)
 
-[node name="Chihuahua2" parent="NPCs" instance=ExtResource("8_enflf")]
-position = Vector2(1226, 255)
+[node name="Npc3" parent="NPCs" instance=ExtResource("9_enflf")]
+position = Vector2(1224, 177)
+
+[node name="Npc1" parent="NPCs" instance=ExtResource("10_junbl")]
+position = Vector2(463, 729)
 
 [editable path="MainUI"]

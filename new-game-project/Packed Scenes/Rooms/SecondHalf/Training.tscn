@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bo6rq3jnspnsh"]
+[gd_scene load_steps=10 format=4 uid="uid://bo6rq3jnspnsh"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_106sx"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_org7o"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="4_xguhg"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="5_2xho8"]
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_xguhg"]
-[ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_2xho8"]
+[ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="7_07ugl"]
+[ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_8awdb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xguhg"]
 vertices = PackedVector2Array(685, 251, 831.4922, 251, 831.46875, 253, 685, 253, 179, 107, 179, -99.921875, 181, -99.90625, 181, 107, 397, 708.53125, 323, 709.10156, 323, 469, 397, 469, 467, 107, 467, -98.28125, 469, -98.27344, 469, 133.99219, 683, 107, 683, -97.046875, 685, -97.03906, 35, 253, -149.75781, 253, -149.75, 251, 35, 251, 169.07813, 410.92188, 107, 410.9375, 107, 397, 611, 130.03906, 611, 107, 685, 397, 613, 397, 35, 397, 107, 130.03906, 107, 107, 197.09375, 469, 176.92969, 469, 176.89063, 441.40625, 199.96875, 431.57813, 169, 441.3125, 35, 132.03906, 613, 428.9297, 559.96875, 431.57813, 304.09375, 426.3828, 557.09375, 469, 308.25, 469)
@@ -51,6 +52,12 @@ script = ExtResource("5_2xho8")
 
 [node name="NPCs" type="Node" parent="."]
 
+[node name="Tanuki" parent="NPCs" instance=ExtResource("7_8awdb")]
+position = Vector2(267, 341)
+
+[node name="Chihuahua" parent="NPCs" instance=ExtResource("7_07ugl")]
+position = Vector2(549, 235)
+
 [node name="Doors" type="Node" parent="."]
 
 [node name="ToMarket" parent="Doors" instance=ExtResource("6_xguhg")]
@@ -89,10 +96,5 @@ ConnectedRoom = 18
 regDoor = true
 
 [node name="Items" type="Node" parent="."]
-
-[node name="Green Key" parent="Items" instance=ExtResource("7_2xho8")]
-position = Vector2(48, 253)
-scale = Vector2(0.5, 0.5)
-InitialDialog = "You find a small card like item just lying on the ground."
 
 [editable path="MainUI"]
