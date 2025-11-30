@@ -354,7 +354,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_q5cyt")
-min_value = -10.0
+min_value = -60.0
 max_value = 10.0
 value = 10.0
 
@@ -378,9 +378,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("3_q5cyt")
-min_value = -10.0
-max_value = 10.0
-value = 10.0
+min_value = -60.0
+max_value = 0.0
 
 [node name="SoundVolume" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings2"]
 layout_mode = 2
@@ -401,9 +400,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("3_q5cyt")
-min_value = -10.0
-max_value = 10.0
-value = 10.0
+min_value = -60.0
+max_value = 0.0
 
 [node name="closeBut" type="Button" parent="SettingsContainer"]
 custom_minimum_size = Vector2(150, 40)

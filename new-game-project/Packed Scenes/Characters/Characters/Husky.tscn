@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=63 format=3 uid="uid://cckd5u6wwg8gx"]
 
 [ext_resource type="Script" uid="uid://v87lc1o8kvw7" path="res://Scripts/Characters/Enemy2.cs" id="1_0nspq"]
 [ext_resource type="Texture2D" uid="uid://btg0pfwq8nsay" path="res://Art Assets/Characters/Enemies/Husky/Animations/Die-Anim_Husky.png" id="1_5o7ni"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="8_1uy3h"]
 [ext_resource type="AudioStream" uid="uid://de13jlcj3aqmh" path="res://Art Assets/Sounds/Player/PistolLoud.mp3" id="10_modip"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_el87n"]
+[ext_resource type="PackedScene" uid="uid://bouiimt44iqq8" path="res://Packed Scenes/User Interface/health_bar.tscn" id="14_76om6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtjo"]
 radius = 30.0
@@ -435,7 +436,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nspq"]
 radius = 300.0
 
-[node name="Husky" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Husky" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_0nspq")
@@ -445,9 +446,11 @@ AttackCooldown = 2
 DeathSound = NodePath("Sounds/HuskyDeath")
 Speed = 150.0
 Health = 20
+maxHealth = 20
 Portrait = ExtResource("2_mvgwq")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 _type = 4
 InitialDialog = "Why hello there!"
 DialogueOptions = PackedStringArray("Aren\'t you supposed to be on the iditarod?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
@@ -513,5 +516,14 @@ radius = 75.0
 
 [node name="Interactable" parent="." instance=ExtResource("12_el87n")]
 position = Vector2(-20, -77)
+
+[node name="HealthBar" parent="." instance=ExtResource("14_76om6")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -20.0
+offset_top = -77.0
+offset_right = 20.0
+offset_bottom = -47.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

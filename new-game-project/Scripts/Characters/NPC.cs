@@ -8,6 +8,8 @@ public partial class NPC : Interactable
 	
 	[Export]
 	public int Health = 100; //Health
+	[Export]
+	public int maxHealth = 100; //Max HP (used for HP BAR)
 	
 	public bool IsHostile; //Whether the NPC is hostile
 	
@@ -19,6 +21,9 @@ public partial class NPC : Interactable
 	
 	[Export]
 	public Area2D HostileRadius; //Radius the NPC will use to detect the player when hostile
+	
+	[Export]
+	public ProgressBar HpBar; // Progress bar for HP 
 	
 	public bool Dying = false; //Whether the NPC is dying
 		
@@ -34,6 +39,15 @@ public partial class NPC : Interactable
 	public override void _Ready()
 	{
 		base._Ready();
+		
+		//Setup HP BAR
+		if(HpBar != null)
+		{
+			HpBar.MinValue = 0;
+			HpBar.MaxValue = maxHealth;
+			HpBar.Value = Health;
+		}
+		
 		//If the NPC spawned already in the process of dying, kill it
 		if(MySpriteAnimation.Animation == ("Die_"+CurrentDir))
 		{
@@ -67,6 +81,12 @@ public partial class NPC : Interactable
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//Adjust HP BAR
+		if(HpBar != null)
+		{
+			HpBar.Value = Health;
+		}
+		
 		//If the NPC is dying, do nothing
 		if(Dying)
 		{

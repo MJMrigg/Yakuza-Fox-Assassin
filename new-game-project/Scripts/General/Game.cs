@@ -205,6 +205,14 @@ public partial class Game : Node
 			}
 		}
 		
+		//Set initial volume
+		//audiobus 0 is master bus
+		AudioServer.SetBusVolumeDb(0, MasterVolume);
+		//audiobus 1 is the sound effect bus
+		AudioServer.SetBusVolumeDb(1, SoundVolume);
+		//audiobus 2 is the music bus
+		AudioServer.SetBusVolumeDb(2, MusicVolume);
+		
 		StartGame();
 	}
 

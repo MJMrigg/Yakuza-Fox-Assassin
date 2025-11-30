@@ -48,6 +48,10 @@ public partial class Enemy3 : Enemy
 		//If the tanuki is transformed
 		if(Transformed)
 		{
+			if(HpBar != null)
+			{
+				HpBar.Visible = false; 
+			}
 			//Only unstransform if the player is near and the tanuki is hostile
 			if(IsHostile && Ambushee != null)
 			{
@@ -183,6 +187,11 @@ public partial class Enemy3 : Enemy
 		await ToSignal(MySpriteAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 		//Return to normal functionality
 		MySpriteAnimation.Animation = "Walk_"+CurrentDir;
+		
+		if(HpBar != null)
+		{
+			HpBar.Visible = true; 
+		}
 	}
 	
 	//Ambush the player

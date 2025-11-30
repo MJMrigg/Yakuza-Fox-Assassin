@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://dxcjch6ow0kbd"]
+[gd_scene load_steps=124 format=3 uid="uid://dxcjch6ow0kbd"]
 
 [ext_resource type="Texture2D" uid="uid://b44dbesbjsc3a" path="res://Art Assets/Characters/Enemies/Tanuki/Animations/Walk-Anim_Tanuki.png" id="1_5j40h"]
 [ext_resource type="Script" uid="uid://beqgj5ur66lhn" path="res://Scripts/Characters/Enemy3.cs" id="1_rlrp6"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dteovvawsmxey" path="res://Art Assets/Projectiles/Tanuki Things/smallBox.png" id="10_c8tus"]
 [ext_resource type="Texture2D" uid="uid://cr7dso087eido" path="res://Art Assets/Projectiles/Tanuki Things/tree.png" id="11_0wreo"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="12_2fc67"]
+[ext_resource type="PackedScene" uid="uid://bouiimt44iqq8" path="res://Packed Scenes/User Interface/health_bar.tscn" id="22_x654s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5f1y"]
 radius = 27.0
@@ -855,7 +856,7 @@ radius = 300.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlrp6"]
 radius = 130.0
 
-[node name="Tanuki" type="CharacterBody2D" node_paths=PackedStringArray("TransformRadius", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Tanuki" type="CharacterBody2D" node_paths=PackedStringArray("TransformRadius", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_rlrp6")
@@ -865,9 +866,11 @@ AttackCooldown = 2
 DeathSound = NodePath("Sounds/TanukiDeath1")
 Speed = 210.0
 Health = 90
+maxHealth = 90
 Portrait = ExtResource("2_arrhn")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 _type = 5
 InitialDialog = "Shhhh....I'm stealthy"
 DialogueOptions = PackedStringArray("I can see you though.", "What are you, Solid Snake?", "Oh yeah? I\'m an intruder. Nobody  has noticed!", "Goodbye")
@@ -946,6 +949,13 @@ shape = SubResource("CircleShape2D_rlrp6")
 
 [node name="Interactable" parent="." instance=ExtResource("12_2fc67")]
 position = Vector2(-20, -73)
+
+[node name="HealthBar" parent="." instance=ExtResource("22_x654s")]
+anchor_bottom = 0.042000003
+offset_left = -20.0
+offset_top = -73.0
+offset_right = 20.0
+offset_bottom = -43.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]
 [connection signal="body_entered" from="TransformRadius" to="." method="Ambush"]

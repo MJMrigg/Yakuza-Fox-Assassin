@@ -82,7 +82,7 @@ script = ExtResource("5_r2vjp")
 [node name="NPCs" type="Node" parent="."]
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("8_jd73o")]
-position = Vector2(759, 179)
+position = Vector2(759, 151)
 Transformed = true
 TransformType = 9
 

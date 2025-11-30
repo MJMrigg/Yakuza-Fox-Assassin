@@ -6,6 +6,7 @@ public partial class SettingsMenu : Control
 {
 	public string[] KeyBindings; //Array of current keybindings
 	public float maxVolume = 10.0f;
+	public float maxVolumeSec = 0.0f;
 	
 	public string curAction;
 	public string curText;
@@ -141,7 +142,7 @@ public partial class SettingsMenu : Control
 	//Change the current sound effect volume
 	public void ChangeSoundVolume(float NewVolume)
 	{
-		if (NewVolume >= maxVolume){
+		if (NewVolume >= maxVolumeSec){
 			return;
 		}
 		//audiobus 1 is the sound effect bus
@@ -156,7 +157,7 @@ public partial class SettingsMenu : Control
 	//Change the current music volume
 	public void ChangeMusicVolume(float NewVolume)
 	{
-		if (NewVolume >= maxVolume){
+		if (NewVolume >= maxVolumeSec){
 			return;
 		}
 		//audiobus 2 is the music bus

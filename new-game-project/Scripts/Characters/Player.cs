@@ -459,7 +459,7 @@ public partial class Player : Entity
 	//Tell the player that they lost or won the game
 	public void InformOfDeath()
 	{
-		ColorRect WinLoseMenu = (ColorRect)PlayerUI.GetNode("WinLoseMenu");
+		Panel WinLoseMenu = (Panel)PlayerUI.GetNode("WinLoseMenu");
 		WinLoseMenu.Visible = true;
 		if(Game.Instance.BossIsDead) //The boss died
 		{ //The boss died

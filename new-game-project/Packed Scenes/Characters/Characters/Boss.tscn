@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://xa2kt5clmxbo"]
+[gd_scene load_steps=83 format=3 uid="uid://xa2kt5clmxbo"]
 
 [ext_resource type="AudioStream" uid="uid://daqitwnwy0p8j" path="res://Art Assets/Sounds/Boss/BossDeath.mp3" id="1_5a4u7"]
 [ext_resource type="Script" uid="uid://d1afavkqei2jh" path="res://Scripts/Characters/Boss.cs" id="1_21mar"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dtvtry3puk02d" path="res://Art Assets/Sounds/Boss/FireBall4.mp3" id="9_6vpbu"]
 [ext_resource type="AudioStream" uid="uid://bsqtyvmouk3jr" path="res://Art Assets/Sounds/Boss/FireExplosion.mp3" id="10_udbvw"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="11_lru0g"]
+[ext_resource type="PackedScene" uid="uid://bouiimt44iqq8" path="res://Packed Scenes/User Interface/health_bar.tscn" id="18_hqqrs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrydw"]
 radius = 50.0
@@ -551,7 +552,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wwe6"]
 radius = 1024.0
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_21mar")
@@ -561,9 +562,11 @@ AttackCooldown = 3
 DeathSound = NodePath("Sounds/BossDeath")
 Speed = 200.0
 Health = 10
+maxHealth = 10
 Portrait = ExtResource("2_y2r7x")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -636,5 +639,12 @@ path_max_distance = 200.0
 avoidance_enabled = true
 radius = 75.0
 neighbor_distance = 200.0
+
+[node name="HealthBar" parent="." instance=ExtResource("18_hqqrs")]
+anchor_bottom = 0.042000003
+offset_left = -20.0
+offset_top = -109.0
+offset_right = 20.0
+offset_bottom = -79.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]

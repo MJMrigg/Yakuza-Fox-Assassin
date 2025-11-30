@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bpa0yurigcfsn"]
+[gd_scene load_steps=71 format=3 uid="uid://bpa0yurigcfsn"]
 
 [ext_resource type="Script" uid="uid://dfvydf8b2b5hi" path="res://Scripts/Characters/PatrollingNPC.cs" id="1_6uiao"]
 [ext_resource type="Texture2D" uid="uid://btts7r3ltvjnv" path="res://Art Assets/Characters/Enemies/Security/Animations/Walk-Anim_Paul.png" id="1_sht32"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://6yvqsut464mb" path="res://Art Assets/Sounds/Paul/PaulUnconcious.mp3" id="15_8435d"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="16_e6fmn"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="19_ptyyj"]
+[ext_resource type="PackedScene" uid="uid://bouiimt44iqq8" path="res://Packed Scenes/User Interface/health_bar.tscn" id="22_edawj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7and2"]
 radius = 26.0
@@ -403,7 +404,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6uiao"]
 radius = 300.0
 
-[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_6uiao")
@@ -411,9 +412,11 @@ AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 DeathSound = NodePath("Sounds/PaulUnconcious")
 Speed = 150.0
 Health = 170
+maxHealth = 170
 Portrait = ExtResource("2_1bv6b")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 _type = 7
 InitialDialog = "Waddaya want?!"
 DialogueOptions = PackedStringArray("Who are you?", "How old are you?", "Hey, so I\'m an intruder.", "Goodbye!")
@@ -511,5 +514,12 @@ shape = SubResource("CircleShape2D_6uiao")
 
 [node name="Interactable" parent="." instance=ExtResource("19_ptyyj")]
 position = Vector2(-20, -63)
+
+[node name="HealthBar" parent="." instance=ExtResource("22_edawj")]
+anchor_bottom = 0.042000003
+offset_left = -20.0
+offset_top = -63.0
+offset_right = 20.0
+offset_bottom = -33.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]
