@@ -861,6 +861,7 @@ collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_rlrp6")
 TransformRadius = NodePath("TransformRadius")
+TransformType = 6
 AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 AttackCooldown = 2
 DeathSound = NodePath("Sounds/TanukiDeath1")
@@ -893,7 +894,7 @@ shape = SubResource("ConvexPolygonShape2D_mp6cj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mh0sn")
-animation = &"Walk_D"
+animation = &"Transformed"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

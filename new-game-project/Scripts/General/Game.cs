@@ -541,7 +541,7 @@ public partial class Game : Node
 			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-26,256) }, { 19, new Vector2(687,-25) }, { 7, new Vector2(109,60) } } },
 		};
 		//Save Paul's data into the list
-		NPCs[PatrolRoom].Add((7).ToString()); // Paul's TYPE
+		NPCs[PatrolRoom].Add((12).ToString()); // Paul's TYPE
 		if(PatrolRoom == 1 || PatrolRoom == 10 || PatrolRoom == 18)
 		{
 			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
@@ -552,7 +552,7 @@ public partial class Game : Node
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
 		}
-		NPCs[PatrolRoom].Add((1).ToString()); // Paul's HP
+		NPCs[PatrolRoom].Add((170).ToString()); // Paul's HP
 		NPCs[PatrolRoom].Add(("D").ToString()); // Paul's Current direction (same as Player)
 		NPCs[PatrolRoom].Add(("Walk_D").ToString()); // Paul's current animation
 		NPCs[PatrolRoom].Add((0).ToString()); // Paul's Current frame
@@ -572,7 +572,7 @@ public partial class Game : Node
 	// Remove's Paul's String from NPC.
 	public void killPaul(int removeFromHere)
 	{
-		var index = NPCs[removeFromHere].FindIndex(x => x == "7"); // Find paul's type
+		var index = NPCs[removeFromHere].FindIndex(x => x == "12"); // Find paul's type
 		if (index != -1)
 		{
 			NPCs[removeFromHere].RemoveRange(index, 8); // Remove that type and the next indexs with his data

@@ -156,7 +156,7 @@ public partial class Room : Node2D
 					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
-				else if(type >= 5)
+				else if(type >= 5 && type != 12) //Type 12 is Paul
 				{ //Two different tanukis, normal and transformed
 					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Tanuki.tscn");
 					Enemy3 newNPC = (Enemy3)NPCPackedScene.Instantiate();
@@ -245,9 +245,10 @@ public partial class Room : Node2D
 	{
 		// Spawn Paul if he is not here, and in the room.
 		// Checks if paulNotSpawned == True && if the rooms data is not null and contains Paul's ID
-		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(z => z == "7") != -1)
+		if(paulNotSpawned && Game.Instance.NPCs[RoomId] != null && Game.Instance.NPCs[RoomId].FindIndex(z => z == "12") != -1)
 		{
-			int i = Game.Instance.NPCs[RoomId].FindIndex(z => z == "7");
+			//GD.Print("SUMMONING PAUL");
+			int i = Game.Instance.NPCs[RoomId].FindIndex(z => z == "12");
 			//Get NPC properties for Paul
 			int type = int.Parse(Game.Instance.NPCs[RoomId][i]);
 			float x = float.Parse(Game.Instance.NPCs[RoomId][i+1]);
@@ -272,6 +273,7 @@ public partial class Room : Node2D
 			
 			if(HasNode("NPCs"))
 			{
+				//GD.Print("PAUL has been added");
 				GetNode("NPCs").AddChild(newNPC);
 			} else {
 				GD.PrintErr("NO NPC NODE TO ADD PAUL TO");
@@ -282,7 +284,7 @@ public partial class Room : Node2D
 		
 		//Remove Paul if he has left the room
 		// Checks if paulNotSpawned == false && if the rooms data is null or does not contain Paul's ID
-		if(!paulNotSpawned && (Game.Instance.NPCs[RoomId] == null || Game.Instance.NPCs[RoomId].FindIndex(x => x == "7") == -1))
+		if(!paulNotSpawned && (Game.Instance.NPCs[RoomId] == null || Game.Instance.NPCs[RoomId].FindIndex(x => x == "12") == -1))
 		{
 			GD.Print("Paul should not be in Room: " + RoomId);
 			if(HasNode("NPCs/Security"))
