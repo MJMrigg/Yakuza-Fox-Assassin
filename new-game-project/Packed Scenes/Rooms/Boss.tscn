@@ -44,6 +44,7 @@ PlayerCamera = NodePath("../Camera2D")
 [node name="Boss" parent="." instance=ExtResource("3_mdc6g")]
 position = Vector2(553, 321)
 Health = 180
+maxHealth = 180
 
 [node name="MainUI" parent="." instance=ExtResource("4_tq2ua")]
 
