@@ -523,13 +523,13 @@ target_desired_distance = 60.0
 avoidance_enabled = true
 radius = 75.0
 
-[node name="Interactable" parent="." instance=ExtResource("14_hglv6")]
-position = Vector2(-19, -89)
-
 [node name="HealthBar" parent="." instance=ExtResource("16_8p4b6")]
 offset_left = -19.0
 offset_top = -89.0
 offset_right = 21.0
 offset_bottom = -59.0
+
+[node name="Interactable" parent="." instance=ExtResource("14_hglv6")]
+position = Vector2(-19, -89)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnVelocityComputed"]
