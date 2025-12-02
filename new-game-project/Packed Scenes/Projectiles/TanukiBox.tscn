@@ -54,6 +54,7 @@ size = Vector2(32, 30)
 collision_layer = 0
 collision_mask = 13
 script = ExtResource("1_4hb1t")
+Damage = 10
 Speed = 300.0
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
