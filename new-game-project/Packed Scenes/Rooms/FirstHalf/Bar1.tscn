@@ -61,7 +61,7 @@ DialogResponses = PackedStringArray("I am a Bark-keep of this ship.", "I\'d reco
 position = Vector2(516, 181)
 InitialDialog = "I'm off the clock. Something you need?"
 DialogueOptions = PackedStringArray("What is going on?", "How you like working as a gunner?", "I plan to kill your boss today.", "Goodbye.")
-DialogResponses = PackedStringArray("This is the bone bar, where we relax. Ask the Bark-keep for a drink. You\'ll lovee it.", "It\'s not bad. Except when you have to cover for Gary. He\'s the wors.", "Not my problem right now.")
+DialogResponses = PackedStringArray("This is the bone bar, where we relax. Ask the Bark-keep for a drink. You\'ll love it.", "It\'s not bad. Except when you have to cover for Gary. He\'s the worst.", "Not my problem right now.")
 DialogSuspicion = PackedFloat32Array(0, 0, 0)
 
 [node name="CollisionShape2D" parent="Husky" index="0"]

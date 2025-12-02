@@ -65,7 +65,7 @@ regDoor = true
 position = Vector2(249, 182)
 InitialDialog = "Be careful in here."
 DialogueOptions = PackedStringArray("What...is...this...room?", "What is that dog thing?", "Are there more of them?", "What if I were to tell you I plan to kill your boss?", "Goodbye.")
-DialogResponses = PackedStringArray("Surprisingly, his is our Production facility.", "That\'s the Chihuahua god. They pray to them and it produces things the ship needs. Makes about as much as a family circus comic, but it works.", "Yeah, we take them and put them around the upper side of the ship. They make good decoration.", "I\'d tell you that I\'d shoot you.")
+DialogResponses = PackedStringArray("Surprisingly, this is our Production facility.", "That\'s the Chihuahua god. They pray to them and it produces things the ship needs. Makes about as much sense as a family circus comic, but it works.", "Yeah, we take them and put them around the upper side of the ship. They make good decoration.", "I\'d tell you that I\'d shoot you.")
 DialogSuspicion = PackedFloat32Array(0, 0, 0, 5)
 
 [node name="Chihuahua" parent="NPCs" instance=ExtResource("8_fxce2")]

@@ -6,6 +6,9 @@ public partial class Credits : ColorRect
 	[Signal]
 	public delegate void OpenQuitMenuEventHandler();
 	
+	[Signal]
+	public delegate void MoveSkipButtonEventHandler();
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
