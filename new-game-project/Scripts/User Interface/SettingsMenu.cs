@@ -147,8 +147,17 @@ public partial class SettingsMenu : Control
 		}
 		//audiobus 1 is the sound effect bus
 		AudioServer.SetBusVolumeDb(1, NewVolume);
+		if(NewVolume <= SoundVolume.MinValue)
+		{
+			AudioServer.SetBusMute(1, true);
+		}
+		else
+		{
+			AudioServer.SetBusMute(1, false);
+		}
 		if(!Initializing)
 		{
+			ButtonSound.Stop();
 			ButtonSound.Play();
 		}
 		Game.Instance.SoundVolume = NewVolume;
@@ -162,6 +171,14 @@ public partial class SettingsMenu : Control
 		}
 		//audiobus 2 is the music bus
 		AudioServer.SetBusVolumeDb(2, NewVolume);
+		if(NewVolume <= MusicVolume.MinValue)
+		{
+			AudioServer.SetBusMute(2, true);
+		}
+		else
+		{
+			AudioServer.SetBusMute(2, false);
+		}
 		Game.Instance.MusicVolume = NewVolume;
 	}
 	

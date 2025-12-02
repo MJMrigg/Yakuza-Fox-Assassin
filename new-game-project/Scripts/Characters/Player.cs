@@ -94,7 +94,6 @@ public partial class Player : Entity
 		
 		//Set player current health
 		Health = Game.Instance.PlayerHealth;
-		//HealthBar.Value = Health;
 		
 		//Start Player susDelay timer
 		initialSusDelay();
@@ -742,8 +741,7 @@ public partial class Player : Entity
 		if(ItemId >= 4)
 		{
 			Button EquipButton = ((Button)NewSlot.GetNode("EquipButton"));
-			EquipButton.Disabled = true;
-			EquipButton.Text = "";
+			EquipButton.Visible = false;
 		}
 		else
 		{

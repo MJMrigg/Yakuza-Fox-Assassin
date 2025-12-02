@@ -3,6 +3,9 @@ using System;
 
 public partial class Credits : ColorRect
 {
+	[Signal]
+	public delegate void OpenQuitMenuEventHandler();
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -15,5 +18,10 @@ public partial class Credits : ColorRect
 	{
 		//Move the credits up
 		Position = new Vector2(Position.X,Position.Y-0.5f);
+		//If the player wants to quit, let them
+		if(Input.IsActionPressed("p_pause"))
+		{
+			EmitSignal(SignalName.OpenQuitMenu);
+		}
 	}
 }

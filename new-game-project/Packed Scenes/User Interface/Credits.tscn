@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcnf2vciav3oj"]
+[gd_scene load_steps=5 format=3 uid="uid://dcnf2vciav3oj"]
 
 [ext_resource type="Script" uid="uid://kfq0aftqe660" path="res://Scripts/User Interface/Credits.cs" id="1_d44a3"]
+[ext_resource type="PackedScene" uid="uid://bd1urlla04r60" path="res://Packed Scenes/User Interface/QuitMenu.tscn" id="2_v73i2"]
+[ext_resource type="Script" uid="uid://b38x1m7ctxpif" path="res://Scripts/Skip.cs" id="3_ospgn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v73i2"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4)
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -110,3 +115,37 @@ RetroHurt: hit sound(video game type) by RibhavAgrawal
 MetalFootsteps: Metal Footsteps by Phil25 (Freesound)
 WoodFootstep: Footsteps on Wood by DRAGON-STUDIO
 DoorOpen: Spaceship Door Open by MarcusGraham325 (Freesound)"
+
+[node name="QuitMenu" parent="." instance=ExtResource("2_v73i2")]
+visible = false
+layout_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99200004
+anchor_top = 0.020000001
+anchor_right = 0.99200004
+anchor_bottom = 0.020000001
+offset_left = -229.78406
+offset_top = 0.03999901
+offset_right = 0.21594238
+offset_bottom = 49.04
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v73i2")
+script = ExtResource("3_ospgn")
+
+[node name="Label" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98300004
+anchor_bottom = 0.89800006
+offset_left = 3.0
+offset_top = 4.0
+offset_right = -0.0900116
+offset_bottom = -0.002002716
+text = "Skip - Esc"
+
+[connection signal="OpenQuitMenu" from="ColorRect" to="QuitMenu" method="openMenu"]
+[connection signal="pressed" from="Panel/Label" to="QuitMenu" method="openMenu"]

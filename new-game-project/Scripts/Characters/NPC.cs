@@ -116,6 +116,11 @@ public partial class NPC : Interactable
 	//Move around
 	public virtual void Move()
 	{
+		if(NavAgent == null)
+		{
+			return;
+		}
+		
 		//If they are in the bar, simply relax
 		if(RoomId == 5 || RoomId == 13)
 		{

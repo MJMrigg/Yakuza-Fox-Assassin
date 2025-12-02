@@ -235,6 +235,7 @@ public partial class Game : Node
 		MaxPlayerHealth = 100;
 		BossIsDead = false; //Boss is not dead
 		//Patrolling NPC data
+		killPaul(prevPatrolRoom);
 		PatrolRoom = 18;
 		debugBool = true;
 		prevPatrolRoom = 18; 
@@ -572,7 +573,13 @@ public partial class Game : Node
 	// Remove's Paul's String from NPC.
 	public void killPaul(int removeFromHere)
 	{
-		var index = NPCs[removeFromHere].FindIndex(x => x == "12"); // Find paul's type
+		//If Paul is not in the room, do not remove him
+		if(!NPCs.ContainsKey(removeFromHere))
+		{
+			return;
+		}
+		// Find paul's type in the room
+		var index = NPCs[removeFromHere].FindIndex(x => x == "12");
 		if (index != -1)
 		{
 			NPCs[removeFromHere].RemoveRange(index, 8); // Remove that type and the next indexs with his data
