@@ -404,8 +404,9 @@ public partial class Game : Node
 	public void IncreaseLocalSuspicion(int Room, float Amount)
 	{
 		//If this is just the tutoral, just increase the suspicion of the first room
-		if(!TutorialDone)//
+		if(!TutorialDone)
 		{
+			GD.Print(Amount);
 			LocalSuspicions[0] += Amount+1;
 			GlobalSuspicion += Amount;
 			return;

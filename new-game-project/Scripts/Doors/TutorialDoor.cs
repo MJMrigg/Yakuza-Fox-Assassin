@@ -16,7 +16,18 @@ public partial class TutorialDoor : Door
 	public override void ChangeRoom(bool AllowedThrough)
 	{
 		Game.Instance.FinishTutorial();
-		base.ChangeRoom(AllowedThrough);
+		//Change the music based on the room
+		if(ConnectedRoom == 20 || ConnectedRoom == 5 || ConnectedRoom == 13)
+		{ //If the player is going to the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
+		else if(CurrentRoom == 20 || CurrentRoom == 5 || CurrentRoom == 13)
+		{ //If the player is leaving the boss room or the bar
+			((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(ConnectedRoom);
+		}
+		
+		//Change scene based on the room the door takes the player during the next physics process
+		CallDeferred(nameof(PhysicsProcessSceneChange));
 	}
 	
 	public override void CheckPlayer(Node2D body)
