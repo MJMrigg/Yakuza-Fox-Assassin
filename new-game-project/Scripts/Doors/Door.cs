@@ -55,6 +55,13 @@ public partial class Door : StaticBody2D
 	//Change to the next room
 	public virtual void ChangeRoom(bool AllowedThrough)
 	{
+		if(!Game.Instance.TutorialDone)
+		{
+			Game.Instance.FinishTutorial();
+			//Change scene based on the room the door takes the player during the next physics process
+			CallDeferred(nameof(PhysicsProcessSceneChange));
+		}
+		
 		//DT EDIT. REMOVE IF CAN'T PUSH
 		if (!AllowedThrough || !Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
 		{
