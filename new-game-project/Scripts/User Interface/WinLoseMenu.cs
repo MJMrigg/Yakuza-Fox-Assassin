@@ -28,6 +28,7 @@ public partial class WinLoseMenu : Panel
 		Game.Instance.GameStart = true;
 		//Change scene and music to first room
 		((MusicPlayer)GetTree().GetRoot().GetChild(1)).ChangeSong(0);
+		Game.Instance.TutorialDone = false;
 		GetTree().ChangeSceneToFile("uid://br5o8skjv87ol");
 	}
 	

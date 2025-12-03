@@ -24,9 +24,7 @@ public partial class Player : Entity
 	
 	[Export]
 	public Area2D InteractionZone; //Zone where interactables will register for the player
-	
-	public Interactable CurrentInteraction; //Current interaction with the player
-	
+		
 	public PanelContainer InvPanel;
 	public Inventory Inv; //Player's inventory
 	
@@ -52,8 +50,6 @@ public partial class Player : Entity
 		Velocity = new Vector2(0, 0); //Don't move at the start
 		
 		Health = MaxHealth; //Start at maximum health
-		
-		CurrentInteraction = null; //The player is not interacting with anything
 		
 		MySpriteAnimation.Animation = "Walk_" + CurrentDir; //Set start animation
 		
@@ -82,7 +78,7 @@ public partial class Player : Entity
 				//It it was because the player had the bite equiped, equip the bite
 				if(WeaponId == 0)
 				{
-					Inv.EquipedWeapons[0] = Game.Instance.Bite;
+					Inv.EquipedWeapons[i] = Game.Instance.Bite;
 				}
 				continue;
 			}
@@ -116,6 +112,7 @@ public partial class Player : Entity
 		{
 			if(!Dying)
 			{
+				GetTree().CallGroup("Pausable","Pause");
 				InformOfDeath();
 			}
 			//Stop playing the animation
@@ -629,26 +626,6 @@ public partial class Player : Entity
 		RangedCooldown = false;
 		await ToSignal(GetTree().CreateTimer(Inv.EquipedWeapons[1].CoolDown),"timeout");
 		RangedCooldown = true;
-	}
-	
-	//Mark the object as something that the player will interact with
-	public void MarkInteractable(Node2D Body)
-	{
-		if(Body is Interactable)
-		{
-			CurrentInteraction = (Interactable)Body;
-			CurrentInteraction.InteractionBox.Visible = true;
-		}
-	}
-	
-	//Mark the object that the player is interacting with as no longer interactable
-	public void MarkNoLongerInteractable(Node2D Body)
-	{
-		if(Body is Interactable)
-		{
-			CurrentInteraction = (Interactable)Body;
-			CurrentInteraction.InteractionBox.Visible = false;
-		}
 	}
 	
 	//Pick up an item

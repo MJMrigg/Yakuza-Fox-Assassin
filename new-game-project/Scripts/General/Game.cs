@@ -277,6 +277,7 @@ public partial class Game : Node
 		Bite.CoolDown = 2;
 		Bite.Portrait = null;
 		PlayerWeapons[0] = Bite;
+		PlayerWeapons[1] = Bite;
 		//Calculate Max Global Suspcition
 		for(int i = 0; i < 21; i++)
 		{
@@ -358,7 +359,6 @@ public partial class Game : Node
 		if(unconsious && debugBool)
 		{
 			paulIsDown();
-			//GD.Print("PAUL IS DOWN. I REPEAT PAUL IS DOWN");
 			debugBool = false;
 		}
 		
@@ -380,7 +380,6 @@ public partial class Game : Node
 			if(LocalSuspicions[i] >= LocalSuspicionThresholds[i])
 			{
 				LocalSuspicions[i] = decayed <= LocalSuspicionThresholds[i] ? LocalSuspicionThresholds[i] : decayed;
-				//GD.Print("Local Sus has decayed in room: " + i);
 			}
 			else
 			{
@@ -443,12 +442,13 @@ public partial class Game : Node
 	//Changes Paul's current room
 	public void movePaul()
 	{
-		//GD.Print("-----------------");
 		prevPatrolRoom = PatrolRoom;
-		//GD.Print("Paul was in Room: " + prevPatrolRoom);
 		PatrolRoom = destPatrolRoom;
-		//GD.Print("Paul is now in Room: " + PatrolRoom);
-		//GD.Print("-----------------");
+		//Make sure it's a valid room
+		if(!roomMap[PatrolRoom].ContainsKey(prevPatrolRoom))
+		{
+			return;
+		}
 		spawnPaul(); // Add Paul to the room he has entered
 		killPaul(prevPatrolRoom); // Remove Paul from the room he was in previous
 		paulWait();
@@ -470,7 +470,6 @@ public partial class Game : Node
 		if(roomOptions.Contains(PlayerRoom) && RoomsHostile[PlayerRoom])
 		{
 			destPatrolRoom = PlayerRoom;
-			//GD.Print("Combat Detected at: " + destPatrolRoom);
 			return;
 		}
 		
@@ -490,37 +489,31 @@ public partial class Game : Node
 			if (LocalSuspicionThresholds[room] < LocalSuspicions[room])
 			{
 				weight *= 1.5f;
-				//GD.Print("Above Thres Weight Applied");
 			}
 			
 			// If the Player is there, Paul is more likely to move to a room
 			if (room == PlayerRoom)
 			{
 				weight *= 1.25f;
-				//GD.Print("Player Location Weight Applied");
 			}
 			
 			//If Paul had just left a room he is less likely to go there
 			if(room == prevPatrolRoom)
 			{
 				weight *= 0.75f;
-				//GD.Print("Prev Room Weight Applied");
 			}
 			
 			// If the room would be a dead end, Paul is less likely to go there
 			if(!(roomMap[room].Count > 1))
 			{
 				weight *= 0.75f;
-				//GD.Print("Dead End Weight Applied");
 			}
 				
 			
 			
 			weights.Add(weight);
-			//GD.Print("Room " + room + " Weight: " + weight);
 			totalWeight += weight;
 		}
-		//GD.Print("Total Weight: " + totalWeight);
 		
 		// Weighted random selection
 		float roll = (float)random.NextDouble() * totalWeight;
@@ -531,7 +524,6 @@ public partial class Game : Node
 			if (roll <= cumulative)
 			{
 				destPatrolRoom = roomOptions.ElementAt(i);
-				//GD.Print("Selected Room: " + destPatrolRoom);
 				break;
 			}
 		}
@@ -541,6 +533,10 @@ public partial class Game : Node
 	// Add Paul's String to NPC
 	public void spawnPaul()
 	{
+		if(!roomMap[PatrolRoom].ContainsKey(prevPatrolRoom))
+		{
+			return;
+		}
 		Dictionary<int, Dictionary<int, Vector2>> PaulMap = new Dictionary<int, Dictionary<int, Vector2>>
 		{
 			// <Market(1), [Docks(0), Living1(2), Cafeteria(4), Storage(6), SecurityEngine(7), Production(9), TrainingYard(10)]>
@@ -554,11 +550,13 @@ public partial class Game : Node
 		NPCs[PatrolRoom].Add((12).ToString()); // Paul's TYPE
 		if(PatrolRoom == 1 || PatrolRoom == 10 || PatrolRoom == 18)
 		{
+			GD.Print(PatrolRoom + " " + prevPatrolRoom);
 			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
 			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
 		}
 		else
 		{
+			GD.Print(PatrolRoom + " " + prevPatrolRoom);
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
 		}
@@ -574,8 +572,6 @@ public partial class Game : Node
 		{
 			NPCs[PatrolRoom].Add((false).ToString()); // Paul's down
 		}
-		
-		//GD.Print("Paul's Data has been added to Room ID: " + PatrolRoom);
 	}
 	
 	//I'm sorry little one...
@@ -592,7 +588,6 @@ public partial class Game : Node
 		if (index != -1)
 		{
 			NPCs[removeFromHere].RemoveRange(index, 8); // Remove that type and the next indexs with his data
-			//GD.Print("Paul's Data has been removed from Room ID: " + removeFromHere);
 		}
 	}
 	
@@ -621,7 +616,6 @@ public partial class Game : Node
 		unconsious = true;
 		debugBool = false;
 		await paulTimeTest(5f);
-		//GD.Print("PAUL HAS BEEN UNLEASHED");
 		unconsious = false;
 		debugBool = true;
 		EmitSignal(SignalName.PaulNoLongerDown);
