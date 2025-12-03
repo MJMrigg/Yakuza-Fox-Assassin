@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgs0xwaag10o5"
-path="res://.godot/imported/Player_AI_Portrait-Left.png-d8a57805a512c6be581dd79c56d79a22.ctex"
+path="res://.godot/imported/Player_AI_Portrait-Left.png-b1505a4c4b777f2540b3ce6bd5f2f63b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art Assets/Characters/Player/Portraits/Player_AI_Portrait-Left.png"
-dest_files=["res://.godot/imported/Player_AI_Portrait-Left.png-d8a57805a512c6be581dd79c56d79a22.ctex"]
+source_file="res://Art Assets/Characters/NPCS/AI/Player_AI_Portrait-Left.png"
+dest_files=["res://.godot/imported/Player_AI_Portrait-Left.png-b1505a4c4b777f2540b3ce6bd5f2f63b.ctex"]
 
 [params]
 
