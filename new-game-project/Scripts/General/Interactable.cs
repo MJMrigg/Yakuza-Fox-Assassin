@@ -90,7 +90,7 @@ public partial class Interactable : Entity
 	}
 	
 	//End the dialogue
-	public void EndDialogue()
+	public virtual void EndDialogue()
 	{
 		//Unpause all entities
 		GetTree().CallGroup("Pausable","Pause");

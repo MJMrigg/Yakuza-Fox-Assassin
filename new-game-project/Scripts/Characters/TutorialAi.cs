@@ -10,6 +10,9 @@ public partial class TutorialAi : Interactable
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
+		CurrentDir = "D";
+		MySpriteAnimation.Animation="Walk_D";
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,6 +22,12 @@ public partial class TutorialAi : Interactable
 	
 	public override void BeginDialogue()
 	{
-		
+		base.BeginDialogue();	
+	}
+	
+	public override void EndDialogue()
+	{
+		base.EndDialogue();
+		QueueFree();
 	}
 }

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=4 uid="uid://br5o8skjv87ol"]
+
+[ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_dm2wn"]
+[ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_k3swd"]
+[ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="2_4viov"]
+[ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Packed Scenes/Characters/Characters/Player.tscn" id="3_k3swd"]
+[ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_xa533"]
+[ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_xa533"]
+[ext_resource type="PackedScene" uid="uid://bd81iedhj88bp" path="res://Packed Scenes/Items/Pistol.tscn" id="7_nkbej"]
+[ext_resource type="PackedScene" uid="uid://dwtu0dg70hhg7" path="res://Packed Scenes/Characters/Characters/tutorial_npc.tscn" id="8_daijy"]
+[ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_1s0ds"]
+[ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="10_x2143"]
+
+[node name="Tutorial1" type="Node2D"]
+script = ExtResource("1_k3swd")
+
+[node name="floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAIAAAABAAAAABAJAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAAAAAACAAQAAAABAAAAAAACAAUAAAABAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAJAAUAAAABAAAAABAJAAYAAAABAAAAABAIAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAAAAAAAAAACAAYAAAABAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAJAAcAAAABAAAAABACAAcAAAABAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAABAAAAABAJAAEAAAABAAAAABADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAABAAAAABAHAAkAAAABAAAAABAGAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAABAAAAAAAFAAoAAAABAAAAAAAGAAoAAAABAAAAABACAAAAAAABAAAAAAACAAIAAAABAAAAAAACAAEAAAABAAAAAAAKAAMAAAABAAAAAFAKAAQAAAABAAAAAHALAAQAAAABAAAAAHAMAAQAAAABAAAAAHANAAQAAAABAAAAAHAOAAQAAAABAAAAAHALAAMAAAABAAAAAFAMAAMAAAABAAAAAFANAAMAAAABAAAAAFAOAAMAAAABAAAAAFAPAAMAAAABAAAAAFAPAAQAAAABAAAAAHAKAAIAAAAAAAAAAAAKAAUAAAAAAAAAAAA=")
+tile_set = ExtResource("1_dm2wn")
+
+[node name="walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAEAAAADAAEAABAFAAEAAAACAAEAAAAGAAEAAAACAAEAAAAHAAEAAAADAAEAAAAEAAAAAAABAAEAABAHAAAAAAABAAEAAAADAP//AAABAAQAAFACAP//AAABAAQAAFAIAP//AAABAAQAAFAJAP//AAABAAQAAFAEAP//AAAAAAIAABABAP//AAAAAAIAAAAHAP//AAAAAAIAAAAKAP//AAAAAAIAABABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAUAAAABAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAAKAAAAAAABAAEAABAKAAEAAAABAAEAABAKAAIAAAAAAAEAAAAKAAYAAAABAAEAABAKAAcAAAABAAEAABACAAgAAAACAAMAAAADAAkAAAACAAMAAAAEAAoAAAACAAMAAAAJAAgAAAADAAMAAAAIAAkAAAADAAMAAAAHAAoAAAADAAMAAAAFAAsAAAADAAIAAAAGAAsAAAADAAIAAAALAAIAAAACAAEAAAAMAAIAAAACAAEAAAANAAIAAAACAAEAAAAOAAIAAAACAAEAAAAPAAIAAAACAAEAAAALAAUAAAABAAEAAGAMAAUAAAABAAEAAGANAAUAAAABAAEAAGAOAAUAAAABAAEAAGAPAAUAAAABAAEAAGAKAAUAAAADAAMAAAA=")
+tile_set = ExtResource("1_dm2wn")
+
+[node name="decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAFAAgAAQAAAAkAAAAGAAgAAQAAAAkAABAEAAkAAQAAAAUAAAAFAAkAAQADAAQAAAAGAAkAAQADAAQAAAAHAAkAAQABAAUAAAA=")
+tile_set = ExtResource("1_dm2wn")
+
+[node name="MainUI" parent="." instance=ExtResource("2_4viov")]
+
+[node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
+allow_lesser = true
+script = null
+
+[node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("3_k3swd")]
+position = Vector2(443, 338)
+PlayerCamera = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(440, 198)
+zoom = Vector2(1.2, 0.9)
+script = ExtResource("4_xa533")
+
+[node name="ToDocks" parent="." instance=ExtResource("6_xa533")]
+position = Vector2(883, 280)
+rotation = 1.5707964
+regDoor = true
+
+[node name="Pistol" parent="." instance=ExtResource("7_nkbej")]
+position = Vector2(327, 179)
+scale = Vector2(0.5, 0.5)
+
+[node name="TutorialNPC" parent="." instance=ExtResource("8_daijy")]
+position = Vector2(721, 282)
+
+[node name="Chihuahua" parent="." instance=ExtResource("9_1s0ds")]
+position = Vector2(215, 67)
+collision_mask = 15
+
+[node name="Husky" parent="." instance=ExtResource("10_x2143")]
+position = Vector2(649, 60)
+collision_mask = 15
+Damage = 0
+InitialDialog = "I'm a dummy."
+
+[editable path="MainUI"]

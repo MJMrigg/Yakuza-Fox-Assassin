@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://usxq7o82i0fb"]
+[gd_scene load_steps=8 format=4 uid="uid://usxq7o82i0fb"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_wegsx"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_wphwx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="3_cy0io"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_uogoa"]
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_lai1t"]
+[ext_resource type="PackedScene" uid="uid://dwtu0dg70hhg7" path="res://Packed Scenes/Characters/Characters/tutorial_npc.tscn" id="7_bww2s"]
 
 [node name="Docks" type="Node2D"]
 script = ExtResource("1_wphwx")
@@ -51,5 +52,10 @@ position = Vector2(922, 252)
 rotation = 1.5707964
 ConnectedRoom = 1
 regDoor = true
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="TutorialNPC" parent="NPCs" instance=ExtResource("7_bww2s")]
+position = Vector2(750, 250)
 
 [editable path="MainUI"]
