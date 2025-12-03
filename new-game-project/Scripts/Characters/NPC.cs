@@ -206,7 +206,6 @@ public partial class NPC : Interactable
 		//Take away health
 		Health -= damage;
 		
-		GD.Print(IsHostile);
 		//Make the room hostile
 		if(!IsHostile)
 		{

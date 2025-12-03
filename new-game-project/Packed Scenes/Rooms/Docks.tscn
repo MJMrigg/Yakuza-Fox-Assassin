@@ -48,7 +48,7 @@ zoom = Vector2(1.2, 0.9)
 script = ExtResource("3_cy0io")
 
 [node name="ToMarket" parent="." instance=ExtResource("6_lai1t")]
-position = Vector2(922, 252)
+position = Vector2(922, 238)
 rotation = 1.5707964
 ConnectedRoom = 1
 regDoor = true

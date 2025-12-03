@@ -25,7 +25,8 @@ public partial class DifficultyMenu : Panel
 		Game.Instance.StartGame();
 		Game.Instance.MaxGlobalSuspicion *= Difficulty;
 		Game.Instance.GameStart = true;
-		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[0]);
+		Game.Instance.TutorialDone = false; 
+		GetTree().ChangeSceneToFile("uid://br5o8skjv87ol");
 	}
 	
 	//Set the difficulty

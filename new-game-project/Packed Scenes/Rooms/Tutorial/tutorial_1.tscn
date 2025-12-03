@@ -38,7 +38,6 @@ tile_set = ExtResource("1_dm2wn")
 
 [node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
 allow_lesser = true
-script = null
 
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("3_k3swd")]
 position = Vector2(443, 338)
@@ -50,7 +49,7 @@ zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_xa533")
 
 [node name="ToDocks" parent="." instance=ExtResource("6_xa533")]
-position = Vector2(883, 280)
+position = Vector2(883, 287)
 rotation = 1.5707964
 regDoor = true
 

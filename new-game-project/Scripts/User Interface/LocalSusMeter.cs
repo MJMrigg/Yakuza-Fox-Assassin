@@ -14,8 +14,8 @@ public partial class LocalSusMeter : ProgressBar
 		float MaxSuspicion = Game.Instance.MaxLocalSuspicions[RoomId];
 		if(MaxSuspicion == -1) //Make sure this is a room with suspicion
 		{ //If it isn't, set the value to 0
-			SuspiciousRoom = false;
-			MaxValue = 100.0f;
+			SuspiciousRoom = !Game.Instance.TutorialDone; //Even rooms without suspicion are suspicious during the tutorial
+			MaxValue = 10.0f;
 			Value = 0.0f;
 		}
 		else

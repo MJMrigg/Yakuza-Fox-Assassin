@@ -53,7 +53,7 @@ public partial class Door : StaticBody2D
 	}
 	
 	//Change to the next room
-	public void ChangeRoom(bool AllowedThrough)
+	public virtual void ChangeRoom(bool AllowedThrough)
 	{
 		//DT EDIT. REMOVE IF CAN'T PUSH
 		if (!AllowedThrough || !Game.Instance.roomIDS.ContainsKey(ConnectedRoom))
@@ -122,7 +122,7 @@ public partial class Door : StaticBody2D
 	}
 	
 	//Detect if the player has the key or not
-	public void CheckPlayer(Node2D body)
+	public virtual void CheckPlayer(Node2D body)
 	{
 		//If the door is already unlocked, let the player through
 		if(CheckLock() || regDoor)

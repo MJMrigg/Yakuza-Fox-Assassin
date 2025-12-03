@@ -403,7 +403,14 @@ public partial class Game : Node
 	//Increase the local suspicion of a room
 	public void IncreaseLocalSuspicion(int Room, float Amount)
 	{
-		//Don't increase Local Suspisions of rooms that don't have local suspicions
+		//If this is just the tutoral, just increase the suspicion of the first room
+		if(!TutorialDone)
+		{
+			LocalSuspicions[0] += Amount+1;
+			GlobalSuspicion += Amount;
+			return;
+		}
+		//Don't increase Local Suspisions of rooms that don't have local suspicions, unless its the tutorial room
 		if(MaxLocalSuspicions[Room] == -1)
 		{
 			return;
@@ -637,4 +644,15 @@ public partial class Game : Node
 		}
 	}
 	
+	//Reset all local and global suspicions to their original values after the tutorial
+	public void FinishTutorial()
+	{
+		if(TutorialDone)
+		{
+			return;
+		}
+		LocalSuspicionThresholds[0] = -1;
+		LocalSuspicions[0] = 0;
+		GlobalSuspicion = 0;
+	}
 }
