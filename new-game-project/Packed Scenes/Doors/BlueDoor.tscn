@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsj5m6w0s2ksw"]
+
+[ext_resource type="Script" uid="uid://nlwdvumhbk1p" path="res://Scripts/Doors/TutorialDoor.cs" id="1_h6dkh"]
+[ext_resource type="Texture2D" uid="uid://bhpl4qrhfyhmp" path="res://Art Assets/Items/blueDoor.png" id="2_gv3wx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aoig"]
+size = Vector2(150, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt4wf"]
+size = Vector2(150, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg033"]
+size = Vector2(150, 50)
+
+[node name="BlueDoor" type="StaticBody2D"]
+collision_mask = 31
+script = ExtResource("1_h6dkh")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(1.4305115e-06, -23)
+rotation = -1.5707964
+scale = Vector2(0.8617614, 1.581393)
+texture = ExtResource("2_gv3wx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5aoig")
+
+[node name="DoorBack" type="Area2D" parent="."]
+position = Vector2(0, -33)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBack"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rt4wf")
+
+[node name="DoorFront" type="Area2D" parent="."]
+position = Vector2(0, 33)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorFront"]
+shape = SubResource("RectangleShape2D_qg033")
+
+[connection signal="body_entered" from="DoorBack" to="." method="LetPlayerThrough"]
+[connection signal="body_entered" from="DoorFront" to="." method="CheckPlayer"]

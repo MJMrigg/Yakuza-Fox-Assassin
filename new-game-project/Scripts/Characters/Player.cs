@@ -677,7 +677,7 @@ public partial class Player : Entity
 			NewWeapon.InventorySlot = ItemCount;
 			Inv.ItemsStored[ItemCount] = NewWeapon;
 		}
-		else if(ItemId == 4 || ItemId == 5)
+		else if(ItemId == 4 || ItemId == 5 || ItemId == 7)
 		{
 			Key NewKey = new Key();
 			NewKey.ID = ItemId;
@@ -690,6 +690,10 @@ public partial class Player : Entity
 			{ //Red key
 				NewKey.KeyColor = false;
 				path = "res://Art Assets/Items/keycard_red.png";
+			}
+			else if(ItemId == 7)
+			{ //Blue key
+				path = "uid://b8rnjl0pao1hc";
 			}
 			//Place key in the inventory
 			NewKey.Portrait = (CompressedTexture2D)GD.Load(path);
