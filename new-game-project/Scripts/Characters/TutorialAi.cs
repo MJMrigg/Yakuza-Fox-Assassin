@@ -28,6 +28,6 @@ public partial class TutorialAi : Interactable
 	public override void EndDialogue()
 	{
 		base.EndDialogue();
-		QueueFree();
+		//QueueFree();
 	}
 }
