@@ -164,6 +164,9 @@ public partial class Game : Node
 	[Signal]
 	public delegate void PaulNoLongerDownEventHandler();
 	
+	//If the player finished the tutorial
+	public bool TutorialDone = false;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -294,6 +297,8 @@ public partial class Game : Node
 		}
 		//Set number of drinks the player has had
 		CurrentDrinks = 0;
+		//Set the tutorial as not done
+		TutorialDone = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
