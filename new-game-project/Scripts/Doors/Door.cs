@@ -63,7 +63,7 @@ public partial class Door : StaticBody2D
 		
 		int CurrentRoom = Game.Instance.PlayerRoom;
 		//Save all NPC data if the player isn't leaving the bars
-		if(CurrentRoom != 5 && CurrentRoom != 13)
+		if(CurrentRoom != 5 && CurrentRoom != 13 && Game.Instance.TutorialDone)
 		{ //Nothing to save in the bars
 			Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
 			var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
