@@ -8,8 +8,6 @@ public partial class Enemy2 : Enemy
 	{
 		//Make sure to set the damage of the enemy
 		base._Ready();
-		Damage = 7;
-		AttackCooldown = 2;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,14 +33,17 @@ public partial class Enemy2 : Enemy
 		//Get the player's position
 		Vector2 NewTarget = GetPlayerPosition();
 		//If the player wasn't in the hostile radiue, don't handle being hostile
-		if(NewTarget.X == Position.X || NewTarget.Y == Position.Y)
+		if((NewTarget.X == Position.X || NewTarget.Y == Position.Y) && Game.Instance.TutorialDone)
 		{
 			Speed = 150;
 			return;
 		}
 		
 		//Face the player
-		Speed = 50;
+		if(Game.Instance.TutorialDone)
+		{
+			Speed = 50;
+		}
 		NavAgent.TargetPosition = NewTarget;
 		
 		//If the attack is still cooling down, do nothing

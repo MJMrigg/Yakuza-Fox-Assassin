@@ -6,9 +6,7 @@ public partial class Enemy1 : Enemy
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		//Make sure to set the damage of the enemy
-		Damage = 7;
-		AttackCooldown = 2;
+		//Make sure to set the damage of the enemys
 		base._Ready();
 	}
 
@@ -22,7 +20,10 @@ public partial class Enemy1 : Enemy
 	public async override void HandleHostile()
 	{
 		//Increase speed
-		Speed = 270;
+		if(Game.Instance.TutorialDone)
+		{
+			Speed = 270;
+		}
 		
 		//Get the player's position
 		Vector2 NewTarget = GetPlayerPosition();
@@ -62,7 +63,7 @@ public partial class Enemy1 : Enemy
 					return;
 				}
 				//Play attack sound and animation
-				int Chosen = (int)GD.Randi()%7 + 1;
+				int Chosen = (int)GD.RandRange(1, 7);
 				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/ChihuahuaBark"+Chosen));
 				AttackSound.SetVolumeDb(-15.0f);
 				AttackSound.Play();
