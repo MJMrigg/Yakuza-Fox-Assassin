@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bd81iedhj88bp" path="res://Packed Scenes/Items/Pistol.tscn" id="7_nkbej"]
 [ext_resource type="PackedScene" uid="uid://dwtu0dg70hhg7" path="res://Packed Scenes/Characters/Characters/tutorial_npc.tscn" id="8_daijy"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_1s0ds"]
-[ext_resource type="PackedScene" uid="uid://dsj5m6w0s2ksw" path="res://Packed Scenes/Doors/BlueDoor.tscn" id="10_1s0ds"]
+[ext_resource type="PackedScene" path="res://Packed Scenes/Doors/BlueDoor.tscn" id="10_1s0ds"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="10_x2143"]
-[ext_resource type="PackedScene" uid="uid://deaktrwtthk0t" path="res://Packed Scenes/Items/blue_key.tscn" id="11_x2143"]
+[ext_resource type="PackedScene" path="res://Packed Scenes/Items/blue_key.tscn" id="11_x2143"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1s0ds"]
 vertices = PackedVector2Array(62, 781, 61.289063, 781, 62, 755.5, 494, 781, 370, 781, 370, 730, 494, 730, 777.15625, 224.02344, 782, 215.46875, 782, 226, 710, 350, 787.5703, 226, 822.90625, 350, 746.52344, 82, 763.0078, 139.88281, 746.5, 139.89844, 710, 82, 736.28125, 224.02344, 710, 442, 638, 566, 566, 638, 514, 659.5703, 442, 662.5703, 442, 659.5703, 586, 154, 298, 10, 298, -21.296875, 350, -21.148438, 350, 154, 586, 10, 710, 10, 782, 442, 782, 566, 638, 638, 566, 710, 514, 710, 350, 663.40625, 350, 710, 298, 710, 298, 638, 226, 638, 226, 566, 154, 566, 154, 10, 721.9375, 163.85156, 721.9922, 180.8125, 724.1797, 205.45313)

@@ -60,10 +60,17 @@ public partial class Door : StaticBody2D
 		{
 			return;
 		}
-		
+		if(!Game.Instance.TutorialDone)
+		{
+			Game.Instance.TutorialDone = true;
+			Game.Instance.FinishTutorial();
+			Game.Instance.GlobalSuspicion = 0;
+			CallDeferred(nameof(PhysicsProcessSceneChange));
+			return;
+		}
 		int CurrentRoom = Game.Instance.PlayerRoom;
 		//Save all NPC data if the player isn't leaving the bars
-		if(CurrentRoom != 5 && CurrentRoom != 13 && Game.Instance.TutorialDone)
+		if(CurrentRoom != 5 && CurrentRoom != 13)
 		{ //Nothing to save in the bars
 			Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
 			var NPCsInRoom = GetTree().GetNodesInGroup("NPCs");
@@ -124,7 +131,6 @@ public partial class Door : StaticBody2D
 	//Detect if the player has the key or not
 	public virtual void CheckPlayer(Node2D body)
 	{
-		GD.Print("REG DOOR check");
 		//If the door is already unlocked, let the player through
 		if(CheckLock() || regDoor)
 		{

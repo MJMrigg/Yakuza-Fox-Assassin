@@ -20,7 +20,6 @@ public partial class TutorialDoor : Door
 	
 	public override void CheckPlayer(Node2D body)
 	{
-		GD.Print("Tut dorr check");
 		//If the door is already unlocked, let the player through
 		if(CheckLock() || regDoor)
 		{
@@ -28,9 +27,7 @@ public partial class TutorialDoor : Door
 		}
 		//NPCs can't go through the door
 		if(!(body is Player))
-		{
-			GD.Print("NOT PLAYER");
-			return;
+		{			return;
 		}
 		//Check the player's inventory for any keys
 		Player player = (Player)body;
@@ -43,7 +40,6 @@ public partial class TutorialDoor : Door
 			{
 				continue;
 			}
-			GD.Print("Blue key found");
 			//Check if the key's color is the same as the door color
 			ChangeLock(true);
 			ChangeRoom(true);

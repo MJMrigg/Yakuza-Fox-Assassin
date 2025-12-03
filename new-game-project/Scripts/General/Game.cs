@@ -277,14 +277,6 @@ public partial class Game : Node
 		Bite.CoolDown = 2;
 		Bite.Portrait = null;
 		PlayerWeapons[0] = Bite;
-		//Set up player pistol
-		PlayerWeapons[1] = new Weapon();
-		PlayerWeapons[1].ID = ItemData[3];
-		PlayerWeapons[1].Damage = ItemData[4];
-		PlayerWeapons[1].CoolDown = ItemData[5];
-		//Place it in their inventory
-		PlayerInventory[0] = new Item();
-		PlayerInventory[0].ID = ItemData[3];
 		//Calculate Max Global Suspcition
 		for(int i = 0; i < 21; i++)
 		{
@@ -406,9 +398,13 @@ public partial class Game : Node
 		//If this is just the tutoral, just increase the suspicion of the first room
 		if(!TutorialDone)
 		{
-			GD.Print(Amount);
-			LocalSuspicions[0] += Amount+1;
-			GlobalSuspicion += Amount;
+			float IncreaseAmount = Amount;
+			if(Amount < 0) //If the suspicion is increasing to the max, fix that
+			{
+				IncreaseAmount = 9;
+			}
+			LocalSuspicions[0] += IncreaseAmount+1;
+			GlobalSuspicion += IncreaseAmount;
 			return;
 		}
 		//Don't increase Local Suspisions of rooms that don't have local suspicions, unless its the tutorial room
