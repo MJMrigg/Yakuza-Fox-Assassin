@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bt0dqpbuyngjm"]
+[gd_scene load_steps=11 format=4 uid="uid://bt0dqpbuyngjm"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_02ggb"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_xo4rf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_xo4rf"]
 [ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="7_3nlun"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_o0hnm"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="9_f6qq2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3nlun"]
 vertices = PackedVector2Array(822, 246, 834, 174, 904.2969, 174, 898.4922, 330, 834, 330, 822, 114, 834, 105, 174, 105, 186, 114, 174, 174, 186, 246, 546, 402, 546, 525.4922, 462, 524.7031, 462, 402, 834, 402, 174, 402, 174, 330, 102, 330, 102, 174)
@@ -15,9 +16,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(73, 75, 938, 75, 920, 559, 65, 551, 73, 85)])
 agent_radius = 30.0
 
-[node name="Armory" type="Node2D"]
+[node name="Armory" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_xo4rf")
 RoomId = 15
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_3nlun")
@@ -49,18 +52,18 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_xo4rf")
 
-[node name="ToRange" parent="." instance=ExtResource("3_xo4rf")]
+[node name="ToRange" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("3_xo4rf")]
 position = Vector2(510.00003, 658.99994)
 rotation = -3.1415925
 scale = Vector2(2.23319, 1)
 ConnectedRoom = 14
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
 
 [node name="Tanuki" parent="NPCs" instance=ExtResource("7_o0hnm")]
 position = Vector2(489, 107)
-TransformType = 6
 
 [node name="Items" type="Node" parent="."]
 
@@ -69,4 +72,7 @@ position = Vector2(310.00003, 170)
 rotation = 0.09332204
 scale = Vector2(0.5, 0.5)
 
+[node name="SceneTransition" parent="." instance=ExtResource("9_f6qq2")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

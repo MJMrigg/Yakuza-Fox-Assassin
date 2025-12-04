@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://w6j3y6jgntrl"]
+[gd_scene load_steps=13 format=4 uid="uid://w6j3y6jgntrl"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_8dwe0"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_ubuym"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="7_r2vjp"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_jd73o"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="9_rricm"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="11_rbnw7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8dwe0"]
 vertices = PackedVector2Array(-41.539063, 258, -42.1875, 246, 30, 246, 30, 258, 402, 330, 227.57813, 359.60938, 174, 362.28125, 174, 330, 186, 102, 534, 102, 114, 56.84375, 186, 54.84375, 102, 102, 762, 246, 876.3594, 246, 876.1328, 258, 762, 258, 678, 30, 678, -80.49219, 690, -80.3125, 690, 102, 762, 102, 762, 402, 750, 402, 750, 330, 618, 330, 618, 402, 534, 402, 534, 330, 402, 402, 231.71875, 402, 42, 330, 42, 402, 30, 402, 30, 102, 102, 30, 114, 30, 534, 30)
@@ -17,9 +18,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-92, -122, 913, -107, 901, 531, -58, 511)])
 agent_radius = 35.0
 
-[node name="Security" type="Node2D"]
+[node name="Security" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_8dwe0")
 RoomId = 18
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_8dwe0")
@@ -41,11 +44,12 @@ tile_set = ExtResource("1_ubuym")
 tile_map_data = PackedByteArray("AAAEAAAAAQADAAIAAAACAP//AQADAAYAAAACAAAAAQABAAYAAAAAAAUAAQABAAYAAAAKAAUAAQABAAYAABAGAAUAAQAAAAIAAAAAAAAAAQACAAUAAAAJAAUAAQAAAAIAAAABAAUAAQACAAkAAAACAAUAAQACAAEAAAAFAAAAAQABAAkAABAKAAAAAQACAAkAAAA=")
 tile_set = ExtResource("1_ubuym")
 
-[node name="RedDoor(ToBoss)" parent="." instance=ExtResource("2_g18mc")]
+[node name="RedDoor(ToBoss)" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("2_g18mc")]
 position = Vector2(974, 253.00003)
 rotation = 1.5707964
 scale = Vector2(0.49, 1)
 ConnectedRoom = 20
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 
 [node name="DoorSprite" parent="RedDoor(ToBoss)" index="0"]
 position = Vector2(0.17615655, 0.0021408005)
@@ -53,15 +57,17 @@ rotation = -1.5707964
 scale = Vector2(0.34724927, 1.386074)
 texture = ExtResource("4_amjt2")
 
-[node name="ToTraining" parent="." instance=ExtResource("2_g18mc")]
+[node name="ToTraining" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("2_g18mc")]
 position = Vector2(-251, 243)
 rotation = -1.5707964
 ConnectedRoom = 10
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToControls" parent="." instance=ExtResource("2_g18mc")]
+[node name="ToControls" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("2_g18mc")]
 position = Vector2(690, -239)
 ConnectedRoom = 19
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="ToSecurityEngine" parent="." instance=ExtResource("7_r2vjp")]
@@ -89,5 +95,8 @@ TransformType = 9
 [node name="Husky" parent="NPCs" instance=ExtResource("9_rricm")]
 position = Vector2(298, 293)
 
+[node name="SceneTransition" parent="." instance=ExtResource("11_rbnw7")]
+
 [editable path="RedDoor(ToBoss)"]
 [editable path="MainUI"]
+[editable path="SceneTransition"]

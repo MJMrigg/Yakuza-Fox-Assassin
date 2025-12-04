@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bo2n32asslba0"]
+[gd_scene load_steps=13 format=4 uid="uid://bo2n32asslba0"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_phl0v"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_rpopm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bsrb5biavqiyq" path="res://Packed Scenes/Items/Hamster.tscn" id="7_urbrd"]
 [ext_resource type="PackedScene" uid="uid://sgnoxpp88wpe" path="res://Packed Scenes/Doors/SecretPassage.tscn" id="8_eabx2"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="10_m100n"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="11_m100n"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_urbrd"]
 vertices = PackedVector2Array(1333, 637.9922, 1365.6719, 637.0781, 1344.8984, 657.34375, 935.72656, 681.02344, 956.46094, 212.42188, 1333, 253, 1333, 349.9922, 959.22656, 295.03906, 935.72656, 249.02344, 958.8125, 325.28906, 956.46094, 356.42188, 1333, 397, 1333, 493.9922, 959.22656, 439.03906, 935.72656, 393.02344, 958.8125, 469.28906, 956.46094, 500.42188, 1333, 541, 959.22656, 583.03906, 935.72656, 537.02344, 958.8125, 613.28906, 959.22656, 151.03906, 1345, 109.96094, 1347.8281, 141.86719, 958.8125, 181.28906, 1405, 347.97656, 1405, 397, 1405, 491.97656, 1405, 541, 917.71094, 114.88281, 899, 114.890625, 899, 109, 917.71094, 258.8828, 899, 258.89063, 899, 253, 917.71094, 402.8828, 899, 402.89063, 899, 397, 917.71094, 546.8828, 899, 546.8906, 899, 541, 362.72656, 249.02344, 397, 249.02344, 397, 251, 899, 251, 899, 249.02344, 1370.7266, 177.02344, 1405, 177.02344, 1405, 253, 362.72656, 393.02344, 397, 393.02344, 397, 395, 899, 395, 899, 393.02344, 362.72656, 537.02344, 397, 537.02344, 397, 539, 899, 539, 899, 537.02344, 362.72656, 681.02344, 397, 681.02344, 397, 683, 107, 685, 899, 683, 899, 681.02344, 1345, 685, 107, 613, -91, 613, -91, 539, 107, 539, 336.89844, 585.34375, 397, 109, 397, 114.890625, 376.3203, 114.90625, 107, 107, 397, 253, 397, 258.89063, 376.3203, 258.90625, 397, 397, 397, 402.89063, 376.3203, 402.90625, 397, 541, 397, 546.8906, 376.3203, 546.90625, 1344.9922, 107, 956.46094, 644.4219, 336.89844, 441.34375, 336.89844, 297.34375, 339.82813, 213.86719, 339.82813, 357.8672, 339.82813, 501.8672, 336.89844, 153.34375, 337, 181.96094, 337, 325.96094, 337, 469.96094, 337, 613.96094, 339.82813, 645.8672)
@@ -17,9 +18,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-126, -90, 1528, -45, 1525, 951, -126, 888)])
 agent_radius = 35.0
 
-[node name="Lab" type="Node2D"]
+[node name="Lab" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_phl0v")
 RoomId = 12
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_urbrd")
@@ -47,11 +50,12 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_eabx2")
 
-[node name="ToLab" parent="." instance=ExtResource("6_h781g")]
+[node name="ToLab" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_h781g")]
 position = Vector2(-219, 561)
 rotation = -1.5707964
 scale = Vector2(1.9200001, 1)
 ConnectedRoom = 11
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -77,4 +81,7 @@ ConnectedRoom = 6
 position = Vector2(258, 137)
 PlayerCamera = NodePath("../Camera2D")
 
+[node name="SceneTransition" parent="." instance=ExtResource("11_m100n")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

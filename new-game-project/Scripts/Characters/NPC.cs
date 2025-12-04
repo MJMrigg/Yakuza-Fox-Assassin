@@ -90,6 +90,10 @@ public partial class NPC : Interactable
 		//If the NPC is dying, do nothing
 		if(Dying)
 		{
+			if(HpBar != null)
+			{
+				HpBar.Value = Health;
+			}
 			return;
 		}
 		
@@ -205,6 +209,10 @@ public partial class NPC : Interactable
 		
 		//Take away health
 		Health -= damage;
+		if(HpBar != null)
+		{
+			HpBar.Value = Health;
+		}
 		
 		//Make the room hostile
 		if(!IsHostile)

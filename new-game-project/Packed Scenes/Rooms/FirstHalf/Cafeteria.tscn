@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://drppupoqbsboi"]
+[gd_scene load_steps=13 format=4 uid="uid://drppupoqbsboi"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_68ae1"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_80cra"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_4q26e"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_4q26e"]
 [ext_resource type="PackedScene" uid="uid://f4lev6mhev37" path="res://Packed Scenes/Characters/Characters/NPC3.tscn" id="10_u3lif"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="11_u3lif"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tyo82"]
 vertices = PackedVector2Array(1192, 400, 1192, 268.29688, 1256, 137.11719, 1256, 680, 1192, 616, 1040, 680, 104, 616, 1120, 268.29688, 1184, 139.13281, 1120, 271.28906, 1048, 271.28906, 1048, 268.29688, 1110.0391, 179.99219, 976, 271.28906, 976, 268.29688, 904, 271.28906, 904, 268.29688, 832, 271.28906, 832, 268.29688, 760, 271.28906, 760, 268.29688, 688, 271.28906, 688, 268.29688, 616, 271.28906, 616, 268.29688, 544, 271.28906, 544, 268.29688, 472, 271.28906, 472, 268.29688, 400, 271.28906, 400, 268.29688, 464, 184, 328, 271.28906, 328, 268.29688, 256, 271.28906, 256, 268.29688, 1192, 484.29688, 1120, 487.28906, 1120, 484.29688, 1048, 487.28906, 1048, 484.29688, 976, 487.28906, 976, 484.29688, 904, 487.28906, 904, 484.29688, 832, 487.28906, 832, 484.29688, 760, 487.28906, 760, 484.29688, 688, 487.28906, 688, 484.29688, 616, 487.28906, 616, 484.29688, 544, 487.28906, 544, 484.29688, 472, 487.28906, 472, 484.29688, 400, 487.28906, 400, 484.29688, 328, 487.28906, 328, 484.29688, 256, 487.28906, 256, 484.29688, 256, 40, 256, -78.17969, 392, -77.421875, 392, -32, 1040, 934.28906, 904, 934.02344, 904, 680, 100.47656, 680, 100.65625, 613.8828, 104, 490.6328, 432.02344, 38.023438, 464, 38.023438, 1048, 62.007813, 1048, 40, 1184, 40, 1109.9531, 62.039063, 40, 613.8828, 40, 40, 104, 400, 1048, 184, 1048, 180, 404.15625, -32, 406.96094, -0.4375, 104, 274.6328)
@@ -17,9 +18,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-65, -120, 1358, -112, 1377, 975, -72, 972)])
 agent_radius = 35.0
 
-[node name="Cafeteria" type="Node2D"]
+[node name="Cafeteria" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_80cra")
 RoomId = 4
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_tyo82")
@@ -55,17 +58,19 @@ script = ExtResource("4_tyo82")
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="ToMarket" parent="Doors" instance=ExtResource("5_xbene")]
+[node name="ToMarket" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_xbene")]
 position = Vector2(973.9999, 1057)
 rotation = -3.1415925
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 1
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToBar" parent="Doors" instance=ExtResource("5_xbene")]
+[node name="ToBar" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_xbene")]
 position = Vector2(323, -356)
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 5
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -91,4 +96,7 @@ DialogResponses = PackedStringArray("Yeah, when the sheep herding econmy isn\'t 
 position = Vector2(179, 330)
 scale = Vector2(0.5, 0.5)
 
+[node name="SceneTransition" parent="." instance=ExtResource("11_u3lif")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

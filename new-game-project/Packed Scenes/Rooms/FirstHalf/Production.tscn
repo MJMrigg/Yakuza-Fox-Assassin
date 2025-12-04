@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bfwsfpm7kj31g"]
+[gd_scene load_steps=11 format=4 uid="uid://bfwsfpm7kj31g"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_d77iq"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_gtfk6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="5_fxce2"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="7_ygqll"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="8_fxce2"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="9_cxepk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d77iq"]
 vertices = PackedVector2Array(186, 103.71094, 258, 99.703125, 258, 102, 174, 474, 165.49219, 100.84375, 186, 99.703125, 165.60938, 102, 390, 102, 390, -233.75781, 474, -233.34375, 474, 30, 1050, 30, 1050, 618, 390, 618, 390, 546, 174, 546, 102, 474, 102, 102, 114, 103.71094, 114, 102, 144.77344, 102)
@@ -15,9 +16,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-56, -266, 1147, -260, 1127, 726, 7, 735)])
 agent_radius = 35.0
 
-[node name="Production" type="Node2D"]
+[node name="Production" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_d77iq")
 RoomId = 9
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_d77iq")
@@ -53,10 +56,11 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_ygqll")
 
-[node name="ToMarket" parent="." instance=ExtResource("5_fxce2")]
+[node name="ToMarket" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_fxce2")]
 position = Vector2(434, -349)
 scale = Vector2(2.2, 1)
 ConnectedRoom = 1
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -82,4 +86,7 @@ DialogueOptions = PackedStringArray("What is that thing the center of the room?"
 DialogResponses = PackedStringArray("That is our god, and you will show him respsect.", "We pray to our god and he creates what we desire.", "You are a heretic! A false prophet! You will be EXCOMMUNICATED!")
 DialogSuspicion = PackedFloat32Array(0, 0, 7)
 
+[node name="SceneTransition" parent="." instance=ExtResource("9_cxepk")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

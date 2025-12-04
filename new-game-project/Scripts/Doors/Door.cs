@@ -12,6 +12,9 @@ public partial class Door : StaticBody2D
 	[Export]
 	public int ConnectedRoom; //The room that the door leads to
 	
+	[Export]
+	public AnimationPlayer sceneTransition; //For sceneTransitions
+	
 	//DT ADDITION. REMOVE IF NEEDED
 	[Export]
 	public bool regDoor;
@@ -119,11 +122,17 @@ public partial class Door : StaticBody2D
 	}
 	
 	//Change scenes during the next physics process
-	public void PhysicsProcessSceneChange()
+	public async void PhysicsProcessSceneChange()
 	{
 		if(!IsInsideTree())
 		{
 			return;
+		}
+		//Scene Transition Animation
+		if(sceneTransition != null)
+		{
+			sceneTransition.Play("Fade_In");
+			await ToSignal(GetTree().CreateTimer(0.75),"timeout");
 		}
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
 	}

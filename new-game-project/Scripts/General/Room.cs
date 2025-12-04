@@ -9,6 +9,11 @@ public partial class Room : Node2D
 	[Export]
 	public int RoomId; //Identifier of the room
 	
+	[Export]
+	public AnimationPlayer sceneTransition; //For sceneTransitions
+	[Export]
+	public ColorRect colorTransition; //For sceneTransitions
+	
 	public bool paulNotSpawned = true;
 		
 	public override void _Ready()
@@ -20,6 +25,14 @@ public partial class Room : Node2D
 		2. The Player needs to be moved to the position appropriate for how they entered.
 		*/
 		base._Ready();
+		
+		//Play sceneTransition
+		//Scene Transition Animation
+		if(sceneTransition != null && colorTransition != null)
+		{
+			colorTransition.Color = new Color(new Color(0, 0, 0, 255));
+			sceneTransition.Play("Fade_Out");
+		}
 		
 		//Assign all of the objects in the room to this room
 		var Objects = GetTree().GetNodesInGroup("Pausable");

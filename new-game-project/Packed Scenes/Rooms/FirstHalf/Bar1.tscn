@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://di3dj135mkpr1"]
+[gd_scene load_steps=11 format=4 uid="uid://di3dj135mkpr1"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_ajb25"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_nqe3y"]
@@ -9,10 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="7_7alfk"]
 [ext_resource type="PackedScene" uid="uid://dqjgyl2i4nf07" path="res://Packed Scenes/Characters/Characters/Bartender.tscn" id="7_elh2u"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_bltij"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="10_6xv15"]
 
-[node name="Bar" type="Node2D"]
+[node name="Bar" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_ajb25")
 RoomId = 5
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="floor" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAACAAAAAgAAAAAAAAADAAAAAgAAAAAAAAAEAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAAAAgAAAAAAAAAGAAAAAgAAAAAAAAAFAAAAAgAAAAAAAAAHAAIAAgAAAAAAAAAGAAIAAgAAAAAAAAAFAAIAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAEAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAABAAIAAgAAAAAAAAACAAIAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAACAAMAAgAAAAAAAAABAAMAAgAAAAAAAAAAAAMAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAGAAMAAgAAAAAAAAAHAAMAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAEAAMAAgAAAAAAAAACAAQAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAQAAgAAAAAAAAACAAUAAgAAAAAAAAADAAUAAgAAAAAAAAAEAAUAAgAAAAAAAAAFAAUAAgAAAAAAAAAIAAUAAgAAAAAAAAAHAAUAAgAAAAAAAAAGAAUAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAAAAgAAAAAAAAD//wUAAgAAAAEAAAD//wQAAgAAAAEAAAD//wMAAgAAAAEAAAD//wIAAgAAAAEAAAD//wEAAgAAAAEAAAD//wAAAgAAAAEAAAAJAAUAAgAAAAEAAAAJAAQAAgAAAAEAAAAJAAMAAgAAAAEAAAAJAAIAAgAAAAEAAAAJAAEAAgAAAAEAAAAJAAAAAgAAAAEAAAAJAAYAAgAAAAEAAAAIAAYAAgAAAAEAAAAHAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAAAAYAAgAAAAEAAAABAAYAAgAAAAAAAAAEAAcAAgADAAAAAAADAAcAAgADAAAAAAACAAcAAgADAAAAAAAFAAcAAgADAAAAAAACAAYAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAAEAAwAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAA0AAAAAAAAAAAADAA4AAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAA=")
@@ -44,11 +47,12 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("5_elh2u")
 
-[node name="ToCafeteria" parent="." instance=ExtResource("4_elh2u")]
+[node name="ToCafeteria" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("4_elh2u")]
 position = Vector2(290, 745)
 rotation = -3.1415925
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 4
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -83,6 +87,9 @@ rotation = -1.5707964
 [node name="AnimatedSprite2D" parent="Tanuki" index="1"]
 animation = &"Walk_R"
 
+[node name="SceneTransition" parent="." instance=ExtResource("10_6xv15")]
+
 [editable path="MainUI"]
 [editable path="Husky"]
 [editable path="Tanuki"]
+[editable path="SceneTransition"]

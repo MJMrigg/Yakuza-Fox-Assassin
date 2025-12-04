@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bo6rq3jnspnsh"]
+[gd_scene load_steps=11 format=4 uid="uid://bo6rq3jnspnsh"]
 
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_106sx"]
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_org7o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="6_xguhg"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="7_07ugl"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_8awdb"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="9_07ugl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xguhg"]
 vertices = PackedVector2Array(685, 251, 831.4922, 251, 831.46875, 253, 685, 253, 179, 107, 179, -99.921875, 181, -99.90625, 181, 107, 397, 708.53125, 323, 709.10156, 323, 469, 397, 469, 467, 107, 467, -98.28125, 469, -98.27344, 469, 133.99219, 683, 107, 683, -97.046875, 685, -97.03906, 35, 253, -149.75781, 253, -149.75, 251, 35, 251, 169.07813, 410.92188, 107, 410.9375, 107, 397, 611, 130.03906, 611, 107, 685, 397, 613, 397, 35, 397, 107, 130.03906, 107, 107, 197.09375, 469, 176.92969, 469, 176.89063, 441.40625, 199.96875, 431.57813, 169, 441.3125, 35, 132.03906, 613, 428.9297, 559.96875, 431.57813, 304.09375, 426.3828, 557.09375, 469, 308.25, 469)
@@ -15,9 +16,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-183, -137, 870, -131, 862, 740, -187, 748)])
 agent_radius = 35.0
 
-[node name="Training" type="Node2D"]
+[node name="Training" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_106sx")
 RoomId = 10
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_xguhg")
@@ -60,41 +63,50 @@ position = Vector2(549, 235)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="ToMarket" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToMarket" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(-285, 234)
 rotation = -1.5707964
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 1
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToMedic" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToMedic" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(180, -196)
 ConnectedRoom = 11
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToLiving2" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToLiving2" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(359, 831)
 rotation = -3.1415925
 scale = Vector2(2.440002, 1)
 ConnectedRoom = 16
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToBar2" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToBar2" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(463, -196)
 ConnectedRoom = 13
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToRange" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToRange" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(686, -196)
 ConnectedRoom = 14
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToSecurity" parent="Doors" instance=ExtResource("6_xguhg")]
+[node name="ToSecurity" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_xguhg")]
 position = Vector2(970, 236)
 rotation = 1.5707964
 ConnectedRoom = 18
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="Items" type="Node" parent="."]
 
+[node name="SceneTransition" parent="." instance=ExtResource("9_07ugl")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

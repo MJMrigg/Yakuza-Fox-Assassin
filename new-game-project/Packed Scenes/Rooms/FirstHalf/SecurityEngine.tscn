@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://btmygoh2s5mhk"]
+[gd_scene load_steps=13 format=4 uid="uid://btmygoh2s5mhk"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_0hh5a"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_wwkr1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_dima3"]
 [ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_lwimm"]
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="8_o61pd"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="11_w4ujg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lwimm"]
 vertices = PackedVector2Array(827, 179, 827, 37, 901, 35, 901, 325, 829, 325, 325, 35, 325, 37, 179, 35, 179, -166.92188, 325, -165.49219, 757, 522.4297, 682.9922, 522.90625, 683, 504, 757, 366.95313, 683, 397, 107, 253, 35, 253, 35, 105.109375, 107, 101.109375, 325, 179, 107, 35, 168.95313, 355.03125, 107, 355, 829, 338.9297, 767.1875, 338.96094, 559.96875, 359.57813, 557.09375, 397, 168.97656, 397, 767.0469, 366.95313, 664.09375, 354.3828, 668.25, 397)
@@ -18,9 +19,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-31, -204, 985, -194, 9
 cell_size = 10.0
 agent_radius = 35.0
 
-[node name="SecurityEngine" type="Node2D"]
+[node name="SecurityEngine" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_wwkr1")
 RoomId = 7
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_lwimm")
@@ -64,24 +67,27 @@ TransformType = 8
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="ToEngineering" parent="Doors" instance=ExtResource("6_y1l8v")]
+[node name="ToEngineering" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_y1l8v")]
 position = Vector2(721, 647)
 rotation = 3.1415925
 scale = Vector2(1.6000049, 1)
 DoorColor = false
 ConnectedRoom = 8
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToMarket" parent="Doors" instance=ExtResource("6_y1l8v")]
+[node name="ToMarket" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("6_y1l8v")]
 position = Vector2(249, -308)
 scale = Vector2(2.4400043, 1)
 DoorColor = false
 ConnectedRoom = 1
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToSecurityBoss" parent="Doors" instance=ExtResource("8_o61pd")]
+[node name="ToSecurityBoss" parent="Doors" node_paths=PackedStringArray("sceneTransition") instance=ExtResource("8_o61pd")]
 position = Vector2(812, -9)
 ConnectedRoom = 18
+sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 
 [node name="Items" type="Node" parent="."]
 
@@ -89,6 +95,9 @@ ConnectedRoom = 18
 position = Vector2(388, 107)
 scale = Vector2(0.5, 0.5)
 
+[node name="SceneTransition" parent="." instance=ExtResource("11_w4ujg")]
+
 [connection signal="SendToPlayer" from="Items/Green Key" to="Player" method="Pickup"]
 
 [editable path="MainUI"]
+[editable path="SceneTransition"]

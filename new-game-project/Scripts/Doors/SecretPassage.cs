@@ -9,6 +9,9 @@ public partial class SecretPassage : Interactable
 	[Export]
 	public int ConnectedRoom;
 	
+	[Export]
+	public AnimationPlayer sceneTransition; //For sceneTransitions
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -84,11 +87,18 @@ public partial class SecretPassage : Interactable
 	}
 	
 	//Change scenes during the next physics process
-	public void PhysicsProcessSceneChange()
+	public async void PhysicsProcessSceneChange()
 	{
 		if(!IsInsideTree())
 		{
 			return;
+		}
+		
+		//Scene Transition Animation
+		if(sceneTransition != null)
+		{
+			sceneTransition.Play("Fade_In");
+			await ToSignal(GetTree().CreateTimer(0.75),"timeout");
 		}
 		GetTree().ChangeSceneToFile(Game.Instance.roomIDS[ConnectedRoom]);
 	}

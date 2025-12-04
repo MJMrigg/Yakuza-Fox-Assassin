@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://yp8mbu2mbiq4"]
+[gd_scene load_steps=12 format=4 uid="uid://yp8mbu2mbiq4"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_2a4gy"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_arivb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_4xqij"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="8_w7w68"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_1o5u2"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="10_xl5po"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arivb"]
 vertices = PackedVector2Array(1110, 638.71875, 1038, 641.71875, 1038, 638.71875, 966, 641.71875, 966, 638.71875, 978, 318, 894, 641.71875, 894, 638.71875, 822, 641.71875, 822, 638.71875, 750, 641.71875, 750, 638.71875, 762, 318, 678, 641.71875, 678, 638.71875, 606, 641.71875, 606, 638.71875, 534, 641.71875, 534, 638.71875, 546, 318, 1122, 641.21875, 1110, 641.71875, 1122, 318, 330, 690, 330, 1151.6094, 174, 1150.3281, 174, 690, 318, 318, 186, 102, 186, 186, 114, 186, 102, 102, 102, 318, 114, 318, 318, 102, 402, 102, 402, 186, 330, 186, 330, 318, 534, 102, 618, 102, 618, 186, 546, 186, 534, 318, 750, 102, 834, 102, 834, 186, 762, 186, 750, 318, 966, 102, 1050, 102, 1050, 186, 978, 186, 966, 318, 402, 644.21875, 402, 690, 30, 690, 30, 318)
@@ -16,9 +17,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(-122, -106, 1213, -63, 1230, 1189, -111, 1178)])
 agent_radius = 35.0
 
-[node name="Bathroom1" type="Node2D"]
+[node name="Bathroom1" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_arivb")
 RoomId = 3
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_arivb")
@@ -48,11 +51,12 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_4xqij")
 
-[node name="ToLiving" parent="." instance=ExtResource("5_w7w68")]
+[node name="ToLiving" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_w7w68")]
 position = Vector2(254.00006, 1269)
 rotation = 3.1415927
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 2
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -73,4 +77,7 @@ DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I h
 [node name="Chihuahua" parent="NPCs" instance=ExtResource("9_1o5u2")]
 position = Vector2(552, 448)
 
+[node name="SceneTransition" parent="." instance=ExtResource("10_xl5po")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]

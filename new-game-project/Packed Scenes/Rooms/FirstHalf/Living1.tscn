@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b5nusknx2t2"]
+[gd_scene load_steps=12 format=4 uid="uid://b5nusknx2t2"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_iuuj5"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_ldmwp"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_u0mkw"]
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="8_p7dgq"]
 [ext_resource type="PackedScene" uid="uid://7w7gvjn4f0yy" path="res://Packed Scenes/Characters/Characters/NPC1.tscn" id="9_wgmim"]
+[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="10_lymmt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ldmwp"]
 vertices = PackedVector2Array(239.64844, 258.8828, 829, 179, 1115, 179, 336.8125, 258.8828, 1261, 35, 1261, 258.8828, 1200.8125, 258.8828, 1115, 37, 671.27344, 392.90625, 671.64844, 258.8828, 1200.8125, 392.90625, 1045, 613, 899, 613, 397, 35, 829, 37, 35, 613, 35, 91.22656, 99.03906, 91.578125, 120.8125, 258.8828, 120.8125, 392.90625, 99.03906, 91.1875, 171.03906, 91.578125, 179, 35, 179, -230.1875, 324.9922, -230.28906, 325, -215.99219, 325, -37, 362.72656, 33.023438, 397, 33.023438, 1261, 392.90625, 1261, 613, 1045, 909, 899, 909, 552.8125, 392.90625, 171.03906, 35, 336.9922, -37, 337, -34.039063, 339.82813, -2.1328125, 239.27344, 392.90625, 552.8125, 258.8828, 455.64844, 258.8828, 455.27344, 392.90625, 336.8125, 392.90625)
@@ -16,9 +17,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-108, -265, 1319, -266, 1317, 944, -104, 944)])
 agent_radius = 35.0
 
-[node name="Living1" type="Node2D"]
+[node name="Living1" type="Node2D" node_paths=PackedStringArray("sceneTransition", "colorTransition")]
 script = ExtResource("1_ldmwp")
 RoomId = 2
+sceneTransition = NodePath("SceneTransition/AnimationPlayer")
+colorTransition = NodePath("SceneTransition/CanvasLayer/transColor")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_ldmwp")
@@ -50,17 +53,19 @@ position = Vector2(440, 198)
 zoom = Vector2(1.2, 0.9)
 script = ExtResource("4_ldmwp")
 
-[node name="ToMarket" parent="." instance=ExtResource("5_w3und")]
+[node name="ToMarket" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_w3und")]
 position = Vector2(973, 1012)
 rotation = 3.1415927
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 1
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
-[node name="ToBathroom" parent="." instance=ExtResource("5_w3und")]
+[node name="ToBathroom" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("5_w3und")]
 position = Vector2(248, -340)
 scale = Vector2(2.8400002, 1)
 ConnectedRoom = 3
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 regDoor = true
 
 [node name="NPCs" type="Node" parent="."]
@@ -81,4 +86,7 @@ DialogueOptions = PackedStringArray("Is this your place of residence?", "I\'m yo
 DialogResponses = PackedStringArray("No, I\'m a commuter. I take the shuttle.", "Oh no!", "Yeah. You should have seen the last one. It was an old retro one that Gary only put there to mess with all of us. Dawn put him in his place.")
 DialogSuspicion = PackedFloat32Array(0, 5, 0)
 
+[node name="SceneTransition" parent="." instance=ExtResource("10_lymmt")]
+
 [editable path="MainUI"]
+[editable path="SceneTransition"]
