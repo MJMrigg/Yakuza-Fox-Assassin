@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://iekpssg83fnc"]
+[gd_scene load_steps=11 format=4 uid="uid://iekpssg83fnc"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_2rrmd"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_4qrtg"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c6k14rf7yalb0" path="res://Packed Scenes/Doors/RedDoor.tscn" id="3_4qrtg"]
 [ext_resource type="PackedScene" uid="uid://bidfdywgj441a" path="res://Packed Scenes/User Interface/MainUI.tscn" id="3_5lsts"]
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_4qrtg"]
-[ext_resource type="PackedScene" uid="uid://bsfdmyk170c53" path="res://Packed Scenes/Items/Red Key.tscn" id="7_nvk0x"]
 [ext_resource type="PackedScene" uid="uid://c6es7gsvts3ya" path="res://Packed Scenes/Characters/Characters/NPC2.tscn" id="7_u0udf"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="8_nil2g"]
 [ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="10_tarvl"]
@@ -88,10 +87,6 @@ DialogResponses = PackedStringArray("How can you see through my spell?", "Well d
 DialogSuspicion = PackedFloat32Array(0, 0, 0, 0, 0)
 
 [node name="Items" type="Node" parent="."]
-
-[node name="Red Key" parent="Items" instance=ExtResource("7_nvk0x")]
-position = Vector2(258, 180)
-scale = Vector2(0.5, 0.5)
 
 [node name="SceneTransition" parent="." instance=ExtResource("10_tarvl")]
 

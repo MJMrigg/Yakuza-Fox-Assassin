@@ -79,6 +79,8 @@ position = Vector2(900, 612)
 ConnectedRoom = 20
 sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("10_wplrp")]
 
 [editable path="MainUI"]

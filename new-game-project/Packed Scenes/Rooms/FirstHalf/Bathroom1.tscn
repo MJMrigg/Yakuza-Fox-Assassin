@@ -77,6 +77,8 @@ DialogResponses = PackedStringArray("Yeah, but the polar ice caps melted, so I h
 [node name="Chihuahua" parent="NPCs" instance=ExtResource("9_1o5u2")]
 position = Vector2(552, 448)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("10_xl5po")]
 
 [editable path="MainUI"]

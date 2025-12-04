@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://btmygoh2s5mhk"]
+[gd_scene load_steps=12 format=4 uid="uid://btmygoh2s5mhk"]
 
 [ext_resource type="TileSet" uid="uid://5ivo5cch6dya" path="res://Packed Scenes/Rooms/Tiles.tres" id="1_0hh5a"]
 [ext_resource type="Script" uid="uid://dyta3irgr10y" path="res://Scripts/General/Room.cs" id="1_wwkr1"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bf5hr0sr4n6ci" path="res://Packed Scenes/Doors/GreenDoor.tscn" id="6_y1l8v"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="6_yoohm"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_dima3"]
-[ext_resource type="PackedScene" uid="uid://kckcq7mics11" path="res://Packed Scenes/Items/Green Key.tscn" id="7_lwimm"]
 [ext_resource type="PackedScene" uid="uid://edgpt8rqdn3u" path="res://Packed Scenes/Doors/SecretPassage2.tscn" id="8_o61pd"]
 [ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="11_w4ujg"]
 
@@ -91,13 +90,7 @@ sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Green Key" parent="Items" instance=ExtResource("7_lwimm")]
-position = Vector2(388, 107)
-scale = Vector2(0.5, 0.5)
-
 [node name="SceneTransition" parent="." instance=ExtResource("11_w4ujg")]
-
-[connection signal="SendToPlayer" from="Items/Green Key" to="Player" method="Pickup"]
 
 [editable path="MainUI"]
 [editable path="SceneTransition"]

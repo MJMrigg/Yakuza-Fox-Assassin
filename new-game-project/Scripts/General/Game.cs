@@ -64,6 +64,36 @@ public partial class Game : Node
 		//ID
 		6 //Hamster
 	};
+	
+	//Key Placements
+	public List<Vector2> keyPlacements = new List<Vector2> 
+	{
+		//PART 1
+		new Vector2(0.0f, 0.0f), // Docks (should not be called, but just in case)
+		new Vector2(98.0f, 76.0f), // Market
+		new Vector2(886.0f, 111.0f), // Living1
+		new Vector2(575.0f, 142.0f), // Bathroom1
+		new Vector2(0.0f, 0.0f), // Cafeteria (should not be called, but just in case)
+		new Vector2(0.0f, 0.0f), // Bar (should not be called, but just in case)
+		new Vector2(114.0f, 104.0f), // Storage
+		new Vector2(388.0f, 107.0f), // SecurityEngine
+		new Vector2(1130.0f, 510.0f), // Engine
+		new Vector2(730.0f, 365.0f), // Production
+		//PART 2
+		new Vector2(623.0f, 440.0f), // Training Yard 
+		new Vector2(258.0f, 180.0f), // Medic
+		new Vector2(0.0f, 0.0f), // Lab (Should not be called, but just in case)
+		new Vector2(0.0f, 0.0f), // Bar (Should not be called, but just in case)
+		new Vector2(887.0f, 507.0f), // Range
+		new Vector2(0.0f, 0.0f), // Armory (Should not be called, but just in case)
+		new Vector2(971.0f, 331.0f), // Living2
+		new Vector2(1517.0f, 104.0f), // Bathroom2
+		new Vector2(473.0f, 37.0f), // Security2
+		new Vector2(487.0f, 245.0f), // Controls
+		
+	};
+	
+	
 	public Weapon Bite = new Weapon(); //Bite data
 	public int PlayerHealth = 100;
 	public int MaxPlayerHealth = 100;
@@ -225,15 +255,36 @@ public partial class Game : Node
 		GlobalSuspicion = 0;
 		PlayerRoom = 0;
 		paulCanMove = true;
+		
+		
+		// Randomly determine key locations
+		List<int> excludedRooms = new List<int> { 0 }; // Don't place in the: docks
+		excludedRooms.Add(4); // Cafeteria
+		excludedRooms.Add(5); // Bar
+		int greenKeyRoom = GetRandomKeyRoom(1, 9, excludedRooms);
+		
+		excludedRooms.Add(greenKeyRoom); // Don't place red key in the: same room as green
+		excludedRooms.Add(12); // Lab
+		excludedRooms.Add(13); // Bar
+		excludedRooms.Add(15); // Armory
+		int redKeyRoom = GetRandomKeyRoom(10, 19, excludedRooms);
+		
 		RoomItems = new Dictionary<int, List<float>>
 		{ //Data to store items in rooms
 			{ 4, new List<float>() }, //Knife in the cafeteria
-			{ 7, new List<float>() }, //Green key in security1
-			{ 11, new List<float>() }, //Red key in medic
+			{ greenKeyRoom, new List<float>() {4.0f, keyPlacements[greenKeyRoom].X, keyPlacements[greenKeyRoom].Y} }, // Green key in random room 1-9
+			{ redKeyRoom, new List<float>() {5.0f, keyPlacements[redKeyRoom].X, keyPlacements[redKeyRoom].Y} }, // Red key in random room 10-19
+			//{ 7, new List<float>() }, //Green key in security1
+			//{ 11, new List<float>() }, //Red key in medic
 			{ 12, new List<float>() }, //Hamster in lab
-			{ 15, new List<float>() }, //Shotgun in armory
-			{ 10, new List<float>() } //Green key in training
+			{ 15, new List<float>() } //Shotgun in armory
+			//{ 10, new List<float>() } //Green key in training
 		};
+		//GD.Print("Room's with items: " + RoomItems);
+		foreach(var room in RoomItems)
+		{
+			GD.Print("Room's with items ID: " + room);
+		}
 		PlayerHealth = 100;
 		MaxPlayerHealth = 100;
 		BossIsDead = false; //Boss is not dead
@@ -648,4 +699,32 @@ public partial class Game : Node
 		LocalSuspicions[0] = 0;
 		GlobalSuspicion = 0;
 	}
+	
+	public int GetRandomKeyRoom(int minRoom, int maxRoom, List<int> excludedRooms)
+	{
+		Random random = new Random();
+		List<int> validRooms = new List<int>();
+		
+		// Valid rooms
+		for (int i = minRoom; i <= maxRoom; i++)
+		{
+			if (MaxLocalSuspicions[i] != -1 && !excludedRooms.Contains(i))
+			{
+				validRooms.Add(i);
+			}
+		}
+		
+		// Return random room
+		if (validRooms.Count > 0)
+		{
+			return validRooms[random.Next(validRooms.Count)];
+		}
+		
+		// Fallback
+		return minRoom;
+	}
+	
+	
+	
+	
 }

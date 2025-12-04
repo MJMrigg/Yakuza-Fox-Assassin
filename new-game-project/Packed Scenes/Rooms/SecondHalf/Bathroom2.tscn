@@ -76,6 +76,8 @@ position = Vector2(1224, 177)
 [node name="Npc1" parent="NPCs" instance=ExtResource("10_junbl")]
 position = Vector2(463, 729)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("11_a7jpa")]
 
 [editable path="MainUI"]

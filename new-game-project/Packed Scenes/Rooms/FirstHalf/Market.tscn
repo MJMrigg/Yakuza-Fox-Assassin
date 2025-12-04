@@ -123,6 +123,8 @@ ConnectedRoom = 6
 sceneTransition = NodePath("../../SceneTransition/AnimationPlayer")
 regDoor = true
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("10_8n31m")]
 
 [editable path="MainUI"]

@@ -75,6 +75,8 @@ DialogueOptions = PackedStringArray("I am the new intern.", "What is this room?"
 DialogResponses = PackedStringArray("Brilliant. We have a bunch of Excel sheets. Go through them all and look for cells that equal 180.", "This is the office, or as I call it, the coffee drinking room.", "Oh no!")
 DialogSuspicion = PackedFloat32Array(0, 0, 5)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("9_atv40")]
 
 [editable path="MainUI"]

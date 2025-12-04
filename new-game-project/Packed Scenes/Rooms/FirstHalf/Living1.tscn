@@ -86,6 +86,8 @@ DialogueOptions = PackedStringArray("Is this your place of residence?", "I\'m yo
 DialogResponses = PackedStringArray("No, I\'m a commuter. I take the shuttle.", "Oh no!", "Yeah. You should have seen the last one. It was an old retro one that Gary only put there to mess with all of us. Dawn put him in his place.")
 DialogSuspicion = PackedFloat32Array(0, 5, 0)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("10_lymmt")]
 
 [editable path="MainUI"]

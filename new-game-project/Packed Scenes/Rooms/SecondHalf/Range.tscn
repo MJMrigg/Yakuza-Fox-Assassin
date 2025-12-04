@@ -73,6 +73,8 @@ position = Vector2(841, 146)
 [node name="Husky2" parent="NPCs" instance=ExtResource("7_3j1c3")]
 position = Vector2(537, 139)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("8_8au3o")]
 
 [editable path="MainUI"]

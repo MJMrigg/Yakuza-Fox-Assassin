@@ -86,6 +86,8 @@ DialogueOptions = PackedStringArray("What is that thing the center of the room?"
 DialogResponses = PackedStringArray("That is our god, and you will show him respsect.", "We pray to our god and he creates what we desire.", "You are a heretic! A false prophet! You will be EXCOMMUNICATED!")
 DialogSuspicion = PackedFloat32Array(0, 0, 7)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("9_cxepk")]
 
 [editable path="MainUI"]

@@ -95,6 +95,8 @@ TransformType = 9
 [node name="Husky" parent="NPCs" instance=ExtResource("9_rricm")]
 position = Vector2(298, 293)
 
+[node name="Items" type="Node" parent="."]
+
 [node name="SceneTransition" parent="." instance=ExtResource("11_rbnw7")]
 
 [editable path="RedDoor(ToBoss)"]
