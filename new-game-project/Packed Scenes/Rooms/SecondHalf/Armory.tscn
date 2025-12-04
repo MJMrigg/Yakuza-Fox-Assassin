@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cb2oepdfbuorf" path="res://Scripts/General/FollowCamera.cs" id="4_xo4rf"]
 [ext_resource type="PackedScene" uid="uid://c828fmqjdtk8b" path="res://Packed Scenes/Items/ShotGun.tscn" id="7_3nlun"]
 [ext_resource type="PackedScene" uid="uid://dxcjch6ow0kbd" path="res://Packed Scenes/Characters/Characters/Tanuki.tscn" id="7_o0hnm"]
-[ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="9_f6qq2"]
+[ext_resource type="PackedScene" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="9_f6qq2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3nlun"]
 vertices = PackedVector2Array(822, 246, 834, 174, 904.2969, 174, 898.4922, 330, 834, 330, 822, 114, 834, 105, 174, 105, 186, 114, 174, 174, 186, 246, 546, 402, 546, 525.4922, 462, 524.7031, 462, 402, 834, 402, 174, 402, 174, 330, 102, 330, 102, 174)
@@ -68,7 +68,7 @@ position = Vector2(489, 107)
 [node name="Items" type="Node" parent="."]
 
 [node name="ShotGun" parent="Items" instance=ExtResource("7_3nlun")]
-position = Vector2(310.00003, 170)
+position = Vector2(309.00003, 184.99998)
 rotation = 0.09332204
 scale = Vector2(0.5, 0.5)
 

@@ -142,7 +142,7 @@ public partial class Boss : Enemy
 		Vector2 PlayerPosition = GetPlayerPosition();
 		Explosion PlayerExplosion = (Explosion)ExplosionScene.Instantiate();
 		PlayerExplosion.Position = new Vector2(PlayerPosition.X, PlayerPosition.Y);
-		GetTree().GetRoot().AddChild(PlayerExplosion);
+		GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(PlayerExplosion);
 		//Begin Explosion attack cool down
 		ExplosionCooledDown = false;
 		ExplosionAttackCoolDown();
