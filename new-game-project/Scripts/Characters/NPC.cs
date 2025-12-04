@@ -382,6 +382,12 @@ public partial class NPC : Interactable
 		IsHostile = true;
 	}
 	
+	//Make the NPC not hostile
+	public void MakeNotHostile()
+	{
+		IsHostile = false;
+	}
+	
 	//Safe velocity has been computed
 	public void OnVelocityComputed(Vector2 SafeVelocity)
 	{

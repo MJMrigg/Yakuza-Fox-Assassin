@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwtu0dg70hhg7"]
+[gd_scene load_steps=22 format=3 uid="uid://dwtu0dg70hhg7"]
 
 [ext_resource type="Script" uid="uid://s6660w28qxc" path="res://Scripts/Characters/TutorialAi.cs" id="1_1da32"]
+[ext_resource type="Texture2D" uid="uid://xo0r6ao5ha4x" path="res://Art Assets/Characters/NPCS/AI/Player_AI_Portrait-Right.png" id="2_3ugp1"]
 [ext_resource type="Texture2D" uid="uid://c7pcor1cfg7ho" path="res://Art Assets/Characters/NPCS/Bartender/Animations/Walk-Anim_Bartender.png" id="2_dtr17"]
+[ext_resource type="Texture2D" uid="uid://benlai6hv1acc" path="res://Art Assets/Characters/NPCS/AI/AI-Sprite_Player.png" id="2_i6p0t"]
 [ext_resource type="AudioStream" uid="uid://i8rw0ug76wis" path="res://Art Assets/Sounds/Bark-Keep/Drinking.mp3" id="3_i6p0t"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="4_3ugp1"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="5_g7olo"]
@@ -9,22 +11,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uu4u"]
 radius = 42.0
 height = 142.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lk56q"]
-atlas = ExtResource("2_dtr17")
-region = Rect2(0, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ff51h"]
-atlas = ExtResource("2_dtr17")
-region = Rect2(96, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xkjh"]
-atlas = ExtResource("2_dtr17")
-region = Rect2(192, 0, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_018dv"]
-atlas = ExtResource("2_dtr17")
-region = Rect2(288, 0, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6wa2"]
 atlas = ExtResource("2_dtr17")
@@ -118,16 +104,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lk56q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ff51h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2xkjh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_018dv")
+"texture": ExtResource("2_i6p0t")
 }],
 "loop": true,
 "name": &"Walk_D",
@@ -189,10 +166,11 @@ animations = [{
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_1da32")
+Portrait = ExtResource("2_3ugp1")
 InitialDialog = "I am your ship's personal AI assistant. Would you like any assistance before boarding the Yakuza's Ship?"
-DialogueOptions = PackedStringArray("Why am I infiltrating a Yakuza ship again?", "What is Local Suspicion? ", "What is Global Suspicion?", "Can you refresh me on my combat training?", "Skip")
-DialogResponses = PackedStringArray("You are here to take revenge against your Father, who left you for dead at a young age. As his only heir, his death would have you inherit his Yakuza empire.", "Local Suspicion is how aware the Canines in a room are of you being an intruder. Staying around too long, certain actions, or outright violence can cause this to increase. If it get to 100% everyone in the room will be out to get you. ", "Global Suspicion is a culmination of the USS Gaia’s awareness of you. As more and more room have their local suspicion increase, global suspicion will rise in turn. If this gets to 100% you will be caught and quartered. Best try to avoid that.", "Of course. Use LMB to perform a melee attack in the direction you are facing. If you have a ranged weapon equipped, use RMB to fire a projectile in the direction of your cursor. ", "Ok :(")
-DialogSuspicion = PackedFloat32Array(0, 0, 0, 0, 0)
+DialogueOptions = PackedStringArray("Why am I infiltrating a Yakuza ship again?", "What do I need to do?", "What is Local Suspicion? ", "What is Global Suspicion?", "Can you refresh me on my combat training?", "Can you reset the ships Suspicion?", "Skip")
+DialogResponses = PackedStringArray("You are here to take revenge against your Father, who left you for dead at a young age. As his only heir, his death would have you inherit his Yakuza empire.", "You need to get to the end of the ship so you can claim vengeance against your father. Security is light, so most passageways should be open, but a few may be locked. You will need to find a matching keycard or alternate route to get past them.", "Local Suspicion is how aware the Canines in a room are of you being an intruder. Staying around too long, certain actions, or outright violence can cause this to increase. If it get to 100% everyone in the room will be out to get you. ", "Global Suspicion is a culmination of the USS Gaia’s awareness of you. As more and more room have their local suspicion increase, global suspicion will rise in turn. If this gets to 100% you will be caught and quartered. Best try to avoid that.", "Of course. Use LMB to perform a melee attack in the direction you are facing. If you have a ranged weapon equipped, use RMB to fire a projectile in the direction of your cursor. ", "It is done sir.", "Ok :(")
+DialogSuspicion = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 InteractionBox = NodePath("Interactable")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
