@@ -550,13 +550,11 @@ public partial class Game : Node
 		NPCs[PatrolRoom].Add((12).ToString()); // Paul's TYPE
 		if(PatrolRoom == 1 || PatrolRoom == 10 || PatrolRoom == 18)
 		{
-			GD.Print(PatrolRoom + " " + prevPatrolRoom);
 			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
 			NPCs[PatrolRoom].Add((PaulMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
 		}
 		else
 		{
-			GD.Print(PatrolRoom + " " + prevPatrolRoom);
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].X).ToString()); // Paul's X Position
 			NPCs[PatrolRoom].Add((roomMap[PatrolRoom][prevPatrolRoom].Y).ToString()); // Paul's Y Position
 		}

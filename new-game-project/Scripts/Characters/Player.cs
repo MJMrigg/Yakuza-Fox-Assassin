@@ -798,5 +798,21 @@ public partial class Player : Entity
 		}
 	}
 	
+	public void MarkInteractable(Node2D body)
+	{
+		if(body is Interactable)
+		{
+			Interactable CurrentInteraction = (Interactable)body;
+			CurrentInteraction.InteractionBox.Visible = true;
+		}
+	}
 	
+	public void MarkNoLongerInteractable(Node2D body)
+	{
+		if(body is Interactable)
+		{
+			Interactable CurrentInteraction = (Interactable)body;
+			CurrentInteraction.InteractionBox.Visible = false;
+		}
+	}
 }
