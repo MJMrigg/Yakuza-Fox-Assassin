@@ -37,6 +37,13 @@ tile_set = ExtResource("1_dm2wn")
 
 [node name="MainUI" parent="." instance=ExtResource("2_4viov")]
 
+[node name="Dialogue" parent="MainUI" index="0"]
+custom_minimum_size = Vector2(0, 270)
+offset_top = -270.0
+
+[node name="Portrait" parent="MainUI/Dialogue/Dialog" index="1"]
+size_flags_vertical = 8
+
 [node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
 allow_lesser = true
 
@@ -52,9 +59,12 @@ script = ExtResource("4_xa533")
 [node name="Pistol" parent="." instance=ExtResource("7_nkbej")]
 position = Vector2(327, 179)
 scale = Vector2(0.5, 0.5)
+DialogueOptions = PackedStringArray("Examine", "What do I do with this?", "Take", "Leave")
+DialogResponses = PackedStringArray("Its seen a lot of use, but looks to function well enough.", "You can pick it up. To see if it\'s in your inventory, press tab. You can equip it in your inventory or dequip it in your main bar in the bottom left.", "The Pistol is now in your inventory")
 
 [node name="TutorialNPC" parent="." instance=ExtResource("8_daijy")]
 position = Vector2(436, 194)
+DialogResponses = PackedStringArray("You are here to take revenge against your Father, who left you for dead at a young age. You then plan to take over his Yakuza empire to remake it in your image so that he is forever forgotten.", "You need to get to the end of the ship so you can claim vengeance against your father. Security is light, so most passageways should be open, but a few may be locked. You will need to find a matching keycard or alternate route to get past them.", "Local Suspicion is how aware the Canines in a room are of you being an intruder. Staying around too long, certain actions, or outright violence can cause this to increase. If it get to 100% everyone in the room will be out to get you. ", "Global Suspicion is a culmination of the USS Gaia’s awareness of you. As more and more room have their local suspicion increase, global suspicion will rise in turn. If this gets to 100% you will be caught and quartered. Best try to avoid that.", "Of course. Use LMB to perform a melee attack in the direction you are facing. If you have a ranged weapon equipped, use RMB to fire a projectile in the direction of your cursor. ", "It is done sir.", "Ok :(")
 
 [node name="Chihuahua" parent="." instance=ExtResource("9_1s0ds")]
 position = Vector2(215, 67)
@@ -65,7 +75,7 @@ Health = 50000
 maxHealth = 50000
 InitialDialog = "I'm a melee dummy. Feel free to talk to me or attack me for practice."
 DialogueOptions = PackedStringArray("*Make small talk*", "I\'m going to kill you!", "Goodybe")
-DialogResponses = PackedStringArray("If I were a real dog, I would respond with some witty text.", "A threat like that will increase local ")
+DialogResponses = PackedStringArray("If I were a real dog, I would respond with some witty text.", "A threat like that will increase local suspicion.")
 DialogSuspicion = PackedFloat32Array(0, 5)
 
 [node name="NavigationAgent2D" parent="Chihuahua" index="4"]
@@ -80,7 +90,7 @@ Health = 5000
 maxHealth = 5000
 InitialDialog = "I'm a ranged dummy. Feel free to talk to me or attack me for practice."
 DialogueOptions = PackedStringArray("*Make small talk*", "I\'m going to kill you!", "Goodbye.")
-DialogResponses = PackedStringArray("If I were a real dog, I would respond with some witty text.", "A threat like that will increase local ")
+DialogResponses = PackedStringArray("If I were a real dog, I would respond with some witty text.", "A threat like that will increase local suspicion.")
 DialogSuspicion = PackedFloat32Array(0, 5)
 
 [node name="NavigationAgent2D" parent="Husky" index="4"]
@@ -93,6 +103,8 @@ rotation = 1.5707964
 [node name="Blue Key" parent="." instance=ExtResource("11_x2143")]
 position = Vector2(552, 179)
 scale = Vector2(0.5, 0.5)
+DialogueOptions = PackedStringArray("Examine", "What do I do with this?", "Take", "Leave")
+DialogResponses = PackedStringArray("Upon closer inspection, it looks like some sort of key card.", "You can pick it up. To see if it\'s in your inventory, press tab.", "You pick up the key")
 
 [editable path="MainUI"]
 [editable path="Chihuahua"]

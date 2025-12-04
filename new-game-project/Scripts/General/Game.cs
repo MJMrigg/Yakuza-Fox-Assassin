@@ -401,9 +401,13 @@ public partial class Game : Node
 			if(Amount < 0) //If the suspicion is increasing to the max, fix that
 			{
 				IncreaseAmount = 9;
+			}else if(Amount == 0) //If the amount is actually supposed to be 0, fix that
+			{
+				IncreaseAmount = -1;
 			}
 			LocalSuspicions[0] += IncreaseAmount+1;
 			GlobalSuspicion += IncreaseAmount;
+			//Tutorials are literally one big edge case scenario
 			return;
 		}
 		//Don't increase Local Suspisions of rooms that don't have local suspicions, unless its the tutorial room

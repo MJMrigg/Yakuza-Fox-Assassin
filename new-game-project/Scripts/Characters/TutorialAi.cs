@@ -3,10 +3,6 @@ using System;
 
 public partial class TutorialAi : Interactable
 {
-	public string[] TutorialText;
-	
-	public int TutorialPart = 0;
-	
 	[Export]
 	public CompressedTexture2D Portrait; //Dialogue portrait
 	
@@ -35,7 +31,7 @@ public partial class TutorialAi : Interactable
 	
 	public override void BeginDialogue()
 	{
-		base.BeginDialogue();	
+		base.BeginDialogue();
 		TextureRect DialoguePortrait = ((TextureRect)DialogueBox.GetNode("Portrait"));
 		DialoguePortrait.Texture = Portrait;
 		DialoguePortrait.Visible = true;

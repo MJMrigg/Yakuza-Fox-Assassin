@@ -40,7 +40,10 @@ public partial class Enemy : NPC
 	public async void AttackCoolDown()
 	{
 		AttackCooledDown = false;
-		await ToSignal(GetTree().CreateTimer(AttackCooldown),"timeout");
+		do //In case the cool down finishes while the player has paused the game
+		{
+			await ToSignal(GetTree().CreateTimer(AttackCooldown),"timeout");
+		} while(Stop);
 		AttackCooledDown = true;
 	}
 	
