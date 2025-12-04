@@ -109,6 +109,7 @@ position = Vector2(552, 179)
 scale = Vector2(0.5, 0.5)
 DialogueOptions = PackedStringArray("Examine", "What do I do with this?", "Take", "Leave")
 DialogResponses = PackedStringArray("Upon closer inspection, it looks like some sort of key card.", "You can pick it up. To see if it\'s in your inventory, press tab.", "You pick up the key")
+DialogSuspicion = PackedFloat32Array(0, 0, 4)
 
 [node name="SceneTransition" parent="." instance=ExtResource("12_uri7o")]
 

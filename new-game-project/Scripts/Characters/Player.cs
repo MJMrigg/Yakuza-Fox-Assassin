@@ -197,7 +197,8 @@ public partial class Player : Entity
 		//If the player wishes to create a projectile and their cooldown is over
 		if(Input.IsActionJustPressed("p_ranged") && RangedCooldown)
 		{
-			CreateProjectile();
+			//CreateProjectile();
+			CreateProjectileTEST();
 		}
 		
 		//If the player wishes to make a melee attack and their cooldown is over
@@ -447,6 +448,115 @@ public partial class Player : Entity
 			MySpriteAnimation.Play();
 			((AudioStreamPlayer2D)GetNode("Sounds/ShotgunAndReload")).Play();
 		}
+		//Start the cooldown
+		RangedCooldown = false;
+		RangedCoolDown();
+	}
+	
+	//alternate projectile test
+	public void CreateProjectileTEST()
+	{
+		//If the player is in the bar, do not attack
+		if(RoomId == 5 || RoomId == 13)
+		{
+			return;
+		}
+		//If there is no gun equipped, do a bite attack
+		if(Inv.EquipedWeapons[1].ID == 0)
+		{
+			DealDamage();
+			return;
+		}
+		//If the ranged weapon is still cooling down, don't shoot the bullet
+		if(!RangedCooldown)
+		{
+			return;
+		}
+		
+		// Get mouse position and calculate direction
+		Vector2 mousePos = GetGlobalMousePosition();
+		Vector2 directionToMouse = (mousePos - GlobalPosition).Normalized();
+		
+		// Determine animation direction
+		string animDir = "D";
+		if(Mathf.Abs(directionToMouse.X) >= Mathf.Abs(directionToMouse.Y))
+		{
+			// Mouse is more horizontal
+			animDir = directionToMouse.X > 0 ? "R" : "L";
+		}
+		else
+		{
+			// Mouse is more vertical
+			animDir = directionToMouse.Y > 0 ? "D" : "U";
+		}
+		
+		//Get which weapon is equiped
+		int Weapon = Inv.EquipedWeapons[1].ID;
+		//Create an array of bullets based on the weapon
+		Projectile[] Bullets = new Projectile[Weapon];
+		
+		//Create the bullets
+		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("uid://2ajb1ycxcaik"); // bullet scene
+		for(int i = 0; i < Weapon; i++)
+		{
+			Bullets[i] = (Projectile)PlayerProjectileScene.Instantiate();
+			Bullets[i].Damage = Inv.EquipedWeapons[1].Damage;
+		}
+		
+		//Set Position and Direction
+		int BulletDistance = 65; //Distance bullet spawns from player
+		Vector2 spawnOffset = directionToMouse * BulletDistance;
+		
+		// Main bullet - always shoots toward mouse
+		Bullets[0].Direction = directionToMouse;
+		Bullets[0].Position = GlobalPosition + spawnOffset;
+		
+		// For shotgun, create spread pattern
+		if(Weapon == 3)
+		{
+			float spreadAngle = 0.4f; //radians not degrees. took me a sec to figure that out - DT
+			
+			// Left bullet
+			Vector2 leftDirection = directionToMouse.Rotated(-spreadAngle);
+			Bullets[1].Direction = leftDirection;
+			Bullets[1].Position = GlobalPosition + leftDirection * BulletDistance;
+			
+			// Right bullet
+			Vector2 rightDirection = directionToMouse.Rotated(spreadAngle);
+			Bullets[2].Direction = rightDirection;
+			Bullets[2].Position = GlobalPosition + rightDirection * BulletDistance;
+		}
+		
+		//Set bullet speeds
+		int BulletSpeed = 300;
+		if(Weapon == 3)
+		{
+			BulletSpeed = 200;
+		}
+		
+		//Create the bullets
+		for(int i = 0; i < Weapon; i++)
+		{
+			Bullets[i].Speed = BulletSpeed;
+			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
+			Bullets[i].CurrentDir = animDir;
+			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(Bullets[i]);
+		}
+		
+		//Play sound and animation
+		if(Weapon == 1)
+		{
+			MySpriteAnimation.Animation = "Pistol_"+animDir;
+			MySpriteAnimation.Play();
+			((AudioStreamPlayer2D)GetNode("Sounds/PistolLoud")).Play();
+		}
+		else if(Weapon == 3)
+		{
+			MySpriteAnimation.Animation = "Shotgun_"+animDir;
+			MySpriteAnimation.Play();
+			((AudioStreamPlayer2D)GetNode("Sounds/ShotgunAndReload")).Play();
+		}
+		
 		//Start the cooldown
 		RangedCooldown = false;
 		RangedCoolDown();

@@ -39,15 +39,15 @@ public partial class DifficultyMenu : Panel
 				switch(i.Text.ToLower().Trim())
 				{
 					case "easy":
-						Difficulty = 0.9f;
+						Difficulty = 0.4f;
 						StartGame();
 						break;
 					case "medium":
-						Difficulty = 0.8f;
+						Difficulty = 0.3f;
 						StartGame();
 						break;
 					case "hard":
-						Difficulty = 0.7f;
+						Difficulty = 0.2f;
 						StartGame();
 						break;
 					default:

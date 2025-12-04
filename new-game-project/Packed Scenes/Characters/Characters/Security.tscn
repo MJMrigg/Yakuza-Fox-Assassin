@@ -404,10 +404,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6uiao"]
 radius = 300.0
 
-[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
+[node name="Security" type="CharacterBody2D" node_paths=PackedStringArray("attackIndicator", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs", "Pausable"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_6uiao")
+attackIndicator = NodePath("CollisionShape2D/AttackRadius/ColorRect")
 AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 DeathSound = NodePath("Sounds/PaulUnconcious")
 Speed = 150.0
@@ -437,9 +438,16 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackRadius"]
 shape = SubResource("RectangleShape2D_6uiao")
 
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D/AttackRadius"]
+offset_left = -50.0
+offset_top = -30.0
+offset_right = -10.0
+offset_bottom = 10.0
+scale = Vector2(2.4979548, 1.4898477)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qkkyo")
-animation = &"Hurt_U"
+animation = &"Hurt_D"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 

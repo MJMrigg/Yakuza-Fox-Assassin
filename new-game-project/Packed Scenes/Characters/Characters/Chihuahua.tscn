@@ -438,10 +438,11 @@ size = Vector2(100, 60)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhu44"]
 radius = 200.0
 
-[node name="Chihuahua" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Chihuahua" type="CharacterBody2D" node_paths=PackedStringArray("attackIndicator", "AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_ag17j")
+attackIndicator = NodePath("CollisionShape2D/AttackRadius/ColorRect")
 Damage = 7
 AttackRadius = NodePath("CollisionShape2D/AttackRadius")
 AttackCooldown = 2
@@ -512,6 +513,13 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackRadius"]
 shape = SubResource("RectangleShape2D_ag17j")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D/AttackRadius"]
+offset_left = -50.0
+offset_top = -30.0
+offset_right = -10.0
+offset_bottom = 10.0
+scale = Vector2(2.4979548, 1.4898477)
 
 [node name="HostileRadius" type="Area2D" parent="."]
 collision_layer = 2
