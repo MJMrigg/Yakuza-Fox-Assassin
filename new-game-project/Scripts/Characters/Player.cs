@@ -477,7 +477,7 @@ public partial class Player : Entity
 		WinLoseMenu.Visible = true;
 		if(Game.Instance.BossIsDead) //The boss died
 		{ //The boss died
-			((Label)WinLoseMenu.GetNode("Text")).Text = "You have taken down the Yakuza!";
+			((Label)WinLoseMenu.GetNode("Text")).Text = "You have slain of your father!";
 		}else if(Dying || Health <= 0) //The player died
 		{ //The player died
 			((Label)WinLoseMenu.GetNode("Text")).Text = "You Died.";
