@@ -201,12 +201,20 @@ public partial class Player : Entity
 		if(Input.IsActionJustPressed("p_ranged") && RangedCooldown)
 		{
 			CreateProjectile();
+			// Increase local sus by 2%
+			var roomSus = Game.Instance.LocalSuspicions[RoomId];
+			float x = roomSus * 0.02f;
+			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
 		}
 		
 		//If the player wishes to make a melee attack and their cooldown is over
 		if(Input.IsActionJustPressed("p_melee") && MeleeCooldown)
 		{
 			DealDamage();
+			// Increase local sus by 2%
+			var roomSus = Game.Instance.LocalSuspicions[RoomId];
+			float x = roomSus * 0.02f;
+			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
 		}
 		
 		//If the animation is currently not walking
@@ -230,6 +238,10 @@ public partial class Player : Entity
 		{
 			Speed = 500;
 			((AudioStreamPlayer2D)GetNode("Sounds/Dash")).Play();
+			// Increase local sus by 2%
+			var roomSus = Game.Instance.LocalSuspicions[RoomId];
+			float x = roomSus * 0.02f;
+			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
 			DashDistanceCoolDown();
 			DashCoolDown();
 		} 

@@ -7,6 +7,9 @@ public partial class LocalSusMeter : ProgressBar
 	
 	public bool SuspiciousRoom = true;
 	
+	[Export]
+	public ColorRect thresholdBar;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -23,6 +26,8 @@ public partial class LocalSusMeter : ProgressBar
 			MaxValue = MaxSuspicion;
 			Value = Game.Instance.LocalSuspicions[RoomId];
 		}
+		
+		UpdateThresholdPosition();
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -47,5 +52,29 @@ public partial class LocalSusMeter : ProgressBar
 		}else{
 			((StyleBoxFlat)GetThemeStylebox("fill")).BorderWidthRight = 0;
 		}
+		UpdateThresholdPosition();
 	}
+	
+	private void UpdateThresholdPosition()
+	{
+		if(thresholdBar == null || !SuspiciousRoom)
+			return;
+		
+		// Calculate threshold percentage (assuming MaxValue is the threshold)
+		float thresholdPercent = (Game.Instance.LocalSuspicionThresholds[RoomId] / Game.Instance.MaxLocalSuspicions[RoomId]);
+		
+		// Position the threshold bar at the threshold point
+		float barWidth = Size.X;
+		float thresholdX = barWidth * thresholdPercent;
+		
+		// Position the ColorRect at the threshold position
+		// Adjust the X position to align with the threshold
+		thresholdBar.Position = new Vector2(thresholdX - thresholdBar.Size.X / 2, 0);
+		
+		// Make sure it spans the full height
+		thresholdBar.Size = new Vector2(thresholdBar.Size.X, Size.Y);
+	}
+	
+	
+	
 }

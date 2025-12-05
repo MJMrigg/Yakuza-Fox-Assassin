@@ -224,7 +224,7 @@ public partial class Game : Node
 			{
 				continue;
 			}
-			MaxGlobalSuspicion += MaxLocalSuspicions[i];
+			MaxGlobalSuspicion += MaxLocalSuspicions[i] - LocalSuspicionThresholds[i];
 		}
 		//Set Up Default controls
 		var actions = InputMap.GetActions();
@@ -337,7 +337,7 @@ public partial class Game : Node
 			{
 				continue;
 			}
-			MaxGlobalSuspicion += MaxLocalSuspicions[i];
+			MaxGlobalSuspicion += MaxLocalSuspicions[i] - LocalSuspicionThresholds[i];
 		}
 		//Set number of drinks the player has had
 		CurrentDrinks = 0;
@@ -466,6 +466,13 @@ public partial class Game : Node
 		{
 			return;
 		}
+		//If local sus is already at or over max do nothing
+		if(LocalSuspicions[Room] >= MaxLocalSuspicions[Room])
+		{
+			LocalSuspicions[Room] = MaxLocalSuspicions[Room];
+			return;
+		}
+		
 		LocalSuspicions[Room] += Amount;
 		//Make sure the local suspicion doesn't go over the max
 		LocalSuspicions[Room] = Mathf.Min(LocalSuspicions[Room],MaxLocalSuspicions[Room]);

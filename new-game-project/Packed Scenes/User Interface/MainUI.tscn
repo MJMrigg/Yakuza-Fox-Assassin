@@ -195,11 +195,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="LocalSuspicionMeter" type="ProgressBar" parent="Main/VBoxContainer/Main/LocalSuspicion"]
+[node name="LocalSuspicionMeter" type="ProgressBar" parent="Main/VBoxContainer/Main/LocalSuspicion" node_paths=PackedStringArray("thresholdBar")]
 custom_minimum_size = Vector2(220, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("4_tppbg")
+thresholdBar = NodePath("thresholdBar")
+
+[node name="thresholdBar" type="ColorRect" parent="Main/VBoxContainer/Main/LocalSuspicion/LocalSuspicionMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.018181818
+anchor_bottom = 1.0
+color = Color(0.36078432, 0.47058824, 1, 0.5882353)
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="HBoxContainer" parent="Main/VBoxContainer/Main"]
 layout_mode = 2
