@@ -271,29 +271,6 @@ text = "Shift"
 script = ExtResource("2_qh64w")
 actionType = "p_dash"
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 2
-text = "Slow"
-vertical_alignment = 1
-
-[node name="VSeparator" type="VSeparator" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 200
-
-[node name="Button" type="Button" parent="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9" groups=["keyBinds"]]
-custom_minimum_size = Vector2(164, 30)
-layout_mode = 2
-theme = ExtResource("3_q5cyt")
-toggle_mode = true
-text = "Crtl"
-script = ExtResource("2_qh64w")
-actionType = "p_slow"
-
 [node name="HBoxContainer10" type="HBoxContainer" parent="SettingsContainer/Settings/Keybindings/VBoxContainer"]
 layout_mode = 2
 
@@ -434,8 +411,6 @@ bus = &"soundEffect"
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer7/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer8/Button" method="buttonToggle"]
-[connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" to="." method="buttonsTog"]
-[connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer9/Button" method="buttonToggle"]
 [connection signal="butID" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" to="." method="buttonsTog"]
 [connection signal="toggled" from="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" to="SettingsContainer/Settings/Keybindings/VBoxContainer/HBoxContainer10/Button" method="buttonToggle"]
 [connection signal="pressed" from="SettingsContainer/Settings/Keybindings/VBoxContainer/defaultBut" to="." method="restoreDefault"]

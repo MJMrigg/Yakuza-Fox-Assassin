@@ -24,6 +24,14 @@ public partial class DialogueOption : Button
 	//Tell the interactable what option was chosen
 	public void ReturnOption()
 	{
+		GD.Print(((StyleBoxFlat)GetThemeStylebox("Normal")).GetBgColor());
+		//Mark the option as clicked
+		StyleBoxFlat Normal = ((StyleBoxFlat)GetThemeStylebox("Normal"));
+		StyleBoxFlat Pressed = ((StyleBoxFlat)GetThemeStylebox("Pressed"));
+		Normal.SetBgColor(Pressed.GetBgColor());
+		AddThemeStyleboxOverride("Normal",Normal);
+		GD.Print(Normal.GetBgColor());
+		GD.Print(((StyleBoxFlat)GetThemeStylebox("Normal")).GetBgColor());
 		//Emit the index of the dialogue option in the dialog tree
 		((AudioStreamPlayer)GetNode("ButtonClicked")).Play();
 		EmitSignal(SignalName.ChooseOption, GetIndex());

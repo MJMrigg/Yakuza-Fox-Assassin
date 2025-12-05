@@ -74,10 +74,10 @@ scale = Vector2(0.347, 1.386)
 texture = ExtResource("8_5wdf1")
 
 [node name="DoorBack" parent="RedDoor" index="2"]
-collision_mask = 0
+position = Vector2(7.343513e-06, 51)
 
 [node name="DoorFront" parent="RedDoor" index="3"]
-collision_mask = 0
+position = Vector2(-5.769903e-06, -33)
 
 [node name="SceneTransition" parent="." instance=ExtResource("9_msj1c")]
 

@@ -136,7 +136,7 @@ public partial class Boss : Enemy
 			//Create Explosion
 			Explosion NewExplosion = (Explosion)ExplosionScene.Instantiate();
 			NewExplosion.Position = new Vector2(RandX,RandY);
-			GetTree().GetRoot().AddChild(NewExplosion);
+			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(NewExplosion);
 		}
 		//Place an explosion on the player
 		Vector2 PlayerPosition = GetPlayerPosition();

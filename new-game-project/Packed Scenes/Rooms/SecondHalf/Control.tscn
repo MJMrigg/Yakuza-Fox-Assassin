@@ -42,6 +42,13 @@ tile_set = ExtResource("1_nk4ch")
 tile_map_data = PackedByteArray("AAAJAAYAAQADAAIAAAAMAAYAAQADAAIAAAAJAAMAAQADAAIAAAAMAAMAAQADAAIAAAAMAAIAAQACAAIAAAAJAAUAAQACAAIAABAGAAQAAQAAAAMAABAAAAgAAQAAAAEAAAABAAgAAQABAAEAAAAAAAcAAQABAAEAAAAAAAAAAQAAAAEAAAABAAAAAQABAAEAAAAAAAEAAQABAAEAAAAQAAcAAQABAAcAAAAQAAEAAQAAAAcAAAAQAAAAAQABAAcAAAAQAAgAAQAAAAcAAAA=")
 tile_set = ExtResource("1_nk4ch")
 
+[node name="ToBoss" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("7_utvqq")]
+position = Vector2(900, 612)
+ConnectedRoom = 20
+sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
+InitialDialog = "You find a vent. It feels a lot hotter and sounds a lot louder then the other vents."
+DialogResponses = PackedStringArray("This vent should be easy to crawl through, but whatever is on the other side sounds very dangerous.", "Echo!...Echo...echo....", "Well, luckily, you have something with which you can VENT!", "You crawl through the vent.", "")
+
 [node name="Player" parent="." node_paths=PackedStringArray("PlayerCamera") instance=ExtResource("2_m2o3e")]
 position = Vector2(830, 598)
 PlayerCamera = NodePath("../Camera2D")
@@ -73,11 +80,6 @@ TransformType = 9
 
 [node name="Npc3" parent="NPCs" instance=ExtResource("8_dw1sp")]
 position = Vector2(275, 267)
-
-[node name="ToBoss" parent="." node_paths=PackedStringArray("sceneTransition") instance=ExtResource("7_utvqq")]
-position = Vector2(900, 612)
-ConnectedRoom = 20
-sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 
 [node name="Items" type="Node" parent="."]
 

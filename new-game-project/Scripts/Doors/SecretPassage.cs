@@ -40,6 +40,7 @@ public partial class SecretPassage : Interactable
 	{
 		Game.Instance.IncreaseLocalSuspicion(RoomId,Suspicion);
 		Game.Instance.IncreaseLocalSuspicion(ConnectedRoom,Suspicion);
+		Game.Instance.GlobalSuspicion += 1;
 		int CurrentRoom = Game.Instance.PlayerRoom;
 		//Save all NPC data
 		Game.Instance.NPCs[CurrentRoom] = new List<string>(); //Overide past NPC data
