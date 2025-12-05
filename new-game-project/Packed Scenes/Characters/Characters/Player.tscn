@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=135 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Script" uid="uid://qcbs108ili5q" path="res://Scripts/Characters/Player.cs" id="1_gs7tr"]
@@ -986,14 +986,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gs7tr"]
-radius = 74.00676
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "PlayerUI", "MeleeAttackRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 16
 collision_mask = 27
 script = ExtResource("1_gs7tr")
-InteractionZone = NodePath("InteractionZone")
+InteractionZone = NodePath("CollisionShape2D/AttackRadius")
 PlayerUI = NodePath("PlayerUI")
 MeleeAttackRadius = NodePath("CollisionShape2D/AttackRadius")
 MyPhysicsCollider = NodePath("CollisionShape2D")
@@ -1018,7 +1015,7 @@ shape = SubResource("RectangleShape2D_ptild")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"Dash_D"
+animation = &"Walk_D"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
@@ -1090,14 +1087,6 @@ bus = &"soundEffect"
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("21_37w3c")]
 
-[node name="InteractionZone" type="Area2D" parent="." groups=["Pausable"]]
-collision_layer = 16
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_gs7tr")
-
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
 [node name="WinLoseMenu" parent="PlayerUI" instance=ExtResource("22_gs7tr")]
@@ -1108,6 +1097,4 @@ visible = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[connection signal="body_entered" from="InteractionZone" to="." method="MarkInteractable"]
-[connection signal="body_exited" from="InteractionZone" to="." method="MarkNoLongerInteractable"]
 [connection signal="Choice" from="PlayerUI/YesNoMenu" to="." method="ChoiceMade"]

@@ -241,7 +241,7 @@ public partial class Player : Entity
 			MySpriteAnimation.Animation = "Dash_"+CurrentDir;
 			MySpriteAnimation.Play();
 			// Increase local sus by 2%
-			var roomSus = Math.Max(Game.Instance.LocalSuspicions[RoomId], 0.02);
+			var roomSus = Math.Max(Game.Instance.LocalSuspicions[RoomId], 0.02f);
 			float IncreaseAmount = roomSus * 0.02f;
 			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
 			IsDashing = true;
