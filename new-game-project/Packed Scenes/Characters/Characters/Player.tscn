@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=123 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Script" uid="uid://qcbs108ili5q" path="res://Scripts/Characters/Player.cs" id="1_gs7tr"]
@@ -30,6 +30,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
 radius = 31.0
 height = 98.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptild"]
+size = Vector2(104, 55.34375)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lusjq"]
 atlas = ExtResource("1_c2xe1")
@@ -901,12 +904,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs7tr"]
 radius = 74.00676
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "PlayerUI", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractionZone", "PlayerUI", "MeleeAttackRadius", "MyPhysicsCollider", "MySpriteAnimation") groups=["Pausable"]]
 collision_layer = 16
 collision_mask = 27
 script = ExtResource("1_gs7tr")
 InteractionZone = NodePath("InteractionZone")
 PlayerUI = NodePath("PlayerUI")
+MeleeAttackRadius = NodePath("CollisionShape2D/AttackRadius")
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 
@@ -918,6 +922,14 @@ radius = 50.0
 vertices = PackedVector2Array(31, 0, 31, 18, 29, 30, 22, 40, 12, 47, 0, 49, -12, 47, -22, 40, -29, 30, -31, 18, -31, 0, -31, -18, -29, -30, -22, -40, -12, -47, 0, -49, 12, -47, 22, -40, 29, -30, 31, -18)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="AttackRadius" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(0, 49)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/AttackRadius"]
+shape = SubResource("RectangleShape2D_ptild")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")

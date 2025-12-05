@@ -43,6 +43,9 @@ public partial class Player : Entity
 	public bool increraseSus = true;
 	public bool susDelay = false;
 	
+	[Export]
+	public Area2D MeleeAttackRadius; //Zone where things the player can melee attack are
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -197,8 +200,7 @@ public partial class Player : Entity
 		//If the player wishes to create a projectile and their cooldown is over
 		if(Input.IsActionJustPressed("p_ranged") && RangedCooldown)
 		{
-			//CreateProjectile();
-			CreateProjectileTEST();
+			CreateProjectile();
 		}
 		
 		//If the player wishes to make a melee attack and their cooldown is over
@@ -232,17 +234,6 @@ public partial class Player : Entity
 			DashCoolDown();
 		} 
 		
-		if(Input.IsActionPressed("p_slow"))
-		{
-			Speed = 50;
-			IsSlow = true;
-		}
-		else if(IsSlow)
-		{
-			Speed = 200;
-			IsSlow = false;
-		}
-		
 		//Get player input and set up velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
 		float vInput = Input.GetAxis("p_s", "p_w");
@@ -254,12 +245,12 @@ public partial class Player : Entity
 		else if (Mathf.Abs(hInput) >= Mathf.Abs(vInput))
 		{
 			//If the player is moving left or right
-			MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			if (hInput > 0)
 			{ //If the player is moving right
 				Velocity += new Vector2(Speed, 0);
 				MySpriteAnimation.Animation = "Walk_R";
 				CurrentDir = "R";
+				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*-90.0f;
 			}
 			else
 			{ 
@@ -267,6 +258,7 @@ public partial class Player : Entity
 				Velocity += new Vector2(-Speed, 0);
 				MySpriteAnimation.Animation = "Walk_L";
 				CurrentDir = "L";
+				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			}
 			//If the player is walking diagonally
 			if(Mathf.Abs(hInput) == Mathf.Abs(vInput))
@@ -290,13 +282,13 @@ public partial class Player : Entity
 		}
 		else
 		{ //If the player is moving up or down
-			MyPhysicsCollider.Rotation = 0;
 			if (vInput > 0)
 			{
 				//up
 				Velocity += new Vector2(0, -Speed);
 				MySpriteAnimation.Animation = "Walk_U";
 				CurrentDir = "U";
+				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*180;
 			}
 			else
 			{
@@ -304,6 +296,7 @@ public partial class Player : Entity
 				Velocity += new Vector2(0, Speed);
 				MySpriteAnimation.Animation = "Walk_D";
 				CurrentDir = "D";
+				MyPhysicsCollider.Rotation = 0;
 			}
 			PlayWalkingSound();
 		}
@@ -332,129 +325,8 @@ public partial class Player : Entity
 		((Control)GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).GetNode("MainUI/Settings")).Visible = false;
 	}
 	
-	//Shoot a bullet
-	public void CreateProjectile()
-	{
-		//If the player is in the bar, do not attack
-		if(RoomId == 5 || RoomId == 13)
-		{
-			return;
-		}
-		//If there is no gun equipped, do a bite attack
-		if(Inv.EquipedWeapons[1].ID == 0)
-		{
-			DealDamage();
-			return;
-		}
-		//If the ranged weapon is still cooling down, don't shoot the bullet
-		if(!RangedCooldown)
-		{
-			return;
-		}
-		//Get which weapon is equiped
-		int Weapon = Inv.EquipedWeapons[1].ID;
-		//Create an array of bullets based on the weapon
-		Projectile[] Bullets = new Projectile[Weapon];
-		//Since the pistol ID is 1 and the shotgun ID is 3, it works
-		//I did not plan that
-		//Create the bullets
-		PackedScene PlayerProjectileScene = GD.Load<PackedScene>("res://Packed Scenes/Projectiles/Bullet.tscn");
-		for(int i = 0; i < Weapon; i++)
-		{
-			Bullets[i] = (Projectile)PlayerProjectileScene.Instantiate();
-			Bullets[i].Damage = Inv.EquipedWeapons[1].Damage;
-		}
-		//Set Position and Direction
-		int BulletDistance = 65; //Distance bullet spawns from player
-		float Angle = 1.0f; //Angle the bullet moves from the player
-		if(CurrentDir == "D")
-		{
-			for(int i = 0; i < Weapon; i++)
-			{
-				Bullets[i].Direction = new Vector2(0,1);
-				Bullets[i].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+BulletDistance);
-			}
-			Bullets[0].Direction = new Vector2(0,1);
-			Bullets[0].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y+BulletDistance);
-			if(Weapon == 3)
-			{ //Other two bullets for the shotgun
-				Bullets[1].Direction = new Vector2(-1*Angle,1);
-				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y+BulletDistance);
-				Bullets[2].Direction = new Vector2(Angle,1);
-				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y+BulletDistance);
-			}
-		}
-		else if(CurrentDir == "U")
-		{
-			Bullets[0].Direction = new Vector2(0,-1);
-			Bullets[0].Position = new Vector2(GlobalPosition.X,GlobalPosition.Y-BulletDistance);
-			if(Weapon == 3)
-			{ //Other two bullets for the shotgun
-				Bullets[1].Direction = new Vector2(-1*Angle,-1);
-				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y-BulletDistance);
-				Bullets[2].Direction = new Vector2(Angle,-1);
-				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y-BulletDistance);
-			}
-		}
-		else if(CurrentDir == "L")
-		{
-			Bullets[0].Direction = new Vector2(-1,0);
-			Bullets[0].Position = new Vector2(GlobalPosition.X-65,GlobalPosition.Y);
-			if(Weapon == 3)
-			{ //Other two bullets for the shotgun
-				Bullets[1].Direction = new Vector2(-1,Angle);
-				Bullets[1].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y+BulletDistance);
-				Bullets[2].Direction = new Vector2(-1,-1*Angle);
-				Bullets[2].Position = new Vector2(GlobalPosition.X-BulletDistance,GlobalPosition.Y-BulletDistance);
-			}
-		}
-		else if(CurrentDir == "R")
-		{
-			Bullets[0].Direction = new Vector2(1,0);
-			Bullets[0].Position = new Vector2(GlobalPosition.X+65,GlobalPosition.Y);
-			if(Weapon == 3)
-			{ //Other two bullets for the shotgun
-				Bullets[1].Direction = new Vector2(1,Angle);
-				Bullets[1].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y+BulletDistance);
-				Bullets[2].Direction = new Vector2(1,-1*Angle);
-				Bullets[2].Position = new Vector2(GlobalPosition.X+BulletDistance,GlobalPosition.Y-BulletDistance);
-			}
-		}
-		//Rotate the bullets for the shot gun and set bullet speeds
-		int BulletSpeed = 300;
-		if(Weapon == 3)
-		{
-			BulletSpeed = 200;
-		}
-		//Create the bullets
-		for(int i = 0; i < Weapon; i++)
-		{
-			Bullets[i].Speed = BulletSpeed;
-			//Bullets[i].SetCollisionLayerValue(3,true); //Bullet is player projectile
-			Bullets[i].SetCollisionMaskValue(2,true); //Bullet is looking for interactables
-			Bullets[i].CurrentDir = CurrentDir;
-			GetTree().GetRoot().GetChild(Game.Instance.SceneIndex).AddChild(Bullets[i]);
-		}
-		//Play sound and animation
-		if(Weapon == 1)
-		{
-			MySpriteAnimation.Animation = "Pistol_"+CurrentDir;
-			MySpriteAnimation.Play();
-			((AudioStreamPlayer2D)GetNode("Sounds/PistolLoud")).Play();
-		}
-		else if(Weapon == 3)
-		{
-			MySpriteAnimation.Animation = "Shotgun_"+CurrentDir;
-			MySpriteAnimation.Play();
-			((AudioStreamPlayer2D)GetNode("Sounds/ShotgunAndReload")).Play();
-		}
-		//Start the cooldown
-		RangedCooldown = false;
-		RangedCoolDown();
-	}
-	
 	//alternate projectile test
-	public void CreateProjectileTEST()
+	public void CreateProjectile()
 	{
 		//If the player is in the bar, do not attack
 		if(RoomId == 5 || RoomId == 13)
@@ -562,18 +434,6 @@ public partial class Player : Entity
 		RangedCoolDown();
 	}
 	
-	//Remove a door when opening it from the unlocked side
-	public void PlayerRemovesDoor()
-	{
-		
-	}
-	
-	//Use a secret passage
-	public void UseSecretPass()
-	{
-		
-	}
-	
 	//Increase local suspicion because of an event
 	public void IncreaseLocalSus(int amount)
 	{
@@ -621,7 +481,7 @@ public partial class Player : Entity
 		
 		//Go through every single interactable in the InteractionZone
 		NPC Attacked = null; //Assume there are none
-		Godot.Collections.Array<Node2D> Interactables = InteractionZone.GetOverlappingBodies();
+		Godot.Collections.Array<Node2D> Interactables = MeleeAttackRadius.GetOverlappingBodies();
 		foreach(Node2D body in Interactables)
 		{
 			//If the room is not yet hostile, ask the player if they want to start combat in this room
@@ -908,21 +768,45 @@ public partial class Player : Entity
 		}
 	}
 	
+	//Mark an interatable object as interactable
 	public void MarkInteractable(Node2D body)
 	{
-		if(body is Interactable)
+		//Make sure the body is an interactable object
+		if(!(body is Interactable))
 		{
-			Interactable CurrentInteraction = (Interactable)body;
-			CurrentInteraction.InteractionBox.Visible = true;
+			return;
 		}
+		Interactable CurrentInteraction = (Interactable)body;
+		//Make sure the NPC isn't a hostile NPC
+		if(CurrentInteraction is NPC)
+		{
+			if(((NPC)CurrentInteraction).IsHostile){
+				return;
+			}
+		}
+		//Make sure it has an interaction box
+		if(CurrentInteraction.InteractionBox == null)
+		{
+			return;
+		}
+		//Mark it as interactable by showing its interaction box
+		CurrentInteraction.InteractionBox.Visible = true;
 	}
 	
 	public void MarkNoLongerInteractable(Node2D body)
 	{
-		if(body is Interactable)
+		//Make sure the body is an interactable object
+		if(!(body is Interactable))
 		{
-			Interactable CurrentInteraction = (Interactable)body;
-			CurrentInteraction.InteractionBox.Visible = false;
+			return;
 		}
+		Interactable CurrentInteraction = (Interactable)body;
+		//Make sure it has an interaction box
+		if(CurrentInteraction.InteractionBox == null)
+		{
+			return;
+		}
+		//Mark it as no longer interactable by hiding its interaction box
+		CurrentInteraction.InteractionBox.Visible = false;
 	}
 }
