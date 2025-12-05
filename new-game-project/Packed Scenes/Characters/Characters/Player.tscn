@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=136 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Script" uid="uid://qcbs108ili5q" path="res://Scripts/Characters/Player.cs" id="1_gs7tr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c0sfv2q8qaxsj" path="res://Art Assets/Characters/Player/Animations/Walk-Anim_Player.png" id="3_6cc16"]
 [ext_resource type="Texture2D" uid="uid://bqq84pd6lph21" path="res://Art Assets/Characters/Player/Animations/Crouch-Anim_Player.png" id="3_ptild"]
 [ext_resource type="Texture2D" uid="uid://c3ah2w36jux87" path="res://Art Assets/Characters/Player/Animations/Die-Anim_Player.png" id="3_ssyuw"]
+[ext_resource type="Texture2D" uid="uid://dfn11im2fgwlo" path="res://Art Assets/Characters/Player/Animations/Dash-Anim_Player.png" id="4_c6oxo"]
 [ext_resource type="AudioStream" uid="uid://rfpjf0jbbkvb" path="res://Art Assets/Sounds/Player/BiteAttack.mp3" id="4_jdabq"]
 [ext_resource type="Texture2D" uid="uid://ddth0mb85i6pr" path="res://Art Assets/Characters/Player/Animations/Knife-Anim_Player.png" id="4_yaswc"]
 [ext_resource type="AudioStream" uid="uid://ika17xsyd7fg" path="res://Art Assets/Sounds/Player/Crouch1.mp3" id="5_xik24"]
@@ -161,6 +162,54 @@ region = Rect2(192, 240, 96, 120)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikjwx"]
 atlas = ExtResource("3_ptild")
 region = Rect2(288, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fke83"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2fey"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b45t"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnfqw"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgxir"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bmu0"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfikg"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61twy"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq1t7"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqfle"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4buy"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md6ke"]
+atlas = ExtResource("4_c6oxo")
+region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2sba"]
 atlas = ExtResource("3_ssyuw")
@@ -540,22 +589,58 @@ animations = [{
 "name": &"Crouch_U",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fke83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2fey")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_5b45t")
+}],
 "loop": false,
 "name": &"Dash_D",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nnfqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgxir")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_1bmu0")
+}],
 "loop": false,
 "name": &"Dash_L",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_yfikg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61twy")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kq1t7")
+}],
 "loop": false,
 "name": &"Dash_R",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cqfle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4buy")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_md6ke")
+}],
 "loop": false,
 "name": &"Dash_U",
 "speed": 5.0
@@ -933,7 +1018,7 @@ shape = SubResource("RectangleShape2D_ptild")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"Walk_D"
+animation = &"Dash_D"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
