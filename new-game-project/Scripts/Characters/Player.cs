@@ -226,30 +226,39 @@ public partial class Player : Entity
 				MySpriteAnimation.Animation = "Walk_"+CurrentDir;
 				MySpriteAnimation.Frame = 0;
 			}
-			else
+			else if(!MySpriteAnimation.Animation.ToString().StartsWith("Dash"))
 			{
 				//If it is playing, do nothing, as the animation must finish playing
+				//(unless it's the dash)
 				return;
 			}
 		}
 		
-		//
 		if(Input.IsActionJustPressed("p_dash") && DashCooldown)
 		{
 			Speed = 500;
 			((AudioStreamPlayer2D)GetNode("Sounds/Dash")).Play();
+			MySpriteAnimation.Animation = "Dash_"+CurrentDir;
+			MySpriteAnimation.Play();
 			// Increase local sus by 2%
 			var roomSus = Game.Instance.LocalSuspicions[RoomId];
-			float x = roomSus * 0.02f;
-			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
+			float IncreaseAmount = roomSus * 0.02f;
+			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
 			DashDistanceCoolDown();
 			DashCoolDown();
 		} 
 		
-		//Get player input and set up velocity
+		//Get player input and set up animation and velocity
 		float hInput = Input.GetAxis("p_a", "p_d");
 		float vInput = Input.GetAxis("p_s", "p_w");
 		Velocity = new Vector2(0,0);
+		//Set the current animation to either walk or dash
+		string AnimationStart = "Walk_";
+		if(!DashCooldown)
+		{
+			AnimationStart = "Dash_";
+		}
+		//Determine Velocity
 		if (Mathf.Abs(hInput) < 0.1f && Mathf.Abs(vInput) < 0.1f)
 		{ //If the velocity is 0, just play the first frame of walking
 			MySpriteAnimation.Frame = 0;
@@ -260,7 +269,7 @@ public partial class Player : Entity
 			if (hInput > 0)
 			{ //If the player is moving right
 				Velocity += new Vector2(Speed, 0);
-				MySpriteAnimation.Animation = "Walk_R";
+				MySpriteAnimation.Animation = AnimationStart+"R";
 				CurrentDir = "R";
 				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*-90.0f;
 			}
@@ -268,7 +277,7 @@ public partial class Player : Entity
 			{ 
 				//If the player is moving left
 				Velocity += new Vector2(-Speed, 0);
-				MySpriteAnimation.Animation = "Walk_L";
+				MySpriteAnimation.Animation = AnimationStart+"L";
 				CurrentDir = "L";
 				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*90.0f;
 			}
@@ -298,7 +307,7 @@ public partial class Player : Entity
 			{
 				//up
 				Velocity += new Vector2(0, -Speed);
-				MySpriteAnimation.Animation = "Walk_U";
+				MySpriteAnimation.Animation = AnimationStart+"U";
 				CurrentDir = "U";
 				MyPhysicsCollider.Rotation = ((float)Math.PI/180)*180;
 			}
@@ -306,7 +315,7 @@ public partial class Player : Entity
 			{
 				//down
 				Velocity += new Vector2(0, Speed);
-				MySpriteAnimation.Animation = "Walk_D";
+				MySpriteAnimation.Animation = AnimationStart+"D";
 				CurrentDir = "D";
 				MyPhysicsCollider.Rotation = 0;
 			}

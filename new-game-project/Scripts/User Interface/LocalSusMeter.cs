@@ -46,12 +46,14 @@ public partial class LocalSusMeter : ProgressBar
 		}
 		//Update border width based on if the bar is filled or not
 		//Ensures the fill right border color doesn't show up when it's not full
+		StyleBoxFlat FillStyle = (StyleBoxFlat)(GetThemeStylebox("fill")).Duplicate();
 		if(Value >= MaxValue)
 		{
-			((StyleBoxFlat)GetThemeStylebox("fill")).BorderWidthRight = 2;
+			FillStyle.BorderWidthRight = 2;
 		}else{
-			((StyleBoxFlat)GetThemeStylebox("fill")).BorderWidthRight = 0;
+			FillStyle.BorderWidthRight = 0;
 		}
+		AddThemeStyleboxOverride("fill",FillStyle);
 		UpdateThresholdPosition();
 	}
 	
