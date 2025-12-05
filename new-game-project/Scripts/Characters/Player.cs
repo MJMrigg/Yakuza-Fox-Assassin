@@ -7,7 +7,7 @@ public partial class Player : Entity
 	[Export]
 	public int Speed = 200; //Movement speed
 	
-	public bool IsSlow = false; //Whether the player is slowing
+	public bool IsDashing = false; //Whether the player is dashing
 	
 	public int MaxHealth = 100; //Store maximum health for healing purposes
 	
@@ -244,6 +244,7 @@ public partial class Player : Entity
 			var roomSus = Game.Instance.LocalSuspicions[RoomId];
 			float IncreaseAmount = roomSus * 0.02f;
 			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
+			IsDashing = true;
 			DashDistanceCoolDown();
 			DashCoolDown();
 		} 
@@ -254,7 +255,7 @@ public partial class Player : Entity
 		Velocity = new Vector2(0,0);
 		//Set the current animation to either walk or dash
 		string AnimationStart = "Walk_";
-		if(!DashCooldown)
+		if(IsDashing)
 		{
 			AnimationStart = "Dash_";
 		}
@@ -593,6 +594,9 @@ public partial class Player : Entity
 	public async void DashDistanceCoolDown()
 	{
 		await ToSignal(GetTree().CreateTimer(0.4),"timeout");
+		MySpriteAnimation.Animation = "Walk_"+CurrentDir;
+		MySpriteAnimation.Play();
+		IsDashing = false;
 		Speed = 200;
 	}
 	
