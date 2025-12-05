@@ -1,9 +1,10 @@
-[gd_scene load_steps=105 format=3 uid="uid://dcfyx3omcemb5"]
+[gd_scene load_steps=122 format=3 uid="uid://dcfyx3omcemb5"]
 
 [ext_resource type="Texture2D" uid="uid://b6jbh4i0od5tn" path="res://Art Assets/Characters/Player/Animations/Bite-Anim_Player.png" id="1_c2xe1"]
 [ext_resource type="Script" uid="uid://qcbs108ili5q" path="res://Scripts/Characters/Player.cs" id="1_gs7tr"]
 [ext_resource type="Texture2D" uid="uid://bkerf5eqedm3g" path="res://Art Assets/Characters/Player/Animations/Hurt-Anim_Player.png" id="2_fj2py"]
 [ext_resource type="Texture2D" uid="uid://c0sfv2q8qaxsj" path="res://Art Assets/Characters/Player/Animations/Walk-Anim_Player.png" id="3_6cc16"]
+[ext_resource type="Texture2D" uid="uid://bqq84pd6lph21" path="res://Art Assets/Characters/Player/Animations/Crouch-Anim_Player.png" id="3_ptild"]
 [ext_resource type="Texture2D" uid="uid://c3ah2w36jux87" path="res://Art Assets/Characters/Player/Animations/Die-Anim_Player.png" id="3_ssyuw"]
 [ext_resource type="AudioStream" uid="uid://rfpjf0jbbkvb" path="res://Art Assets/Sounds/Player/BiteAttack.mp3" id="4_jdabq"]
 [ext_resource type="Texture2D" uid="uid://ddth0mb85i6pr" path="res://Art Assets/Characters/Player/Animations/Knife-Anim_Player.png" id="4_yaswc"]
@@ -92,6 +93,70 @@ region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42lri"]
 atlas = ExtResource("1_c2xe1")
+region = Rect2(288, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka75i"]
+atlas = ExtResource("3_ptild")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i05wa"]
+atlas = ExtResource("3_ptild")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uws8a"]
+atlas = ExtResource("3_ptild")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmwxe"]
+atlas = ExtResource("3_ptild")
+region = Rect2(288, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evnnp"]
+atlas = ExtResource("3_ptild")
+region = Rect2(0, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrjjl"]
+atlas = ExtResource("3_ptild")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4yff"]
+atlas = ExtResource("3_ptild")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjsuw"]
+atlas = ExtResource("3_ptild")
+region = Rect2(288, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10v5l"]
+atlas = ExtResource("3_ptild")
+region = Rect2(0, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c00qp"]
+atlas = ExtResource("3_ptild")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydoao"]
+atlas = ExtResource("3_ptild")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg5lt"]
+atlas = ExtResource("3_ptild")
+region = Rect2(288, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylwvc"]
+atlas = ExtResource("3_ptild")
+region = Rect2(0, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxcfj"]
+atlas = ExtResource("3_ptild")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi8cl"]
+atlas = ExtResource("3_ptild")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikjwx"]
+atlas = ExtResource("3_ptild")
 region = Rect2(288, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2sba"]
@@ -404,22 +469,70 @@ animations = [{
 "name": &"Bite_U",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka75i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i05wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uws8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmwxe")
+}],
 "loop": true,
 "name": &"Crouch_D",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evnnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrjjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4yff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjsuw")
+}],
 "loop": true,
 "name": &"Crouch_L",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10v5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c00qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydoao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg5lt")
+}],
 "loop": true,
 "name": &"Crouch_R",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylwvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxcfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi8cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikjwx")
+}],
 "loop": true,
 "name": &"Crouch_U",
 "speed": 5.0
@@ -808,7 +921,7 @@ carve_navigation_mesh = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rwas")
-animation = &"Die_U"
+animation = &"Walk_D"
 
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
