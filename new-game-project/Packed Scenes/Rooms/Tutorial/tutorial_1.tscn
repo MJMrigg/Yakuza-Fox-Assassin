@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bd81iedhj88bp" path="res://Packed Scenes/Items/Pistol.tscn" id="7_nkbej"]
 [ext_resource type="PackedScene" uid="uid://dwtu0dg70hhg7" path="res://Packed Scenes/Characters/Characters/tutorial_npc.tscn" id="8_daijy"]
 [ext_resource type="PackedScene" uid="uid://tt8pocwt0mag" path="res://Packed Scenes/Characters/Characters/Chihuahua.tscn" id="9_1s0ds"]
-[ext_resource type="PackedScene" path="res://Packed Scenes/Doors/BlueDoor.tscn" id="10_1s0ds"]
+[ext_resource type="PackedScene" uid="uid://dsj5m6w0s2ksw" path="res://Packed Scenes/Doors/BlueDoor.tscn" id="10_1s0ds"]
 [ext_resource type="PackedScene" uid="uid://cckd5u6wwg8gx" path="res://Packed Scenes/Characters/Characters/Husky.tscn" id="10_x2143"]
-[ext_resource type="PackedScene" path="res://Packed Scenes/Items/blue_key.tscn" id="11_x2143"]
+[ext_resource type="PackedScene" uid="uid://deaktrwtthk0t" path="res://Packed Scenes/Items/blue_key.tscn" id="11_x2143"]
 [ext_resource type="PackedScene" uid="uid://dr3v1a3gjfp8n" path="res://Packed Scenes/User Interface/scene_transition.tscn" id="12_uri7o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1s0ds"]

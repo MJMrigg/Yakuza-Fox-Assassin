@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cckd5u6wwg8gx"]
+[gd_scene load_steps=72 format=3 uid="uid://cckd5u6wwg8gx"]
 
 [ext_resource type="Script" uid="uid://v87lc1o8kvw7" path="res://Scripts/Characters/Enemy2.cs" id="1_0nspq"]
 [ext_resource type="Texture2D" uid="uid://btg0pfwq8nsay" path="res://Art Assets/Characters/Enemies/Husky/Animations/Die-Anim_Husky.png" id="1_5o7ni"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cosyf7cuql86n" path="res://Art Assets/Characters/Enemies/Husky/Animations/Walk-Anim_Husky.png" id="2_t8407"]
 [ext_resource type="AudioStream" uid="uid://b3c0rjtkjsi01" path="res://Art Assets/Sounds/Husky/HuskyBark1.mp3" id="3_ssrmf"]
 [ext_resource type="AudioStream" uid="uid://tixg14vcn20t" path="res://Art Assets/Sounds/Husky/HuskyBark2.mp3" id="4_n07xk"]
+[ext_resource type="Texture2D" uid="uid://b33gm46m87oyd" path="res://Art Assets/Characters/Enemies/Husky/Animations/Shoot-Anim_Husky.png" id="5_cgce7"]
 [ext_resource type="AudioStream" uid="uid://dmm7r2jp1wka2" path="res://Art Assets/Sounds/Husky/HuskyBark3.mp3" id="5_n07xk"]
 [ext_resource type="AudioStream" uid="uid://dbtm4y7cg4qi0" path="res://Art Assets/Sounds/Husky/HuskyBark4.mp3" id="6_t0yt5"]
 [ext_resource type="AudioStream" uid="uid://dkhx4c5px57k6" path="res://Art Assets/Sounds/Husky/HuskyDeath.mp3" id="7_uetyp"]
@@ -132,6 +133,38 @@ region = Rect2(96, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8g0f"]
 atlas = ExtResource("1_udhs2")
+region = Rect2(192, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh78g"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(96, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw0k3"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(192, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mjp1"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(96, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkytn"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(192, 360, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2neb"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(96, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw7se"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(192, 120, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja44p"]
+atlas = ExtResource("5_cgce7")
+region = Rect2(96, 240, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72v7d"]
+atlas = ExtResource("5_cgce7")
 region = Rect2(192, 240, 96, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjjj5"]
@@ -344,22 +377,46 @@ animations = [{
 "name": &"Idle_U",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh78g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw0k3")
+}],
 "loop": false,
 "name": &"Shoot_D",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mjp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkytn")
+}],
 "loop": false,
 "name": &"Shoot_L",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2neb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw7se")
+}],
 "loop": false,
 "name": &"Shoot_R",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja44p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72v7d")
+}],
 "loop": false,
 "name": &"Shoot_U",
 "speed": 5.0
