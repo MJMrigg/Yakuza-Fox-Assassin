@@ -203,8 +203,8 @@ public partial class Player : Entity
 			CreateProjectile();
 			// Increase local sus by 2%
 			var roomSus = Game.Instance.LocalSuspicions[RoomId];
-			float x = roomSus * 0.02f;
-			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
+			float IncreaseAmount = Math.Max(roomSus * 0.02f, 0.02f);
+			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
 		}
 		
 		//If the player wishes to make a melee attack and their cooldown is over
@@ -213,8 +213,8 @@ public partial class Player : Entity
 			DealDamage();
 			// Increase local sus by 2%
 			var roomSus = Game.Instance.LocalSuspicions[RoomId];
-			float x = roomSus * 0.02f;
-			Game.Instance.IncreaseLocalSuspicion(RoomId, x);
+			float IncreaseAmount = Math.Max(roomSus * 0.02f, 0.02f);
+			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
 		}
 		
 		//If the animation is currently not walking
@@ -241,8 +241,8 @@ public partial class Player : Entity
 			MySpriteAnimation.Animation = "Dash_"+CurrentDir;
 			MySpriteAnimation.Play();
 			// Increase local sus by 2%
-			var roomSus = Math.Max(Game.Instance.LocalSuspicions[RoomId], 0.02f);
-			float IncreaseAmount = roomSus * 0.02f;
+			var roomSus = Game.Instance.LocalSuspicions[RoomId];
+			float IncreaseAmount = Math.Max(roomSus * 0.02f, 0.02f);
 			Game.Instance.IncreaseLocalSuspicion(RoomId, IncreaseAmount);
 			IsDashing = true;
 			DashDistanceCoolDown();
