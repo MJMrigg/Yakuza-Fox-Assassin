@@ -126,8 +126,9 @@ public partial class PatrollingNPC : Enemy
 				//Play attack sound and animation
 				int Chosen = (int)GD.RandRange(1, 8);
 				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/PaulBark"+Chosen));
-				//AttackSound.SetVolumeDb(-15.0f);
 				AttackSound.Play();
+				MySpriteAnimation.Animation = "Bite_"+CurrentDir;
+				MySpriteAnimation.Play();
 				//PAUL DOES NOT HAVE AN ATTACK ANIMATION RIGHT NOW
 				//Begin the attack cool down
 				AttackCooledDown = false;

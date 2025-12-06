@@ -103,7 +103,6 @@ public partial class Enemy1 : Enemy
 				//Play attack sound and animation
 				int Chosen = (int)GD.RandRange(1, 7);
 				AttackSound = ((AudioStreamPlayer2D)GetNode("Sounds/ChihuahuaBark"+Chosen));
-				AttackSound.SetVolumeDb(-15.0f);
 				AttackSound.Play();
 				MySpriteAnimation.Animation = "Charge_"+CurrentDir;
 				MySpriteAnimation.Play();
