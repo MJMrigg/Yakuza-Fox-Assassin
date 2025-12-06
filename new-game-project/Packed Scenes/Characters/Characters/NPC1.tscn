@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://7w7gvjn4f0yy"]
+[gd_scene load_steps=56 format=3 uid="uid://7w7gvjn4f0yy"]
 
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_rqn5h"]
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_t4kyu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://pc0lmrtnv1wj" path="res://Art Assets/Characters/NPCS/NPC-1/Animations/Walk-Anim_NPC-1.png" id="3_qxp0h"]
 [ext_resource type="Texture2D" uid="uid://dd33ao84gpncd" path="res://Art Assets/Characters/NPCS/NPC-1/Animations/Hurt-Anim_NPC-1.png" id="4_if4i1"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="7_if4i1"]
+[ext_resource type="PackedScene" uid="uid://b71x6h3aero0b" path="res://Packed Scenes/User Interface/green_health_bar.tscn" id="7_irky6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ek4g"]
 atlas = ExtResource("3_5ynit")
@@ -406,7 +407,7 @@ height = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtwxd"]
 radius = 200.0
 
-[node name="Npc1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc1" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_t4kyu")
@@ -414,6 +415,7 @@ Speed = 200.0
 Portrait = ExtResource("2_jtwxd")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 InitialDialog = "Woah, who are you?"
 DialogueOptions = PackedStringArray("I\'m your new coworker.", "I\'m your boss\' kid come to claim his throne.", "I don\'t know why, but you remind me of a dog named Max.", "Goodbye.")
 DialogResponses = PackedStringArray("Well, I hope you enjoy awkward office birthday parties then.", "Oh no!", "That\'s too meta.")
@@ -444,6 +446,12 @@ radius = 75.0
 [node name="Sounds" type="Node" parent="."]
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_rqn5h")]
+
+[node name="HealthBar" parent="." instance=ExtResource("7_irky6")]
+offset_left = -20.0
+offset_top = -82.0
+offset_right = 20.0
+offset_bottom = -52.0
 
 [node name="Interactable" parent="." instance=ExtResource("7_if4i1")]
 position = Vector2(-20, -82)

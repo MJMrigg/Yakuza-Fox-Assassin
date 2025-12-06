@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c6es7gsvts3ya"]
+[gd_scene load_steps=56 format=3 uid="uid://c6es7gsvts3ya"]
 
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_3uop3"]
 [ext_resource type="Texture2D" uid="uid://b5mq6morm8o4y" path="res://Art Assets/Characters/NPCS/NPC-2/Portraits/Neutral-Por-Right_NPC-2.png" id="2_nrxuq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bh2015xjb7pb0" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Hurt-Anim_NPC-2.png" id="4_n1vpa"]
 [ext_resource type="Texture2D" uid="uid://ikwe6b4a3dc0" path="res://Art Assets/Characters/NPCS/NPC-2/Animations/Walk-Anim_NPC-2.png" id="5_nrxuq"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="6_n1vpa"]
+[ext_resource type="PackedScene" uid="uid://b71x6h3aero0b" path="res://Packed Scenes/User Interface/green_health_bar.tscn" id="7_0j0ux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbqu2"]
 atlas = ExtResource("3_wj1gb")
@@ -406,7 +407,7 @@ height = 94.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3uop3"]
 radius = 200.0
 
-[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc2" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 safe_margin = 0.1
@@ -415,6 +416,7 @@ Speed = 200.0
 Portrait = ExtResource("2_nrxuq")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 _type = 1
 InitialDialog = "Woah, hey there!"
 DialogueOptions = PackedStringArray("Who are you?", "Ever notice these halls look the same?", "I am an intruder.", "Goodbye")
@@ -447,6 +449,13 @@ radius = 75.0
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("3_jya10")]
+
+[node name="HealthBar" parent="." instance=ExtResource("7_0j0ux")]
+anchor_right = 0.0
+offset_left = -20.0
+offset_top = -78.0
+offset_right = 20.0
+offset_bottom = -49.0
 
 [node name="Interactable" parent="." instance=ExtResource("6_n1vpa")]
 position = Vector2(-20, -78)

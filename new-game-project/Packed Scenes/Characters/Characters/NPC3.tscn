@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://f4lev6mhev37"]
+[gd_scene load_steps=56 format=3 uid="uid://f4lev6mhev37"]
 
 [ext_resource type="Script" uid="uid://bppkn2hmm77ri" path="res://Scripts/Characters/NPC.cs" id="1_aw31w"]
 [ext_resource type="PackedScene" uid="uid://b4mwwu87huwft" path="res://Packed Scenes/General/GeneralSounds.tscn" id="1_ormxa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bttoq2g4s6plr" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Die-Anim_NPC-3.png" id="3_ffgjf"]
 [ext_resource type="Texture2D" uid="uid://i50aqdi0ocd0" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Hurt-Anim_NPC-3.png" id="4_nlnmw"]
 [ext_resource type="Texture2D" uid="uid://pwq0vt7b48ff" path="res://Art Assets/Characters/NPCS/NPC-3/Animations/Walk-Anim_NPC-3.png" id="5_bbqnb"]
+[ext_resource type="PackedScene" uid="uid://b71x6h3aero0b" path="res://Packed Scenes/User Interface/green_health_bar.tscn" id="7_bbqnb"]
 [ext_resource type="PackedScene" uid="uid://ctv05unu720g3" path="res://Packed Scenes/User Interface/Interactable.tscn" id="7_nlnmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3ekp"]
@@ -406,7 +407,7 @@ height = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_aw31w"]
 radius = 200.0
 
-[node name="Npc3" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Npc3" type="CharacterBody2D" node_paths=PackedStringArray("NavAgent", "HostileRadius", "HpBar", "InteractionBox", "MyPhysicsCollider", "MySpriteAnimation")]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_aw31w")
@@ -414,6 +415,7 @@ Speed = 200.0
 Portrait = ExtResource("2_6a1ll")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
+HpBar = NodePath("HealthBar")
 _type = 2
 InitialDialog = "Oh hello!"
 DialogueOptions = PackedStringArray("Don\'t you guys usually herd sheep?", "How much do you get paid?", "Is it okay if I steel weapons and keys from around the ship?", "Goodbye")
@@ -445,6 +447,12 @@ radius = 75.0
 [node name="Sounds" type="CharacterBody2D" parent="."]
 
 [node name="GeneralSounds" parent="Sounds" instance=ExtResource("1_ormxa")]
+
+[node name="HealthBar" parent="." instance=ExtResource("7_bbqnb")]
+offset_left = -19.0
+offset_top = -82.0
+offset_right = 21.0
+offset_bottom = -52.0
 
 [node name="Interactable" parent="." instance=ExtResource("7_nlnmw")]
 position = Vector2(-19, -82)
