@@ -1097,4 +1097,6 @@ visible = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[connection signal="body_entered" from="CollisionShape2D/AttackRadius" to="." method="MarkInteractable"]
+[connection signal="body_exited" from="CollisionShape2D/AttackRadius" to="." method="MarkNoLongerInteractable"]
 [connection signal="Choice" from="PlayerUI/YesNoMenu" to="." method="ChoiceMade"]

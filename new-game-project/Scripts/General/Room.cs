@@ -169,7 +169,7 @@ public partial class Room : Node2D
 					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
-				else if(type >= 5 && type != 12) //Type 12 is Paul
+				else if(type >= 5 && type < 12) //Type 12 is Paul
 				{ //Two different tanukis, normal and transformed
 					NPCPackedScene = GD.Load<PackedScene>("res://Packed Scenes/Characters/Characters/Tanuki.tscn");
 					Enemy3 newNPC = (Enemy3)NPCPackedScene.Instantiate();
@@ -188,6 +188,21 @@ public partial class Room : Node2D
 						newNPC.MySpriteAnimation.Frame = type-6;
 						newNPC.TransformType = type;
 					}
+					AddChild(newNPC);
+				}
+				else if(type == 13)
+				{ //Boss
+					NPCPackedScene = GD.Load<PackedScene>("uid://xa2kt5clmxbo");
+					Boss newNPC = (Boss)NPCPackedScene.Instantiate();
+					newNPC._type = type;
+					newNPC.Position = new Vector2(x,y);
+					newNPC.Health = health;
+					newNPC.CurrentDir = dir;
+					newNPC.MySpriteAnimation.Animation = animation;
+					newNPC.MySpriteAnimation.Frame = frame;
+					newNPC.Dying = IsDying;
+					newNPC.IsHostile = Game.Instance.RoomsHostile[RoomId];
+					newNPC.RoomId = RoomId;
 					AddChild(newNPC);
 				}
 			}

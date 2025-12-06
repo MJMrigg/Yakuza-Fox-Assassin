@@ -665,7 +665,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wwe6"]
 radius = 1024.0
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "MyPhysicsCollider", "MySpriteAnimation")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("AttackRadius", "DeathSound", "NavAgent", "HostileRadius", "HpBar", "MyPhysicsCollider", "MySpriteAnimation") groups=["NPCs"]]
 collision_layer = 2
 collision_mask = 23
 script = ExtResource("1_21mar")
@@ -680,6 +680,7 @@ Portrait = ExtResource("2_y2r7x")
 NavAgent = NodePath("NavigationAgent2D")
 HostileRadius = NodePath("HostileRadius")
 HpBar = NodePath("HealthBar")
+_type = 13
 MyPhysicsCollider = NodePath("CollisionShape2D")
 MySpriteAnimation = NodePath("AnimatedSprite2D")
 

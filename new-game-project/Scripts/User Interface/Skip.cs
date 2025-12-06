@@ -19,13 +19,7 @@ public partial class Skip : Panel
 	//Reveal the skip button after some amount of time
 	public async void Reveal()
 	{
-		await ToSignal(GetTree().CreateTimer(4),"timeout");
+		await ToSignal(GetTree().CreateTimer(7),"timeout");
 		Visible = true;
-	}
-	
-	//Move to the center of the screen
-	public void MoveToCenter()
-	{
-		Position = new Vector2(461,299.5f);
 	}
 }

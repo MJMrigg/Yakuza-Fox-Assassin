@@ -145,7 +145,7 @@ public partial class Game : Node
 			//<Bathroom2(17), [Living2(16)]>
 			{17, new Dictionary<int, Vector2> { { 16, new Vector2(-57,582) } } },
 			//<Security2(18), [Training Yard(10), Controls(19)]>
-			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-107,256) }, { 19, new Vector2(687,-109) }, { 7, new Vector2(109,60) } } },
+			{18, new Dictionary<int, Vector2> { { 10, new Vector2(-107,256) }, { 19, new Vector2(687,-109) }, { 20, new Vector2(846,253) }, { 7, new Vector2(109,60) } } },
 			//<Controls(19), [Security2(18), Boss(20)]>
 			{19, new Dictionary<int, Vector2> { { 18, new Vector2(289,848) }, { 20, new Vector2(830,598) } } },
 			//<Boss(20), [Security2(18)]>

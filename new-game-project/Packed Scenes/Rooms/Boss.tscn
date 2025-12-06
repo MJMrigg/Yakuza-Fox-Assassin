@@ -44,11 +44,6 @@ tile_set = ExtResource("1_yq0du")
 position = Vector2(168, 72)
 PlayerCamera = NodePath("../Camera2D")
 
-[node name="Boss" parent="." instance=ExtResource("3_mdc6g")]
-position = Vector2(553, 321)
-Health = 180
-maxHealth = 180
-
 [node name="MainUI" parent="." instance=ExtResource("4_tq2ua")]
 
 [node name="LocalSuspicionMeter" parent="MainUI/Main/VBoxContainer/Main/LocalSuspicion" index="1"]
@@ -66,6 +61,7 @@ script = ExtResource("5_rsiio")
 position = Vector2(-403, 397)
 rotation = 1.5707964
 scale = Vector2(0.5, 1)
+ConnectedRoom = 18
 sceneTransition = NodePath("../SceneTransition/AnimationPlayer")
 
 [node name="DoorSprite" parent="RedDoor" index="0"]
@@ -80,6 +76,14 @@ position = Vector2(7.343513e-06, 51)
 position = Vector2(-5.769903e-06, -33)
 
 [node name="SceneTransition" parent="." instance=ExtResource("9_msj1c")]
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Boss" parent="NPCs" groups=["NPCs"] instance=ExtResource("3_mdc6g")]
+position = Vector2(553, 321)
+Health = 180
+maxHealth = 180
+_type = 13
 
 [editable path="MainUI"]
 [editable path="RedDoor"]
